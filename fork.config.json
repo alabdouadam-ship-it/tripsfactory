@@ -1,0 +1,67 @@
+{
+  "$comment": "Single descriptor for a brand/domain fork of this core. Values here MUST match the Dart seams (BrandConfig). The test test/config/fork_config_test.dart enforces that, so this file is the canonical, reviewable description of a fork. See CORE.md for the full fork procedure.",
+  "brand": {
+    "name": "TripShip",
+    "androidPackageId": "com.tripship.app",
+    "authScheme": "io.supabase.tripship",
+    "contentScheme": "tripship",
+    "webBaseUrl": "https://tripship-legal.web.app",
+    "appStoreUrl": "https://apps.apple.com/app/tripship/id000000000",
+    "fontFamily": "Public Sans",
+    "notificationChannelId": "tripship_notification_v1",
+    "notificationChannelName": "TripShip Notifications",
+    "notificationSoundAndroid": "tripship_notification",
+    "notificationSoundIos": "tripship_notification.wav",
+    "supportWhatsAppFallback": "+971933123456",
+    "logoAsset": "assets/icon/icon.png"
+  },
+  "localization": {
+    "$comment": "Languages this fork ships (subset of available) and the first-launch default. Must match LocalizationConfig. RTL is auto-detected from the language code.",
+    "supported": ["ar", "en", "fr", "tr", "es"],
+    "default": "en"
+  },
+  "theme": {
+    "$comment": "Themes this fork offers and the first-launch default. Must match AppTheme.supportedThemes and ThemeNotifier.defaultThemeMode (order matters).",
+    "supported": [
+      "tripshipLight",
+      "tripshipDark",
+      "desertGold",
+      "oasisGreen",
+      "skylineBlue",
+      "limestoneGray",
+      "midnightPurple",
+      "oceanTeal",
+      "steelGray"
+    ],
+    "default": "oasisGreen"
+  },
+  "font": {
+    "$comment": "Default font family (a Google Fonts family) + optional per-language / per-theme overrides. Must match FontConfig.",
+    "default": "Public Sans",
+    "perLanguage": {},
+    "perTheme": {}
+  },
+  "geography": {
+    "$comment": "Home country for the internal/external route split. Must match GeographyConfig. Matched primarily by ISO country code; names are the fallback. externalRequiresHomeCountryOnOneSide: when true an external route must keep the home country on exactly one side.",
+    "homeCountryCode": "AE",
+    "homeCountryNameEn": "United Arab Emirates",
+    "homeCountryNameAr": "الإمارات العربية المتحدة",
+    "externalRequiresHomeCountryOnOneSide": true
+  },
+  "backend": {
+    "$comment": "Each fork runs its OWN Supabase + Firebase project. These are NOT committed here; they live in .env (Flutter) and native config files. Listed for the fork checklist only.",
+    "supabaseUrlEnv": "SUPABASE_URL",
+    "supabaseAnonKeyEnv": "SUPABASE_ANON_KEY",
+    "firebaseConfigAndroid": "android/app/google-services.json",
+    "firebaseConfigIos": "ios/Runner/GoogleService-Info.plist"
+  },
+  "nativeChecklist": {
+    "$comment": "Items that do NOT move with a Dart constant and must be changed per fork (see Phase 3 in CORE.md).",
+    "androidApplicationId": "android/app/build.gradle.kts",
+    "androidDeepLinkSchemes": "android/app/src/main/AndroidManifest.xml",
+    "iosBundleId": "ios/Runner.xcodeproj / Info.plist",
+    "iosUrlSchemes": "ios/Runner/Info.plist",
+    "launcherIcon": "flutter_launcher_icons.yaml",
+    "signingKeys": "android/key.properties (gitignored)"
+  }
+}

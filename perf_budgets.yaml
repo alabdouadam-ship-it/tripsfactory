@@ -1,0 +1,55 @@
+# Stage 3 Performance Regression Budgets
+# Tune these limits when UI or backend changes; tests read from this file.
+# Baseline: measured on representative device/simulator after Stage 3 optimizations.
+
+flutter:
+  # Max rebuilds of a wrapped screen/widget per single state update (e.g. one profile field change).
+  max_rebuilds_per_minor_update: 8
+  # Max rebuilds on initial layout (pump + one frame).
+  max_rebuilds_initial: 15
+  # Chat: one new message should not rebuild full scaffold more than N times.
+  max_rebuilds_chat_new_message: 5
+  # TripDetails: handshake/status action should not rebuild full scroll content more than N times.
+  max_rebuilds_trip_details_handshake: 6
+
+  # Riverpod: repository fetch (mocked) should be called at most this many times per "lifecycle" (mount → unmount).
+  max_fetch_calls_per_lifecycle: 1
+  # Unrelated state mutation must not trigger provider recompute (assert 0 extra recomputes).
+  max_recomputes_on_unrelated_change: 0
+
+  # List/pagination: default page size used by search (trips, shipments).
+  default_page_size: 20
+  max_page_size: 50
+  # Max network requests when loading a list screen (initial + optional load more).
+  max_requests_per_list_load: 2
+  # Payload size ceiling per list response (KB).
+  max_response_payload_kb: 100
+
+backend:
+  # Indexes that MUST exist (Stage 3 migration 00008).
+  required_indexes:
+    - idx_bookings_shipment_id
+    - idx_bookings_traveler_id
+    - idx_bookings_trip_id
+    - idx_bookings_requester_id
+    - idx_bookings_status
+    - idx_trips_traveler_id
+    - idx_trips_origin_location
+    - idx_trips_dest_location
+    - idx_trips_status
+    - idx_shipments_sender_id
+    - idx_shipments_locations
+    - idx_shipments_status
+    - idx_messages_booking_id
+    - idx_notifications_user_id
+    - idx_notification_tokens_user_id
+    - idx_blocks_blocker_id
+    - idx_blocks_blocked_id
+    - idx_reports_reported_id
+    - idx_reports_status
+    - idx_vehicles_owner_id
+
+  # Max rows returned per RPC/list fetch (p_limit / page size).
+  max_rows_per_fetch: 50
+  # Max acceptable RPC execution time (ms) in local/test env - sanity only.
+  max_rpc_time_ms: 5000

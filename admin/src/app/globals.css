@@ -1,0 +1,342 @@
+@import "tailwindcss";
+
+/* Default (light) – used before theme loads */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --heading: #111827;
+  --muted: #6b7280;
+  --main-bg: #f3f4f6;
+  --surface: #ffffff;
+  --surface-border: #e5e7eb;
+  --sidebar-bg: #111827;
+  --sidebar-text: #f9fafb;
+  --sidebar-muted: #9ca3af;
+  --sidebar-border: #374151;
+  --sidebar-hover: #1f2937;
+  --sidebar-active: #1e3a5f;
+  --accent: #3b82f6;
+  --accent-foreground: #ffffff;
+
+  /* Font Scaling Levels (Root matches 'normal') */
+  --font-size-small: 14px;
+  --font-size-normal: 16px;
+  --font-size-large: 18px;
+  --font-size-xl: 20px;
+  --font-size-xxl: 22px;
+}
+
+/* Apply Font Scaling to the root document */
+html[data-font-size="small"] {
+  font-size: var(--font-size-small);
+}
+
+html[data-font-size="normal"] {
+  font-size: var(--font-size-normal);
+}
+
+html[data-font-size="large"] {
+  font-size: var(--font-size-large);
+}
+
+html[data-font-size="xl"] {
+  font-size: var(--font-size-xl);
+}
+
+html[data-font-size="xxl"] {
+  font-size: var(--font-size-xxl);
+}
+
+/* Ensure body uses rem so it scales with html */
+body {
+  font-size: 1rem;
+}
+
+/* 1. Midnight (darkest) */
+[data-theme="midnight"] {
+  --background: #0a0a0c;
+  --foreground: #f4f4f5;
+  --heading: #fafafa;
+  --muted: #d4d4d8;
+  --main-bg: #0c0c0f;
+  --surface: #141416;
+  --surface-border: #27272a;
+  --sidebar-bg: #050507;
+  --sidebar-text: #fafafa;
+  --sidebar-muted: #a1a1aa;
+  --sidebar-border: #27272a;
+  --sidebar-hover: #18181b;
+  --sidebar-active: #1e293b;
+  --accent: #3b82f6;
+  --accent-foreground: #ffffff;
+}
+
+/* 2. Dark */
+[data-theme="dark"] {
+  --background: #18181b;
+  --foreground: #f4f4f5;
+  --heading: #fafafa;
+  --muted: #d4d4d8;
+  --main-bg: #1c1c1f;
+  --surface: #27272a;
+  --surface-border: #3f3f46;
+  --sidebar-bg: #0f0f12;
+  --sidebar-text: #f4f4f5;
+  --sidebar-muted: #a1a1aa;
+  --sidebar-border: #3f3f46;
+  --sidebar-hover: #27272a;
+  --sidebar-active: #1e3a5f;
+  --accent: #3b82f6;
+  --accent-foreground: #ffffff;
+}
+
+/* 3. Dim */
+[data-theme="dim"] {
+  --background: #2d2d30;
+  --foreground: #e4e4e7;
+  --heading: #f4f4f5;
+  --muted: #d4d4d8;
+  --main-bg: #252528;
+  --surface: #3c3c40;
+  --surface-border: #4a4a50;
+  --sidebar-bg: #1e1e22;
+  --sidebar-text: #e4e4e7;
+  --sidebar-muted: #a1a1aa;
+  --sidebar-border: #404040;
+  --sidebar-hover: #2d2d30;
+  --sidebar-active: #2d3a5f;
+  --accent: #60a5fa;
+  --accent-foreground: #ffffff;
+}
+
+/* 4. Light */
+[data-theme="light"] {
+  --background: #ffffff;
+  --foreground: #171717;
+  --heading: #111827;
+  --muted: #6b7280;
+  --main-bg: #f3f4f6;
+  --surface: #ffffff;
+  --surface-border: #e5e7eb;
+  --sidebar-bg: #111827;
+  --sidebar-text: #f9fafb;
+  --sidebar-muted: #9ca3af;
+  --sidebar-border: #374151;
+  --sidebar-hover: #1f2937;
+  --sidebar-active: #1e3a5f;
+  --accent: #3b82f6;
+  --accent-foreground: #ffffff;
+}
+
+/* 5. Bright (lightest) */
+[data-theme="bright"] {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --heading: #0c0c0c;
+  --muted: #64748b;
+  --main-bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-border: #e2e8f0;
+  --sidebar-bg: #f1f5f9;
+  --sidebar-text: #0f172a;
+  --sidebar-muted: #64748b;
+  --sidebar-border: #e2e8f0;
+  --sidebar-hover: #e2e8f0;
+  --sidebar-active: #bfdbfe;
+  --accent: #2563eb;
+  --accent-foreground: #ffffff;
+}
+
+/* 6. Crimson (dark red) */
+[data-theme="crimson"] {
+  --background: #1c0a0c;
+  --foreground: #fef2f2;
+  --heading: #fafafa;
+  --muted: #fecaca;
+  --main-bg: #220e10;
+  --surface: #2d1518;
+  --surface-border: #4a2025;
+  --sidebar-bg: #160608;
+  --sidebar-text: #fef2f2;
+  --sidebar-muted: #fca5a5;
+  --sidebar-border: #3f1a1d;
+  --sidebar-hover: #2d1518;
+  --sidebar-active: #7f1d1d;
+  --accent: #dc2626;
+  --accent-foreground: #ffffff;
+}
+
+/* 7. Forest (green) */
+[data-theme="forest"] {
+  --background: #0a1410;
+  --foreground: #f0fdf4;
+  --heading: #fafafa;
+  --muted: #bbf7d0;
+  --main-bg: #0d1a14;
+  --surface: #14281d;
+  --surface-border: #1e3d2a;
+  --sidebar-bg: #051008;
+  --sidebar-text: #f0fdf4;
+  --sidebar-muted: #86efac;
+  --sidebar-border: #14532d;
+  --sidebar-hover: #14281d;
+  --sidebar-active: #14532d;
+  --accent: #22c55e;
+  --accent-foreground: #ffffff;
+}
+
+/* 8. Ocean (blue) */
+[data-theme="ocean"] {
+  --background: #0a0f1a;
+  --foreground: #f0f9ff;
+  --heading: #fafafa;
+  --muted: #bae6fd;
+  --main-bg: #0d1320;
+  --surface: #0f172a;
+  --surface-border: #1e3a5f;
+  --sidebar-bg: #050a12;
+  --sidebar-text: #f0f9ff;
+  --sidebar-muted: #7dd3fc;
+  --sidebar-border: #1e3a5f;
+  --sidebar-hover: #0f172a;
+  --sidebar-active: #1e3a5f;
+  --accent: #0ea5e9;
+  --accent-foreground: #ffffff;
+}
+
+/* 9. Amber (gold) */
+[data-theme="amber"] {
+  --background: #1c1810;
+  --foreground: #fffbeb;
+  --heading: #fafaf9;
+  --muted: #fde68a;
+  --main-bg: #221c12;
+  --surface: #29201a;
+  --surface-border: #4a3c28;
+  --sidebar-bg: #141008;
+  --sidebar-text: #fffbeb;
+  --sidebar-muted: #fcd34d;
+  --sidebar-border: #3d3220;
+  --sidebar-hover: #29201a;
+  --sidebar-active: #78350f;
+  --accent: #f59e0b;
+  --accent-foreground: #1c1917;
+}
+
+/* 10. Violet */
+[data-theme="violet"] {
+  --background: #140f1a;
+  --foreground: #f5f3ff;
+  --heading: #fafafa;
+  --muted: #ddd6fe;
+  --main-bg: #1a1220;
+  --surface: #221829;
+  --surface-border: #3d2a52;
+  --sidebar-bg: #0d0812;
+  --sidebar-text: #f5f3ff;
+  --sidebar-muted: #c4b5fd;
+  --sidebar-border: #2e1f3d;
+  --sidebar-hover: #221829;
+  --sidebar-active: #4c1d95;
+  --accent: #8b5cf6;
+  --accent-foreground: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--main-bg);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Basic RTL support */
+html[dir="rtl"] body {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] input,
+html[dir="rtl"] textarea,
+html[dir="rtl"] select {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] .rtl-text-left {
+  text-align: left;
+}
+
+/* Theme-aware text for visibility in all themes */
+.theme-heading {
+  color: var(--heading) !important;
+}
+
+.theme-muted {
+  color: var(--muted) !important;
+}
+
+/* Theme-aware backgrounds and borders */
+.theme-card {
+  background-color: var(--surface) !important;
+  border: 1px solid var(--surface-border) !important;
+}
+
+.theme-bg-secondary {
+  background-color: var(--main-bg) !important;
+}
+
+/* Form controls: ensure readable text in all themes.
+   Native <select> dropdowns are often rendered with a light background by the browser,
+   so options must use dark text. Inputs/selects on light surfaces (e.g. filter bars, cards)
+   should also use dark text when the surface is light. */
+select option {
+  background: #ffffff !important;
+  color: #171717 !important;
+}
+
+/* Use on containers that have a light background (e.g. bg-white) so inherited
+   theme foreground doesn’t make input/select/labels invisible in dark themes. */
+.form-on-light {
+  color: #171717 !important;
+}
+
+.form-on-light input,
+.form-on-light select,
+.form-on-light textarea {
+  color: #171717 !important;
+  background-color: #ffffff !important;
+}
+
+.form-on-light input::placeholder,
+.form-on-light textarea::placeholder {
+  color: #6b7280 !important;
+}
+
+.form-on-light select option {
+  background: #ffffff !important;
+  color: #171717 !important;
+}
+
+/* Hide Leaflet Ukrainian flag from attribution */
+.leaflet-control-attribution a[href*="stand-ukraine"] {
+  display: none !important;
+}
+
+.leaflet-control-attribution img[src*="flag"] {
+  display: none !important;
+}
+
+/* Fullscreen map styling */
+#operations-map-container:fullscreen {
+  background: var(--surface);
+}
+
+#operations-map-container:fullscreen .leaflet-container {
+  background: var(--surface);
+}

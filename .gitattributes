@@ -1,0 +1,12 @@
+# Normalize line endings
+* text=auto
+
+# ----------------------------------------------------------------------------
+# Distribution hygiene: exclude internal dev artifacts from `git archive`
+# (the sellable ZIP and the regenerated clean `tripship-core` repo).
+# These stay in the working repo for the maintainer but never ship to buyers.
+# ----------------------------------------------------------------------------
+.cursor/                                    export-ignore
+SELLER_NOTES.private.md                     export-ignore
+AGENT_ONBOARDING.md                         export-ignore
+docs/project_architecture.md                export-ignore

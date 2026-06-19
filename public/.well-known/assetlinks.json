@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.tripship.app",
+            "sha256_cert_fingerprints": [
+                "21:76:A0:59:6F:AB:29:F8:E0:44:27:90:D1:0B:B6:3D:CE:07:B7:51:76:8D:CF:4E:92:C6:83:7F:06:E7:CF:C1"
+            ]
+        }
+    }
+]

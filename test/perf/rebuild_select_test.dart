@@ -1,0 +1,124 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:tripship/features/profile/data/profile_model.dart';
+import 'package:tripship/features/auth/data/auth_service.dart';
+import '../test_helpers/perf_budgets_loader.dart';
+
+/// Tests that widgets using .select() on currentUserProfileProvider
+/// do not rebuild when an unrelated profile field changes (Stage 3 optimization).
+void main() {
+  late Profile profileA;
+  late Profile profileSameCompanyNewName;
+  late Profile profileNewCompany;
+
+  setUpAll(() {
+    profileA = const Profile(
+      id: 'u1',
+      fullName: 'User One',
+      companyStatus: 'pending',
+    );
+    profileSameCompanyNewName = const Profile(
+      id: 'u1',
+      fullName: 'User One Updated Name',
+      companyStatus: 'pending',
+    );
+    profileNewCompany = const Profile(
+      id: 'u1',
+      fullName: 'User One',
+      companyStatus: 'approved',
+    );
+  });
+
+  testWidgets(
+    'widget watching companyStatus via .select() rebuilds only when companyStatus changes',
+    (tester) async {
+      final budgets = loadPerfBudgets();
+      final maxRecomputes = getInt(
+        budgets['flutter'] as Map<String, dynamic>,
+        'max_recomputes_on_unrelated_change',
+        0,
+      );
+
+      int rebuildCount = 0;
+      final profileState = StateProvider<Profile?>((ref) => profileA);
+      final override = currentUserProfileProvider.overrideWith(
+        (ref) async => ref.watch(profileState),
+      );
+
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [override],
+          child: MaterialApp(
+            home: Scaffold(
+              body: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Consumer(
+                    builder: (context, ref, _) {
+                      // Count rebuilds of this Consumer (select listener), not the parent
+                      // wrapper — wrapping with RebuildCounter misses child rebuilds.
+                      rebuildCount++;
+                      final status = ref.watch(
+                        currentUserProfileProvider.select(
+                          (p) => p.value?.companyStatus ?? 'none',
+                        ),
+                      );
+                      return Text('Status: $status');
+                    },
+                  ),
+                  Consumer(
+                    builder: (context, ref, _) {
+                      return Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          TextButton(
+                            onPressed: () =>
+                                ref.read(profileState.notifier).state =
+                                    profileSameCompanyNewName,
+                            child: const Text('Unrelated'),
+                          ),
+                          TextButton(
+                            onPressed: () =>
+                                ref.read(profileState.notifier).state =
+                                    profileNewCompany,
+                            child: const Text('Related'),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      final afterFirstBuild = rebuildCount;
+
+      await tester.tap(find.text('Unrelated'));
+      await tester.pump();
+
+      final afterUnrelatedChange = rebuildCount;
+      expect(
+        afterUnrelatedChange - afterFirstBuild,
+        lessThanOrEqualTo(maxRecomputes),
+        reason:
+            'Unrelated profile change (fullName) should not trigger rebuild when using .select(companyStatus)',
+      );
+
+      await tester.tap(find.text('Related'));
+      // FutureProvider needs a microtask to resolve even if state is sync
+      await tester.runAsync(() => Future.delayed(Duration.zero));
+      await tester.pumpAndSettle();
+
+      expect(
+        rebuildCount,
+        greaterThan(afterUnrelatedChange),
+        reason: 'Changing companyStatus should trigger rebuild',
+      );
+    },
+  );
+}

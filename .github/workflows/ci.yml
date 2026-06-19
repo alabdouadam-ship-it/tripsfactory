@@ -1,0 +1,145 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Cancel superseded runs on the same ref to save minutes.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ───────────────────────────────────────────────────────────────────────────
+  # Stage 1 — Supabase SQL tests (DB triggers / RLS / RPCs / FSMs)
+  #
+  # The tests/db suite runs against a LIVE Supabase project: it signs in as
+  # pre-created test users and exercises the database guard triggers, RLS
+  # policies and RPCs. Local migration replay is a non-goal (see
+  # docs/project_architecture.md), so this runs against a dedicated TEST
+  # project configured via repository secrets.
+  #
+  # Required repository secrets (Settings → Secrets and variables → Actions):
+  #   SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, SUPABASE_ANON_KEY
+  #   TEST_USER_REQUESTER_EMAIL / _PASSWORD
+  #   TEST_USER_TRAVELER_EMAIL  / _PASSWORD
+  #   TEST_USER_ADMIN_EMAIL     / _PASSWORD
+  # The three test users must already exist in the test project's auth.
+  #
+  # If the secrets are not configured, the stage SKIPS (does not fail) so the
+  # pipeline stays green for contributors without test-project access.
+  # ───────────────────────────────────────────────────────────────────────────
+  supabase-sql-tests:
+    name: Supabase SQL tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tests/db
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+      TEST_USER_REQUESTER_EMAIL: ${{ secrets.TEST_USER_REQUESTER_EMAIL }}
+      TEST_USER_REQUESTER_PASSWORD: ${{ secrets.TEST_USER_REQUESTER_PASSWORD }}
+      TEST_USER_TRAVELER_EMAIL: ${{ secrets.TEST_USER_TRAVELER_EMAIL }}
+      TEST_USER_TRAVELER_PASSWORD: ${{ secrets.TEST_USER_TRAVELER_PASSWORD }}
+      TEST_USER_ADMIN_EMAIL: ${{ secrets.TEST_USER_ADMIN_EMAIL }}
+      TEST_USER_ADMIN_PASSWORD: ${{ secrets.TEST_USER_ADMIN_PASSWORD }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check Supabase secrets
+        id: guard
+        run: |
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::Supabase secrets not configured — skipping DB SQL tests."
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up Node
+        if: steps.guard.outputs.configured == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        if: steps.guard.outputs.configured == 'true'
+        run: npm install
+
+      - name: Run DB SQL tests (vitest)
+        if: steps.guard.outputs.configured == 'true'
+        run: npm test
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # Stage 2 — Flutter checks (analyze + test)
+  # ───────────────────────────────────────────────────────────────────────────
+  flutter:
+    name: Flutter checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          # Uses the latest stable Flutter. If the pubspec SDK constraint
+          # (sdk: ^3.10.7) is not satisfied by stable, pin an explicit version
+          # here instead, e.g. flutter-version: 3.44.1
+          channel: stable
+          cache: true
+
+      - name: Flutter version
+        run: flutter --version
+
+      - name: Create placeholder .env
+        # .env is gitignored but declared as a bundled asset in pubspec.yaml,
+        # so it must exist for `flutter test` asset bundling. Tests don't use
+        # real credentials (providers are overridden), so placeholders suffice.
+        run: |
+          printf 'SUPABASE_URL=https://example.supabase.co\nSUPABASE_ANON_KEY=placeholder-anon-key\n' > .env
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Test
+        run: flutter test --reporter expanded
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # Stage 3 — Admin panel checks (typecheck + test)
+  # ───────────────────────────────────────────────────────────────────────────
+  admin:
+    name: Admin checks
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: admin
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: admin/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check (informational)
+        # Known pre-existing type errors in *.test files; kept non-blocking.
+        run: npx tsc --noEmit
+        continue-on-error: true
+
+      - name: Test
+        run: npm test
