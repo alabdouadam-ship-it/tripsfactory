@@ -6,7 +6,7 @@ class BookingFixture {
   static final _base = Booking(
     id: 'fixture-booking-1',
     driverId: 'driver-1',
-    offerPrice: 100,
+    price: 100,
     status: BookingStatus.pending,
     createdAt: DateTime(2025, 1, 15, 10, 0),
   );

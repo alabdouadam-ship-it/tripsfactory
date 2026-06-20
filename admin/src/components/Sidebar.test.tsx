@@ -37,7 +37,6 @@ vi.mock('@/lib/i18n', () => ({
     if (key === 'nav.section.operations') return 'Operations';
     if (key === 'nav.section.supportContent') return 'Support & Content';
     if (key === 'nav.section.platform') return 'Platform';
-    if (key === 'nav.offers') return 'Offers';
     return fallback ?? key;
   },
 }));
@@ -108,7 +107,6 @@ describe('Sidebar', () => {
     expect(accountGroup.map(link => link.getAttribute('href'))).toEqual([
       '/users',
       '/drivers',
-      '/companies',
       '/verification',
       '/documents',
     ]);
@@ -130,8 +128,6 @@ describe('Sidebar', () => {
     expect(operationsGroup.map(link => link.getAttribute('href'))).toEqual([
       '/trips',
       '/bookings',
-      '/shipments',
-      '/offers',
     ]);
   });
 

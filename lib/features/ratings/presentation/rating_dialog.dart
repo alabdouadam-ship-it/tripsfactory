@@ -8,14 +8,12 @@ class RatingDialog extends ConsumerStatefulWidget {
   final String ratedUserId;
   final String ratedUserRole; // 'driver' or 'client'
   final String? bookingId;
-  final String? offerId;
 
   const RatingDialog({
     super.key,
     required this.ratedUserId,
     required this.ratedUserRole,
     this.bookingId,
-    this.offerId,
   });
 
   @override
@@ -56,7 +54,6 @@ class _RatingDialogState extends ConsumerState<RatingDialog> {
                 ? null
                 : _commentController.text.trim(),
             bookingId: widget.bookingId,
-            offerId: widget.offerId,
           );
 
       if (mounted) {

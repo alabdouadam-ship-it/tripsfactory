@@ -12,10 +12,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get appTitle => 'TripShip';
 
   @override
-  String get welcomeBack => 'Tekrar hoş geldiniz';
+  String get welcomeBack => 'Tekrar hoÅŸ geldiniz';
 
   @override
-  String get signInToContinue => 'Devam etmek için giriş yapın';
+  String get signInToContinue => 'Devam etmek iÃ§in giriÅŸ yapÄ±n';
 
   @override
   String get email => 'E-posta';
@@ -24,37 +24,37 @@ class AppLocalizationsTr extends AppLocalizations {
   String get password => 'Parola';
 
   @override
-  String get forgotPassword => 'Parolanızı mı unuttunuz?';
+  String get forgotPassword => 'ParolanÄ±zÄ± mÄ± unuttunuz?';
 
   @override
-  String get signIn => 'Giriş yap';
+  String get signIn => 'GiriÅŸ yap';
 
   @override
-  String get dontHaveAccount => 'Hesabınız yok mu? ';
+  String get dontHaveAccount => 'HesabÄ±nÄ±z yok mu? ';
 
   @override
   String get add => 'Ekle';
 
   @override
-  String get pleaseSelectAllFields => 'Lütfen tüm gerekli alanları seçin';
+  String get pleaseSelectAllFields => 'LÃ¼tfen tÃ¼m gerekli alanlarÄ± seÃ§in';
 
   @override
-  String get pleaseSelectDateFirst => 'Lütfen önce yolculuk tarihini seçin';
+  String get pleaseSelectDateFirst => 'LÃ¼tfen Ã¶nce yolculuk tarihini seÃ§in';
 
   @override
   String get signUp => 'Kaydol';
 
   @override
-  String get createAccount => 'Hesap oluştur';
+  String get createAccount => 'Hesap oluÅŸtur';
 
   @override
-  String get joinRevolution => 'Lojistik devrimine katılın';
+  String get joinRevolution => 'Lojistik devrimine katÄ±lÄ±n';
 
   @override
   String get fullName => 'Ad soyad';
 
   @override
-  String get alreadyHaveAccount => 'Zaten hesabınız var mı? ';
+  String get alreadyHaveAccount => 'Zaten hesabÄ±nÄ±z var mÄ±? ';
 
   @override
   String get settings => 'Ayarlar';
@@ -66,85 +66,85 @@ class AppLocalizationsTr extends AppLocalizations {
   String get theme => 'Tema';
 
   @override
-  String get logout => 'Çıkış yap';
+  String get logout => 'Ã‡Ä±kÄ±ÅŸ yap';
 
   @override
   String get home => 'Ana sayfa';
 
   @override
-  String get resetPassword => 'Parolayı sıfırla';
+  String get resetPassword => 'ParolayÄ± sÄ±fÄ±rla';
 
   @override
   String get enterEmailToReset =>
-      'Sıfırlama bağlantısı almak için e-postanızı girin.';
+      'SÄ±fÄ±rlama baÄŸlantÄ±sÄ± almak iÃ§in e-postanÄ±zÄ± girin.';
 
   @override
-  String get cancel => 'İptal';
+  String get cancel => 'Ä°ptal';
 
   @override
-  String get send => 'Gönder';
+  String get send => 'GÃ¶nder';
 
   @override
-  String get linkSent => 'Sıfırlama bağlantısı gönderildi';
+  String get linkSent => 'SÄ±fÄ±rlama baÄŸlantÄ±sÄ± gÃ¶nderildi';
 
   @override
-  String get invalidCredentials => 'Geçersiz e-posta veya parola';
+  String get invalidCredentials => 'GeÃ§ersiz e-posta veya parola';
 
   @override
   String get emailNotConfirmed =>
-      'Giriş yapmadan önce lütfen e-postanızı onaylayın';
+      'GiriÅŸ yapmadan Ã¶nce lÃ¼tfen e-postanÄ±zÄ± onaylayÄ±n';
 
   @override
   String get userAlreadyRegistered =>
-      'Bu e-posta zaten kayıtlı. Lütfen giriş yapın.';
+      'Bu e-posta zaten kayÄ±tlÄ±. LÃ¼tfen giriÅŸ yapÄ±n.';
 
   @override
-  String get pleaseEnterName => 'Lütfen adınızı ve soyadınızı girin';
+  String get pleaseEnterName => 'LÃ¼tfen adÄ±nÄ±zÄ± ve soyadÄ±nÄ±zÄ± girin';
 
   @override
-  String get unexpectedError => 'Beklenmeyen bir hata oluştu';
+  String get unexpectedError => 'Beklenmeyen bir hata oluÅŸtu';
 
   @override
-  String get arabic => 'Arapça';
+  String get arabic => 'ArapÃ§a';
 
   @override
-  String get english => 'İngilizce';
+  String get english => 'Ä°ngilizce';
 
   @override
-  String get french => 'Fransızca';
+  String get french => 'FransÄ±zca';
 
   @override
-  String get turkish => 'Türkçe';
+  String get turkish => 'TÃ¼rkÃ§e';
 
   @override
-  String get spanish => 'İspanyolca';
+  String get spanish => 'Ä°spanyolca';
 
   @override
-  String get themeLight => 'Açık';
+  String get themeLight => 'AÃ§Ä±k';
 
   @override
   String get themeDark => 'Koyu';
 
   @override
-  String get themeDesert => 'Çöl';
+  String get themeDesert => 'Ã‡Ã¶l';
 
   @override
-  String get themeMidnight => 'Gece yarısı';
+  String get themeMidnight => 'Gece yarÄ±sÄ±';
 
   @override
   String get themeOcean => 'Okyanus';
 
   @override
-  String get themeSteel => 'Çelik';
+  String get themeSteel => 'Ã‡elik';
 
   @override
   String get themeOasis => 'Vaha';
 
   @override
-  String get themeSkyline => 'Gökyüzü';
+  String get themeSkyline => 'GÃ¶kyÃ¼zÃ¼';
 
   @override
-  String get themeLimestone => 'Taş';
+  String get themeLimestone => 'TaÅŸ';
 
   @override
   String get profile => 'Profil';
@@ -153,43 +153,37 @@ class AppLocalizationsTr extends AppLocalizations {
   String get myProfile => 'Profilim';
 
   @override
-  String get editProfile => 'Profili düzenle';
+  String get editProfile => 'Profili dÃ¼zenle';
 
   @override
-  String get bio => 'Biyografi / Açıklama';
-
-  @override
-  String get accountType => 'Hesap türü';
+  String get bio => 'Biyografi / AÃ§Ä±klama';
 
   @override
   String get individual => 'Bireysel';
 
   @override
-  String get company => 'Şirket';
+  String get verificationStatus => 'DoÄŸrulama durumu';
 
   @override
-  String get verificationStatus => 'Doğrulama durumu';
+  String get verified => 'DoÄŸrulanmÄ±ÅŸ';
 
   @override
-  String get verified => 'Doğrulanmış';
-
-  @override
-  String get unverified => 'Doğrulanmamış';
+  String get unverified => 'DoÄŸrulanmamÄ±ÅŸ';
 
   @override
   String get save => 'Kaydet';
 
   @override
-  String get uploadDocument => 'Belge yükle';
+  String get uploadDocument => 'Belge yÃ¼kle';
 
   @override
-  String get phoneNumber => 'Telefon numarası';
+  String get phoneNumber => 'Telefon numarasÄ±';
 
   @override
-  String get profileUpdated => 'Profil başarıyla güncellendi';
+  String get profileUpdated => 'Profil baÅŸarÄ±yla gÃ¼ncellendi';
 
   @override
-  String get postTrip => 'Yolculuk paylaş';
+  String get postTrip => 'Yolculuk paylaÅŸ';
 
   @override
   String get origin => 'Nereden';
@@ -204,300 +198,234 @@ class AppLocalizationsTr extends AppLocalizations {
   String get time => 'Saat';
 
   @override
-  String get availableWeight => 'Uygun ağırlık';
+  String get availableWeight => 'Uygun aÄŸÄ±rlÄ±k';
 
   @override
   String get kg => 'kg';
 
   @override
-  String get pricePerKg => 'Kilogram başına fiyat';
+  String get pricePerKg => 'Kilogram baÅŸÄ±na fiyat';
 
   @override
   String get flatPrice => 'Sabit fiyat';
 
   @override
-  String get createTrip => 'Yolculuk oluştur';
+  String get createTrip => 'Yolculuk oluÅŸtur';
 
   @override
-  String get copyTrip => 'Yolculuğu kopyala';
+  String get copyTrip => 'YolculuÄŸu kopyala';
 
   @override
-  String get shareTrip => 'Yolculuğu paylaş';
+  String get shareTrip => 'YolculuÄŸu paylaÅŸ';
 
   @override
-  String get tripPosted => 'Yolculuk başarıyla paylaşıldı';
+  String get tripPosted => 'Yolculuk baÅŸarÄ±yla paylaÅŸÄ±ldÄ±';
 
   @override
-  String get pleaseSelectDate => 'Lütfen bir tarih seçin';
+  String get pleaseSelectDate => 'LÃ¼tfen bir tarih seÃ§in';
 
   @override
-  String get pleaseSelectTime => 'Lütfen bir saat seçin';
+  String get pleaseSelectTime => 'LÃ¼tfen bir saat seÃ§in';
 
   @override
-  String get enterCity => 'Şehir adını girin';
+  String get enterCity => 'Åžehir adÄ±nÄ± girin';
 
   @override
-  String get invalidWeight => 'Geçersiz ağırlık';
+  String get invalidWeight => 'GeÃ§ersiz aÄŸÄ±rlÄ±k';
 
   @override
-  String get postShipment => 'Paket gönder';
+  String get postPackage => 'Paket gÃ¶nder';
 
   @override
-  String get editShipment => 'Gönderiyi düzenle';
+  String get iAmTraveler => 'SÃ¼rÃ¼cÃ¼ VEYA Yolcu';
 
   @override
-  String get shipmentUpdated => 'Gönderi başarıyla güncellendi!';
+  String get iAmSender => 'GÃ¶nderenim';
 
   @override
-  String get iAmTraveler => 'Sürücü VEYA Yolcu';
+  String get packageDetails => 'Paket detaylarÄ±';
 
   @override
-  String get iAmSender => 'Gönderenim';
+  String get description => 'AÃ§Ä±klama';
 
   @override
-  String get packageDetails => 'Paket detayları';
+  String get createRequest => 'GÃ¶nderi talebi oluÅŸtur';
 
   @override
-  String get description => 'Açıklama';
-
-  @override
-  String get createRequest => 'Gönderi talebi oluştur';
-
-  @override
-  String get shipmentPosted => 'Gönderi talebi başarıyla oluşturuldu';
-
-  @override
-  String get pickup => 'Alış yeri';
+  String get pickup => 'AlÄ±ÅŸ yeri';
 
   @override
   String get dropoff => 'Teslim yeri';
 
   @override
-  String get companyOnlyFeature => 'Kurumsal özellik';
-
-  @override
-  String get mustBeCompany =>
-      'Yalnızca doğrulanmış şirketler gönderi talebi oluşturabilir. Lütfen profilinizden hesap türünüzü \'Şirket\' olarak değiştirin.';
-
-  @override
   String get goToProfile => 'Profile git';
 
   @override
-  String get internalTrips => 'İç';
+  String get internalTrips => 'Ä°Ã§';
 
   @override
-  String get externalTrips => 'Dış';
+  String get externalTrips => 'DÄ±ÅŸ';
 
   @override
-  String get requestedShipments => 'Son talep edilen gönderiler';
+  String get noTripsFound => 'Uygun yolculuk bulunamadÄ±.';
 
   @override
-  String get noTripsFound => 'Uygun yolculuk bulunamadı.';
+  String get noRequestsFound => 'GÃ¶nderi talebi bulunamadÄ±.';
 
   @override
-  String get noShipmentsFound => 'Gönderi talebi bulunamadı.';
+  String get country => 'Ãœlke';
 
   @override
-  String get country => 'Ülke';
+  String get province => 'Ä°l';
 
   @override
-  String get province => 'İl';
+  String get city => 'Åžehir';
 
   @override
-  String get city => 'Şehir';
+  String get town => 'Ä°lÃ§e';
 
   @override
-  String get town => 'İlçe';
+  String get confirmSwitchMode => 'Mod deÄŸiÅŸtirilsin mi?';
 
   @override
-  String get confirmSwitchMode => 'Mod değiştirilsin mi?';
+  String get switchToTraveler => 'Yolcu moduna geÃ§ilsin mi?';
 
   @override
-  String get switchToTraveler => 'Yolcu moduna geçilsin mi?';
-
-  @override
-  String get switchToClient => 'Gönderen/Müşteri moduna geçilsin mi?';
+  String get switchToClient => 'GÃ¶nderen/MÃ¼ÅŸteri moduna geÃ§ilsin mi?';
 
   @override
   String get yes => 'Evet';
 
   @override
-  String get no => 'Hayır';
+  String get no => 'HayÄ±r';
 
   @override
-  String get travelerRegistration => 'Yolcu kaydı';
+  String get travelerRegistration => 'Yolcu kaydÄ±';
 
   @override
-  String get vehicleInfo => 'Araç bilgileri';
+  String get vehicleInfo => 'AraÃ§ bilgileri';
 
   @override
   String get documents => 'Belgeler';
 
   @override
-  String get uploadLicense => 'Sürücü belgesi yükle';
+  String get uploadLicense => 'SÃ¼rÃ¼cÃ¼ belgesi yÃ¼kle';
 
   @override
-  String get uploadID => 'Kimlik yükle';
+  String get uploadID => 'Kimlik yÃ¼kle';
 
   @override
-  String get uploadVehiclePhoto => 'Araç fotoğrafı yükle';
+  String get uploadVehiclePhoto => 'AraÃ§ fotoÄŸrafÄ± yÃ¼kle';
 
   @override
-  String get uploadRegistration => 'Ruhsat yükle';
+  String get uploadRegistration => 'Ruhsat yÃ¼kle';
 
   @override
-  String get uploadRentalContract => 'Kira sözleşmesi yükle';
+  String get uploadRentalContract => 'Kira sÃ¶zleÅŸmesi yÃ¼kle';
 
   @override
-  String get uploadIdentityProof => 'Kimlik kanıtı yükle';
+  String get uploadIdentityProof => 'Kimlik kanÄ±tÄ± yÃ¼kle';
 
   @override
-  String get identityProof => 'Kimlik kanıtı';
+  String get identityProof => 'Kimlik kanÄ±tÄ±';
 
   @override
   String get passport => 'Pasaport';
 
   @override
-  String get iqama => 'İkamet izni (Iqama)';
+  String get iqama => 'Ä°kamet izni (Iqama)';
 
   @override
-  String get travelerType => 'Yolcu türü';
+  String get travelerType => 'Yolcu tÃ¼rÃ¼';
 
   @override
-  String get travelerWithVehicle => 'Araçlı yolcu';
+  String get travelerWithVehicle => 'AraÃ§lÄ± yolcu';
 
   @override
   String get normalTraveler => 'Normal yolcu';
 
   @override
-  String get travelerAsPerson => 'Şahıs olarak seyahat';
+  String get travelerAsPerson => 'ÅžahÄ±s olarak seyahat';
 
   @override
-  String get driverLabel => 'Sürücü';
+  String get driverLabel => 'SÃ¼rÃ¼cÃ¼';
 
   @override
-  String get shipmentDriversOnly =>
-      'Gönderi teklifleri yalnızca sürücüler içindir (araç sahibi yolcular)';
+  String get pendingRating => 'DeÄŸerlendirme bekliyor';
 
   @override
-  String get requestedShipmentsOnlyForVehicleOwners =>
-      'Talep edilen gönderiler yalnızca araç sahipleri için kullanılabilir';
+  String get rateUser => 'DeÄŸerlendir';
 
   @override
-  String get pendingRating => 'Değerlendirme bekliyor';
+  String get isVehicleRented => 'AraÃ§ kiralÄ±k mÄ±?';
 
   @override
-  String get rateUser => 'Değerlendir';
+  String get make => 'AraÃ§ markasÄ± (Ã¶rn. Toyota)';
 
   @override
-  String get isVehicleRented => 'Araç kiralık mı?';
+  String get model => 'AraÃ§ modeli (Ã¶rn. Camry)';
 
   @override
-  String get make => 'Araç markası (örn. Toyota)';
+  String get year => 'YÄ±l';
 
   @override
-  String get model => 'Araç modeli (örn. Camry)';
+  String get plateNumber => 'Plaka numarasÄ±';
 
   @override
-  String get year => 'Yıl';
-
-  @override
-  String get plateNumber => 'Plaka numarası';
-
-  @override
-  String get submitApplication => 'Başvuruyu gönder';
+  String get submitApplication => 'BaÅŸvuruyu gÃ¶nder';
 
   @override
   String get applicationSubmitted =>
-      'Başvuru gönderildi! Yönetici inceleyecek.';
+      'BaÅŸvuru gÃ¶nderildi! YÃ¶netici inceleyecek.';
 
   @override
-  String get registerNow => 'Şimdi kaydol';
+  String get registerNow => 'Åžimdi kaydol';
 
   @override
-  String get driverAccessRestricted => 'Sürücü erişimi kısıtlı';
+  String get driverAccessRestricted => 'SÃ¼rÃ¼cÃ¼ eriÅŸimi kÄ±sÄ±tlÄ±';
 
   @override
   String get mustBeVerifiedTraveler =>
-      'Bu moda erişmek için doğrulanmış bir yolcu olmalısınız.';
+      'Bu moda eriÅŸmek iÃ§in doÄŸrulanmÄ±ÅŸ bir yolcu olmalÄ±sÄ±nÄ±z.';
 
   @override
-  String get applicationPending => 'Başvuru beklemede';
+  String get applicationPending => 'BaÅŸvuru beklemede';
 
   @override
   String get waitAdminApproval =>
-      'Başvurunuz şu anda bir yönetici tarafından inceleniyor.';
+      'BaÅŸvurunuz ÅŸu anda bir yÃ¶netici tarafÄ±ndan inceleniyor.';
 
   @override
-  String get applicationRejected => 'Başvuru reddedildi';
+  String get applicationRejected => 'BaÅŸvuru reddedildi';
 
   @override
   String get cannotReapply =>
-      'Başvurunuz reddedildi. Şu anda yeniden başvuramazsınız.';
+      'BaÅŸvurunuz reddedildi. Åžu anda yeniden baÅŸvuramazsÄ±nÄ±z.';
 
   @override
-  String get alreadyApproved => 'Zaten onaylandı';
-
-  @override
-  String get alreadyCompanyAccount =>
-      'Zaten onaylanmış bir şirket hesabınız var.';
+  String get alreadyApproved => 'Zaten onaylandÄ±';
 
   @override
   String get alreadyDriverAccount =>
-      'Zaten onaylanmış bir sürücü hesabınız var.';
+      'Zaten onaylanmÄ±ÅŸ bir sÃ¼rÃ¼cÃ¼ hesabÄ±nÄ±z var.';
 
   @override
   String get ok => 'Tamam';
 
   @override
-  String get companyRegistration => 'Şirket kaydı';
+  String get upgradeToDriver => 'SÃ¼rÃ¼cÃ¼ye yÃ¼kselt (araÃ§lÄ±)';
 
   @override
-  String get companyInfo => 'Şirket bilgileri';
+  String get driverRating => 'Yolcu deÄŸerlendirmesi';
 
   @override
-  String get companyName => 'Şirket adı';
+  String get clientRating => 'GÃ¶nderen deÄŸerlendirmesi';
 
   @override
-  String get companyAddress => 'Şirket adresi';
+  String get noRatings => 'HenÃ¼z deÄŸerlendirme yok';
 
   @override
-  String get crNumber => 'Ticaret sicil numarası';
-
-  @override
-  String get crNumberDigitsOnly =>
-      'Ticaret sicil numarası yalnızca rakamlardan oluşmalıdır';
-
-  @override
-  String get uploadCR => 'Ticaret sicil belgesini yükle';
-
-  @override
-  String get upgradeToBusiness => 'Kurumsal hesaba yükselt';
-
-  @override
-  String get upgradeToDriver => 'Sürücüye yükselt (araçlı)';
-
-  @override
-  String get companyAccessRestricted => 'Şirket özelliği';
-
-  @override
-  String get mustBeVerifiedCompany =>
-      'Bu özelliğe yalnızca doğrulanmış şirketler erişebilir.';
-
-  @override
-  String get verifiedCompanyAccount => 'Doğrulanmış şirket hesabı';
-
-  @override
-  String get driverRating => 'Yolcu değerlendirmesi';
-
-  @override
-  String get clientRating => 'Gönderen değerlendirmesi';
-
-  @override
-  String get noRatings => 'Henüz değerlendirme yok';
-
-  @override
-  String get reviews => 'değerlendirme';
+  String get reviews => 'deÄŸerlendirme';
 
   @override
   String get search => 'Ara';
@@ -506,54 +434,36 @@ class AppLocalizationsTr extends AppLocalizations {
   String get findTrip => 'Yolculuk bul';
 
   @override
-  String get findDriver => 'Sürücü bul';
+  String get findDriver => 'SÃ¼rÃ¼cÃ¼ bul';
 
   @override
-  String get weight => 'Ağırlık';
+  String get weight => 'AÄŸÄ±rlÄ±k';
 
   @override
-  String get myTrips => 'Yolculuklarım';
-
-  @override
-  String get myOffers => 'Tekliflerim';
-
-  @override
-  String get myShipments => 'Gönderilerim';
+  String get myTrips => 'YolculuklarÄ±m';
 
   @override
   String get myRequests => 'Taleplerim';
 
   @override
-  String get noOffersYet => 'Henüz teklif alınmadı';
-
-  @override
   String get fieldRequired => 'Alan gerekli';
 
   @override
-  String get makeOffer => 'Teklif ver';
-
-  @override
-  String get submit => 'Gönder';
-
-  @override
-  String get shipmentDetails => 'Gönderi detayları';
-
-  @override
-  String get offersReceived => 'Alınan teklifler';
+  String get submit => 'GÃ¶nder';
 
   @override
   String get accept => 'Kabul et';
 
   @override
-  String get invalidCredentialsMessage => 'Geçersiz e-posta veya parola';
+  String get invalidCredentialsMessage => 'GeÃ§ersiz e-posta veya parola';
 
   @override
   String get emailNotConfirmedMessage =>
-      'Giriş yapmadan önce lütfen e-postanızı onaylayın';
+      'GiriÅŸ yapmadan Ã¶nce lÃ¼tfen e-postanÄ±zÄ± onaylayÄ±n';
 
   @override
   String loginFailed(Object error) {
-    return 'Giriş başarısız: $error';
+    return 'GiriÅŸ baÅŸarÄ±sÄ±z: $error';
   }
 
   @override
@@ -563,11 +473,11 @@ class AppLocalizationsTr extends AppLocalizations {
   String get error => 'Hata';
 
   @override
-  String get cancelTrip => 'Yolculuğu iptal et';
+  String get cancelTrip => 'YolculuÄŸu iptal et';
 
   @override
   String get confirmCancelTrip =>
-      'Bu yolculuğu iptal etmek istediğinize emin misiniz?';
+      'Bu yolculuÄŸu iptal etmek istediÄŸinize emin misiniz?';
 
   @override
   String get confirm => 'Onayla';
@@ -577,41 +487,35 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get confirmCloseRequest =>
-      'Bu talebi kapatmak istediğinize emin misiniz? Bu işlem geri alınamaz.';
+      'Bu talebi kapatmak istediÄŸinize emin misiniz? Bu iÅŸlem geri alÄ±namaz.';
 
   @override
-  String get requestClosed => 'Talep kapatıldı';
+  String get requestClosed => 'Talep kapatÄ±ldÄ±';
 
   @override
-  String get statusUpdated => 'Durum güncellendi';
+  String get statusUpdated => 'Durum gÃ¼ncellendi';
 
   @override
-  String get offerAccepted =>
-      'Teklif kabul edildi! Gönderi rezerve edildi olarak işaretlendi.';
-
-  @override
-  String get startTrip => 'Yolculuğu başlat';
+  String get startTrip => 'YolculuÄŸu baÅŸlat';
 
   @override
   String get deliver => 'Teslim et';
 
   @override
-  String get markDelivered => 'Teslim edildi olarak işaretle';
+  String get markDelivered => 'Teslim edildi olarak iÅŸaretle';
 
   @override
   String get done => 'Bitti';
 
   @override
-  String get selectShipment => 'Gönderi seç';
+  String get tripDetails => 'Yolculuk detaylarÄ±';
 
   @override
-  String get tripDetails => 'Yolculuk detayları';
+  String get rememberMe => 'Beni hatÄ±rla';
 
   @override
-  String get rememberMe => 'Beni hatırla';
-
-  @override
-  String get logoutConfirmation => 'Çıkış yapmak istediğinize emin misiniz?';
+  String get logoutConfirmation =>
+      'Ã‡Ä±kÄ±ÅŸ yapmak istediÄŸinize emin misiniz?';
 
   @override
   String get traveler => 'Yolcu';
@@ -620,49 +524,46 @@ class AppLocalizationsTr extends AppLocalizations {
   String get unknownTraveler => 'Bilinmeyen yolcu';
 
   @override
-  String get createShipmentFirst => 'Lütfen önce bir gönderi talebi oluşturun';
+  String get requestSent => 'Talep yolcuya gÃ¶nderildi!';
 
   @override
-  String get requestSent => 'Talep yolcuya gönderildi!';
+  String get ratings => 'DeÄŸerlendirmeler';
 
   @override
-  String get ratings => 'Değerlendirmeler';
+  String get travelerRating => 'Yolcu deÄŸerlendirmesi';
 
   @override
-  String get travelerRating => 'Yolcu değerlendirmesi';
+  String get noReviews => 'HenÃ¼z yorum yok';
 
   @override
-  String get noReviews => 'Henüz yorum yok';
-
-  @override
-  String get sendMessage => 'Mesaj gönder';
+  String get sendMessage => 'Mesaj gÃ¶nder';
 
   @override
   String get messages => 'Mesajlar';
 
   @override
-  String get travelerNotAvailable => 'Yolcu bilgileri mevcut değil';
+  String get travelerNotAvailable => 'Yolcu bilgileri mevcut deÄŸil';
 
   @override
-  String get user => 'Kullanıcı';
+  String get user => 'KullanÄ±cÄ±';
 
   @override
   String get main => 'Ana';
 
   @override
-  String get myActivity => 'Etkinliğim';
+  String get myActivity => 'EtkinliÄŸim';
 
   @override
   String get account => 'Hesap';
 
   @override
-  String get comingSoon => 'Yakında!';
+  String get comingSoon => 'YakÄ±nda!';
 
   @override
-  String get appTagline => 'Güvenilir gönderi ortağınız';
+  String get appTagline => 'GÃ¼venilir gÃ¶nderi ortaÄŸÄ±nÄ±z';
 
   @override
-  String get loginToYourAccount => 'Hesabınıza giriş yapın';
+  String get loginToYourAccount => 'HesabÄ±nÄ±za giriÅŸ yapÄ±n';
 
   @override
   String get or => 'VEYA';
@@ -671,7 +572,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get emailRequired => 'E-posta gerekli';
 
   @override
-  String get invalidEmail => 'Lütfen geçerli bir e-posta girin';
+  String get invalidEmail => 'LÃ¼tfen geÃ§erli bir e-posta girin';
 
   @override
   String get passwordRequired => 'Parola gerekli';
@@ -680,37 +581,37 @@ class AppLocalizationsTr extends AppLocalizations {
   String get nameRequired => 'Ad gerekli';
 
   @override
-  String get passwordTooShort => 'Parola en az 6 karakter olmalıdır';
+  String get passwordTooShort => 'Parola en az 6 karakter olmalÄ±dÄ±r';
 
   @override
-  String get weak => 'Zayıf';
+  String get weak => 'ZayÄ±f';
 
   @override
   String get medium => 'Orta';
 
   @override
-  String get strong => 'Güçlü';
+  String get strong => 'GÃ¼Ã§lÃ¼';
 
   @override
-  String get accountCreatedTitle => 'Hesap başarıyla oluşturuldu';
+  String get accountCreatedTitle => 'Hesap baÅŸarÄ±yla oluÅŸturuldu';
 
   @override
   String get accountCreatedMessage =>
-      'Gelen kutunuza bir doğrulama e-postası gönderdik. Lütfen e-postanızı (ve spam klasörünüzü) kontrol edin ve hesabınızı etkinleştirmek için bağlantıya tıklayın.';
+      'Gelen kutunuza bir doÄŸrulama e-postasÄ± gÃ¶nderdik. LÃ¼tfen e-postanÄ±zÄ± (ve spam klasÃ¶rÃ¼nÃ¼zÃ¼) kontrol edin ve hesabÄ±nÄ±zÄ± etkinleÅŸtirmek iÃ§in baÄŸlantÄ±ya tÄ±klayÄ±n.';
 
   @override
   String get emailAlreadyRegistered =>
-      'Bu e-posta zaten kayıtlı. Lütfen giriş yapın.';
+      'Bu e-posta zaten kayÄ±tlÄ±. LÃ¼tfen giriÅŸ yapÄ±n.';
 
   @override
   String get checkBackLater =>
-      'Yeni öğeler için lütfen daha sonra tekrar kontrol edin.';
+      'Yeni Ã¶ÄŸeler iÃ§in lÃ¼tfen daha sonra tekrar kontrol edin.';
 
   @override
   String get retry => 'Tekrar dene';
 
   @override
-  String get resetPasswordTitle => 'Parolayı sıfırla';
+  String get resetPasswordTitle => 'ParolayÄ± sÄ±fÄ±rla';
 
   @override
   String get enterNewPassword => 'Yeni parola girin';
@@ -719,30 +620,30 @@ class AppLocalizationsTr extends AppLocalizations {
   String get newPasswordLabel => 'Yeni parola';
 
   @override
-  String get confirmPasswordLabel => 'Parolayı onayla';
+  String get confirmPasswordLabel => 'ParolayÄ± onayla';
 
   @override
-  String get updatePasswordButton => 'Parolayı güncelle';
+  String get updatePasswordButton => 'ParolayÄ± gÃ¼ncelle';
 
   @override
   String get passwordUpdatedSuccess =>
-      'Parola başarıyla güncellendi! Lütfen yeni parolanızla giriş yapın.';
+      'Parola baÅŸarÄ±yla gÃ¼ncellendi! LÃ¼tfen yeni parolanÄ±zla giriÅŸ yapÄ±n.';
 
   @override
-  String get passwordsDoNotMatch => 'Parolalar eşleşmiyor';
+  String get passwordsDoNotMatch => 'Parolalar eÅŸleÅŸmiyor';
 
   @override
-  String get internalShipping => 'İç gönderim';
+  String get internalShipping => 'Ä°Ã§ gÃ¶nderim';
 
   @override
-  String get externalShipping => 'Dış gönderim';
+  String get externalShipping => 'DÄ±ÅŸ gÃ¶nderim';
 
   @override
-  String get noDriversFound => 'Uygun sürücü yok';
+  String get noDriversFound => 'Uygun sÃ¼rÃ¼cÃ¼ yok';
 
   @override
   String get tryAgainLater =>
-      'Özel taşıma sürücüleri için lütfen daha sonra tekrar kontrol edin.';
+      'Ã–zel taÅŸÄ±ma sÃ¼rÃ¼cÃ¼leri iÃ§in lÃ¼tfen daha sonra tekrar kontrol edin.';
 
   @override
   String get availableTravelers => 'En son uygun yolcular';
@@ -754,13 +655,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get clearFilters => 'Filtreleri temizle';
 
   @override
-  String get selectVehicleType => 'Araç türü seç';
+  String get selectVehicleType => 'AraÃ§ tÃ¼rÃ¼ seÃ§';
 
   @override
-  String get originCity => 'Çıkış şehri';
+  String get originCity => 'Ã‡Ä±kÄ±ÅŸ ÅŸehri';
 
   @override
-  String get destinationCity => 'Varış şehri';
+  String get destinationCity => 'VarÄ±ÅŸ ÅŸehri';
 
   @override
   String get car => 'Araba';
@@ -769,64 +670,64 @@ class AppLocalizationsTr extends AppLocalizations {
   String get sedan => 'Sedan';
 
   @override
-  String get van => 'Minibüs';
+  String get van => 'MinibÃ¼s';
 
   @override
   String get truck => 'Kamyon';
 
   @override
-  String get bus => 'Otobüs';
+  String get bus => 'OtobÃ¼s';
 
   @override
-  String get tractorTrailer => 'Çekici ve römork';
+  String get tractorTrailer => 'Ã‡ekici ve rÃ¶mork';
 
   @override
-  String get largeCar => 'Büyük araç';
+  String get largeCar => 'BÃ¼yÃ¼k araÃ§';
 
   @override
-  String get mediumCar => 'Orta araç';
+  String get mediumCar => 'Orta araÃ§';
 
   @override
-  String get smallCar => 'Küçük araç';
+  String get smallCar => 'KÃ¼Ã§Ã¼k araÃ§';
 
   @override
-  String get refrigerated => 'Soğutmalı';
+  String get refrigerated => 'SoÄŸutmalÄ±';
 
   @override
-  String get noVehicle => 'Aracım yok';
+  String get noVehicle => 'AracÄ±m yok';
 
   @override
-  String get shippingType => 'Gönderim türü';
+  String get shippingType => 'GÃ¶nderim tÃ¼rÃ¼';
 
   @override
   String get noTravelersFound => 'Uygun yolcu yok';
 
   @override
-  String get verifiedTraveler => 'Doğrulanmış yolcu';
+  String get verifiedTraveler => 'DoÄŸrulanmÄ±ÅŸ yolcu';
 
   @override
-  String get identityVerified => 'Kimlik doğrulandı';
+  String get identityVerified => 'Kimlik doÄŸrulandÄ±';
 
   @override
-  String get platformProtected => 'Platform korumalı';
+  String get platformProtected => 'Platform korumalÄ±';
 
   @override
-  String get licenseVerified => 'Belge doğrulandı';
+  String get licenseVerified => 'Belge doÄŸrulandÄ±';
 
   @override
-  String get pendingVerification => 'Doğrulama bekliyor';
+  String get pendingVerification => 'DoÄŸrulama bekliyor';
 
   @override
-  String get vehicleType => 'Araç türü';
+  String get vehicleType => 'AraÃ§ tÃ¼rÃ¼';
 
   @override
   String get nationalIdUrl => 'Kimlik URL\'si';
 
   @override
-  String get sender => 'Gönderen';
+  String get sender => 'GÃ¶nderen';
 
   @override
-  String get all => 'Tümü';
+  String get all => 'TÃ¼mÃ¼';
 
   @override
   String get moreFilters => 'Daha fazla filtre';
@@ -835,127 +736,118 @@ class AppLocalizationsTr extends AppLocalizations {
   String get apply => 'Uygula';
 
   @override
-  String get reset => 'Sıfırla';
+  String get reset => 'SÄ±fÄ±rla';
 
   @override
-  String get allVehicles => 'Tüm taşıma araçları';
+  String get allVehicles => 'TÃ¼m taÅŸÄ±ma araÃ§larÄ±';
 
   @override
-  String get allLocations => 'Tüm konumlar';
+  String get allLocations => 'TÃ¼m konumlar';
 
   @override
-  String get anyOrigin => 'Herhangi bir çıkış';
+  String get anyOrigin => 'Herhangi bir Ã§Ä±kÄ±ÅŸ';
 
   @override
-  String get anyDestination => 'Herhangi bir varış';
+  String get anyDestination => 'Herhangi bir varÄ±ÅŸ';
 
   @override
-  String get selectWeight => 'Ağırlık seç (Kg)';
+  String get selectWeight => 'AÄŸÄ±rlÄ±k seÃ§ (Kg)';
 
   @override
-  String get travelerPerson => 'Yolcu (Şahıs)';
+  String get travelerPerson => 'Yolcu (ÅžahÄ±s)';
 
   @override
   String errorInternalOnlyHomeCountry(String country) {
-    return 'İç güzergahlar $country içinde olmalıdır.';
+    return 'Ä°Ã§ gÃ¼zergahlar $country iÃ§inde olmalÄ±dÄ±r.';
   }
 
   @override
   String errorExternalMustBeOutside(String country) {
-    return 'Bu güzergah iç güzergahtır çünkü her iki konum da $country\'de. Dış güzergahlar için lütfen Dış modunu seçin.';
+    return 'Bu gÃ¼zergah iÃ§ gÃ¼zergahtÄ±r Ã§Ã¼nkÃ¼ her iki konum da $country\'de. DÄ±ÅŸ gÃ¼zergahlar iÃ§in lÃ¼tfen DÄ±ÅŸ modunu seÃ§in.';
   }
 
   @override
   String errorExternalMustInvolveHomeCountry(String country) {
-    return 'Dış güzergahlar için $country çıkış veya varış noktası olmalıdır.';
+    return 'DÄ±ÅŸ gÃ¼zergahlar iÃ§in $country Ã§Ä±kÄ±ÅŸ veya varÄ±ÅŸ noktasÄ± olmalÄ±dÄ±r.';
   }
 
   @override
-  String get bookNow => 'Rezervasyon talebi gönder';
+  String get bookNow => 'Rezervasyon talebi gÃ¶nder';
 
   @override
-  String get orders => 'Siparişler';
+  String get orders => 'SipariÅŸler';
 
   @override
-  String get internalRequests => 'İç';
+  String get internalRequests => 'Ä°Ã§';
 
   @override
-  String get externalRequests => 'Dış';
+  String get externalRequests => 'DÄ±ÅŸ';
 
   @override
-  String get noGpsProvided => 'Kesin GPS konumu sağlanmadı';
+  String get noGpsProvided => 'Kesin GPS konumu saÄŸlanmadÄ±';
 
   @override
-  String get gpsAvailable => 'GPS koordinatları mevcut';
+  String get gpsAvailable => 'GPS koordinatlarÄ± mevcut';
 
   @override
-  String get openInMaps => 'Haritalarda aç';
+  String get openInMaps => 'Haritalarda aÃ§';
 
   @override
-  String get shipment => 'Gönderi';
+  String get type => 'TÃ¼r';
 
   @override
-  String get type => 'Tür';
-
-  @override
-  String get weightLabel => 'Ağırlık';
+  String get weightLabel => 'AÄŸÄ±rlÄ±k';
 
   @override
   String get timeLabel => 'Saat';
 
   @override
-  String get waitingConfirmation => 'Gönderen onayı bekleniyor';
+  String get waitingConfirmation => 'GÃ¶nderen onayÄ± bekleniyor';
 
   @override
-  String get markAsPickedUp => 'Alındı olarak işaretle';
+  String get markAsPickedUp => 'AlÄ±ndÄ± olarak iÅŸaretle';
 
   @override
-  String get markAsDelivered => 'Teslim edildi olarak işaretle';
+  String get markAsDelivered => 'Teslim edildi olarak iÅŸaretle';
 
   @override
-  String get confirmReceiptPayment => 'Teslim alma ve ödemeyi onayla';
+  String get confirmReceiptPayment => 'Teslim alma ve Ã¶demeyi onayla';
 
   @override
   String get bookingsRequests => 'Rezervasyonlar ve talepler';
 
   @override
-  String get noBookingsYet => 'Henüz rezervasyon yok.';
+  String get noBookingsYet => 'HenÃ¼z rezervasyon yok.';
 
   @override
-  String get pickedUp => 'Alındı';
+  String get pickedUp => 'AlÄ±ndÄ±';
 
   @override
   String get delivered => 'Teslim edildi';
 
   @override
-  String get scheduledBadge => 'Planlandı';
+  String get scheduledBadge => 'PlanlandÄ±';
 
   @override
   String get inTransitBadge => 'Yolda';
 
   @override
-  String get completedBadge => 'Tamamlandı';
+  String get completedBadge => 'TamamlandÄ±';
 
   @override
-  String get cancelledBadge => 'İptal edildi';
+  String get cancelledBadge => 'Ä°ptal edildi';
 
   @override
-  String get offerSent => 'Teklif gönderildi!';
+  String get now => 'Åžimdi';
 
   @override
-  String get now => 'Şimdi';
-
-  @override
-  String get offerSentTitle => 'Teklif gönderildi';
-
-  @override
-  String get pickupLabel => 'Alış';
+  String get pickupLabel => 'AlÄ±ÅŸ';
 
   @override
   String get dropoffLabel => 'Teslim';
 
   @override
-  String get optionalMessage => 'İsteğe bağlı mesaj';
+  String get optionalMessage => 'Ä°steÄŸe baÄŸlÄ± mesaj';
 
   @override
   String get currencySAR => 'SAR';
@@ -973,7 +865,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get statusAccepted => 'Kabul edildi';
 
   @override
-  String get statusPickedUp => 'Alındı';
+  String get statusPickedUp => 'AlÄ±ndÄ±';
 
   @override
   String get statusDelivered => 'Teslim edildi';
@@ -982,7 +874,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get statusBooked => 'Rezerve edildi';
 
   @override
-  String get statusCompleted => 'Tamamlandı';
+  String get statusCompleted => 'TamamlandÄ±';
 
   @override
   String get statusPending => 'Uygun';
@@ -991,22 +883,22 @@ class AppLocalizationsTr extends AppLocalizations {
   String get statusRejected => 'Reddedildi';
 
   @override
-  String get statusCancelled => 'İptal edildi';
+  String get statusCancelled => 'Ä°ptal edildi';
 
   @override
-  String get rateYourExperience => 'Deneyiminizi değerlendirin';
+  String get rateYourExperience => 'Deneyiminizi deÄŸerlendirin';
 
   @override
-  String get howWasTheExperience => 'Bu işlemdeki deneyiminiz nasıldı?';
+  String get howWasTheExperience => 'Bu iÅŸlemdeki deneyiminiz nasÄ±ldÄ±?';
 
   @override
-  String get submitRating => 'Değerlendirmeyi gönder';
+  String get submitRating => 'DeÄŸerlendirmeyi gÃ¶nder';
 
   @override
-  String get ratingSaved => 'Teşekkürler! Değerlendirmeniz kaydedildi.';
+  String get ratingSaved => 'TeÅŸekkÃ¼rler! DeÄŸerlendirmeniz kaydedildi.';
 
   @override
-  String get commentHint => 'Yorum ekleyin (isteğe bağlı)...';
+  String get commentHint => 'Yorum ekleyin (isteÄŸe baÄŸlÄ±)...';
 
   @override
   String get enterComment => 'Yorumunuzu girin';
@@ -1018,47 +910,47 @@ class AppLocalizationsTr extends AppLocalizations {
   String get ticketStatus => 'Talep durumu';
 
   @override
-  String get ticketIsClosed => 'Bu talep kapatıldı.';
+  String get ticketIsClosed => 'Bu talep kapatÄ±ldÄ±.';
 
   @override
-  String get updatedAt => 'Güncellenme';
+  String get updatedAt => 'GÃ¼ncellenme';
 
   @override
-  String get noMessagesYet => 'Henüz mesaj yok. Sohbeti başlatın!';
+  String get noMessagesYet => 'HenÃ¼z mesaj yok. Sohbeti baÅŸlatÄ±n!';
 
   @override
-  String get typeAMessage => 'Bir mesaj yazın...';
+  String get typeAMessage => 'Bir mesaj yazÄ±n...';
 
   @override
-  String get loadingData => 'Veriler yükleniyor...';
+  String get loadingData => 'Veriler yÃ¼kleniyor...';
 
   @override
-  String get directBooking => 'Doğrudan rezervasyon';
+  String get directBooking => 'DoÄŸrudan rezervasyon';
 
   @override
-  String get statusInCommunication => 'İletişimde';
+  String get statusInCommunication => 'Ä°letiÅŸimde';
 
   @override
-  String get paid => 'Ödendi';
+  String get paid => 'Ã–dendi';
 
   @override
-  String get accountSuspendedTitle => 'Hesap askıya alındı';
+  String get accountSuspendedTitle => 'Hesap askÄ±ya alÄ±ndÄ±';
 
   @override
   String get accountSuspendedMessage =>
-      'Hesabınız yöneticiler tarafından askıya alındı. Daha fazla bilgi için lütfen destek ile iletişime geçin.';
+      'HesabÄ±nÄ±z yÃ¶neticiler tarafÄ±ndan askÄ±ya alÄ±ndÄ±. Daha fazla bilgi iÃ§in lÃ¼tfen destek ile iletiÅŸime geÃ§in.';
 
   @override
-  String get contactSupport => 'Destek ile iletişime geç';
+  String get contactSupport => 'Destek ile iletiÅŸime geÃ§';
 
   @override
-  String get whatsappSupport => 'WhatsApp desteği';
+  String get whatsappSupport => 'WhatsApp desteÄŸi';
 
   @override
   String get travelerStatus => 'Yolcu durumu';
 
   @override
-  String get statusSuspended => 'Askıya alındı';
+  String get statusSuspended => 'AskÄ±ya alÄ±ndÄ±';
 
   @override
   String get statusBlocked => 'Engellendi';
@@ -1070,162 +962,131 @@ class AppLocalizationsTr extends AppLocalizations {
   String get gallery => 'Galeri';
 
   @override
-  String get uploading => 'Yükleniyor';
+  String get uploading => 'YÃ¼kleniyor';
 
   @override
-  String get uploadFailed => 'Yükleme başarısız. Lütfen tekrar deneyin.';
+  String get uploadFailed => 'YÃ¼kleme baÅŸarÄ±sÄ±z. LÃ¼tfen tekrar deneyin.';
 
   @override
-  String get driverLicense => 'Sürücü belgesi';
+  String get driverLicense => 'SÃ¼rÃ¼cÃ¼ belgesi';
 
   @override
-  String get rentalContract => 'Kira sözleşmesi';
+  String get rentalContract => 'Kira sÃ¶zleÅŸmesi';
 
   @override
-  String get crDocument => 'Ticaret sicil belgesi';
+  String get view => 'GÃ¶rÃ¼ntÃ¼le';
 
   @override
-  String get view => 'Görüntüle';
-
-  @override
-  String get replace => 'Değiştir';
+  String get replace => 'DeÄŸiÅŸtir';
 
   @override
   String get avatarUpdateRestricted =>
-      'Profil fotoğrafınızı şuradan güncelleyebilirsiniz:';
+      'Profil fotoÄŸrafÄ±nÄ±zÄ± ÅŸuradan gÃ¼ncelleyebilirsiniz:';
 
   @override
-  String get days => 'gün';
+  String get days => 'gÃ¼n';
 
   @override
-  String get subscriptionExpiry => 'Abonelik bitişi';
+  String get subscriptionExpiry => 'Abonelik bitiÅŸi';
 
   @override
-  String get licenseExpiry => 'Belge bitişi';
+  String get licenseExpiry => 'Belge bitiÅŸi';
 
   @override
   String get markTripAsFull => 'Yolculuk dolu';
 
   @override
-  String get completeTrip => 'Yolculuk tamamlandı';
+  String get completeTrip => 'Yolculuk tamamlandÄ±';
 
   @override
   String get confirmCompleteTrip =>
-      'Bu yolculuğun tamamlandığına emin misiniz? Durum Tamamlandı olarak güncellenecek.';
+      'Bu yolculuÄŸun tamamlandÄ±ÄŸÄ±na emin misiniz? Durum TamamlandÄ± olarak gÃ¼ncellenecek.';
 
   @override
-  String get unreadMessages => 'Okunmamış mesajlar';
+  String get unreadMessages => 'OkunmamÄ±ÅŸ mesajlar';
 
   @override
   String get reject => 'Reddet';
 
   @override
-  String get handshakeHandedGoods => 'Malları teslim ettim';
+  String get handshakeHandedGoods => 'MallarÄ± teslim ettim';
 
   @override
-  String get handshakePaymentSent => 'Ödemeyi gönderdim';
+  String get handshakePaymentSent => 'Ã–demeyi gÃ¶nderdim';
 
   @override
-  String get handshakeWaitingDriver => 'Sürücü onayı bekleniyor';
+  String get handshakeWaitingDriver => 'SÃ¼rÃ¼cÃ¼ onayÄ± bekleniyor';
 
   @override
-  String get handshakeGoodsReceived => 'Malları aldım';
+  String get handshakeGoodsReceived => 'MallarÄ± aldÄ±m';
 
   @override
-  String get handshakeConfirmPickup => 'Alımı onayla';
+  String get handshakeConfirmPickup => 'AlÄ±mÄ± onayla';
 
   @override
-  String get handshakeConfirmReceipt => 'Teslim almayı onayla';
+  String get handshakeConfirmReceipt => 'Teslim almayÄ± onayla';
 
   @override
-  String get handshakeConfirmPaymentReceived => 'Ödemenin alındığını onayla';
+  String get handshakeConfirmPaymentReceived =>
+      'Ã–demenin alÄ±ndÄ±ÄŸÄ±nÄ± onayla';
 
   @override
-  String get handshakeMarkPaymentReceived => 'Ödeme alındı olarak işaretle';
+  String get handshakeMarkPaymentReceived => 'Ã–deme alÄ±ndÄ± olarak iÅŸaretle';
 
   @override
-  String get handshakeWaitingClient => 'Müşteri onayı bekleniyor';
+  String get handshakeWaitingClient => 'MÃ¼ÅŸteri onayÄ± bekleniyor';
 
   @override
   String get cancelBookingTitle => 'Rezervasyonu iptal et';
 
   @override
   String get cancelBookingConfirmMessage =>
-      'Bu rezervasyonu iptal etmek istediğinize emin misiniz? Bu işlem geri alınamaz.';
+      'Bu rezervasyonu iptal etmek istediÄŸinize emin misiniz? Bu iÅŸlem geri alÄ±namaz.';
 
   @override
-  String get cancelBookingReasonHint => 'İptal nedeni...';
+  String get cancelBookingReasonHint => 'Ä°ptal nedeni...';
 
   @override
-  String get actionRequiredPayment => 'Ödemenin alındığını onayla';
+  String get actionRequiredPayment => 'Ã–demenin alÄ±ndÄ±ÄŸÄ±nÄ± onayla';
 
   @override
-  String get actionRequiredPaymentSender => 'Ödeme gönderildi olarak işaretle';
+  String get actionRequiredPaymentSender =>
+      'Ã–deme gÃ¶nderildi olarak iÅŸaretle';
 
   @override
-  String get paymentConfirmedIndicator => 'Ödeme onaylandı';
+  String get paymentConfirmedIndicator => 'Ã–deme onaylandÄ±';
 
   @override
-  String get goodsReceivedByTravelerIndicator => 'Yolcu alımı onayladı';
+  String get goodsReceivedByTravelerIndicator => 'Yolcu alÄ±mÄ± onayladÄ±';
 
   @override
-  String get rated => 'Değerlendirildi';
+  String get rated => 'DeÄŸerlendirildi';
 
   @override
-  String get thankYouForRating => 'Değerlendirmeniz için teşekkürler!';
+  String get thankYouForRating => 'DeÄŸerlendirmeniz iÃ§in teÅŸekkÃ¼rler!';
 
   @override
   String get waitingForSenderToHandOver =>
-      'Gönderenin malları teslim etmesi bekleniyor';
+      'GÃ¶nderenin mallarÄ± teslim etmesi bekleniyor';
 
   @override
   String get waitingForSenderToPay =>
-      'Gönderenin ödemeyi işaretlemesi bekleniyor';
-
-  @override
-  String get anotherOfferAccepted =>
-      'Bu gönderi için başka bir teklif zaten kabul edildi.';
-
-  @override
-  String get otherOfferAcceptedBadge => 'DİĞERİ KABUL EDİLDİ';
+      'GÃ¶nderenin Ã¶demeyi iÅŸaretlemesi bekleniyor';
 
   @override
   String get requestedOnLabel => 'Talep tarihi';
 
   @override
-  String get offerStartTripHint =>
-      'İşlem: Durumu güncellemek için yolculuğu başlatın';
+  String get chatClientLabel => 'MÃ¼ÅŸteri';
 
   @override
-  String get offerMarkDeliveredHint =>
-      'İşlem: Bittiğinde teslim edildi olarak işaretleyin';
+  String get operationHistory => 'Ä°ÅŸlem geÃ§miÅŸi';
 
   @override
-  String get offerStartButton => 'Başlat';
+  String get eventRequestCreated => 'Talep oluÅŸturuldu';
 
   @override
-  String get offerDeliverButton => 'Teslim et';
-
-  @override
-  String get offerTripStarted => 'Yolculuk başladı';
-
-  @override
-  String get offerMarkedDelivered => 'Teslim edildi olarak işaretlendi';
-
-  @override
-  String get chatClientLabel => 'Müşteri';
-
-  @override
-  String get operationHistory => 'İşlem geçmişi';
-
-  @override
-  String get eventOfferCreated => 'Teklif oluşturuldu';
-
-  @override
-  String get eventRequestCreated => 'Talep oluşturuldu';
-
-  @override
-  String get eventBookingCreated => 'Rezervasyon oluşturuldu';
+  String get eventBookingCreated => 'Rezervasyon oluÅŸturuldu';
 
   @override
   String get eventBookingAccepted => 'Rezervasyon kabul edildi';
@@ -1234,194 +1095,167 @@ class AppLocalizationsTr extends AppLocalizations {
   String get eventBookingRejected => 'Rezervasyon reddedildi';
 
   @override
-  String get eventCommunicationStarted => 'İletişim başladı';
+  String get eventCommunicationStarted => 'Ä°letiÅŸim baÅŸladÄ±';
 
   @override
-  String get eventOfferAccepted => 'Teklif kabul edildi';
-
-  @override
-  String get eventOfferRejected => 'Teklif reddedildi';
-
-  @override
-  String get eventDeliveredVerifiedOtp => 'Teslim edildi (OTP doğrulandı)';
+  String get eventDeliveredVerifiedOtp => 'Teslim edildi (OTP doÄŸrulandÄ±)';
 
   @override
   String get eventGoodsHanded => 'Mallar teslim edildi';
 
   @override
-  String get eventGoodsReceived => 'Mallar alındı';
+  String get eventGoodsReceived => 'Mallar alÄ±ndÄ±';
 
   @override
-  String get eventPaymentSent => 'Ödeme gönderildi';
+  String get eventPaymentSent => 'Ã–deme gÃ¶nderildi';
 
   @override
-  String get eventPaymentReceived => 'Ödeme alındı';
+  String get eventPaymentReceived => 'Ã–deme alÄ±ndÄ±';
 
   @override
   String get eventDelivered => 'Teslim edildi';
 
   @override
-  String get eventCompleted => 'Tamamlandı';
+  String get eventCompleted => 'TamamlandÄ±';
 
   @override
-  String get eventCancelled => 'İptal edildi';
+  String get eventCancelled => 'Ä°ptal edildi';
 
   @override
-  String get noHistoryYet => 'Henüz işlem geçmişi yok.';
+  String get noHistoryYet => 'HenÃ¼z iÅŸlem geÃ§miÅŸi yok.';
 
   @override
   String get eventTime => 'Saat';
 
   @override
-  String get viewAll => 'Tümünü gör';
+  String get viewAll => 'TÃ¼mÃ¼nÃ¼ gÃ¶r';
 
   @override
-  String get noRatingsYet => 'Henüz değerlendirme yok';
+  String get noRatingsYet => 'HenÃ¼z deÄŸerlendirme yok';
 
   @override
-  String get showingCachedData => 'Önbelleğe alınmış veriler gösteriliyor';
+  String get showingCachedData =>
+      'Ã–nbelleÄŸe alÄ±nmÄ±ÅŸ veriler gÃ¶steriliyor';
 
   @override
-  String get tripCompleted => 'Yolculuk tamamlandı';
+  String get tripCompleted => 'Yolculuk tamamlandÄ±';
 
   @override
   String get tripCompletedConfirmMessage =>
-      'Bu yolculuğun tamamlandığına emin misiniz? Bu, varış noktanıza ulaştığınızı ve tüm teslimatların tamamlandığını gösterir. Bu işlem geri alınamaz.';
+      'Bu yolculuÄŸun tamamlandÄ±ÄŸÄ±na emin misiniz? Bu, varÄ±ÅŸ noktanÄ±za ulaÅŸtÄ±ÄŸÄ±nÄ±zÄ± ve tÃ¼m teslimatlarÄ±n tamamlandÄ±ÄŸÄ±nÄ± gÃ¶sterir. Bu iÅŸlem geri alÄ±namaz.';
 
   @override
-  String get confirmCompletion => 'Tamamlanmayı onayla';
+  String get confirmCompletion => 'TamamlanmayÄ± onayla';
 
   @override
-  String get cancelTripTitle => 'Yolculuğu iptal et';
+  String get cancelTripTitle => 'YolculuÄŸu iptal et';
 
   @override
   String get cancelTripConfirmMessage =>
-      'Bu yolculuğu iptal etmek istediğinize emin misiniz? Tüm bekleyen ve kabul edilen rezervasyonlar iptal edilecek. Bu işlem geri alınamaz.';
+      'Bu yolculuÄŸu iptal etmek istediÄŸinize emin misiniz? TÃ¼m bekleyen ve kabul edilen rezervasyonlar iptal edilecek. Bu iÅŸlem geri alÄ±namaz.';
 
   @override
-  String get confirmCancellation => 'İptali onayla';
+  String get confirmCancellation => 'Ä°ptali onayla';
 
   @override
   String get bookingRequestSent =>
-      'Rezervasyon talebi sürücüye başarıyla gönderildi!';
+      'Rezervasyon talebi sÃ¼rÃ¼cÃ¼ye baÅŸarÄ±yla gÃ¶nderildi!';
 
   @override
   String get tripIsFull => 'Yolculuk dolu';
 
   @override
   String get markTripFullConfirmMessage =>
-      'Bu yolculuk dolu olarak işaretlensin mi? Diğer kullanıcılar artık rezervasyon talebinde bulunamayacak.';
+      'Bu yolculuk dolu olarak iÅŸaretlensin mi? DiÄŸer kullanÄ±cÄ±lar artÄ±k rezervasyon talebinde bulunamayacak.';
 
   @override
   String get confirmFull => 'Dolu olarak onayla';
 
   @override
-  String get tripMarkedFull => 'Yolculuk dolu olarak işaretlendi';
+  String get tripMarkedFull => 'Yolculuk dolu olarak iÅŸaretlendi';
 
   @override
-  String get errorLoadBookings => 'Rezervasyonlar yüklenemedi';
+  String get errorLoadBookings => 'Rezervasyonlar yÃ¼klenemedi';
 
   @override
-  String get accountSuspended => 'Hesabınız askıya alındı.';
+  String get accountSuspended => 'HesabÄ±nÄ±z askÄ±ya alÄ±ndÄ±.';
 
   @override
   String get credentialsExpired =>
-      'Aboneliğiniz veya belgenizin süresi doldu. Lütfen yenileyin.';
+      'AboneliÄŸiniz veya belgenizin sÃ¼resi doldu. LÃ¼tfen yenileyin.';
 
   @override
   String get cannotCancelTripActiveBookings =>
-      'Yolculuk iptal edilemiyor: Yolda, teslim edilmiş veya ödenmiş aktif rezervasyonlar içeriyor.';
+      'Yolculuk iptal edilemiyor: Yolda, teslim edilmiÅŸ veya Ã¶denmiÅŸ aktif rezervasyonlar iÃ§eriyor.';
 
   @override
   String get errorFetchingTrips =>
-      'Yolculuklar getirilemedi. Lütfen tekrar deneyin.';
+      'Yolculuklar getirilemedi. LÃ¼tfen tekrar deneyin.';
 
   @override
   String get requestAlreadySent =>
-      'Bu gönderi için bu sürücüye talep zaten gönderildi.';
+      'Bu gÃ¶nderi iÃ§in bu sÃ¼rÃ¼cÃ¼ye talep zaten gÃ¶nderildi.';
 
   @override
   String get bookingRequestExists =>
-      'Bu yolculuk için zaten bir rezervasyon talebiniz var.';
-
-  @override
-  String get shipmentAlreadyBooked =>
-      'Bu gönderi başka bir sürücüyle zaten rezerve edilmiş.';
+      'Bu yolculuk iÃ§in zaten bir rezervasyon talebiniz var.';
 
   @override
   String get cannotCancelGoodsHandedOver =>
-      'İptal edilemiyor: mallar zaten sürücüye teslim edildi.';
+      'Ä°ptal edilemiyor: mallar zaten sÃ¼rÃ¼cÃ¼ye teslim edildi.';
 
   @override
   String get cannotCancelPaymentConfirmed =>
-      'İptal edilemiyor: ödeme zaten onaylandı.';
-
-  @override
-  String get failedCreateShipment =>
-      'Gönderi oluşturulamadı. Lütfen tekrar deneyin.';
-
-  @override
-  String get failedLoadShipments =>
-      'Gönderiler yüklenemedi. Lütfen tekrar deneyin.';
-
-  @override
-  String get failedSearchShipments =>
-      'Gönderiler aranamadı. Lütfen tekrar deneyin.';
-
-  @override
-  String get failedUpdateShipmentStatus => 'Gönderi durumu güncellenemedi.';
-
-  @override
-  String get failedLoadShipmentDetails => 'Gönderi detayları yüklenemedi.';
+      'Ä°ptal edilemiyor: Ã¶deme zaten onaylandÄ±.';
 
   @override
   String get couldNotResolveLocation =>
-      'Konum adresi çözümlenemedi. Varsa lütfen belirli bir ilçe seçin.';
+      'Konum adresi Ã§Ã¶zÃ¼mlenemedi. Varsa lÃ¼tfen belirli bir ilÃ§e seÃ§in.';
 
   @override
-  String get reportUser => 'Kullanıcıyı şikayet et';
+  String get reportUser => 'KullanÄ±cÄ±yÄ± ÅŸikayet et';
 
   @override
   String get reportUserDescription =>
-      'Lütfen bu kullanıcıyı neden şikayet ettiğinizi açıklayın:';
+      'LÃ¼tfen bu kullanÄ±cÄ±yÄ± neden ÅŸikayet ettiÄŸinizi aÃ§Ä±klayÄ±n:';
 
   @override
-  String get reportReasonHint => 'Neden (örn. taciz, spam)...';
+  String get reportReasonHint => 'Neden (Ã¶rn. taciz, spam)...';
 
   @override
-  String get reportSubmitted => 'Şikayet gönderildi.';
+  String get reportSubmitted => 'Åžikayet gÃ¶nderildi.';
 
   @override
   String get reportSubmittedBlocked =>
-      'Şikayet gönderildi. Kullanıcı engellendi.';
+      'Åžikayet gÃ¶nderildi. KullanÄ±cÄ± engellendi.';
 
   @override
   String get reportSubmittedCannotBlock =>
-      'Şikayet gönderildi. Aktif bir etkileşim nedeniyle kullanıcı engellenemiyor.';
+      'Åžikayet gÃ¶nderildi. Aktif bir etkileÅŸim nedeniyle kullanÄ±cÄ± engellenemiyor.';
 
   @override
-  String get blockUser => 'Kullanıcıyı engelle';
+  String get blockUser => 'KullanÄ±cÄ±yÄ± engelle';
 
   @override
-  String get warningCheckGoodsTitle => 'Önemli yolcu bildirimi';
+  String get warningCheckGoodsTitle => 'Ã–nemli yolcu bildirimi';
 
   @override
   String get warningCheckGoodsBody =>
-      'Malları incelemenizi ve yasallığından emin olmanızı öneririz. Platform yalnızca tarafları bir araya getirir ve hiçbir yasal veya etik sorumluluk taşımaz.';
+      'MallarÄ± incelemenizi ve yasallÄ±ÄŸÄ±ndan emin olmanÄ±zÄ± Ã¶neririz. Platform yalnÄ±zca taraflarÄ± bir araya getirir ve hiÃ§bir yasal veya etik sorumluluk taÅŸÄ±maz.';
 
   @override
-  String get warningCheckTravelerTitle => 'Önemli gönderen bildirimi';
+  String get warningCheckTravelerTitle => 'Ã–nemli gÃ¶nderen bildirimi';
 
   @override
   String get warningCheckTravelerBody =>
-      'Lütfen yolcunun kimliğini doğrulayın. Platform, gönderinin kaybından veya hasarından yasal veya etik olarak sorumlu değildir.';
+      'LÃ¼tfen yolcunun kimliÄŸini doÄŸrulayÄ±n. Platform, gÃ¶nderinin kaybÄ±ndan veya hasarÄ±ndan yasal veya etik olarak sorumlu deÄŸildir.';
 
   @override
   String get policyWarningDialogTitle => 'Sorumluluk reddi';
 
   @override
   String get policyWarningDialogBody =>
-      'Bu teklifi kabul etmek istediğinize emin misiniz?\n\nYolcuyu doğrulamanızı öneririz. Platform, gönderinin kaybı veya hasarına ilişkin tüm sorumluluğu yasal ve etik olarak açıkça reddeder. Rolümüz yalnızca tarafları bir araya getirmektir.';
+      'Bu teklifi kabul etmek istediÄŸinize emin misiniz?\n\nYolcuyu doÄŸrulamanÄ±zÄ± Ã¶neririz. Platform, gÃ¶nderinin kaybÄ± veya hasarÄ±na iliÅŸkin tÃ¼m sorumluluÄŸu yasal ve etik olarak aÃ§Ä±kÃ§a reddeder. RolÃ¼mÃ¼z yalnÄ±zca taraflarÄ± bir araya getirmektir.';
 
   @override
   String get acceptAndProceed => 'Kabul et ve teklifi onayla';
@@ -1431,104 +1265,101 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get chatDisabledRejected =>
-      'Rezervasyon reddedildiği için sohbet devre dışı.';
+      'Rezervasyon reddedildiÄŸi iÃ§in sohbet devre dÄ±ÅŸÄ±.';
 
   @override
   String get chatDisabledOtherAccepted =>
-      'Başka bir teklif kabul edildiği için sohbet devre dışı.';
+      'BaÅŸka bir teklif kabul edildiÄŸi iÃ§in sohbet devre dÄ±ÅŸÄ±.';
 
   @override
   String get chatDisabledCompleted =>
-      'Yolculuk tamamlandığı için sohbet devre dışı.';
+      'Yolculuk tamamlandÄ±ÄŸÄ± iÃ§in sohbet devre dÄ±ÅŸÄ±.';
 
   @override
   String get chatDisabledCancelled =>
-      'Rezervasyon iptal edildiği için sohbet devre dışı.';
+      'Rezervasyon iptal edildiÄŸi iÃ§in sohbet devre dÄ±ÅŸÄ±.';
 
   @override
-  String get chatDisabledGeneric => 'Sohbet şu anda kullanılamıyor.';
+  String get chatDisabledGeneric => 'Sohbet ÅŸu anda kullanÄ±lamÄ±yor.';
 
   @override
-  String get privacyAndSafety => 'Gizlilik ve güvenlik';
+  String get privacyAndSafety => 'Gizlilik ve gÃ¼venlik';
 
   @override
-  String get blockedUsers => 'Engellenen kullanıcılar';
+  String get blockedUsers => 'Engellenen kullanÄ±cÄ±lar';
 
   @override
-  String get noBlockedUsers => 'Engellenen kullanıcı bulunamadı';
+  String get noBlockedUsers => 'Engellenen kullanÄ±cÄ± bulunamadÄ±';
 
   @override
-  String get unblock => 'Engeli kaldır';
+  String get unblock => 'Engeli kaldÄ±r';
 
   @override
   String get blockUserConfirm =>
-      'Bu kullanıcıyı engellemek istediğinize emin misiniz? Artık mesajlarını veya tekliflerini görmeyeceksiniz.';
+      'Bu kullanÄ±cÄ±yÄ± engellemek istediÄŸinize emin misiniz? ArtÄ±k mesajlarÄ±nÄ± veya tekliflerini gÃ¶rmeyeceksiniz.';
 
   @override
-  String get userBlockedSuccess => 'Kullanıcı başarıyla engellendi.';
+  String get userBlockedSuccess => 'KullanÄ±cÄ± baÅŸarÄ±yla engellendi.';
 
   @override
   String get userUnblockedSuccess =>
-      'Kullanıcının engeli başarıyla kaldırıldı.';
+      'KullanÄ±cÄ±nÄ±n engeli baÅŸarÄ±yla kaldÄ±rÄ±ldÄ±.';
 
   @override
   String get unblockUserConfirm =>
-      'Bu kullanıcının engelini kaldırmak istediğinize emin misiniz? Onunla tekrar iletişim kurabileceksiniz.';
+      'Bu kullanÄ±cÄ±nÄ±n engelini kaldÄ±rmak istediÄŸinize emin misiniz? Onunla tekrar iletiÅŸim kurabileceksiniz.';
 
   @override
   String get cannotBlockActiveEngagement =>
-      'Bu kullanıcıyı engelleyemezsiniz çünkü onunla aktif bir yolculuğunuz veya gönderiniz var.';
+      'Bu kullanÄ±cÄ±yÄ± engelleyemezsiniz Ã§Ã¼nkÃ¼ onunla aktif bir yolculuÄŸunuz veya gÃ¶nderiniz var.';
 
   @override
   String get cannotBookBlockedUser =>
-      'Engellenen bir kullanıcıyla yolculuk rezerve edilemez.';
+      'Engellenen bir kullanÄ±cÄ±yla yolculuk rezerve edilemez.';
 
   @override
-  String get errorLoadingProfile => 'Profil yüklenirken hata oluştu';
+  String get errorLoadingProfile => 'Profil yÃ¼klenirken hata oluÅŸtu';
 
   @override
-  String get errorSavingProfile => 'Profil kaydedilirken hata oluştu';
+  String get errorSavingProfile => 'Profil kaydedilirken hata oluÅŸtu';
 
   @override
   String get pleaseSelectPickupDropoff =>
-      'Lütfen alış ve teslim konumlarını seçin';
+      'LÃ¼tfen alÄ±ÅŸ ve teslim konumlarÄ±nÄ± seÃ§in';
 
   @override
-  String get errorCreatingShipment => 'Gönderi oluşturulurken hata oluştu';
+  String get couldNotGetLocation => 'Konum alÄ±namadÄ±';
 
   @override
-  String get couldNotGetLocation => 'Konum alınamadı';
+  String get errorLoadingReviews => 'Yorumlar yÃ¼klenirken hata oluÅŸtu';
 
   @override
-  String get errorLoadingReviews => 'Yorumlar yüklenirken hata oluştu';
-
-  @override
-  String get prohibitedItemsTitle => 'Yasaklı ürünler';
+  String get prohibitedItemsTitle => 'YasaklÄ± Ã¼rÃ¼nler';
 
   @override
   String get prohibitedItemsDisclaimer =>
-      'Lütfen gönderinizin aşağıdaki ürünlerden hiçbirini içermediğinden emin olun:';
+      'LÃ¼tfen gÃ¶nderinizin aÅŸaÄŸÄ±daki Ã¼rÃ¼nlerden hiÃ§birini iÃ§ermediÄŸinden emin olun:';
 
   @override
-  String get prohibitedDrugs => 'Uyuşturucu ve narkotik maddeler';
+  String get prohibitedDrugs => 'UyuÅŸturucu ve narkotik maddeler';
 
   @override
   String get prohibitedAlcohol => 'Alkol';
 
   @override
-  String get prohibitedWeapons => 'Silahlar ve patlayıcılar';
+  String get prohibitedWeapons => 'Silahlar ve patlayÄ±cÄ±lar';
 
   @override
-  String get prohibitedFlammables => 'Yanıcı maddeler';
+  String get prohibitedFlammables => 'YanÄ±cÄ± maddeler';
 
   @override
-  String get prohibitedCurrency => 'Büyük nakit miktarları';
+  String get prohibitedCurrency => 'BÃ¼yÃ¼k nakit miktarlarÄ±';
 
   @override
   String get prohibitedAnimals => 'Hayvanlar';
 
   @override
-  String get viewProhibitedItems => 'Yasaklı ürünleri görüntüle';
+  String get viewProhibitedItems => 'YasaklÄ± Ã¼rÃ¼nleri gÃ¶rÃ¼ntÃ¼le';
 
   @override
   String get close => 'Kapat';
@@ -1538,186 +1369,172 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get deliveryCodeInstruction =>
-      'Bu kodu yalnızca gönderinizi aldığınızda yolcuyla paylaşın.';
+      'Bu kodu yalnÄ±zca gÃ¶nderinizi aldÄ±ÄŸÄ±nÄ±zda yolcuyla paylaÅŸÄ±n.';
 
   @override
   String get enterDeliveryCode => 'Teslimat kodunu girin';
 
   @override
   String get deliveryCodeOptional =>
-      'Anında onaylamak için varsa 4 haneli kodu girin.';
+      'AnÄ±nda onaylamak iÃ§in varsa 4 haneli kodu girin.';
 
   @override
   String get confirmWithCode => 'Kodla onayla';
 
   @override
-  String get markDeliveredWithoutCode => 'Kodsuz teslim edildi olarak işaretle';
+  String get markDeliveredWithoutCode =>
+      'Kodsuz teslim edildi olarak iÅŸaretle';
 
   @override
-  String get invalidCode => 'Geçersiz kod';
+  String get invalidCode => 'GeÃ§ersiz kod';
 
   @override
-  String get notifDeliveredVerified => 'Teslimat doğrulandı!';
+  String get notifDeliveredVerified => 'Teslimat doÄŸrulandÄ±!';
 
   @override
   String get notifDeliveredVerifiedBody =>
-      'Gönderi teslim edildi ve OTP ile doğrulandı.';
+      'GÃ¶nderi teslim edildi ve OTP ile doÄŸrulandÄ±.';
 
   @override
-  String get notifClientConfirmedReceipt => 'Teslim alma onaylandı';
+  String get notifClientConfirmedReceipt => 'Teslim alma onaylandÄ±';
 
   @override
   String get notifClientConfirmedReceiptBody =>
-      'Müşteri gönderiyi teslim aldığını onayladı.';
+      'MÃ¼ÅŸteri gÃ¶nderiyi teslim aldÄ±ÄŸÄ±nÄ± onayladÄ±.';
 
   @override
-  String get pleaseUploadCRDocument =>
-      'Lütfen ticaret sicil belgesini yükleyin.';
+  String get pleaseLogin =>
+      'UyarÄ±lara abone olmak iÃ§in lÃ¼tfen giriÅŸ yapÄ±n';
 
   @override
-  String get pleaseLogin => 'Uyarılara abone olmak için lütfen giriş yapın';
+  String get searchRadius => 'Arama yarÄ±Ã§apÄ±';
 
   @override
-  String get searchRadius => 'Arama yarıçapı';
-
-  @override
-  String get fileSelected => 'Dosya seçildi';
+  String get fileSelected => 'Dosya seÃ§ildi';
 
   @override
   String fileSelectedFor(Object type) {
-    return '$type için dosya seçildi';
+    return '$type iÃ§in dosya seÃ§ildi';
   }
 
   @override
-  String get pleaseUploadIdentityProof => 'Lütfen kimlik kanıtını yükleyin.';
+  String get pleaseUploadIdentityProof =>
+      'LÃ¼tfen kimlik kanÄ±tÄ±nÄ± yÃ¼kleyin.';
 
   @override
   String get pleaseUploadVehicleDocuments =>
-      'Lütfen araçla ilgili tüm belgeleri yükleyin.';
+      'LÃ¼tfen araÃ§la ilgili tÃ¼m belgeleri yÃ¼kleyin.';
 
   @override
-  String get pleaseUploadRentalContract => 'Lütfen kira sözleşmesini yükleyin.';
+  String get pleaseUploadRentalContract =>
+      'LÃ¼tfen kira sÃ¶zleÅŸmesini yÃ¼kleyin.';
 
   @override
   String get currentLocation => 'Mevcut konum';
 
   @override
   String get networkError =>
-      'Bağlantı başarısız. Lütfen internetinizi kontrol edip tekrar deneyin.';
+      'BaÄŸlantÄ± baÅŸarÄ±sÄ±z. LÃ¼tfen internetinizi kontrol edip tekrar deneyin.';
 
   @override
   String get textSize => 'Metin boyutu';
 
   @override
-  String get textSizeSmall => 'Küçük';
+  String get textSizeSmall => 'KÃ¼Ã§Ã¼k';
 
   @override
   String get textSizeNormal => 'Normal';
 
   @override
-  String get textSizeLarge => 'Büyük';
+  String get textSizeLarge => 'BÃ¼yÃ¼k';
 
   @override
-  String get textSizeExtraLarge => 'Çok büyük';
+  String get textSizeExtraLarge => 'Ã‡ok bÃ¼yÃ¼k';
 
   @override
-  String get helpAndSupport => 'Yardım ve destek';
+  String get helpAndSupport => 'YardÄ±m ve destek';
 
   @override
-  String get faq => 'Sık sorulan sorular';
+  String get faq => 'SÄ±k sorulan sorular';
 
   @override
-  String get supportMessage => 'Mesajınız (isteğe bağlı)';
+  String get supportMessage => 'MesajÄ±nÄ±z (isteÄŸe baÄŸlÄ±)';
 
   @override
   String get supportMessageSent =>
-      'Mesaj gönderildi. En kısa sürede yanıt vereceğiz.';
+      'Mesaj gÃ¶nderildi. En kÄ±sa sÃ¼rede yanÄ±t vereceÄŸiz.';
 
   @override
-  String get rateApp => 'Uygulamayı değerlendir';
+  String get rateApp => 'UygulamayÄ± deÄŸerlendir';
 
   @override
-  String get shareApp => 'Uygulamayı paylaş';
+  String get shareApp => 'UygulamayÄ± paylaÅŸ';
 
   @override
-  String get aboutTripShip => 'TripShip hakkında';
+  String get aboutTripShip => 'TripShip hakkÄ±nda';
 
   @override
-  String get appVersion => 'Uygulama sürümü';
+  String get appVersion => 'Uygulama sÃ¼rÃ¼mÃ¼';
 
   @override
   String get aboutTripShipDescription =>
-      'TripShip, yolcuları ve gönderenleri bir araya getiren kapsamlı bir lojistik platformudur. Gönderimi daha kolay, daha hızlı ve daha güvenilir hale getiriyoruz.';
+      'TripShip, yolcularÄ± ve gÃ¶nderenleri bir araya getiren kapsamlÄ± bir lojistik platformudur. GÃ¶nderimi daha kolay, daha hÄ±zlÄ± ve daha gÃ¼venilir hale getiriyoruz.';
 
   @override
-  String get notifBookingApproved => 'Rezervasyon talebi onaylandı';
+  String get notifBookingApproved => 'Rezervasyon talebi onaylandÄ±';
 
   @override
-  String get notifBookingApprovedBody => 'Rezervasyon talebiniz onaylandı';
+  String get notifBookingApprovedBody => 'Rezervasyon talebiniz onaylandÄ±';
 
   @override
-  String get notifOfferAcceptedBody =>
-      'Teklifiniz kabul edildi! Teslimata hazırlanın';
+  String get notifSenderHandedGoods => 'GÃ¶nderen mallarÄ± teslim etti';
 
   @override
-  String get notifSenderHandedGoods => 'Gönderen malları teslim etti';
+  String get notifConfirmReceipt => 'LÃ¼tfen teslim almayÄ± onaylayÄ±n';
 
   @override
-  String get notifConfirmReceipt => 'Lütfen teslim almayı onaylayın';
+  String get notifPaymentMarked => 'Ã–deme iÅŸaretlendi';
 
   @override
-  String get notifPaymentMarked => 'Ödeme işaretlendi';
+  String get notifConfirmPayment =>
+      'LÃ¼tfen Ã¶demenin alÄ±ndÄ±ÄŸÄ±nÄ± onaylayÄ±n';
 
   @override
-  String get notifConfirmPayment => 'Lütfen ödemenin alındığını onaylayın';
+  String get notifTravelerDelivered => 'Yolcu gÃ¶nderiyi teslim etti';
 
   @override
-  String get notifTravelerDelivered => 'Yolcu gönderiyi teslim etti';
-
-  @override
-  String get notifGoodsReceived => 'Mallar alındı';
+  String get notifGoodsReceived => 'Mallar alÄ±ndÄ±';
 
   @override
   String get notifGoodsInTransit =>
-      'Yolcu teslim almayı onayladı - gönderi yolda';
+      'Yolcu teslim almayÄ± onayladÄ± - gÃ¶nderi yolda';
 
   @override
-  String get notifPaymentConfirmed => 'Ödeme onaylandı';
+  String get notifPaymentConfirmed => 'Ã–deme onaylandÄ±';
 
   @override
-  String get notifPaymentConfirmedBody => 'Yolcu ödemenin alındığını onayladı';
+  String get notifPaymentConfirmedBody =>
+      'Yolcu Ã¶demenin alÄ±ndÄ±ÄŸÄ±nÄ± onayladÄ±';
 
   @override
   String get notifDeliveryCompleted =>
-      'Gönderen teslim almayı onayladı - talep kapatıldı';
+      'GÃ¶nderen teslim almayÄ± onayladÄ± - talep kapatÄ±ldÄ±';
 
   @override
   String get notifNewMessage => 'Yeni mesaj';
-
-  @override
-  String get notifNewOffer => 'Yeni teklif!';
-
-  @override
-  String get notifNewOfferBody => 'Gönderiniz için yeni bir teklif aldınız';
-
-  @override
-  String get notifNewRequest => 'Yeni gönderi talebi';
-
-  @override
-  String get notifNewRequestBody => 'Yeni bir gönderi talebi aldınız';
 
   @override
   String get notifNewBookingRequest => 'Yeni rezervasyon talebi!';
 
   @override
   String get notifNewBookingRequestBody =>
-      'Biri yolculuğunuzu rezerve etmek istiyor';
+      'Biri yolculuÄŸunuzu rezerve etmek istiyor';
 
   @override
-  String get notifOfferDeclined => 'Teklif reddedildi';
+  String get notifBookingDeclined => 'Teklif reddedildi';
 
   @override
-  String get notifOfferDeclinedBody => 'Teklifiniz bu sefer kabul edilmedi';
+  String get notifBookingDeclinedBody => 'Teklifiniz bu sefer kabul edilmedi';
 
   @override
   String get notifBookingCancelled => 'Rezervasyon iptal edildi';
@@ -1726,56 +1543,57 @@ class AppLocalizationsTr extends AppLocalizations {
   String get notifBookingCancelledBody => 'Bir rezervasyon iptal edildi';
 
   @override
-  String get notifNewTripMatchingAlert => 'Uyarınızla eşleşen yeni yolculuk';
+  String get notifNewTripMatchingAlert =>
+      'UyarÄ±nÄ±zla eÅŸleÅŸen yeni yolculuk';
 
   @override
   String get notifNewTripMatchingAlertBody =>
-      'Yeni bir yolculuk güzergah uyarınızla eşleşiyor. Hemen kontrol edin!';
+      'Yeni bir yolculuk gÃ¼zergah uyarÄ±nÄ±zla eÅŸleÅŸiyor. Hemen kontrol edin!';
 
   @override
   String get notifications => 'Bildirimler';
 
   @override
-  String get markAllRead => 'Tümünü okundu işaretle';
+  String get markAllRead => 'TÃ¼mÃ¼nÃ¼ okundu iÅŸaretle';
 
   @override
-  String get noNotifications => 'Henüz bildirim yok';
+  String get noNotifications => 'HenÃ¼z bildirim yok';
 
   @override
-  String get seeAllNotifications => 'Tüm bildirimleri gör';
+  String get seeAllNotifications => 'TÃ¼m bildirimleri gÃ¶r';
 
   @override
   String get readNotifications => 'Okundu';
 
   @override
-  String get verification => 'Doğrulama';
+  String get verification => 'DoÄŸrulama';
 
   @override
-  String get enterVerificationCode => 'Size gönderilen 6 haneli kodu girin';
+  String get enterVerificationCode => 'Size gÃ¶nderilen 6 haneli kodu girin';
 
   @override
-  String get codeSentTo => 'Kod şuraya gönderildi';
+  String get codeSentTo => 'Kod ÅŸuraya gÃ¶nderildi';
 
   @override
-  String get verify => 'Doğrula';
+  String get verify => 'DoÄŸrula';
 
   @override
-  String get invalidPhone => 'Geçersiz telefon numarası';
+  String get invalidPhone => 'GeÃ§ersiz telefon numarasÄ±';
 
   @override
-  String get phoneRequired => 'Telefon numarası gerekli';
+  String get phoneRequired => 'Telefon numarasÄ± gerekli';
 
   @override
-  String get phone => 'Telefon numarası';
+  String get phone => 'Telefon numarasÄ±';
 
   @override
-  String get sendCode => 'Kod gönder';
+  String get sendCode => 'Kod gÃ¶nder';
 
   @override
-  String get allProvinces => 'Tüm iller';
+  String get allProvinces => 'TÃ¼m iller';
 
   @override
-  String get allCities => 'Tüm şehirler';
+  String get allCities => 'TÃ¼m ÅŸehirler';
 
   @override
   String allOfProvince(String province) {
@@ -1783,235 +1601,208 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get allOrigins => 'Tüm çıkış noktaları';
+  String get allOrigins => 'TÃ¼m Ã§Ä±kÄ±ÅŸ noktalarÄ±';
 
   @override
-  String get allDestinations => 'Tüm varış noktaları';
+  String get allDestinations => 'TÃ¼m varÄ±ÅŸ noktalarÄ±';
 
   @override
-  String get selectProvince => 'İl seç';
+  String get selectProvince => 'Ä°l seÃ§';
 
   @override
-  String get selectCity => 'Şehir seç';
+  String get selectCity => 'Åžehir seÃ§';
 
   @override
-  String get repeatTrip => 'Yolculuğu tekrarla';
+  String get repeatTrip => 'YolculuÄŸu tekrarla';
 
   @override
-  String get selectRepeatDays => 'Tekrar günlerini seç';
+  String get selectRepeatDays => 'Tekrar gÃ¼nlerini seÃ§';
 
   @override
-  String get createAlert => 'Uyarı oluştur';
+  String get createAlert => 'UyarÄ± oluÅŸtur';
 
   @override
-  String get alertCreated => 'Uyarı başarıyla oluşturuldu';
+  String get alertCreated => 'UyarÄ± baÅŸarÄ±yla oluÅŸturuldu';
 
   @override
   String get alertMeWhenAvailable =>
-      'Eşleşen bir yolculuk olduğunda beni bilgilendir';
+      'EÅŸleÅŸen bir yolculuk olduÄŸunda beni bilgilendir';
 
   @override
   String get alertMe => 'Beni bilgilendir';
 
   @override
   String get alertRequiresOriginAndDest =>
-      'Uyarı oluşturmak için lütfen çıkış ve varış noktasını belirtin';
+      'UyarÄ± oluÅŸturmak iÃ§in lÃ¼tfen Ã§Ä±kÄ±ÅŸ ve varÄ±ÅŸ noktasÄ±nÄ± belirtin';
 
   @override
   String get pleaseSelectOriginAndDest =>
-      'Lütfen hem çıkış hem de varış şehirlerini seçin';
+      'LÃ¼tfen hem Ã§Ä±kÄ±ÅŸ hem de varÄ±ÅŸ ÅŸehirlerini seÃ§in';
 
   @override
-  String get myAlerts => 'Uyarılarım';
+  String get myAlerts => 'UyarÄ±larÄ±m';
 
   @override
-  String get shipmentAlerts => 'Gönderi uyarıları';
-
-  @override
-  String get addAlert => 'Uyarı ekle';
+  String get addAlert => 'UyarÄ± ekle';
 
   @override
   String get noAlertsYet =>
-      'Henüz uyarı yok. Yolculuk aramasından bir tane oluşturun.';
+      'HenÃ¼z uyarÄ± yok. Yolculuk aramasÄ±ndan bir tane oluÅŸturun.';
 
   @override
-  String get deleteAlert => 'Uyarıyı sil';
+  String get deleteAlert => 'UyarÄ±yÄ± sil';
 
   @override
-  String get confirmDeleteAlert => 'Bu uyarı silinsin mi?';
+  String get confirmDeleteAlert => 'Bu uyarÄ± silinsin mi?';
 
   @override
-  String get alertDeleted => 'Uyarı silindi';
+  String get alertDeleted => 'UyarÄ± silindi';
 
   @override
   String get delete => 'Sil';
 
   @override
-  String get arrivalTime => 'Varış saati';
+  String get arrivalTime => 'VarÄ±ÅŸ saati';
 
   @override
-  String get estimatedTime => 'Tahmini süre';
+  String get estimatedTime => 'Tahmini sÃ¼re';
 
   @override
   String get dateTime => 'Tarih ve saat';
 
   @override
   String alertsLimitReached(int limit) {
-    return '$limit uyarı sınırına ulaştınız. Yeni bir tane eklemek için lütfen bir uyarıyı silin.';
+    return '$limit uyarÄ± sÄ±nÄ±rÄ±na ulaÅŸtÄ±nÄ±z. Yeni bir tane eklemek iÃ§in lÃ¼tfen bir uyarÄ±yÄ± silin.';
   }
 
   @override
-  String get maxAlertsReachedTitle => 'Sınıra ulaşıldı';
+  String get maxAlertsReachedTitle => 'SÄ±nÄ±ra ulaÅŸÄ±ldÄ±';
 
   @override
-  String get alertType => 'Uyarı türü';
+  String get alertType => 'UyarÄ± tÃ¼rÃ¼';
 
   @override
-  String get myShipmentAlerts => 'Gönderi uyarılarım';
+  String get manageAlerts => 'UyarÄ±larÄ± yÃ¶net';
 
   @override
-  String get manageAlerts => 'Uyarıları yönet';
-
-  @override
-  String get alertLimitExceeded => 'Uyarı sınırı aşıldı';
+  String get alertLimitExceeded => 'UyarÄ± sÄ±nÄ±rÄ± aÅŸÄ±ldÄ±';
 
   @override
   String get deleteAlertToAddNew =>
-      'Yeni bir tane eklemek için lütfen mevcut bir uyarıyı silin.';
+      'Yeni bir tane eklemek iÃ§in lÃ¼tfen mevcut bir uyarÄ±yÄ± silin.';
 
   @override
-  String shipmentAlertsLimitReached(int limit) {
-    return '$limit gönderi uyarısı sınırına ulaştınız. Yeni bir tane eklemek için lütfen birini silin.';
-  }
+  String get profilePhotoLabel => 'Profil fotoÄŸrafÄ±';
 
   @override
-  String get profilePhotoLabel => 'Profil fotoğrafı';
-
-  @override
-  String get completeYourProfile => 'Profilinizi tamamlayın';
+  String get completeYourProfile => 'Profilinizi tamamlayÄ±n';
 
   @override
   String get missing => 'Eksik';
 
   @override
-  String get completeNow => 'Şimdi tamamla';
+  String get completeNow => 'Åžimdi tamamla';
 
   @override
-  String get optional => 'İsteğe bağlı';
+  String get optional => 'Ä°steÄŸe baÄŸlÄ±';
 
   @override
-  String get noDocumentsFound => 'Belge bulunamadı';
+  String get noDocumentsFound => 'Belge bulunamadÄ±';
 
   @override
-  String get underReview => 'İnceleniyor';
+  String get underReview => 'Ä°nceleniyor';
 
   @override
-  String get vehicleColor => 'Araç rengi';
+  String get vehicleColor => 'AraÃ§ rengi';
 
   @override
   String get supportChat => 'Destek sohbeti';
 
   @override
-  String get typeMessage => 'Bir mesaj yazın';
+  String get typeMessage => 'Bir mesaj yazÄ±n';
 
   @override
-  String get companyOnlyFeatureTitle => 'Şirket özelliği';
-
-  @override
-  String get companyOnlyFeatureBody =>
-      'Bu özellik yalnızca şirket hesapları için kullanılabilir.';
-
-  @override
-  String get becomeACompany => 'Şirket ol';
-
-  @override
-  String get driverOnlyFeatureTitle => 'Sürücü özelliği';
+  String get driverOnlyFeatureTitle => 'SÃ¼rÃ¼cÃ¼ Ã¶zelliÄŸi';
 
   @override
   String get driverOnlyFeatureBody =>
-      'Gönderi taleplerine erişim, kayıtlı araçları olan sürücülerle sınırlıdır. Şimdi bir sürücü hesabına yükseltmek ister misiniz?';
+      'GÃ¶nderi taleplerine eriÅŸim, kayÄ±tlÄ± araÃ§larÄ± olan sÃ¼rÃ¼cÃ¼lerle sÄ±nÄ±rlÄ±dÄ±r. Åžimdi bir sÃ¼rÃ¼cÃ¼ hesabÄ±na yÃ¼kseltmek ister misiniz?';
 
   @override
   String get onboardingEarnMoney =>
-      'Seyahatleriniz sırasında gönderi teslim ederek para kazanın';
+      'Seyahatleriniz sÄ±rasÄ±nda gÃ¶nderi teslim ederek para kazanÄ±n';
 
   @override
   String get onboardingSendPackages =>
-      'Paketleri uygun fiyatlarla her yere gönderin';
+      'Paketleri uygun fiyatlarla her yere gÃ¶nderin';
 
   @override
-  String get onboardingSecure => 'Güvenli';
+  String get onboardingSecure => 'GÃ¼venli';
 
   @override
-  String get onboardingFast => 'Hızlı';
+  String get onboardingFast => 'HÄ±zlÄ±';
 
   @override
-  String get onboardingAffordable => 'Uygun fiyatlı';
+  String get onboardingAffordable => 'Uygun fiyatlÄ±';
 
   @override
-  String get notifNewShipmentMatchingAlert => 'Yeni gönderi eşleşmesi';
+  String get uploadingAvatar => 'Profil fotoÄŸrafÄ± yÃ¼kleniyor...';
 
   @override
-  String get notifNewShipmentMatchingAlertBody =>
-      'Yeni bir gönderi kayıtlı güzergah uyarınızla eşleşiyor!';
+  String get shareLocation => 'Konum paylaÅŸ';
 
   @override
-  String get uploadingAvatar => 'Profil fotoğrafı yükleniyor...';
-
-  @override
-  String get shareLocation => 'Konum paylaş';
-
-  @override
-  String get locationShared => 'Konum paylaşıldı';
+  String get locationShared => 'Konum paylaÅŸÄ±ldÄ±';
 
   @override
   String get locationPermissionDenied => 'Konum izni reddedildi';
 
   @override
-  String get locationServiceDisabled => 'Konum hizmetleri devre dışı';
+  String get locationServiceDisabled => 'Konum hizmetleri devre dÄ±ÅŸÄ±';
 
   @override
-  String get sharingLocation => 'Konum paylaşılıyor...';
+  String get sharingLocation => 'Konum paylaÅŸÄ±lÄ±yor...';
 
   @override
-  String get shipmentDeliveryCode => 'Teslimat kodu';
+  String get deliveryCode => 'Teslimat kodu';
 
   @override
-  String get shipmentDeliveryCodeCopied => 'Kod kopyalandı';
+  String get deliveryCodeCopied => 'Kod kopyalandÄ±';
 
   @override
-  String get shipmentShareCodeHint =>
-      'Bu kodu teslimat sırasında sürücüyle paylaşın';
+  String get shareDeliveryCodeHint =>
+      'Bu kodu teslimat sÄ±rasÄ±nda sÃ¼rÃ¼cÃ¼yle paylaÅŸÄ±n';
 
   @override
-  String get shipmentHandedToDriver => 'Gönderi sürücüye teslim edildi';
+  String get goodsHandedToDriver => 'GÃ¶nderi sÃ¼rÃ¼cÃ¼ye teslim edildi';
 
   @override
-  String get shipmentPaymentSentToDriver => 'Ödeme sürücüye gönderildi';
+  String get paymentSentToDriver => 'Ã–deme sÃ¼rÃ¼cÃ¼ye gÃ¶nderildi';
 
   @override
-  String get shipmentDriverReceivedGoods => 'Sürücü gönderiyi aldı';
+  String get driverReceivedGoods => 'SÃ¼rÃ¼cÃ¼ gÃ¶nderiyi aldÄ±';
 
   @override
-  String get shipmentDriverConfirmedPayment => 'Sürücü ödemeyi onayladı';
+  String get driverConfirmedPayment => 'SÃ¼rÃ¼cÃ¼ Ã¶demeyi onayladÄ±';
 
   @override
-  String get shipmentConfirmReceived => 'Gönderinin alındığını onayla';
+  String get confirmGoodsReceived => 'GÃ¶nderinin alÄ±ndÄ±ÄŸÄ±nÄ± onayla';
 
   @override
-  String get shipmentMarkDelivered => 'Gönderiyi teslim edildi olarak işaretle';
+  String get markGoodsDelivered => 'GÃ¶nderiyi teslim edildi olarak iÅŸaretle';
 
   @override
-  String get shipmentConfirmPaymentReceived => 'Ödemenin alındığını onayla';
+  String get confirmPaymentReceived => 'Ã–demenin alÄ±ndÄ±ÄŸÄ±nÄ± onayla';
 
   @override
-  String get shipmentCancelShipment => 'Gönderiyi iptal et';
+  String get cancelDelivery => 'GÃ¶nderiyi iptal et';
 
   @override
-  String get shipmentCancelConfirm => 'Bu gönderi etkileşimi iptal edilsin mi?';
+  String get cancelDeliveryConfirm =>
+      'Bu gÃ¶nderi etkileÅŸimi iptal edilsin mi?';
 
   @override
-  String get shipmentCancelConfirmYes => 'Evet, iptal et';
+  String get cancelDeliveryConfirmYes => 'Evet, iptal et';
 
   @override
   String get statusInTransit => 'Yolda';
@@ -2020,64 +1811,61 @@ class AppLocalizationsTr extends AppLocalizations {
   String get supportTickets => 'Destek talepleri';
 
   @override
-  String get noTicketsFound => 'Destek talebi bulunamadı';
+  String get noTicketsFound => 'Destek talebi bulunamadÄ±';
 
   @override
   String get newTicket => 'Yeni talep';
 
   @override
-  String get createTicket => 'Talep oluştur';
+  String get createTicket => 'Talep oluÅŸtur';
 
   @override
-  String get ticketCreated => 'Talep başarıyla oluşturuldu';
+  String get ticketCreated => 'Talep baÅŸarÄ±yla oluÅŸturuldu';
 
   @override
-  String get open => 'Açık';
+  String get open => 'AÃ§Ä±k';
 
   @override
-  String get closed => 'Kapalı';
+  String get closed => 'KapalÄ±';
 
   @override
-  String get admin => 'Yönetici';
+  String get admin => 'YÃ¶netici';
 
   @override
   String get support => 'Destek';
 
   @override
-  String get privacyPolicy => 'Gizlilik politikası';
+  String get privacyPolicy => 'Gizlilik politikasÄ±';
 
   @override
-  String get termsOfService => 'Hizmet şartları';
+  String get termsOfService => 'Hizmet ÅŸartlarÄ±';
 
   @override
   String get legal => 'Yasal';
 
   @override
-  String get promotedBadge => 'Öne çıkarıldı';
+  String get promotedBadge => 'Ã–ne Ã§Ä±karÄ±ldÄ±';
 
   @override
-  String get howCanWeHelp => 'Nasıl yardımcı olabiliriz?';
+  String get howCanWeHelp => 'NasÄ±l yardÄ±mcÄ± olabiliriz?';
 
   @override
-  String get openSupportTicket => 'Destek talebi aç';
+  String get openSupportTicket => 'Destek talebi aÃ§';
 
   @override
   String get chatOnWhatsApp => 'WhatsApp\'ta sohbet et';
 
   @override
-  String get updateRequired => 'Güncelleme gerekli';
+  String get updateRequired => 'GÃ¼ncelleme gerekli';
 
   @override
-  String get updateNow => 'Şimdi güncelle';
+  String get updateNow => 'Åžimdi gÃ¼ncelle';
 
   @override
-  String get cancelOffer => 'Teklifi iptal et';
+  String get domestic => 'Yurt iÃ§i';
 
   @override
-  String get domestic => 'Yurt içi';
-
-  @override
-  String get international => 'Uluslararası';
+  String get international => 'UluslararasÄ±';
 
   @override
   String get acceptAction => 'Kabul et';
@@ -2090,99 +1878,99 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get onboardingSubtitle1 =>
-      'Farklı ülke ve şehirlerden uygun fiyatlarla gönderi talep edin';
+      'FarklÄ± Ã¼lke ve ÅŸehirlerden uygun fiyatlarla gÃ¶nderi talep edin';
 
   @override
   String get onboardingSubtitle2 =>
-      'Farklı ülke ve şehirlere gönderi teslim edin ve para kazanın';
+      'FarklÄ± Ã¼lke ve ÅŸehirlere gÃ¶nderi teslim edin ve para kazanÄ±n';
 
   @override
   String get onboardingSubtitle3 =>
-      'Tüm gönderileriniz için hızlı, güvenli ve güvenilir teslimat';
+      'TÃ¼m gÃ¶nderileriniz iÃ§in hÄ±zlÄ±, gÃ¼venli ve gÃ¼venilir teslimat';
 
   @override
-  String get getStarted => 'Başla';
+  String get getStarted => 'BaÅŸla';
 
   @override
   String get skip => 'Atla';
 
   @override
-  String get next => 'İleri';
+  String get next => 'Ä°leri';
 
   @override
   String get back => 'Geri';
 
   @override
-  String get today => 'Bugün';
+  String get today => 'BugÃ¼n';
 
   @override
-  String get yesterday => 'Dün';
+  String get yesterday => 'DÃ¼n';
 
   @override
   String daysAgo(int count) {
-    return '$count gün önce';
+    return '$count gÃ¼n Ã¶nce';
   }
 
   @override
   String weeksAgo(int count) {
-    return '$count hafta önce';
+    return '$count hafta Ã¶nce';
   }
 
   @override
   String monthsAgo(int count) {
-    return '$count ay önce';
+    return '$count ay Ã¶nce';
   }
 
   @override
   String yearsAgo(int count) {
-    return '$count yıl önce';
+    return '$count yÄ±l Ã¶nce';
   }
 
   @override
   String get updateMessage =>
-      'TripShip\'in yeni bir sürümü mevcut. Uygulamayı kullanmaya devam etmek için lütfen güncelleyin.';
+      'TripShip\'in yeni bir sÃ¼rÃ¼mÃ¼ mevcut. UygulamayÄ± kullanmaya devam etmek iÃ§in lÃ¼tfen gÃ¼ncelleyin.';
 
   @override
-  String get showMore => 'Daha fazla göster';
+  String get showMore => 'Daha fazla gÃ¶ster';
 
   @override
-  String get showLess => 'Daha az göster';
+  String get showLess => 'Daha az gÃ¶ster';
 
   @override
   String get accountBlocked => 'Hesap engellendi';
 
   @override
   String get accountBlockedMessage =>
-      'Hesabınız, hizmet şartlarımızı ihlal ettiği için kalıcı olarak engellendi.';
+      'HesabÄ±nÄ±z, hizmet ÅŸartlarÄ±mÄ±zÄ± ihlal ettiÄŸi iÃ§in kalÄ±cÄ± olarak engellendi.';
 
   @override
   String get suspensionErrorNotice =>
-      'Bunun bir hata olduğunu düşünüyorsanız, hesap durumunuzu çözmek için lütfen TripShip Destek ile iletişime geçin.';
+      'Bunun bir hata olduÄŸunu dÃ¼ÅŸÃ¼nÃ¼yorsanÄ±z, hesap durumunuzu Ã§Ã¶zmek iÃ§in lÃ¼tfen TripShip Destek ile iletiÅŸime geÃ§in.';
 
   @override
   String get secureTransactionLogged =>
-      'Bu işlem TripShip tarafından güvence altına alınmış ve kaydedilmiştir.';
+      'Bu iÅŸlem TripShip tarafÄ±ndan gÃ¼vence altÄ±na alÄ±nmÄ±ÅŸ ve kaydedilmiÅŸtir.';
 
   @override
   String get bookingSecuredLogged =>
-      'Rezervasyon TripShip platformu üzerinden güvence altına alındı ve kaydedildi.';
+      'Rezervasyon TripShip platformu Ã¼zerinden gÃ¼vence altÄ±na alÄ±ndÄ± ve kaydedildi.';
 
   @override
   String get paymentDetailsSecure =>
-      'Ödeme detayları güvenli bir şekilde işlenir ve kaydedilir.';
+      'Ã–deme detaylarÄ± gÃ¼venli bir ÅŸekilde iÅŸlenir ve kaydedilir.';
 
   @override
   String get conversationSecuredModerated =>
-      'Konuşma TripShip tarafından güvence altına alınmış ve denetlenmektedir.';
+      'KonuÅŸma TripShip tarafÄ±ndan gÃ¼vence altÄ±na alÄ±nmÄ±ÅŸ ve denetlenmektedir.';
 
   @override
-  String get sendImage => 'Resim gönder';
+  String get sendImage => 'Resim gÃ¶nder';
 
   @override
   String get voiceMessage => 'Sesli mesaj';
 
   @override
-  String get failedToSendMessage => 'Mesaj gönderilemedi';
+  String get failedToSendMessage => 'Mesaj gÃ¶nderilemedi';
 
   @override
   String get failedToRefreshStatus => 'Durum yenilenemedi';

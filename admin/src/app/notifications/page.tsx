@@ -20,7 +20,7 @@ type NotificationEntry = {
 };
 
 type SendMode = 'single' | 'segment' | 'broadcast';
-type NotificationSegment = 'all' | 'travelers' | 'companies' | 'individuals';
+type NotificationSegment = 'all' | 'travelers' | 'individuals';
 
 export default function NotificationsPage() {
   const { toast: showToast, confirm: confirmDialog } = useToast();
@@ -77,19 +77,15 @@ export default function NotificationsPage() {
       .is('deleted_at', null)
       .or('is_suspended.is.null,is_suspended.eq.false')
       .or('is_admin.is.null,is_admin.eq.false')
-      .or('traveler_status.is.null,traveler_status.not.in.(blocked,suspended)')
-      .or('company_status.is.null,company_status.not.in.(blocked,suspended)');
+      .or('traveler_status.is.null,traveler_status.not.in.(blocked,suspended)');
   }
 
   function applySegmentFilter(query: any) {
     if (sendMode !== 'segment' || segment === 'all') return query;
     if (segment === 'travelers') return query.eq('traveler_status', 'approved');
-    if (segment === 'companies') return query.eq('company_status', 'approved');
     if (segment === 'individuals') {
       return query
-        .eq('account_type', 'individual')
-        .or('traveler_status.is.null,traveler_status.eq.none')
-        .or('company_status.is.null,company_status.eq.none');
+        .or('traveler_status.is.null,traveler_status.eq.none');
     }
     return query;
   }
@@ -421,7 +417,6 @@ export default function NotificationsPage() {
                 <select value={segment} onChange={e => setSegment(e.target.value as typeof segment)} className="w-full theme-bg-secondary border border-[var(--surface-border)] rounded-lg px-3 py-2 text-sm theme-heading focus:border-blue-500 focus:outline-none">
                   <option value="all">{t('notifications.segment.all', 'All Users')}</option>
                   <option value="travelers">{t('notifications.segment.travelers', 'Travelers / Drivers')}</option>
-                  <option value="companies">{t('notifications.segment.companies', 'Companies')}</option>
                   <option value="individuals">{t('notifications.segment.individuals', 'Individuals')}</option>
                 </select>
               </div>

@@ -13,7 +13,7 @@ const mocks = vi.hoisted(() => {
       trip_id: 'trip-1',
       traveler_id: 'traveler-1',
       requester_id: 'requester-1',
-      offer_price: 180,
+      price: 180,
       status: 'accepted',
       created_at: '2026-05-01T10:00:00.000Z',
       driver_profile: {
@@ -34,12 +34,6 @@ const mocks = vi.hoisted(() => {
         origin: { city_name_en: 'Damascus' },
         dest: { city_name_en: 'Aleppo' },
         driver: { id: 'traveler-1', full_name: 'Traveler One' },
-      },
-      shipments: {
-        id: 'shipment-should-not-render',
-        description: 'Old shipment coupling',
-        status: 'pending',
-        weight_kg: 4,
       },
     },
   };
@@ -149,10 +143,5 @@ describe('BookingDetailPage', () => {
     const bookingSelect = mocks.selectCalls.find((call) => call.table === 'bookings')?.columns ?? '';
     expect(bookingSelect).toContain('requester_profile:profiles!bookings_requester_id_profiles_fkey');
     expect(bookingSelect).not.toContain('requester_profile:profiles!bookings_requester_id_fkey');
-    expect(bookingSelect).not.toContain('shipments');
-    const shipmentLinks = Array.from(document.querySelectorAll('a')).filter((link) =>
-      link.getAttribute('href')?.startsWith('/shipments/'),
-    );
-    expect(shipmentLinks).toHaveLength(0);
   });
 });

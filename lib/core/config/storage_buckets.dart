@@ -9,7 +9,7 @@
 /// Privacy (see project architecture):
 /// - [userDocuments], [chatAttachments], [adminExports] are PRIVATE
 ///   (signed-URL access, RLS-gated).
-/// - [avatars], [shipmentPhotos] are public-read.
+/// - [avatars], [deliveryPhotos] are public-read.
 class StorageBuckets {
   StorageBuckets._();
 
@@ -22,8 +22,8 @@ class StorageBuckets {
   /// Chat audio/image attachments. PRIVATE (signed URLs, participant-gated).
   static const String chatAttachments = 'chat-attachments';
 
-  /// Shipment handshake photos. Public-read.
-  static const String shipmentPhotos = 'shipment_photos';
+  /// Delivery handshake photos. Public-read.
+  static const String deliveryPhotos = 'delivery_photos';
 
   /// Admin CSV exports. PRIVATE (24h signed URLs).
   static const String adminExports = 'admin_exports';

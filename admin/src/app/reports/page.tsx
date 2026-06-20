@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/lib/toast';
-import { Flag, Search, CheckCircle, AlertTriangle, Eye, Download, Ban, Trash2, Package, Route, User, Star } from 'lucide-react';
+import { Flag, Search, CheckCircle, AlertTriangle, Eye, Download, Ban, Trash2, Route, User, Star } from 'lucide-react';
 import { cn, exportToCSV } from '@/lib/utils';
 import { logAdminAction } from '@/lib/audit';
 import Loading from '@/app/loading';
@@ -18,7 +18,7 @@ type ReportAction = 'warn' | 'delete_target' | 'block_target';
 
 const filterStatuses: FilterStatus[] = ['open', 'all', 'pending', 'investigating', 'resolved', 'dismissed'];
 const visibleFilterStatuses: FilterStatus[] = ['open', 'pending', 'investigating', 'resolved', 'dismissed', 'all'];
-const reportTargets: Array<'all' | ReportTarget> = ['all', 'user', 'driver', 'company', 'shipment', 'rating', 'trip'];
+const reportTargets: Array<'all' | ReportTarget> = ['all', 'user', 'driver', 'rating', 'trip'];
 const openReportStatuses = new Set(['open', 'pending', 'investigating']);
 
 function readFilterStatus(value: string | null, fallback: FilterStatus): FilterStatus {
@@ -125,7 +125,6 @@ export default function ReportsPage() {
 
   function targetIcon(type: string | null | undefined) {
     switch (type) {
-      case 'shipment': return Package;
       case 'trip': return Route;
       case 'rating': return Star;
       default: return User;
@@ -133,7 +132,6 @@ export default function ReportsPage() {
   }
 
   function targetLink(r: Report): string | null {
-    if (r.target_type === 'shipment' && r.target_shipment_id) return `/shipments/${r.target_shipment_id}`;
     if (r.target_type === 'trip' && r.target_trip_id) return `/trips/${r.target_trip_id}`;
     if (r.target_type === 'rating' && r.target_rating_id) return null;
     if (r.reported_id) return `/users/${r.reported_id}`;
@@ -142,7 +140,6 @@ export default function ReportsPage() {
 
   function canDeleteTarget(r: Report) {
     return Boolean(
-      (r.target_type === 'shipment' && r.target_shipment_id) ||
       (r.target_type === 'trip' && r.target_trip_id) ||
       (r.target_type === 'rating' && r.target_rating_id)
     );
@@ -240,8 +237,6 @@ export default function ReportsPage() {
             <option value="all">{t('reports.target.all', 'All')}</option>
             <option value="user">{t('reports.target.user', 'User')}</option>
             <option value="driver">{t('reports.target.driver', 'Driver')}</option>
-            <option value="company">{t('reports.target.company', 'Company')}</option>
-            <option value="shipment">{t('reports.target.shipment', 'Shipment')}</option>
             <option value="trip">{t('reports.target.trip', 'Trip')}</option>
             <option value="rating">{t('reports.target.rating', 'Rating')}</option>
           </select>
@@ -254,13 +249,11 @@ export default function ReportsPage() {
           const linkHref = targetLink(report);
           const isFocused = focusedReportId === report.id;
           const deletableTarget = canDeleteTarget(report);
-          const targetLabel = report.target_type === 'shipment'
-            ? `${t('reports.target.shipment', 'Shipment')} ${report.target_shipment_id?.slice(0, 8) || ''}`
-            : report.target_type === 'trip'
-              ? `${t('reports.target.trip', 'Trip')} ${report.target_trip_id?.slice(0, 8) || ''}`
-              : report.target_type === 'rating'
-                ? `${t('reports.target.rating', 'Rating')} ${report.target_rating_id?.slice(0, 8) || ''}`
-                : (report.reported?.full_name || t('common.unknown', 'Unknown'));
+          const targetLabel = report.target_type === 'trip'
+            ? `${t('reports.target.trip', 'Trip')} ${report.target_trip_id?.slice(0, 8) || ''}`
+            : report.target_type === 'rating'
+              ? `${t('reports.target.rating', 'Rating')} ${report.target_rating_id?.slice(0, 8) || ''}`
+              : (report.reported?.full_name || t('common.unknown', 'Unknown'));
           return (
           <div
             key={report.id}
@@ -361,7 +354,7 @@ export default function ReportsPage() {
             </h3>
             <p className="theme-muted text-sm mb-4">
               {actionModal.action === 'warn' && t('reports.action.warn.desc', 'Sends a warning notification to the reported user and increments their strike count.')}
-              {actionModal.action === 'delete_target' && t('reports.action.deleteTarget.desc', 'Cancels the reported shipment/trip, or rejects the reported review comment.')}
+              {actionModal.action === 'delete_target' && t('reports.action.deleteTarget.desc', 'Cancels the reported trip, or rejects the reported review comment.')}
               {actionModal.action === 'block_target' && t('reports.action.block.desc', 'Hard-blocks and disables the reported user account.')}
             </p>
             <textarea

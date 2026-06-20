@@ -11,7 +11,6 @@ _Profile _$ProfileFromJson(Map<String, dynamic> json) => _Profile(
   fullName: json['full_name'] as String,
   phoneNumber: json['phone_number'] as String?,
   bio: json['bio'] as String?,
-  accountType: json['account_type'] as String?,
   isAvailable: json['is_available'] as bool? ?? false,
   travelerStatus: json['traveler_status'] as String? ?? DomainConfig.statusNone,
   travelerType:
@@ -20,15 +19,9 @@ _Profile _$ProfileFromJson(Map<String, dynamic> json) => _Profile(
   identityDocUrl: json['identity_doc_url'] as String?,
   driverLicenseUrl: json['traveler_license_url'] as String?,
   rentalContractUrl: json['rental_contract_url'] as String?,
-  companyStatus: json['company_status'] as String? ?? DomainConfig.statusNone,
-  companyName: json['company_name'] as String?,
-  companyAddress: json['company_address'] as String?,
-  companyCrNumber: json['company_cr_number'] as String?,
-  companyCrUrl: json['company_cr_url'] as String?,
   identityDocUrlPending: json['identity_doc_url_pending'] as String?,
   travelerLicenseUrlPending: json['traveler_license_url_pending'] as String?,
   rentalContractUrlPending: json['rental_contract_url_pending'] as String?,
-  companyCrUrlPending: json['company_cr_url_pending'] as String?,
   createdAt: json['created_at'] == null
       ? null
       : DateTime.parse(json['created_at'] as String),
@@ -47,9 +40,6 @@ _Profile _$ProfileFromJson(Map<String, dynamic> json) => _Profile(
   clientRatingAvg: _ratingFromJson(json['client_rating_avg']),
   clientRatingCount: (json['client_rating_count'] as num?)?.toInt(),
   isDriver: json['is_driver'] as bool? ?? false,
-  companyValidityDate: json['company_validity_date'] == null
-      ? null
-      : DateTime.parse(json['company_validity_date'] as String),
   driverValidityDate: json['driver_validity_date'] == null
       ? null
       : DateTime.parse(json['driver_validity_date'] as String),
@@ -76,7 +66,6 @@ Map<String, dynamic> _$ProfileToJson(_Profile instance) => <String, dynamic>{
   'full_name': instance.fullName,
   'phone_number': instance.phoneNumber,
   'bio': instance.bio,
-  'account_type': instance.accountType,
   'is_available': instance.isAvailable,
   'traveler_status': instance.travelerStatus,
   'traveler_type': instance.travelerType,
@@ -84,15 +73,9 @@ Map<String, dynamic> _$ProfileToJson(_Profile instance) => <String, dynamic>{
   'identity_doc_url': instance.identityDocUrl,
   'traveler_license_url': instance.driverLicenseUrl,
   'rental_contract_url': instance.rentalContractUrl,
-  'company_status': instance.companyStatus,
-  'company_name': instance.companyName,
-  'company_address': instance.companyAddress,
-  'company_cr_number': instance.companyCrNumber,
-  'company_cr_url': instance.companyCrUrl,
   'identity_doc_url_pending': instance.identityDocUrlPending,
   'traveler_license_url_pending': instance.travelerLicenseUrlPending,
   'rental_contract_url_pending': instance.rentalContractUrlPending,
-  'company_cr_url_pending': instance.companyCrUrlPending,
   'created_at': instance.createdAt?.toIso8601String(),
   'onesignal_player_id': instance.oneSignalPlayerId,
   'avatar_url': instance.avatarUrl,
@@ -105,7 +88,6 @@ Map<String, dynamic> _$ProfileToJson(_Profile instance) => <String, dynamic>{
   'client_rating_avg': instance.clientRatingAvg,
   'client_rating_count': instance.clientRatingCount,
   'is_driver': instance.isDriver,
-  'company_validity_date': instance.companyValidityDate?.toIso8601String(),
   'driver_validity_date': instance.driverValidityDate?.toIso8601String(),
   'avatar_updated_at': instance.avatarUpdatedAt?.toIso8601String(),
   'is_blocked': instance.isBlocked,

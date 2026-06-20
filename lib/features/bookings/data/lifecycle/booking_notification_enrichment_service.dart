@@ -74,7 +74,6 @@ class BookingNotificationEnrichmentService {
       await NotificationLocationHelper.addOriginDestinationToData(
         _supabase,
         data,
-        data['shipment_id'],
         data['trip_id'],
       );
       return data;

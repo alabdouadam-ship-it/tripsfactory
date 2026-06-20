@@ -25,7 +25,6 @@ import 'package:tripship/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:tripship/features/home/presentation/widgets/home_selection_cards.dart';
 import 'package:tripship/features/home/presentation/widgets/home_dialogs.dart';
 import 'package:tripship/features/home/presentation/home_filters.dart';
-import 'package:tripship/features/shipments/presentation/shipment_list_view.dart';
 import 'package:tripship/features/trips/presentation/trip_list_view.dart';
 import 'package:tripship/core/models/location_model.dart';
 import 'package:tripship/core/enums/app_enums.dart';
@@ -34,8 +33,6 @@ import 'package:tripship/features/home/presentation/widgets/home_context_bar.dar
 
 // Screens for Navigation
 import 'package:tripship/features/bookings/presentation/my_requests_screen.dart';
-import 'package:tripship/features/bookings/presentation/my_shipments_screen.dart';
-import 'package:tripship/features/bookings/presentation/my_offers_screen.dart';
 import 'package:tripship/features/trips/presentation/my_trips_screen.dart';
 import 'package:tripship/features/profile/presentation/profile_screen.dart';
 import 'package:tripship/features/home/presentation/notifications_screen.dart';
@@ -47,12 +44,9 @@ class HomeScreen extends ConsumerStatefulWidget {
   ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends ConsumerState<HomeScreen>
-    with SingleTickerProviderStateMixin {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   static const String _logTag = 'HomeScreen';
-  late TabController _travelerTabController;
   String _travelerStatus = DomainConfig.statusNone; // none, pending, approved, rejected
-  String _companyStatus = DomainConfig.statusNone; // none, pending, approved, rejected
   int _selectedIndex = 0; // Tab Index
   TransportType _selectedTransport = TransportType.none;
 
@@ -96,12 +90,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     await prefs.setInt('last_seen_global_message_hash', content.hashCode);
   }
 
-  @override
-  void dispose() {
-    _travelerTabController.dispose();
-    super.dispose();
-  }
-
   Future<void> _loadLocations() async {
     if (!mounted) return;
     try {
@@ -128,53 +116,20 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     await _loadLocations();
   }
 
-  /// Reads traveler/company status directly from the already-fetched profile.
-  /// Eliminates two separate SELECT queries that duplicate what profileServiceProvider already provides.
+  /// Reads traveler status directly from the already-fetched profile.
   void _syncStatusFromProfile() {
     final profile = ref.read(currentUserProfileProvider).value;
     if (profile == null || !mounted) return;
     setState(() {
       _travelerStatus = profile.travelerStatus;
-      _companyStatus = profile.companyStatus;
     });
   }
 
   @override
   void initState() {
     super.initState();
-    // 3 tabs: Notifications | Internal requests | External requests
-    _travelerTabController = TabController(length: 3, vsync: this);
-    _travelerTabController.addListener(() {
-      if (!_travelerTabController.indexIsChanging) {
-        final profile = ref.read(currentUserProfileProvider).value;
-        final isDriver = profile?.isDriver ?? false;
-        final index = _travelerTabController.index;
 
-        if (index > 0 && !isDriver) {
-          // Gate access to Internal/External request tabs for non-drivers
-          HomeDialogs.showDriverOnly(context, status: profile?.travelerStatus);
-          _travelerTabController.animateTo(0);
-          return;
-        }
-
-        final transportType = index == 1
-            ? TransportType.internal
-            : index == 2
-            ? TransportType.external
-            : TransportType.none;
-
-        setState(() {
-          _selectedTransport = transportType;
-        });
-
-        // Update provider
-        ref
-            .read(travelerFilterProvider.notifier)
-            .setTransportType(transportType);
-      }
-    });
-
-    // Default for traveler: first tab is Notifications (index 0)
+    // Default for traveler: no transport selected
     if (!ref.read(isClientModeProvider)) {
       _selectedTransport = TransportType.none;
     }
@@ -236,14 +191,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     if (confirm == true) {
       ref.read(isClientModeProvider.notifier).setMode(newValue);
       setState(() {
-        if (newValue) {
-          _selectedTransport = TransportType.none;
-        } else {
-          final index = _travelerTabController.index;
-          _selectedTransport = index == 0
-              ? TransportType.none
-              : (index == 1 ? TransportType.internal : TransportType.external);
-        }
+        _selectedTransport = TransportType.none;
         _loadData();
       });
     }
@@ -299,34 +247,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
       );
     }
 
-    // 3. My Shipments / My Offers (Conditional)
-    if (isClientMode) {
-      // Only show My Shipments if company is approved
-      if (_companyStatus == DomainConfig.statusApproved) {
-        widgetOptions.add(const MyShipmentsScreen());
-        destinations.add(
-          NavigationDestination(
-            icon: const Icon(Icons.inventory_2_outlined),
-            selectedIcon: const Icon(Icons.inventory_2),
-            label: localizations.myShipments,
-          ),
-        );
-      }
-    } else if (_travelerStatus == DomainConfig.statusApproved) {
-      final profile = ref.watch(currentUserProfileProvider).value;
-      if (profile != null && profile.isDriver) {
-        widgetOptions.add(const MyOffersScreen());
-        destinations.add(
-          NavigationDestination(
-            icon: const Icon(Icons.local_offer_outlined),
-            selectedIcon: const Icon(Icons.local_offer),
-            label: localizations.myOffers,
-          ),
-        );
-      }
-    }
-
-    // 4. Profile
+    // 3. Profile
     widgetOptions.add(const ProfileScreen());
     destinations.add(
       NavigationDestination(
@@ -344,17 +265,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     final profileForPopup = ref.watch(currentUserProfileProvider).valueOrNull;
     final isDriver =
         (profileForPopup?.travelerStatus ?? DomainConfig.statusNone) != DomainConfig.statusNone;
-    final isCompany = (profileForPopup?.accountType) == DomainConfig.accountCompany;
     final isNewUser = profileForPopup?.createdAt != null &&
         DateTime.now().difference(profileForPopup!.createdAt!).inDays < 7;
 
     return OccasionalPopupGate(
       isDriver: isDriver,
-      isCompany: isCompany,
       isNewUser: isNewUser,
       child: FirstLaunchPopupGate(
         isDriver: isDriver,
-        isCompany: isCompany,
         isNewUser: isNewUser,
         child: Scaffold(
           body: widgetOptions.elementAt(_selectedIndex),
@@ -392,7 +310,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
 
                     final isGlobalSuspended = profile.isSuspended;
                     final isModeSuspended = isClientMode
-                        ? profile.companyStatus == DomainConfig.statusSuspended
+                        ? false
                         : profile.travelerStatus == DomainConfig.statusSuspended;
 
                     if (isGlobalSuspended || isModeSuspended) {
@@ -409,7 +327,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                         selectedTransport: _selectedTransport,
                         travelerStatus: _travelerStatus,
                         selectedIndex: _selectedIndex,
-                        travelerTabController: _travelerTabController,
                         onBackPressed: () => setState(
                           () => _selectedTransport = TransportType.none,
                         ),
@@ -437,92 +354,39 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                               )
                             : const SizedBox.shrink(),
                       ),
-                      if (!isClientMode ||
+                      if (isClientMode &&
                           _selectedTransport != TransportType.none)
                         SliverFillRemaining(
-                          child: isClientMode
-                              ? Column(
-                                  children: [
-                                    HomeContextBar(
-                                      isClientMode: isClientMode,
-                                      isInternal:
-                                          _selectedTransport ==
-                                          TransportType.internal,
-                                      locations: _locations,
-                                      homeFiltersKey: _homeFiltersKey,
-                                      filterProvider: clientFilterProvider,
-                                    ),
-                                    Expanded(
-                                      child:
-                                          (_selectedTransport ==
-                                                  TransportType.internal ||
-                                              _selectedTransport ==
-                                                  TransportType.external)
-                                          ? TripListView(
-                                              isInternal:
-                                                  _selectedTransport ==
-                                                  TransportType.internal,
-                                              filterProvider:
-                                                  clientFilterProvider,
-                                            )
-                                          : const PrivateTravelersPage()
-                                                as Widget,
-                                    ),
-                                  ],
-                                )
-                              : (ref
-                                        .watch(currentUserProfileProvider)
-                                        .maybeMap(
-                                          data: (d) =>
-                                              d.value?.travelerStatus ==
-                                              DomainConfig.statusApproved,
-                                          loading: (_) => true,
-                                          orElse: () => false,
-                                        )
-                                    ? Column(
-                                        children: [
-                                          if (_selectedTransport !=
-                                              TransportType.none)
-                                            HomeContextBar(
-                                              isClientMode: isClientMode,
-                                              isInternal:
-                                                  _selectedTransport ==
-                                                  TransportType.internal,
-                                              locations: _locations,
-                                              homeFiltersKey: _homeFiltersKey,
-                                              filterProvider:
-                                                  travelerFilterProvider,
-                                            ),
-                                          Expanded(
-                                            child: TabBarView(
-                                              controller:
-                                                  _travelerTabController,
-                                              physics:
-                                                  const NeverScrollableScrollPhysics(),
-                                              children: [
-                                                NotificationsScreen(
-                                                  hideAppBar: true,
-                                                ),
-                                                ShipmentListView(
-                                                  transportType:
-                                                      TransportType.internal,
-                                                  excludeInteracted: true,
-                                                  filterProvider:
-                                                      travelerFilterProvider,
-                                                ),
-                                                ShipmentListView(
-                                                  transportType:
-                                                      TransportType.external,
-                                                  excludeInteracted: true,
-                                                  filterProvider:
-                                                      travelerFilterProvider,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      )
-                                    : NotificationsScreen(hideAppBar: true)),
+                          child: Column(
+                            children: [
+                              HomeContextBar(
+                                isClientMode: isClientMode,
+                                isInternal:
+                                    _selectedTransport == TransportType.internal,
+                                locations: _locations,
+                                homeFiltersKey: _homeFiltersKey,
+                                filterProvider: clientFilterProvider,
+                              ),
+                              Expanded(
+                                child:
+                                    (_selectedTransport ==
+                                                TransportType.internal ||
+                                            _selectedTransport ==
+                                                TransportType.external)
+                                        ? TripListView(
+                                            isInternal:
+                                                _selectedTransport ==
+                                                TransportType.internal,
+                                            filterProvider: clientFilterProvider,
+                                          )
+                                        : const PrivateTravelersPage(),
+                              ),
+                            ],
+                          ),
+                        ),
+                      if (!isClientMode)
+                        const SliverFillRemaining(
+                          child: NotificationsScreen(hideAppBar: true),
                         ),
                     ],
                   ),
@@ -558,12 +422,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
           if (ads.isEmpty) return const SizedBox.shrink();
           final ad = ads.first;
           return Padding(
-            padding: const EdgeInsets.fromLTRB(
-              16,
-              16,
-              16,
-              8,
-            ), // Gap of 8 + 16 (from next sliver) = 24
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
             child: AdBanner(
               imageUrl: ad['image_url'],
               clickUrl: ad['click_url'],
@@ -575,57 +434,28 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     );
   }
 
-  void _onPostShipmentTapped(AppLocalizations localizations) {
-    final profile = ref.read(currentUserProfileProvider).value;
-    final isApprovedCompany =
-        _companyStatus == DomainConfig.statusApproved && (profile?.isCompanyValid ?? false);
-
-    if (isApprovedCompany) {
-      // If approved, push to shipment posting.
-      // If transport type not selected yet, default to internal.
-      final transportType = _selectedTransport != TransportType.none
-          ? _selectedTransport.name
-          : TransportType.internal.name;
-      context.push(AppRoutes.postShipment, extra: transportType);
-    } else {
-      HomeDialogs.showCompanyOnly(context, status: _companyStatus);
-    }
-  }
-
   Widget? _getFabWidget(
     AppLocalizations localizations,
     bool isClientMode,
     BuildContext context,
   ) {
     if (isClientMode) {
-      if (_selectedTransport == TransportType.none) {
-        return null;
-      }
-      // Always show Post Shipment FAB in Sender mode once a transport is selected.
+      // Senders browse trips and request via trip details — no home FAB.
+      return null;
+    }
+
+    // Driver mode: post a trip.
+    final profile = ref.read(currentUserProfileProvider).value;
+    if (profile?.isDriverValid ?? false) {
       return FloatingActionButton.extended(
-        onPressed: () => _onPostShipmentTapped(localizations),
+        onPressed: () => context.push(AppRoutes.postTrip),
         backgroundColor: Colors.teal,
         foregroundColor: Colors.white,
         elevation: 4,
-        icon: const Icon(Icons.add_box),
-        label: Text(localizations.postShipment),
+        icon: const Icon(Icons.local_shipping),
+        label: Text(localizations.postTrip),
       );
-    } else {
-      final profile = ref.read(currentUserProfileProvider).value;
-      if (_selectedTransport != TransportType.none &&
-          (profile?.isDriverValid ?? false)) {
-        return FloatingActionButton.extended(
-          onPressed: () =>
-              context.push(AppRoutes.postTrip, extra: _selectedTransport.name),
-          backgroundColor: Colors.teal,
-          foregroundColor: Colors.white,
-          elevation: 4,
-          icon: const Icon(Icons.local_shipping),
-          label: Text(localizations.postTrip),
-        );
-      } else {
-        return null;
-      }
     }
+    return null;
   }
 }

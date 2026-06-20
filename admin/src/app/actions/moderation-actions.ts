@@ -230,7 +230,7 @@ export async function deleteRating(ratingId: string, reason?: string) {
  * Common report-resolution side-effects: warn / delete content / block target.
  *
  * Note: this performs multi-table writes (reports + profiles + notifications
- * + targeted ratings/shipments/trips) without a transaction. A failure
+ * + targeted ratings/trips) without a transaction. A failure
  * mid-flow leaves partial state. A future refactor could wrap this in a
  * SECURITY DEFINER Postgres function or a Supabase Edge Function for
  * atomicity.
@@ -272,13 +272,7 @@ export async function applyReportAction(reportId: string, opts: {
                 if (notifyErr) throw notifyErr;
             }
         } else if (opts.action === 'delete_target') {
-            if (targetType === 'shipment' && report.target_shipment_id) {
-                const { error } = await supabase
-                    .from('shipments')
-                    .update({ status: 'cancelled', moderation_status: 'removed' })
-                    .eq('id', report.target_shipment_id);
-                if (error) throw error;
-            } else if (targetType === 'rating' && report.target_rating_id) {
+            if (targetType === 'rating' && report.target_rating_id) {
                 const { error } = await supabase
                     .from('ratings')
                     .update({ comment: null, comment_status: 'rejected' })
@@ -291,7 +285,7 @@ export async function applyReportAction(reportId: string, opts: {
                     .eq('id', report.target_trip_id);
                 if (error) throw error;
             } else {
-                throw new Error('This report has no deletable shipment, trip, or rating target.');
+                throw new Error('This report has no deletable trip or rating target.');
             }
         } else if (opts.action === 'block_target') {
             if (report.reported_id) {

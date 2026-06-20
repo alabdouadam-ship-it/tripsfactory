@@ -157,13 +157,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bio => 'Bio / Description';
 
   @override
-  String get accountType => 'Account Type';
-
-  @override
   String get individual => 'Individual';
-
-  @override
-  String get company => 'Company';
 
   @override
   String get verificationStatus => 'Verification Status';
@@ -238,13 +232,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get invalidWeight => 'Invalid weight';
 
   @override
-  String get postShipment => 'Send a Package';
-
-  @override
-  String get editShipment => 'Edit Shipment';
-
-  @override
-  String get shipmentUpdated => 'Shipment updated successfully!';
+  String get postPackage => 'Send a Package';
 
   @override
   String get iAmTraveler => 'Driver OR Traveler';
@@ -259,23 +247,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get description => 'Description (What are you sending?)';
 
   @override
-  String get createRequest => 'Create Shipment Request';
-
-  @override
-  String get shipmentPosted => 'Shipment request created successfully';
+  String get createRequest => 'Create Delivery Request';
 
   @override
   String get pickup => 'Pickup Location';
 
   @override
   String get dropoff => 'Dropoff Location';
-
-  @override
-  String get companyOnlyFeature => 'Corporate Feature';
-
-  @override
-  String get mustBeCompany =>
-      'Only verified companies can post shipment requests. Please switch your account type to \'Company\' in your profile.';
 
   @override
   String get goToProfile => 'Go to Profile';
@@ -287,13 +265,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get externalTrips => 'External';
 
   @override
-  String get requestedShipments => 'Last Requested Shipments';
-
-  @override
   String get noTripsFound => 'No available trips found.';
 
   @override
-  String get noShipmentsFound => 'No shipment requests found.';
+  String get noRequestsFound => 'No requests found.';
 
   @override
   String get country => 'Country';
@@ -374,14 +349,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get driverLabel => 'Driver';
 
   @override
-  String get shipmentDriversOnly =>
-      'Shipment offers are for drivers only (travelers with a vehicle)';
-
-  @override
-  String get requestedShipmentsOnlyForVehicleOwners =>
-      'Requested shipments only available for vehicle owners';
-
-  @override
   String get pendingRating => 'Pending Rating';
 
   @override
@@ -437,10 +404,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get alreadyApproved => 'Already Approved';
 
   @override
-  String get alreadyCompanyAccount =>
-      'You already have an approved company account.';
-
-  @override
   String get alreadyDriverAccount =>
       'You already have an approved driver account.';
 
@@ -448,41 +411,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ok => 'OK';
 
   @override
-  String get companyRegistration => 'Company Registration';
-
-  @override
-  String get companyInfo => 'Company Information';
-
-  @override
-  String get companyName => 'Company Name';
-
-  @override
-  String get companyAddress => 'Company Address';
-
-  @override
-  String get crNumber => 'CR Number';
-
-  @override
-  String get crNumberDigitsOnly => 'The CR number must contain digits only';
-
-  @override
-  String get uploadCR => 'Upload CR Document';
-
-  @override
-  String get upgradeToBusiness => 'Upgrade to Business Account';
-
-  @override
   String get upgradeToDriver => 'Upgrade to Driver (with vehicle)';
-
-  @override
-  String get companyAccessRestricted => 'Company Feature';
-
-  @override
-  String get mustBeVerifiedCompany =>
-      'Only verified companies can access this feature.';
-
-  @override
-  String get verifiedCompanyAccount => 'Verified Company Account';
 
   @override
   String get driverRating => 'Traveler Rating';
@@ -512,31 +441,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get myTrips => 'My Trips';
 
   @override
-  String get myOffers => 'My Offers';
-
-  @override
-  String get myShipments => 'My Shipments';
-
-  @override
   String get myRequests => 'My Requests';
-
-  @override
-  String get noOffersYet => 'No offers received yet';
 
   @override
   String get fieldRequired => 'Field required';
 
   @override
-  String get makeOffer => 'Make an Offer';
-
-  @override
   String get submit => 'Submit';
-
-  @override
-  String get shipmentDetails => 'Shipment Details';
-
-  @override
-  String get offersReceived => 'Offers Received';
 
   @override
   String get accept => 'Accept';
@@ -582,9 +493,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get statusUpdated => 'Status updated';
 
   @override
-  String get offerAccepted => 'Offer Accepted! Shipment marked as Booked.';
-
-  @override
   String get startTrip => 'Start Trip';
 
   @override
@@ -595,9 +503,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get done => 'Done';
-
-  @override
-  String get selectShipment => 'Select Shipment';
 
   @override
   String get tripDetails => 'Trip Details';
@@ -613,9 +518,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unknownTraveler => 'Unknown Traveler';
-
-  @override
-  String get createShipmentFirst => 'Please create a shipment request first';
 
   @override
   String get requestSent => 'Request sent to traveler!';
@@ -886,9 +788,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get openInMaps => 'Open in Maps';
 
   @override
-  String get shipment => 'Shipment';
-
-  @override
   String get type => 'Type';
 
   @override
@@ -934,13 +833,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cancelledBadge => 'Cancelled';
 
   @override
-  String get offerSent => 'Offer sent!';
-
-  @override
   String get now => 'Now';
-
-  @override
-  String get offerSentTitle => 'Offer Sent';
 
   @override
   String get pickupLabel => 'Pickup';
@@ -1077,9 +970,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get rentalContract => 'Rental Contract';
 
   @override
-  String get crDocument => 'CR Document';
-
-  @override
   String get view => 'View';
 
   @override
@@ -1176,41 +1066,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get waitingForSenderToPay => 'Waiting for sender to mark payment';
 
   @override
-  String get anotherOfferAccepted =>
-      'Another offer has already been accepted for this shipment.';
-
-  @override
-  String get otherOfferAcceptedBadge => 'OTHER ACCEPTED';
-
-  @override
   String get requestedOnLabel => 'Requested on';
-
-  @override
-  String get offerStartTripHint => 'Action: Start trip to update status';
-
-  @override
-  String get offerMarkDeliveredHint => 'Action: Mark delivered when done';
-
-  @override
-  String get offerStartButton => 'Start';
-
-  @override
-  String get offerDeliverButton => 'Deliver';
-
-  @override
-  String get offerTripStarted => 'Trip started';
-
-  @override
-  String get offerMarkedDelivered => 'Marked as delivered';
 
   @override
   String get chatClientLabel => 'Client';
 
   @override
   String get operationHistory => 'Operation History';
-
-  @override
-  String get eventOfferCreated => 'Offer Created';
 
   @override
   String get eventRequestCreated => 'Request Created';
@@ -1226,12 +1088,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventCommunicationStarted => 'Communication Started';
-
-  @override
-  String get eventOfferAccepted => 'Offer Accepted';
-
-  @override
-  String get eventOfferRejected => 'Offer Rejected';
 
   @override
   String get eventDeliveredVerifiedOtp => 'Delivered (Verified OTP)';
@@ -1328,15 +1184,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get requestAlreadySent =>
-      'Request already sent to this driver for this shipment.';
+      'Request already sent to this driver for this delivery.';
 
   @override
   String get bookingRequestExists =>
       'You already have a booking request for this trip.';
-
-  @override
-  String get shipmentAlreadyBooked =>
-      'This shipment has already been booked with another driver.';
 
   @override
   String get cannotCancelGoodsHandedOver =>
@@ -1345,24 +1197,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get cannotCancelPaymentConfirmed =>
       'Cannot cancel: payment has already been confirmed.';
-
-  @override
-  String get failedCreateShipment =>
-      'Failed to create shipment. Please try again.';
-
-  @override
-  String get failedLoadShipments =>
-      'Failed to load shipments. Please try again.';
-
-  @override
-  String get failedSearchShipments =>
-      'Failed to search shipments. Please try again.';
-
-  @override
-  String get failedUpdateShipmentStatus => 'Failed to update shipment status.';
-
-  @override
-  String get failedLoadShipmentDetails => 'Failed to load shipment details.';
 
   @override
   String get couldNotResolveLocation =>
@@ -1404,17 +1238,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get warningCheckTravelerBody =>
-      'Please verify the traveler\'s identity. The platform is not responsible for any loss or damage to the shipment, legally or ethically.';
+      'Please verify the traveler\'s identity. The platform is not responsible for any loss or damage to the goods, legally or ethically.';
 
   @override
   String get policyWarningDialogTitle => 'Disclaimer';
 
   @override
   String get policyWarningDialogBody =>
-      'Are you sure you want to accept this offer?\n\nWe advise you to verify the traveler. The platform explicitly disclaims all liability for any loss or damage to the shipment, legally or ethically. Our role is solely to connect the parties.';
+      'Are you sure you want to accept this request?\n\nWe advise you to verify the traveler. The platform explicitly disclaims all liability for any loss or damage to the goods, legally or ethically. Our role is solely to connect the parties.';
 
   @override
-  String get acceptAndProceed => 'Agree & Accept Offer';
+  String get acceptAndProceed => 'Agree & Accept';
 
   @override
   String get acceptBookingAndProceed => 'Agree & Accept Booking';
@@ -1425,7 +1259,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get chatDisabledOtherAccepted =>
-      'Chat disabled because another offer was accepted.';
+      'Chat disabled because another booking was accepted.';
 
   @override
   String get chatDisabledCompleted => 'Chat disabled as the trip is completed.';
@@ -1451,7 +1285,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get blockUserConfirm =>
-      'Are you sure you want to block this user? You will no longer see their messages or offers.';
+      'Are you sure you want to block this user? You will no longer see their messages or requests.';
 
   @override
   String get userBlockedSuccess => 'User blocked successfully.';
@@ -1465,7 +1299,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cannotBlockActiveEngagement =>
-      'You cannot block this user because you have an active trip or shipment with them.';
+      'You cannot block this user because you have an active trip or delivery with them.';
 
   @override
   String get cannotBookBlockedUser => 'Cannot book trip with a blocked user.';
@@ -1481,9 +1315,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Please select Pickup and Dropoff locations';
 
   @override
-  String get errorCreatingShipment => 'Error creating shipment';
-
-  @override
   String get couldNotGetLocation => 'Could not get location';
 
   @override
@@ -1494,7 +1325,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get prohibitedItemsDisclaimer =>
-      'Please ensure your shipment does not contain any of the following items:';
+      'Please ensure your package does not contain any of the following items:';
 
   @override
   String get prohibitedDrugs => 'Drugs & Narcotics';
@@ -1525,7 +1356,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deliveryCodeInstruction =>
-      'Share this code with the traveler only when you receive your shipment.';
+      'Share this code with the traveler only when you receive your package.';
 
   @override
   String get enterDeliveryCode => 'Enter Delivery Code';
@@ -1548,17 +1379,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notifDeliveredVerifiedBody =>
-      'The shipment has been delivered and verified with OTP.';
+      'The package has been delivered and verified with OTP.';
 
   @override
   String get notifClientConfirmedReceipt => 'Receipt Confirmed';
 
   @override
   String get notifClientConfirmedReceiptBody =>
-      'Client has confirmed receipt of the shipment.';
-
-  @override
-  String get pleaseUploadCRDocument => 'Please upload the CR Document.';
+      'Client has confirmed receipt of the package.';
 
   @override
   String get pleaseLogin => 'Please login to subscribe to alerts';
@@ -1643,10 +1471,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Your booking request has been approved';
 
   @override
-  String get notifOfferAcceptedBody =>
-      'Your offer has been accepted! Get ready to deliver';
-
-  @override
   String get notifSenderHandedGoods => 'Sender Handed Over Goods';
 
   @override
@@ -1659,14 +1483,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notifConfirmPayment => 'Please confirm payment received';
 
   @override
-  String get notifTravelerDelivered => 'Traveler Delivered Shipment';
+  String get notifTravelerDelivered => 'Traveler Delivered Package';
 
   @override
   String get notifGoodsReceived => 'Goods Received';
 
   @override
   String get notifGoodsInTransit =>
-      'Traveler confirmed receipt - shipment in transit';
+      'Traveler confirmed receipt - goods in transit';
 
   @override
   String get notifPaymentConfirmed => 'Payment Confirmed';
@@ -1682,29 +1506,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notifNewMessage => 'New message';
 
   @override
-  String get notifNewOffer => 'New Offer!';
-
-  @override
-  String get notifNewOfferBody =>
-      'You have received a new offer for your shipment';
-
-  @override
-  String get notifNewRequest => 'New Shipment Request';
-
-  @override
-  String get notifNewRequestBody => 'You have received a new shipment request';
-
-  @override
   String get notifNewBookingRequest => 'New Booking Request!';
 
   @override
   String get notifNewBookingRequestBody => 'Someone wants to book your trip';
 
   @override
-  String get notifOfferDeclined => 'Offer Declined';
+  String get notifBookingDeclined => 'Booking Declined';
 
   @override
-  String get notifOfferDeclinedBody => 'Your offer was not accepted this time';
+  String get notifBookingDeclinedBody =>
+      'Your booking request was not accepted this time';
 
   @override
   String get notifBookingCancelled => 'Booking Cancelled';
@@ -1812,9 +1624,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get myAlerts => 'My Alerts';
 
   @override
-  String get shipmentAlerts => 'Shipment Alerts';
-
-  @override
   String get addAlert => 'Add Alert';
 
   @override
@@ -1853,9 +1662,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get alertType => 'Alert Type';
 
   @override
-  String get myShipmentAlerts => 'My Shipment Alerts';
-
-  @override
   String get manageAlerts => 'Manage Alerts';
 
   @override
@@ -1864,11 +1670,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get deleteAlertToAddNew =>
       'Please delete an existing alert to add a new one.';
-
-  @override
-  String shipmentAlertsLimitReached(int limit) {
-    return 'You have reached the limit of $limit shipment alerts. Please delete one to add a new one.';
-  }
 
   @override
   String get profilePhotoLabel => 'Profile Photo';
@@ -1901,25 +1702,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get typeMessage => 'Type a message';
 
   @override
-  String get companyOnlyFeatureTitle => 'Company Feature';
-
-  @override
-  String get companyOnlyFeatureBody =>
-      'This feature is only available for company accounts.';
-
-  @override
-  String get becomeACompany => 'Become a Company';
-
-  @override
   String get driverOnlyFeatureTitle => 'Driver Feature';
 
   @override
   String get driverOnlyFeatureBody =>
-      'Accessing shipment requests is restricted to drivers with registered vehicles. Would you like to upgrade to a driver account now?';
+      'Accessing delivery requests is restricted to drivers with registered vehicles. Would you like to upgrade to a driver account now?';
 
   @override
   String get onboardingEarnMoney =>
-      'Earn money by delivering shipments during your travels';
+      'Earn money by delivering packages during your travels';
 
   @override
   String get onboardingSendPackages =>
@@ -1933,13 +1724,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get onboardingAffordable => 'Affordable';
-
-  @override
-  String get notifNewShipmentMatchingAlert => 'New Shipment Match';
-
-  @override
-  String get notifNewShipmentMatchingAlertBody =>
-      'A new shipment matches your saved route alert!';
 
   @override
   String get uploadingAvatar => 'Uploading avatar...';
@@ -1960,44 +1744,44 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sharingLocation => 'Sharing location...';
 
   @override
-  String get shipmentDeliveryCode => 'Delivery Code';
+  String get deliveryCode => 'Delivery Code';
 
   @override
-  String get shipmentDeliveryCodeCopied => 'Code copied';
+  String get deliveryCodeCopied => 'Code copied';
 
   @override
-  String get shipmentShareCodeHint =>
+  String get shareDeliveryCodeHint =>
       'Share this code with the driver at delivery';
 
   @override
-  String get shipmentHandedToDriver => 'Handed shipment to driver';
+  String get goodsHandedToDriver => 'Handed goods to driver';
 
   @override
-  String get shipmentPaymentSentToDriver => 'Payment Sent to Driver';
+  String get paymentSentToDriver => 'Payment Sent to Driver';
 
   @override
-  String get shipmentDriverReceivedGoods => 'Driver received shipment';
+  String get driverReceivedGoods => 'Driver received goods';
 
   @override
-  String get shipmentDriverConfirmedPayment => 'Driver confirmed payment';
+  String get driverConfirmedPayment => 'Driver confirmed payment';
 
   @override
-  String get shipmentConfirmReceived => 'Confirm Shipment Received';
+  String get confirmGoodsReceived => 'Confirm Goods Received';
 
   @override
-  String get shipmentMarkDelivered => 'Mark Shipment as Delivered';
+  String get markGoodsDelivered => 'Mark Goods as Delivered';
 
   @override
-  String get shipmentConfirmPaymentReceived => 'Confirm Payment Received';
+  String get confirmPaymentReceived => 'Confirm Payment Received';
 
   @override
-  String get shipmentCancelShipment => 'Cancel Shipment';
+  String get cancelDelivery => 'Cancel Delivery';
 
   @override
-  String get shipmentCancelConfirm => 'Cancel this shipment engagement?';
+  String get cancelDeliveryConfirm => 'Cancel this delivery engagement?';
 
   @override
-  String get shipmentCancelConfirmYes => 'Yes, Cancel';
+  String get cancelDeliveryConfirmYes => 'Yes, Cancel';
 
   @override
   String get statusInTransit => 'In Transit';
@@ -2057,9 +1841,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateNow => 'Update Now';
 
   @override
-  String get cancelOffer => 'Cancel Offer';
-
-  @override
   String get domestic => 'Domestic';
 
   @override
@@ -2076,15 +1857,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get onboardingSubtitle1 =>
-      'Request shipments from different countries and cities at affordable prices';
+      'Request deliveries from different countries and cities at affordable prices';
 
   @override
   String get onboardingSubtitle2 =>
-      'Deliver shipments to different countries and cities and earn money';
+      'Deliver packages to different countries and cities and earn money';
 
   @override
   String get onboardingSubtitle3 =>
-      'Fast, safe, and reliable delivery for all your shipments';
+      'Fast, safe, and reliable delivery for all your packages';
 
   @override
   String get getStarted => 'Get Started';

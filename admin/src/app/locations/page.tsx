@@ -254,21 +254,6 @@ export default function LocationsPage() {
           return;
         }
 
-        const { count: shipmentCount, error: shipmentCountError } = await supabase
-          .from('shipments')
-          .select('id', { count: 'exact', head: true })
-          .or(`pickup_location_id.eq.${id},dropoff_location_id.eq.${id}`);
-
-        if (shipmentCountError) {
-          toast(t('locations.toast.referenceCheckFailed', 'Could not verify whether this location is in use.'), 'error');
-          return;
-        }
-
-        if (shipmentCount && shipmentCount > 0) {
-          toast(t('locations.toast.cannotDeleteShipments').replace('{count}', String(shipmentCount)), 'error');
-          return;
-        }
-
         const { error } = await supabase.from('locations').delete().eq('id', id);
         if (error) { toast(t('locations.toast.deleteFailed'), 'error'); return; }
         await logAdminAction('delete_location', 'location', id, { name });

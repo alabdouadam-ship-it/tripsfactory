@@ -1,4 +1,4 @@
-import type { Trip, Shipment, LocationLabel } from '@/lib/types';
+import type { Trip, LocationLabel } from '@/lib/types';
 
 // ============================================================================
 // Type Definitions
@@ -12,25 +12,23 @@ export type CityNode = {
   cityName: string;
   cityNameAr: string;
   position: [number, number]; // [latitude, longitude]
-  
+
   // Connections
   outgoingTrips: Trip[];
   incomingTrips: Trip[];
-  outgoingShipments: Shipment[];
-  incomingShipments: Shipment[];
-  
+
   // Computed metrics
   totalConnections: number;
   activityLevel: ActivityLevel;
-  
+
   // Visual properties (computed)
   markerColor: string;
   markerSize: number;
 };
 
 export type FilterState = {
-  types: ('trips' | 'shipments')[];
-  statuses: string[]; // TripStatus | ShipmentStatus values
+  types: ('trips')[];
+  statuses: string[]; // TripStatus values
   dateFrom: Date | null;
   dateTo: Date | null;
 };
@@ -43,7 +41,7 @@ export type SearchState = {
 export type RouteLineData = {
   from: [number, number];
   to: [number, number];
-  type: 'trip' | 'shipment';
+  type: 'trip';
   count: number;
 };
 
@@ -53,7 +51,7 @@ export type RouteLineData = {
 
 /**
  * Calculate activity level based on total connection count
- * @param count - Total number of connections (trips + shipments)
+ * @param count - Total number of connections (trips)
  * @returns Activity level classification
  */
 export function calculateActivityLevel(count: number): ActivityLevel {
@@ -95,17 +93,15 @@ export function getSizeForConnections(count: number): number {
 // ============================================================================
 
 /**
- * Aggregate trips and shipments into city nodes
+ * Aggregate trips into city nodes
  * @param trips - Array of trips
- * @param shipments - Array of shipments
  * @returns Map of locationId to CityNode
  */
 export function aggregateLocationData(
-  trips: Trip[],
-  shipments: Shipment[]
+  trips: Trip[]
 ): Map<string, CityNode> {
   const locations = new Map<string, CityNode>();
-  
+
   /**
    * Helper to create or get city node
    */
@@ -117,7 +113,7 @@ export function aggregateLocationData(
     if (!location?.latitude || !location?.longitude) {
       return null;
     }
-    
+
     if (!locations.has(locationId)) {
       locations.set(locationId, {
         locationId,
@@ -126,8 +122,6 @@ export function aggregateLocationData(
         position: [location.latitude, location.longitude],
         outgoingTrips: [],
         incomingTrips: [],
-        outgoingShipments: [],
-        incomingShipments: [],
         totalConnections: 0,
         activityLevel: 'low',
         markerColor: '',
@@ -136,7 +130,7 @@ export function aggregateLocationData(
     }
     return locations.get(locationId)!;
   };
-  
+
   // Process trips
   for (const trip of trips) {
     // Add origin city
@@ -144,53 +138,25 @@ export function aggregateLocationData(
     if (originCity) {
       originCity.outgoingTrips.push(trip);
     }
-    
+
     // Add destination city
     const destCity = getOrCreateCity(trip.dest_location_id, trip.dest);
     if (destCity) {
       destCity.incomingTrips.push(trip);
     }
   }
-  
-  // Process shipments
-  for (const shipment of shipments) {
-    // Skip if missing location IDs
-    if (!shipment.pickup_location_id || !shipment.dropoff_location_id) {
-      continue;
-    }
-    
-    // Add pickup city
-    const pickupCity = getOrCreateCity(
-      shipment.pickup_location_id,
-      shipment.pickup
-    );
-    if (pickupCity) {
-      pickupCity.outgoingShipments.push(shipment);
-    }
-    
-    // Add dropoff city
-    const dropoffCity = getOrCreateCity(
-      shipment.dropoff_location_id,
-      shipment.dropoff
-    );
-    if (dropoffCity) {
-      dropoffCity.incomingShipments.push(shipment);
-    }
-  }
-  
+
   // Calculate metrics for each city
   locations.forEach(city => {
-    city.totalConnections = 
+    city.totalConnections =
       city.outgoingTrips.length +
-      city.incomingTrips.length +
-      city.outgoingShipments.length +
-      city.incomingShipments.length;
-    
+      city.incomingTrips.length;
+
     city.activityLevel = calculateActivityLevel(city.totalConnections);
     city.markerColor = getColorForActivity(city.activityLevel);
     city.markerSize = getSizeForConnections(city.totalConnections);
   });
-  
+
   return locations;
 }
 
@@ -231,17 +197,15 @@ export function applyFilters(
   filters: FilterState
 ): Map<string, CityNode> {
   const filtered = new Map<string, CityNode>();
-  
+
   cities.forEach((city, locationId) => {
     // Clone the city node
     const filteredCity: CityNode = {
       ...city,
       outgoingTrips: [],
       incomingTrips: [],
-      outgoingShipments: [],
-      incomingShipments: [],
     };
-    
+
     // Filter trips
     if (filters.types.includes('trips')) {
       filteredCity.outgoingTrips = city.outgoingTrips.filter(trip =>
@@ -253,26 +217,12 @@ export function applyFilters(
         matchesDateFilter(trip.departure_time, filters.dateFrom, filters.dateTo)
       );
     }
-    
-    // Filter shipments
-    if (filters.types.includes('shipments')) {
-      filteredCity.outgoingShipments = city.outgoingShipments.filter(shipment =>
-        matchesStatusFilter(shipment.status, filters.statuses) &&
-        matchesDateFilter(shipment.created_at, filters.dateFrom, filters.dateTo)
-      );
-      filteredCity.incomingShipments = city.incomingShipments.filter(shipment =>
-        matchesStatusFilter(shipment.status, filters.statuses) &&
-        matchesDateFilter(shipment.created_at, filters.dateFrom, filters.dateTo)
-      );
-    }
-    
+
     // Recalculate metrics
     filteredCity.totalConnections =
       filteredCity.outgoingTrips.length +
-      filteredCity.incomingTrips.length +
-      filteredCity.outgoingShipments.length +
-      filteredCity.incomingShipments.length;
-    
+      filteredCity.incomingTrips.length;
+
     // Only include cities with connections
     if (filteredCity.totalConnections > 0) {
       filteredCity.activityLevel = calculateActivityLevel(filteredCity.totalConnections);
@@ -281,7 +231,7 @@ export function applyFilters(
       filtered.set(locationId, filteredCity);
     }
   });
-  
+
   return filtered;
 }
 
@@ -300,8 +250,8 @@ export function generateRouteLines(
   allCities: Map<string, CityNode>
 ): RouteLineData[] {
   const lines: RouteLineData[] = [];
-  const routeMap = new Map<string, { type: 'trip' | 'shipment'; count: number }>();
-  
+  const routeMap = new Map<string, { type: 'trip'; count: number }>();
+
   // Process outgoing trips
   selectedCity.outgoingTrips.forEach(trip => {
     const destCity = allCities.get(trip.dest_location_id);
@@ -315,7 +265,7 @@ export function generateRouteLines(
       }
     }
   });
-  
+
   // Process incoming trips
   selectedCity.incomingTrips.forEach(trip => {
     const originCity = allCities.get(trip.origin_location_id);
@@ -329,39 +279,7 @@ export function generateRouteLines(
       }
     }
   });
-  
-  // Process outgoing shipments
-  selectedCity.outgoingShipments.forEach(shipment => {
-    if (shipment.dropoff_location_id) {
-      const dropoffCity = allCities.get(shipment.dropoff_location_id);
-      if (dropoffCity) {
-        const key = `${selectedCity.locationId}-${dropoffCity.locationId}-shipment`;
-        const existing = routeMap.get(key);
-        if (existing) {
-          existing.count++;
-        } else {
-          routeMap.set(key, { type: 'shipment', count: 1 });
-        }
-      }
-    }
-  });
-  
-  // Process incoming shipments
-  selectedCity.incomingShipments.forEach(shipment => {
-    if (shipment.pickup_location_id) {
-      const pickupCity = allCities.get(shipment.pickup_location_id);
-      if (pickupCity) {
-        const key = `${pickupCity.locationId}-${selectedCity.locationId}-shipment`;
-        const existing = routeMap.get(key);
-        if (existing) {
-          existing.count++;
-        } else {
-          routeMap.set(key, { type: 'shipment', count: 1 });
-        }
-      }
-    }
-  });
-  
+
   // Convert to line data
   routeMap.forEach((data, key) => {
     const parts = key.split('-');
@@ -369,7 +287,7 @@ export function generateRouteLines(
     const toId = parts[1];
     const fromCity = allCities.get(fromId);
     const toCity = allCities.get(toId);
-    
+
     if (fromCity && toCity) {
       lines.push({
         from: fromCity.position,
@@ -379,6 +297,6 @@ export function generateRouteLines(
       });
     }
   });
-  
+
   return lines;
 }

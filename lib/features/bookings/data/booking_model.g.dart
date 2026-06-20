@@ -9,7 +9,7 @@ part of 'booking_model.dart';
 _Booking _$BookingFromJson(Map<String, dynamic> json) => _Booking(
   id: json['id'] as String,
   driverId: json['traveler_id'] as String,
-  offerPrice: (_readOfferPrice(json, 'offer_price') as num).toDouble(),
+  price: (_readPrice(json, 'price') as num).toDouble(),
   status: $enumDecode(
     _$BookingStatusEnumMap,
     json['status'],
@@ -81,7 +81,7 @@ _Booking _$BookingFromJson(Map<String, dynamic> json) => _Booking(
 Map<String, dynamic> _$BookingToJson(_Booking instance) => <String, dynamic>{
   'id': instance.id,
   'traveler_id': instance.driverId,
-  'offer_price': instance.offerPrice,
+  'price': instance.price,
   'status': _$BookingStatusEnumMap[instance.status]!,
   'created_at': instance.createdAt.toIso8601String(),
   'driverName': instance.driverName,

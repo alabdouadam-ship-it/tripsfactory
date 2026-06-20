@@ -87,28 +87,12 @@ String? _resolveErrorKey(String key, AppLocalizations loc) {
       return loc.requestAlreadySent;
     case 'booking_request_exists':
       return loc.bookingRequestExists;
-    case 'another_offer_accepted':
-      return loc.anotherOfferAccepted;
-    case 'shipment_already_booked':
-      return loc.shipmentAlreadyBooked;
     case 'cannot_cancel_goods_handed_over':
       return loc.cannotCancelGoodsHandedOver;
     case 'cannot_cancel_payment_confirmed':
       return loc.cannotCancelPaymentConfirmed;
-    case 'shipment_drivers_only':
-      return loc.shipmentDriversOnly;
     case 'cannot_cancel_trip_active_bookings':
       return loc.cannotCancelTripActiveBookings;
-    case 'failed_create_shipment':
-      return loc.failedCreateShipment;
-    case 'failed_load_shipments':
-      return loc.failedLoadShipments;
-    case 'failed_search_shipments':
-      return loc.failedSearchShipments;
-    case 'failed_update_shipment_status':
-      return loc.failedUpdateShipmentStatus;
-    case 'failed_load_shipment_details':
-      return loc.failedLoadShipmentDetails;
     case 'invalid_otp':
     case 'invalid_code':
       return loc.invalidCode;

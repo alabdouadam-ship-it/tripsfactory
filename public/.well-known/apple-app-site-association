@@ -5,8 +5,7 @@
             {
                 "appID": "TODO: YOUR_TEAM_ID.com.tripship.app",
                 "paths": [
-                    "/trip/*",
-                    "/shipment/*"
+                    "/trip/*"
                 ]
             }
         ]

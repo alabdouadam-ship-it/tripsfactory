@@ -9,10 +9,10 @@
 ### 1. مقدمة
 نلتزم في منصة TripShip بحماية خصوصيتك. توضح هذه السياسة كيفية جمعنا واستخدامنا وحمايتنا لبياناتك الشخصية.
 
-### 2. البيانات التي TripShipعها
+### 2. البيانات التي نجمعها
 - **بيانات الحساب:** الاسم، البريد الإلكتروني، رقم الهاتف
-- **بيانات الملف الشخصي:** الصورة، الوصف، نوع الحساب (فرد/شركة)
-- **بيانات الرحلات والشحنات:** نقاط الانطلاق والوصول، أوقات السفر، تفاصيل الشحنات
+- **بيانات الملف الشخصي:** الصورة، الوصف، نوع الحساب (فرد)
+- **بيانات الرحلات والتوصيل:** نقاط الانطلاق والوصول، أوقات السفر، تفاصيل التوصيل
 - **بيانات الجهاز:** معرف جهاز الإشعارات للـ Push Notifications
 - **بيانات الاستخدام:** لتحديث التطبيق وتحسين الأداء
 
@@ -20,7 +20,7 @@
 نستخدم بياناتك لـ:
 - تشغيل المنصة وربط المرسلين بالسائقين
 - إرسال إشعارات متعلقة بحجوزاتك ورسائلك
-- التحقق من أوراق السائقين والشركات (للمراجعة الإدارية فقط)
+- التحقق من أوراق السائقين (للمراجعة الإدارية فقط)
 - تحسين الخدمة ودعمك عند الحاجة
 
 ### 4. مشاركة البيانات
@@ -43,8 +43,8 @@ TripShip platform is committed to protecting your privacy. This policy explains 
 
 ### 2. Data We Collect
 - **Account data:** Name, email, phone number
-- **Profile data:** Photo, description, account type (individual/company)
-- **Trips and shipments:** Origin, destination, travel times, shipment details
+- **Profile data:** Photo, description, account type (individual)
+- **Trips and deliveries:** Origin, destination, travel times, delivery details
 - **Device data:** Notification token for push notifications
 - **Usage data:** For app updates and performance improvement
 
@@ -52,7 +52,7 @@ TripShip platform is committed to protecting your privacy. This policy explains 
 We use your data to:
 - Operate the platform and connect senders with drivers
 - Send notifications related to your bookings and messages
-- Verify driver and company documents (for administrative review only)
+- Verify driver documents (for administrative review only)
 - Improve the service and support you when needed
 
 ### 4. Data Sharing

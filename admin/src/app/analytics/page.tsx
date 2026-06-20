@@ -22,7 +22,6 @@ import {
   ArrowRight,
   Users,
   Truck,
-  Building2,
   User,
   Calendar,
   RefreshCw,
@@ -48,14 +47,12 @@ const TYPE_COLORS: Record<string, string> = {
   individual: '#3b82f6',
   traveler: '#10b981',
   driver: '#f97316',
-  company: '#a855f7',
 };
 
 const TYPE_ICONS: Record<string, LucideIcon> = {
   individual: User,
   traveler: Users,
   driver: Truck,
-  company: Building2,
 };
 
 function resultError(error: unknown) {

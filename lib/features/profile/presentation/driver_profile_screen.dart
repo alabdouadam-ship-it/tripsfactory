@@ -262,6 +262,11 @@ class _PublicProfileScreenState extends ConsumerState<PublicProfileScreen> {
                                 ],
                               ),
                             ),
+                          if (isDriver)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8),
+                              child: _buildAccountTypeChip(localizations),
+                            ),
                           Builder(
                             builder: (context) {
                               final badge = TrustBadge.fromProfileBadge(
@@ -477,6 +482,39 @@ class _PublicProfileScreenState extends ConsumerState<PublicProfileScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildAccountTypeChip(AppLocalizations localizations) {
+    final isDriver = _profileData?['is_driver'] == true;
+    final color = isDriver ? Colors.blue : Colors.teal;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: color),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            isDriver ? Icons.directions_car : Icons.person,
+            size: 16,
+            color: color,
+          ),
+          const SizedBox(width: 4),
+          Text(
+            isDriver
+                ? localizations.driverLabel
+                : localizations.travelerAsPerson,
+            style: TextStyle(
+              color: isDriver ? Colors.blue[800] : Colors.teal[800],
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
       ),
     );
   }

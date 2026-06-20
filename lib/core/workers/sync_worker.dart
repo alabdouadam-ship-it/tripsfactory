@@ -141,7 +141,6 @@ class SyncWorker {
       'ILLEGAL_TRANSITION',
       'INCOHERENT_STATE',
       'TIMESTAMP_IMMUTABLE',
-      'SHIPMENT_LOCKED',
       'TRIP_LOCKED',
       'FORBIDDEN:',
       'illegal_transition',

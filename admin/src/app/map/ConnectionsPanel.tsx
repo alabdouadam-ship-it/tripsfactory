@@ -112,8 +112,8 @@ export function ConnectionsPanel({ city, isOpen, onClose }: ConnectionsPanelProp
   
   if (!city || !isOpen) return null;
   
-  const totalOutgoing = city.outgoingTrips.length + city.outgoingShipments.length;
-  const totalIncoming = city.incomingTrips.length + city.incomingShipments.length;
+  const totalOutgoing = city.outgoingTrips.length;
+  const totalIncoming = city.incomingTrips.length;
   
   // Mobile: bottom sheet
   if (isMobile) {
@@ -187,34 +187,6 @@ export function ConnectionsPanel({ city, isOpen, onClose }: ConnectionsPanelProp
                   key={trip.id}
                   item={trip}
                   type="trip"
-                  direction="incoming"
-                />
-              ))}
-            </CollapsibleSection>
-            
-            <CollapsibleSection
-              title={t('map.panel.outgoingShipments', 'Outgoing Shipments')}
-              count={city.outgoingShipments.length}
-            >
-              {city.outgoingShipments.map(shipment => (
-                <ConnectionListItem
-                  key={shipment.id}
-                  item={shipment}
-                  type="shipment"
-                  direction="outgoing"
-                />
-              ))}
-            </CollapsibleSection>
-            
-            <CollapsibleSection
-              title={t('map.panel.incomingShipments', 'Incoming Shipments')}
-              count={city.incomingShipments.length}
-            >
-              {city.incomingShipments.map(shipment => (
-                <ConnectionListItem
-                  key={shipment.id}
-                  item={shipment}
-                  type="shipment"
                   direction="incoming"
                 />
               ))}
@@ -308,34 +280,6 @@ export function ConnectionsPanel({ city, isOpen, onClose }: ConnectionsPanelProp
               key={trip.id}
               item={trip}
               type="trip"
-              direction="incoming"
-            />
-          ))}
-        </CollapsibleSection>
-        
-        <CollapsibleSection
-          title={t('map.panel.outgoingShipments', 'Outgoing Shipments')}
-          count={city.outgoingShipments.length}
-        >
-          {city.outgoingShipments.map(shipment => (
-            <ConnectionListItem
-              key={shipment.id}
-              item={shipment}
-              type="shipment"
-              direction="outgoing"
-            />
-          ))}
-        </CollapsibleSection>
-        
-        <CollapsibleSection
-          title={t('map.panel.incomingShipments', 'Incoming Shipments')}
-          count={city.incomingShipments.length}
-        >
-          {city.incomingShipments.map(shipment => (
-            <ConnectionListItem
-              key={shipment.id}
-              item={shipment}
-              type="shipment"
               direction="incoming"
             />
           ))}

@@ -95,7 +95,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        title: loc.postShipment,
+        title: loc.postPackage,
         subtitle: loc.onboardingSubtitle1,
         description: loc.onboardingSendPackages,
         isRTL: isRTL,

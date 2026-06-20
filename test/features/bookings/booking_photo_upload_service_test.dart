@@ -23,7 +23,7 @@ void main() {
       publicUrlForPath: (_) => 'https://example.test/file.jpg',
     );
 
-    final result = await service.uploadShipmentPhoto(null, 'b1', 'pickup');
+    final result = await service.uploadDeliveryPhoto(null, 'b1', 'pickup');
 
     expect(result, isNull);
     expect(uploadCalled, isFalse);
@@ -38,7 +38,7 @@ void main() {
       publicUrlForPath: (path) => 'https://cdn.example/$path',
     );
 
-    final result = await service.uploadShipmentPhoto(
+    final result = await service.uploadDeliveryPhoto(
       File('sample.png'),
       'booking-42',
       'delivery',
@@ -56,7 +56,7 @@ void main() {
     );
 
     expect(
-      () => service.uploadShipmentPhoto(File('sample.jpg'), 'b1', 'pickup'),
+      () => service.uploadDeliveryPhoto(File('sample.jpg'), 'b1', 'pickup'),
       throwsA(
         predicate<TripShipException>((e) => e.messageKey == 'photo_upload_failed'),
       ),

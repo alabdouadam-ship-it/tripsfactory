@@ -529,7 +529,7 @@ export default function TripDetailPage() {
                             ) : 'N/A'}
                           </span>
                           <span className="flex items-center gap-2 border-l border-[var(--surface-border)] pl-6">
-                            <span className="text-blue-600 font-black">{booking.offer_price}</span>
+                            <span className="text-blue-600 font-black">{booking.price}</span>
                           </span>
                           <span className="flex items-center gap-2 border-l border-[var(--surface-border)] pl-6">
                             <Calendar className="h-3 w-3" />

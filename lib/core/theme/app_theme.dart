@@ -39,7 +39,7 @@ class ThemeNotifier extends StateNotifier<AppThemeMode> {
           (mode) => mode.name == savedTheme,
           orElse: () => defaultThemeMode,
         );
-        // Honor the fork's supported list: if a trimmed fork no longer offers
+        // Honor the fork's supported list: if a trimmed fork no longer includes
         // the persisted theme, fall back to the default.
         state = AppTheme.supportedThemes.contains(themeMode)
             ? themeMode
@@ -298,7 +298,7 @@ class AppTheme {
 
   // --- Theme registry ---------------------------------------------------------
   //
-  // White-label seam: the themes a fork offers in the picker. Default: all of
+  // White-label seam: the themes a fork includes in the picker. Default: all of
   // them. Trim this list to ship fewer (must be a subset of AppThemeMode). The
   // first-launch default is `ThemeNotifier.defaultThemeMode`.
   static const List<AppThemeMode> supportedThemes = <AppThemeMode>[

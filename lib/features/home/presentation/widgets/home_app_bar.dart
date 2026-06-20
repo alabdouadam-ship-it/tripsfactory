@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/core/config/domain_config.dart';
 import 'package:tripship/core/providers/app_mode_provider.dart';
 import 'package:tripship/core/widgets/notification_bell_button.dart';
 import 'package:tripship/core/services/notification_service.dart';
@@ -15,7 +14,6 @@ class HomeAppBar extends ConsumerWidget {
   final TransportType selectedTransport;
   final String travelerStatus;
   final int selectedIndex;
-  final TabController? travelerTabController;
   final VoidCallback onBackPressed;
   final ValueChanged<bool> onModeSwitchRequested;
   final VoidCallback? onAdvancedFiltersTapped;
@@ -27,7 +25,6 @@ class HomeAppBar extends ConsumerWidget {
     required this.selectedTransport,
     required this.travelerStatus,
     required this.selectedIndex,
-    this.travelerTabController,
     required this.onBackPressed,
     required this.onModeSwitchRequested,
     this.onAdvancedFiltersTapped,
@@ -48,23 +45,7 @@ class HomeAppBar extends ConsumerWidget {
       }
     }
     if (!isClientMode && selectedIndex == 0) {
-      final profile = ref.watch(currentUserProfileProvider).value;
-      if (profile?.travelerStatus == DomainConfig.statusApproved) {
-        if (profile?.isDriver ?? false) {
-          final i = travelerTabController?.index ?? 0;
-          if (i == 0) {
-            titleText = localizations.notifications;
-          } else if (i == 1) {
-            titleText = localizations.internalRequests;
-          } else if (i == 2) {
-            titleText = localizations.externalRequests;
-          }
-        } else {
-          titleText = localizations.notifications;
-        }
-      } else {
-        titleText = localizations.notifications;
-      }
+      titleText = localizations.notifications;
     }
 
     return SliverAppBar(
@@ -91,45 +72,23 @@ class HomeAppBar extends ConsumerWidget {
           color: Colors.white,
         ),
       ),
-      bottom:
-          (!isClientMode && selectedIndex == 0 && travelerStatus == DomainConfig.statusApproved)
-          ? TabBar(
-              controller: travelerTabController,
-              indicatorColor: Colors.white,
-              labelColor: Colors.white,
-              unselectedLabelColor: Colors.white70,
-              tabs: [
-                Tab(text: localizations.notifications),
-                Tab(text: localizations.internalRequests),
-                Tab(text: localizations.externalRequests),
-              ],
-            )
-          : null,
       actions: [
         if (isClientMode) NotificationBellButton(iconColor: Colors.white),
         if (!isClientMode && selectedIndex == 0) ...[
           Consumer(
             builder: (context, ref, _) {
-              final profile = ref.watch(currentUserProfileProvider).value;
-              final isApproved = profile?.travelerStatus == DomainConfig.statusApproved;
-              final showMarkAll =
-                  !isApproved || (travelerTabController?.index ?? 0) == 0;
-
-              if (showMarkAll) {
-                return IconButton(
-                  icon: const Icon(Icons.done_all, color: Colors.white),
-                  tooltip: localizations.markAllRead,
-                  onPressed: () async {
-                    final user = ref.read(authServiceProvider).currentUser;
-                    if (user != null) {
-                      await ref
-                          .read(notificationServiceProvider)
-                          .markAllAsRead(user.id);
-                    }
-                  },
-                );
-              }
-              return const SizedBox.shrink();
+              return IconButton(
+                icon: const Icon(Icons.done_all, color: Colors.white),
+                tooltip: localizations.markAllRead,
+                onPressed: () async {
+                  final user = ref.read(authServiceProvider).currentUser;
+                  if (user != null) {
+                    await ref
+                        .read(notificationServiceProvider)
+                        .markAllAsRead(user.id);
+                  }
+                },
+              );
             },
           ),
         ],

@@ -19,7 +19,7 @@ class BookingPhotoUploadService {
   final Future<void> Function(String path, File file)? _uploadFile;
   final String Function(String path)? _publicUrlForPath;
 
-  Future<String?> uploadShipmentPhoto(
+  Future<String?> uploadDeliveryPhoto(
     File? photo,
     String bookingId,
     String type,
@@ -34,19 +34,19 @@ class BookingPhotoUploadService {
       final upload =
           _uploadFile ??
           (String path, File file) =>
-              _supabase.storage.from(StorageBuckets.shipmentPhotos).upload(path, file);
+              _supabase.storage.from(StorageBuckets.deliveryPhotos).upload(path, file);
       await upload(fileName, photo);
 
       final getPublicUrl =
           _publicUrlForPath ??
           (String path) =>
-              _supabase.storage.from(StorageBuckets.shipmentPhotos).getPublicUrl(path);
+              _supabase.storage.from(StorageBuckets.deliveryPhotos).getPublicUrl(path);
       final publicUrl = getPublicUrl(fileName);
       return publicUrl;
     } catch (e) {
       throw TripShipException.withKey(
         'photo_upload_failed',
-        'Failed to upload $type photo. Ensure the "shipment_photos" bucket exists.',
+        'Failed to upload $type photo. Ensure the "delivery_photos" bucket exists.',
       );
     }
   }

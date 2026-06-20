@@ -8,7 +8,7 @@ import { supabase } from '@/lib/supabase';
 import { useToast } from '@/lib/toast';
 import { useT, useI18n } from '@/lib/i18n';
 import { GeographyConfig } from '@/lib/geographyConfig';
-import type { Trip, Shipment } from '@/lib/types';
+import type { Trip } from '@/lib/types';
 import type { CityNode, FilterState, SearchState } from './mapDataUtils';
 import { aggregateLocationData, applyFilters } from './mapDataUtils';
 import { CityMarker } from './CityMarker';
@@ -59,7 +59,6 @@ export default function MapComponent() {
   
   // Data state
   const [trips, setTrips] = useState<Trip[]>([]);
-  const [shipments, setShipments] = useState<Shipment[]>([]);
   
   // UI state
   const [selectedCityId, setSelectedCityId] = useState<string | null>(null);
@@ -75,7 +74,7 @@ export default function MapComponent() {
   
   // Filter state
   const [filters, setFilters] = useState<FilterState>({
-    types: ['trips', 'shipments'],
+    types: ['trips'],
     statuses: [],
     dateFrom: null,
     dateTo: null,
@@ -109,34 +108,12 @@ export default function MapComponent() {
         `)
         .not('status', 'in', '(completed,cancelled)')
         .order('created_at', { ascending: false });
-      
-      // Fetch shipments (exclude completed, cancelled, rejected, expired)
-      const { data: shipmentsData, error: shipmentsError } = await supabase
-        .from('shipments')
-        .select(`
-          *,
-          profile:profiles!shipments_sender_id_fkey(*),
-          pickup:locations!shipments_pickup_location_id_fkey(*),
-          dropoff:locations!shipments_dropoff_location_id_fkey(*)
-        `)
-        .not('status', 'in', '(completed,cancelled,rejected,expired)')
-        .order('created_at', { ascending: false });
-      
-      // Check if both queries failed
-      if (tripsError && shipmentsError) {
+
+      if (tripsError) {
         throw new Error('Failed to load map data');
       }
-      
-      // Log partial errors but continue
-      if (tripsError) {
-        console.error('Failed to load trips:', tripsError);
-      }
-      if (shipmentsError) {
-        console.error('Failed to load shipments:', shipmentsError);
-      }
-      
+
       setTrips(tripsData || []);
-      setShipments(shipmentsData || []);
       setLastUpdated(new Date());
       setError(null);
     } catch (err) {
@@ -158,8 +135,8 @@ export default function MapComponent() {
   // ============================================================================
   
   const aggregatedCities = useMemo(() => {
-    return aggregateLocationData(trips, shipments);
-  }, [trips, shipments]);
+    return aggregateLocationData(trips);
+  }, [trips]);
   
   // Apply filters to cities
   const cities = useMemo(() => {
@@ -237,7 +214,7 @@ export default function MapComponent() {
   
   const handleFilterReset = useCallback(() => {
     const resetFilters: FilterState = {
-      types: ['trips', 'shipments'],
+      types: ['trips'],
       statuses: [],
       dateFrom: null,
       dateTo: null,
@@ -295,10 +272,9 @@ export default function MapComponent() {
     return {
       cityCount: cities.size,
       tripCount: trips.length,
-      shipmentCount: shipments.length,
-      totalRoutes: trips.length + shipments.length,
+      totalRoutes: trips.length,
     };
-  }, [cities, trips, shipments]);
+  }, [cities, trips]);
   
   // Calculate map center (average of all city positions) - MUST be before early returns
   const mapCenter = useMemo(() => {
@@ -360,10 +336,9 @@ export default function MapComponent() {
               🗺️ {t('map.title', 'Operations Map')}
             </h1>
             <p className="text-sm theme-muted mt-1">
-              {t('map.stats', '{{cities}} cities · {{trips}} trips · {{shipments}} shipments · {{routes}} total routes')
+              {t('map.stats', '{{cities}} cities · {{trips}} trips · {{routes}} total routes')
                 .replace('{{cities}}', String(stats.cityCount))
                 .replace('{{trips}}', String(stats.tripCount))
-                .replace('{{shipments}}', String(stats.shipmentCount))
                 .replace('{{routes}}', String(stats.totalRoutes))}
             </p>
           </div>
@@ -504,7 +479,7 @@ export default function MapComponent() {
                 {t('map.noData.title', 'No Data to Display')}
               </h3>
               <p className="theme-muted text-sm mb-4">
-                {t('map.noData.message', 'No active trips or shipments match your current filters. Try adjusting the filters or refresh the data.')}
+                {t('map.noData.message', 'No active trips match your current filters. Try adjusting the filters or refresh the data.')}
               </p>
               <div className="flex gap-2 justify-center">
                 <button

@@ -33,14 +33,14 @@ FCM delivers iOS push via APNs, so you must connect them:
 Android push works once `google-services.json` matches your Firebase project (no
 extra cert step).
 
-## 2b. Sign in with Apple — required if you offer Google on iOS
+## 2b. Sign in with Apple — required if you enable Google on iOS
 
-App Store Review **Guideline 4.8** requires that an iOS app offering any
-third-party/social login (Google here) **also** offers **Sign in with Apple**.
+App Store Review **Guideline 4.8** requires that an iOS app providing any
+third-party/social login (Google here) **also** provides **Sign in with Apple**.
 
 This product ships with Apple Sign-In **not implemented**, so social sign-in is
 **hidden on iOS by default** (`AuthConfig.appleSignInEnabled = false`) — email/
-phone login still work, which keeps a default iOS build compliant. To offer
+phone login still work, which keeps a default iOS build compliant. To enable
 Google on iOS:
 
 1. Implement **Sign in with Apple**: add the `sign_in_with_apple` package, wire
@@ -71,7 +71,7 @@ flutter build ipa --release --obfuscate --split-debug-info=build/symbols
 Play requires a **Data safety** form. This app, as shipped, typically collects:
 
 - **Account info**: name, email, phone (auth + profile).
-- **Photos / documents**: avatars, shipment photos, KYC documents (private).
+- **Photos / documents**: avatars, delivery photos, KYC documents (private).
 - **Location**: approximate/precise if you enable location features.
 - **Messages**: chat content (text + voice notes) between users.
 - **Device identifiers**: FCM push token.

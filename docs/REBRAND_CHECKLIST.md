@@ -17,7 +17,7 @@ Work top to bottom; each item links to the seam that controls it.
 - [ ] If you keep fr/tr/es, have a native speaker review them (machine-generated).
 
 ## 3. Themes & fonts
-- [ ] Choose offered themes (`AppTheme.supportedThemes`) and default
+- [ ] Choose supported themes (`AppTheme.supportedThemes`) and default
       (`ThemeNotifier.defaultThemeMode`).
 - [ ] Set the font: `BrandConfig.fontFamily`, with optional per-language /
       per-theme overrides in **`lib/core/config/font_config.dart`**.

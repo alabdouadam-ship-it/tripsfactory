@@ -126,9 +126,6 @@ export async function updateUserProfile(userId: string, updates: {
     full_name?: string;
     phone_number?: string | null;
     bio?: string | null;
-    company_name?: string | null;
-    company_address?: string | null;
-    company_cr_number?: string | null;
     identity_number?: string | null;
     identity_expiry?: string | null;
     identity_type?: string | null;
@@ -140,7 +137,6 @@ export async function updateUserProfile(userId: string, updates: {
         const allowed: Record<string, unknown> = {};
         const keys = [
             'full_name', 'phone_number', 'bio',
-            'company_name', 'company_address', 'company_cr_number',
             'identity_number', 'identity_expiry', 'identity_type', 'traveler_type', 'is_available',
         ] as const;
         for (const k of keys) {
@@ -170,28 +166,21 @@ type CapabilityStatus = 'none' | 'pending' | 'approved' | 'rejected' | 'suspende
 /**
  * Update role/capability flags on a profile.
  *
- * Company, traveler, and driver are independent capabilities in this app:
- * - company: account_type='company' + company_status
+ * Traveler and driver are capabilities in this app:
  * - traveler: traveler_status
  * - driver: traveler_status='approved' + is_driver=true
  */
 export async function updateUserCapabilities(userId: string, updates: {
-    account_type?: 'individual' | 'company';
-    company_status?: CapabilityStatus;
     traveler_status?: CapabilityStatus;
     traveler_type?: 'with_vehicle' | 'no_vehicle' | 'without_vehicle' | null;
     is_driver?: boolean;
-    company_name?: string | null;
 }) {
     try {
         const allowed: Record<string, unknown> = {};
         const keys = [
-            'account_type',
-            'company_status',
             'traveler_status',
             'traveler_type',
             'is_driver',
-            'company_name',
         ] as const;
 
         for (const k of keys) {
@@ -298,9 +287,7 @@ export async function createUserAccount(input: {
     phone?: string;
     password?: string;
     full_name: string;
-    account_type?: 'individual' | 'company';
     make_driver?: boolean;
-    make_company?: boolean;
     send_invitation?: boolean;
 }) {
     try {
@@ -316,9 +303,7 @@ export async function createUserAccount(input: {
                     phone: input.phone,
                     password: input.password,
                     full_name: input.full_name,
-                    account_type: input.account_type,
                     make_driver: input.make_driver,
-                    make_company: input.make_company,
                     send_invitation: input.send_invitation,
                 },
             },
@@ -332,9 +317,7 @@ export async function createUserAccount(input: {
         await logAdminAction('create_user', 'user', createdUserId, {
             email: input.email,
             phone: input.phone,
-            account_type: input.account_type,
             make_driver: !!input.make_driver,
-            make_company: !!input.make_company,
             invited: !!input.send_invitation,
         });
 
@@ -350,21 +333,17 @@ export async function createUserAccount(input: {
 }
 
 /**
- * Update Driver or Company verification status
+ * Update Driver verification status
  */
 export async function updateVerificationStatus(
     userId: string,
-    type: 'driver' | 'company',
+    type: 'driver',
     status: string,
     reason?: string
 ) {
     try {
         const updates: JsonObject = {};
         if (type === 'driver') updates.traveler_status = status;
-        else {
-            updates.company_status = status;
-            if (status === 'approved') updates.account_type = 'company';
-        }
 
         if (reason) updates.internal_notes = `[Verification ${status}] ${reason}`;
 

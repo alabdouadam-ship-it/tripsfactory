@@ -110,15 +110,14 @@ describe('ReviewsPage', () => {
       comment: null,
       comment_status: null,
       booking_id: null,
-      offer_id: null,
       created_at: '2026-05-01T10:00:00.000Z',
     }];
 
     render(<ReviewsPage />);
 
     await expect(screen.findByText('No comment', {}, { timeout: 3000 })).resolves.toBeInTheDocument();
-    expect(screen.getByText('Sender / Company')).toBeInTheDocument();
-    expect(screen.getByText('No linked trip or shipment')).toBeInTheDocument();
+    expect(screen.getByText('Sender')).toBeInTheDocument();
+    expect(screen.getByText('No linked trip')).toBeInTheDocument();
   });
 
   it('filters pending comment moderation without treating commentless ratings as pending comments', async () => {
@@ -132,7 +131,6 @@ describe('ReviewsPage', () => {
         comment: null,
         comment_status: null,
         booking_id: null,
-        offer_id: null,
         created_at: '2026-05-01T10:00:00.000Z',
       },
       {
@@ -144,7 +142,6 @@ describe('ReviewsPage', () => {
         comment: 'Needs review',
         comment_status: 'pending',
         booking_id: null,
-        offer_id: null,
         created_at: '2026-05-02T10:00:00.000Z',
       },
     ];
@@ -168,7 +165,6 @@ describe('ReviewsPage', () => {
       comment: 'Abusive comment',
       comment_status: 'pending',
       booking_id: null,
-      offer_id: null,
       created_at: '2026-05-01T10:00:00.000Z',
     }];
 
@@ -190,7 +186,7 @@ describe('ReviewsPage', () => {
     expect(screen.getByText('No comment')).toBeInTheDocument();
   });
 
-  it('renders booking and shipment-offer context links', async () => {
+  it('renders booking context links', async () => {
     mocks.state.ratings = [
       {
         id: 'rating-booking',
@@ -201,28 +197,17 @@ describe('ReviewsPage', () => {
         comment: 'Trip was good',
         comment_status: 'approved',
         booking_id: 'booking-12345678',
-        offer_id: null,
         created_at: '2026-05-01T10:00:00.000Z',
       },
       {
-        id: 'rating-offer',
+        id: 'rating-none',
         rater_id: 'rater-2',
         rated_id: 'rated-2',
         role_rated: 'client',
         rating: 4,
-        comment: 'Shipment was good',
+        comment: 'No linked context',
         comment_status: 'approved',
         booking_id: null,
-        offer_id: 'offer-12345678',
-        offer: {
-          id: 'offer-12345678',
-          shipment_id: 'shipment-12345678',
-          shipment: {
-            id: 'shipment-12345678',
-            pickup: { city_name_en: 'Damascus' },
-            dropoff: { city_name_en: 'Aleppo' },
-          },
-        },
         created_at: '2026-05-02T10:00:00.000Z',
       },
     ];
@@ -231,15 +216,11 @@ describe('ReviewsPage', () => {
 
     await screen.findByText('Trip was good', {}, { timeout: 3000 });
     expect(mocks.selectCalls[0]).toContain('booking:bookings');
-    expect(mocks.selectCalls[0]).toContain('offer:offers');
     expect(screen.getByRole('link', { name: /Trip booking #booking-/ })).toHaveAttribute(
       'href',
       '/bookings/booking-12345678',
     );
-    expect(screen.getByRole('link', { name: /Shipment offer - Damascus - Aleppo/ })).toHaveAttribute(
-      'href',
-      '/shipments/shipment-12345678',
-    );
+    expect(screen.getByText('No linked trip')).toBeInTheDocument();
   });
 
   it('shows a visible retry state when reviews fail to load', async () => {

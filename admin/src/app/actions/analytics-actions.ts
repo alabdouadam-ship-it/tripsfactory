@@ -113,29 +113,23 @@ export async function getUserTypeDistribution(): AnalyticsResult<UserTypeCount[]
     const { data, error } = await supabase.rpc('admin_user_type_distribution');
     if (error) {
       if (!shouldFallbackFromRpc(error)) return { success: false, error: error.message };
-      const [total, drivers, travelers, companies] = await Promise.all([
+      const [total, drivers, travelers] = await Promise.all([
         supabase.from('profiles').select('*', { count: 'exact', head: true }),
         supabase.from('profiles').select('*', { count: 'exact', head: true }).neq('traveler_status', 'none').eq('is_driver', true),
         supabase.from('profiles').select('*', { count: 'exact', head: true }).neq('traveler_status', 'none').or('is_driver.is.null,is_driver.eq.false'),
-        supabase.from('profiles').select('*', { count: 'exact', head: true })
-          .or('traveler_status.is.null,traveler_status.eq.none')
-          .eq('account_type', 'company')
-          .neq('company_status', 'none'),
       ]);
-      const fallbackError = total.error || drivers.error || travelers.error || companies.error;
+      const fallbackError = total.error || drivers.error || travelers.error;
       if (fallbackError) return { success: false, error: fallbackError.message };
 
       const driverCount = drivers.count || 0;
       const travelerCount = travelers.count || 0;
-      const companyCount = companies.count || 0;
-      const individualCount = Math.max(0, (total.count || 0) - driverCount - travelerCount - companyCount);
+      const individualCount = Math.max(0, (total.count || 0) - driverCount - travelerCount);
 
       return {
         success: true,
         data: [
           { user_type: 'driver', total: driverCount },
           { user_type: 'traveler', total: travelerCount },
-          { user_type: 'company', total: companyCount },
           { user_type: 'individual', total: individualCount },
         ],
       };

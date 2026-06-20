@@ -95,7 +95,7 @@ class _MyRequestsScreenState extends ConsumerState<MyRequestsScreen> {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          loc.noShipmentsFound,
+                          loc.noRequestsFound,
                           style: Theme.of(context).textTheme.titleMedium
                               ?.copyWith(color: Theme.of(context).hintColor),
                         ),

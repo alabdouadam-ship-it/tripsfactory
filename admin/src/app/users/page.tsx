@@ -6,7 +6,7 @@ import { supabase } from '@/lib/supabase';
 import { useToast } from '@/lib/toast';
 import { Profile } from '@/lib/types';
 import {
-  Search, Download, ShieldCheck, Ban, UserPlus, ExternalLink, User, Truck, Building2,
+  Search, Download, ShieldCheck, Ban, UserPlus, ExternalLink, User, Truck,
   Star, Award, Lock, Unlock, X, Save, AlertTriangle, Info,
 } from 'lucide-react';
 import { DataTable, Column } from '@/components/DataTable';
@@ -18,17 +18,15 @@ import { useI18n } from '@/lib/i18n';
 const PAGE_SIZE = 25;
 const QUERY_TIMEOUT_MS = 15000;
 
-type Segment = 'all' | 'individuals' | 'drivers' | 'companies';
-type UserCapability = 'company' | 'driver' | 'traveler' | 'individual';
+type Segment = 'all' | 'individuals' | 'drivers';
+type UserCapability = 'driver' | 'traveler' | 'individual';
 
 const SEGMENT_FILTERS: Record<Segment, { op: string; field?: string; value?: any }[]> = {
   all: [],
   individuals: [
-    { op: 'eq', field: 'account_type', value: 'individual' },
     { op: 'or', value: 'traveler_status.is.null,traveler_status.eq.none' },
   ],
   drivers: [{ op: 'not_is', field: 'traveler_status', value: null }, { op: 'neq', field: 'traveler_status', value: 'none' }],
-  companies: [{ op: 'eq', field: 'account_type', value: 'company' }],
 };
 
 export default function UsersPage() {
@@ -53,9 +51,7 @@ export default function UsersPage() {
     email: '',
     phone: '',
     password: '',
-    account_type: 'individual' as 'individual' | 'company',
     make_driver: false,
-    make_company: false,
     send_invitation: false,
   });
   const [creating, setCreating] = useState(false);
@@ -141,28 +137,14 @@ export default function UsersPage() {
 
   function capabilitiesForUser(u: Profile): UserCapability[] {
     const caps: UserCapability[] = [];
-    const hasCompany = u.account_type === 'company' || !!(u.company_status && u.company_status !== 'none');
     const hasTraveler = !!(u.traveler_status && u.traveler_status !== 'none');
-    if (hasCompany) caps.push('company');
     if (hasTraveler) caps.push(u.is_driver ? 'driver' : 'traveler');
     return caps.length ? caps : ['individual'];
   }
 
   function primaryTypeForUser(u: Profile): UserCapability {
     const caps = capabilitiesForUser(u);
-    return caps.includes('company') ? 'company' : caps[0];
-  }
-
-  function typeLabelForUser(u: Profile) {
-    const fallbackLabels: Record<UserCapability, string> = {
-      company: 'Company',
-      driver: 'Driver',
-      traveler: 'Traveler',
-      individual: 'Individual',
-    };
-    return capabilitiesForUser(u)
-      .map((cap) => t(`users.type.${cap}`, fallbackLabels[cap]))
-      .join(' + ');
+    return caps[0];
   }
 
   const columns: Column<Profile>[] = [
@@ -174,7 +156,7 @@ export default function UsersPage() {
         <div className="flex items-center gap-2">
           <div className={cn(
             'h-7 w-7 rounded-lg flex items-center justify-center text-white font-black text-[0.625rem] shadow-sm',
-            primaryTypeForUser(u) === 'company' ? 'bg-purple-600' : ['driver', 'traveler'].includes(primaryTypeForUser(u)) ? 'bg-orange-600' : 'bg-blue-600'
+            ['driver', 'traveler'].includes(primaryTypeForUser(u)) ? 'bg-orange-600' : 'bg-blue-600'
           )}>
             {u.full_name?.[0]?.toUpperCase() || 'U'}
           </div>
@@ -188,24 +170,6 @@ export default function UsersPage() {
           </div>
         </div>
       ),
-    },
-    {
-      header: t('users.col.type', 'Type'),
-      accessorKey: 'account_type',
-      sortable: true,
-      cell: (u) => {
-        const k = primaryTypeForUser(u);
-        return (
-          <span className={cn(
-            'px-2 py-0.5 rounded-lg text-[0.5625rem] font-black uppercase tracking-widest border',
-            k === 'company' ? 'bg-purple-50 text-purple-600 border-purple-200' :
-              k === 'driver' || k === 'traveler' ? 'bg-orange-50 text-orange-600 border-orange-200' :
-                'bg-blue-50 text-blue-600 border-blue-200'
-          )}>
-            {typeLabelForUser(u)}
-          </span>
-        );
-      },
     },
     {
       header: t('users.col.status', 'Status'),
@@ -318,9 +282,7 @@ export default function UsersPage() {
       phone: createForm.phone.trim() || undefined,
       password: createForm.password.trim() || undefined,
       full_name: createForm.full_name.trim(),
-      account_type: createForm.account_type,
       make_driver: createForm.make_driver,
-      make_company: createForm.account_type === 'company' || createForm.make_company,
       send_invitation: createForm.send_invitation,
     });
     setCreating(false);
@@ -332,8 +294,8 @@ export default function UsersPage() {
       toast(t('users.create.success', 'User created') + passwordMsg, 'success');
       closeCreateModal();
       setCreateForm({
-        full_name: '', email: '', phone: '', password: '', account_type: 'individual',
-        make_driver: false, make_company: false, send_invitation: false,
+        full_name: '', email: '', phone: '', password: '',
+        make_driver: false, send_invitation: false,
       });
       fetchUsers({ silent: true });
     } else {
@@ -369,7 +331,6 @@ export default function UsersPage() {
           { id: 'all', label: t('users.segment.all', 'All'), icon: User },
           { id: 'individuals', label: t('users.segment.individuals', 'Individuals'), icon: User },
           { id: 'drivers', label: t('users.segment.drivers', 'Drivers / Travelers'), icon: Truck },
-          { id: 'companies', label: t('users.segment.companies', 'Merchants / Companies'), icon: Building2 },
         ] as const).map(s => {
           const Icon = s.icon;
           return (
@@ -492,27 +453,6 @@ export default function UsersPage() {
                   {t('users.create.password', 'Password')} <span className="text-[0.625rem] opacity-60">({t('users.create.password.optional', 'auto-generate if blank')})</span>
                 </label>
                 <input type="text" value={createForm.password} onChange={e => setCreateForm(f => ({ ...f, password: e.target.value }))} className="w-full theme-bg-secondary border border-[var(--surface-border)] rounded-xl px-4 py-2.5 text-sm theme-heading focus:border-orange-500 outline-none" placeholder={t('users.create.password.placeholder', 'min 6 chars')} />
-              </div>
-
-              <div>
-                <label className="block text-[0.625rem] font-black theme-muted uppercase tracking-widest mb-2">{t('users.create.accountType', 'Account Type')}</label>
-                <div className="flex gap-2">
-                  {(['individual', 'company'] as const).map(type => (
-                    <button
-                      key={type}
-                      type="button"
-                      onClick={() => setCreateForm(f => ({ ...f, account_type: type, make_company: type === 'company' }))}
-                      className={cn(
-                        'flex-1 px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest border transition',
-                        createForm.account_type === type
-                          ? 'bg-orange-600 text-white border-orange-600'
-                          : 'theme-bg-secondary theme-muted border-[var(--surface-border)] hover:theme-heading'
-                      )}
-                    >
-                      {t(`users.type.${type}`, type)}
-                    </button>
-                  ))}
-                </div>
               </div>
 
               <div className="space-y-2">

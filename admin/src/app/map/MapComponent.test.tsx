@@ -18,22 +18,20 @@ const labels = vi.hoisted((): Record<string, string> => ({
   'common.to': 'To',
   'common.unknown': 'Unknown',
   'common.viewDetails': 'View Details',
-  'map.empty': 'No active trips or shipments to display',
+  'map.empty': 'No active trips to display',
   'map.error.loadFailed': 'Failed to load map data. Please try again.',
   'map.error.title': 'Error Loading Map',
   'map.lastUpdated': 'Last: {{time}}',
   'map.loading': 'Loading map data...',
-  'map.noData': 'No active trips or shipments to display',
+  'map.noData': 'No active trips to display',
   'map.refresh': 'Refresh',
   'map.retry': 'Retry',
-  'map.stats': '{{cities}} cities · {{trips}} trips · {{shipments}} shipments · {{routes}} total routes',
+  'map.stats': '{{cities}} cities · {{trips}} trips · {{routes}} total routes',
   'map.title': 'Operations Map',
 }));
 
 const mocks = vi.hoisted(() => {
   const state = {
-    shipments: [] as any[],
-    shipmentsError: null as any,
     trips: [] as any[],
     tripsError: null as any,
   };
@@ -42,9 +40,6 @@ const mocks = vi.hoisted(() => {
   const mockSetView = vi.fn();
 
   const resultFor = (record: QueryRecord) => {
-    if (record.table === 'shipments') {
-      return { data: state.shipments, error: state.shipmentsError };
-    }
     if (record.table === 'trips') {
       return { data: state.trips, error: state.tripsError };
     }
@@ -147,24 +142,6 @@ vi.mock('@/lib/supabase', () => ({
 
 describe('MapComponent', () => {
   beforeEach(() => {
-    mocks.state.shipments = [{
-      id: 'shipment-1',
-      sender_id: 'sender-1',
-      pickup_location_id: 'loc-pickup',
-      dropoff_location_id: 'loc-dropoff',
-      status: 'accepted',
-      price: 100,
-      weight_kg: 12,
-      created_at: '2026-05-07T08:00:00.000Z',
-      pickup_latitude: 33.5,
-      pickup_longitude: 36.3,
-      dropoff_latitude: 36.2,
-      dropoff_longitude: 37.1,
-      pickup: { city_name_en: 'Damascus', city_name_ar: 'دمشق', latitude: 33.5, longitude: 36.3 },
-      dropoff: { city_name_en: 'Aleppo', city_name_ar: 'حلب', latitude: 36.2, longitude: 37.1 },
-      profile: { id: 'sender-1', full_name: 'Sender User' },
-    }];
-    mocks.state.shipmentsError = null;
     mocks.state.trips = [{
       id: 'trip-1',
       traveler_id: 'traveler-1',
@@ -185,49 +162,30 @@ describe('MapComponent', () => {
     mocks.mockSetView.mockClear();
   });
 
-  it('loads active operational shipments and trips with origin and destination markers', async () => {
+  it('loads active operational trips with origin and destination markers', async () => {
     render(<MapComponent />);
 
     await expect(screen.findByText(/Operations Map/)).resolves.toBeInTheDocument();
-    
+
     // Wait for data to load
     await waitFor(() => {
       expect(screen.queryByText('Loading map data...')).not.toBeInTheDocument();
     });
-    
-    // Check that cities are aggregated (should have fewer markers than old implementation)
-    const stats = screen.getByText(/cities.*trips.*shipments/i);
+
+    // Check that cities are aggregated
+    const stats = screen.getByText(/cities.*trips/i);
     expect(stats).toBeInTheDocument();
-    
-    // Verify queries were made correctly
-    const shipmentsQuery = mocks.queries.find(query => query.table === 'shipments');
+
+    // Verify trips are queried
     const tripsQuery = mocks.queries.find(query => query.table === 'trips');
-    
-    expect(shipmentsQuery?.filters).toEqual(expect.arrayContaining([
-      { method: 'not', args: ['status', 'in', '(completed,cancelled,rejected,expired)'] },
-    ]));
+
     expect(tripsQuery?.filters).toEqual(expect.arrayContaining([
       { method: 'not', args: ['status', 'in', '(completed,cancelled)'] },
     ]));
   });
 
-  it('shows partial warnings while keeping successful map data visible', async () => {
-    mocks.state.shipmentsError = { message: 'shipments denied' };
-
-    render(<MapComponent />);
-
-    await waitFor(() => {
-      expect(screen.queryByText('Loading map data...')).not.toBeInTheDocument();
-    });
-    
-    // Should still show the map with trip data
-    expect(screen.getByText(/Operations Map/)).toBeInTheDocument();
-  });
-
-  it('shows a retryable full error when all map queries fail', async () => {
-    mocks.state.shipmentsError = { message: 'shipments denied' };
+  it('shows a retryable full error when the trips query fails', async () => {
     mocks.state.tripsError = { message: 'trips denied' };
-    mocks.state.shipments = [];
     mocks.state.trips = [];
 
     render(<MapComponent />);
@@ -236,7 +194,6 @@ describe('MapComponent', () => {
     expect(screen.getByText('Failed to load map data. Please try again.')).toBeInTheDocument();
 
     // Test retry functionality
-    mocks.state.shipmentsError = null;
     mocks.state.tripsError = null;
     mocks.state.trips = [{
       id: 'trip-2',

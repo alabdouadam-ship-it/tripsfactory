@@ -222,7 +222,6 @@ describe('NotificationsPage', () => {
       { method: 'or', args: ['is_suspended.is.null,is_suspended.eq.false'] },
       { method: 'or', args: ['is_admin.is.null,is_admin.eq.false'] },
       { method: 'or', args: ['traveler_status.is.null,traveler_status.not.in.(blocked,suspended)'] },
-      { method: 'or', args: ['company_status.is.null,company_status.not.in.(blocked,suspended)'] },
     ]));
   });
 

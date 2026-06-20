@@ -1,11 +1,11 @@
 /// Canonical domain vocabulary — the string values that encode the app's
-/// marketplace semantics (account types, verification statuses, traveler/
+/// marketplace semantics (verification statuses, traveler/
 /// identity types, and booking roles).
 ///
 /// These are the **persisted contract values** stored in / read from Supabase
-/// (`profiles.account_type`, `traveler_status`, `company_status`,
-/// `traveler_type`, `identity_type`, etc.). They must match the DB exactly, so
-/// changing a value here is a backend-coordinated change, not a free rename.
+/// (`profiles.traveler_status`, `traveler_type`, `identity_type`, etc.). They
+/// must match the DB exactly, so changing a value here is a backend-coordinated
+/// change, not a free rename.
 ///
 /// Why centralize: a fork re-orienting the domain (logistics → ride-share →
 /// services) re-labels these concepts. Keeping the canonical identifiers in one
@@ -17,12 +17,8 @@
 class DomainConfig {
   DomainConfig._();
 
-  // ── Account types (profiles.account_type) ──────────────────────────────────
-  static const String accountIndividual = 'individual';
-  static const String accountCompany = 'company';
-
   // ── Verification / approval statuses ────────────────────────────────────--
-  // Used by both traveler_status and company_status.
+  // Used by traveler_status.
   static const String statusNone = 'none';
   static const String statusPending = 'pending';
   static const String statusApproved = 'approved';

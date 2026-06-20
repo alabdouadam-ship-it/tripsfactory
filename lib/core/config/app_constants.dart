@@ -4,10 +4,8 @@ import 'package:tripship/core/config/domain_config.dart';
 class AppConstants {
   static const String baseUrl = BrandConfig.webBaseUrl;
   static const String tripPath = '/trip';
-  static const String shipmentPath = '/shipment';
 
   static String get tripBaseUrl => '$baseUrl$tripPath';
-  static String get shipmentBaseUrl => '$baseUrl$shipmentPath';
 
   // Legal Links
   static String privacyPolicyUrl(String lang) =>

@@ -69,7 +69,7 @@ cd tests/db && npm run test
 ## Seed data
 
 - `tests/seed.sql`: Optional. Use to insert **locations** (and other reference data) if your project has no data. Test users and profiles are created/ensured by the Node setup via Auth and service-role upserts; you do not need to edit UUIDs in seed.sql for users.
-- To add a default location for tests, run the first block of `seed.sql` (locations) with the Supabase SQL editor (service role) so trip/shipment inserts can reference valid location IDs if needed.
+- To add a default location for tests, run the first block of `seed.sql` (locations) with the Supabase SQL editor (service role) so trip inserts can reference valid location IDs if needed.
 
 ## Stage 4 reliability regression tests
 

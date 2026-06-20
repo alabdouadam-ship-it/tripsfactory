@@ -3,7 +3,6 @@ export type Profile = {
   full_name: string | null;
   avatar_url: string | null;
   phone_number: string | null;
-  account_type?: 'individual' | 'company';
   bio?: string | null;
   is_available?: boolean;
   // Traveler/Driver fields (stored directly on profiles, no separate table)
@@ -17,13 +16,6 @@ export type Profile = {
   subscription_expires_at?: string | null;
   license_expires_at?: string | null;
   driver_validity_date?: string | null;
-  // Company fields (stored directly on profiles, no separate table)
-  company_status?: 'none' | 'pending' | 'approved' | 'rejected' | 'suspended' | 'blocked';
-  company_name?: string | null;
-  company_address?: string | null;
-  company_cr_number?: string | null;
-  company_cr_url?: string | null;
-  company_validity_date?: string | null;
   // Ratings
   traveler_rating_avg?: number;
   traveler_rating_count?: number;
@@ -50,9 +42,7 @@ export type Profile = {
   is_featured?: boolean;
   trust_badge?:
     | 'trusted_driver'
-    | 'trusted_company'
     | 'featured_driver'
-    | 'featured_company'
     | 'verified_partner'
     | string
     | null;
@@ -65,7 +55,6 @@ export type Profile = {
   identity_doc_url_pending?: string | null;
   traveler_license_url_pending?: string | null;
   rental_contract_url_pending?: string | null;
-  company_cr_url_pending?: string | null;
   // Joined data
   vehicles?: Vehicle[];
 };
@@ -73,12 +62,6 @@ export type Profile = {
 // Driver is a Profile with traveler_status != 'none'
 export type DriverProfile = Profile & {
   traveler_status: 'pending' | 'approved' | 'rejected' | 'suspended' | 'blocked';
-};
-
-// Company is a Profile with account_type == 'company' and company_status != 'none'
-export type CompanyProfile = Profile & {
-  company_status: 'pending' | 'approved' | 'rejected' | 'suspended' | 'blocked';
-  company_name: string;
 };
 
 export type Vehicle = {
@@ -104,40 +87,6 @@ export type LocationLabel = {
   city_name_en?: string | null;
   latitude?: number | null;
   longitude?: number | null;
-};
-
-export type ShipmentStatus = 'pending_approval' | 'pending' | 'in_communication' | 'accepted' | 'picked_up' | 'in_transit' | 'delivered' | 'completed' | 'cancelled' | 'rejected' | 'expired' | 'frozen' | 'disputed';
-
-export type Shipment = {
-  id: string;
-  sender_id: string;
-  pickup_location_id?: string;
-  dropoff_location_id?: string;
-  pickup_latitude?: number;
-  pickup_longitude?: number;
-  dropoff_latitude?: number;
-  dropoff_longitude?: number;
-  status: ShipmentStatus;
-  price: number | null;
-  weight_kg: number;
-  transport_type?: string;
-  description?: string | null;
-  created_at: string;
-  // Moderation
-  is_flagged?: boolean;
-  flag_category?: string | null;
-  flag_reason?: string | null;
-  flagged_at?: string | null;
-  flagged_by?: string | null;
-  moderation_status?: 'clean' | 'pending_review' | 'cleared' | 'removed' | 'escalated';
-  moderation_notes?: string | null;
-  moderation_reviewed_at?: string | null;
-  moderation_reviewed_by?: string | null;
-  profiles?: Profile;
-  profile?: Profile; // Consistent alias with Trip
-  sender_profile?: Profile; // Alias when joined via sender_id
-  pickup?: LocationLabel;
-  dropoff?: LocationLabel;
 };
 
 export type TripStatus = 'pending_approval' | 'available' | 'in_communication' | 'pending_confirmation' | 'booked' | 'full' | 'in_transit' | 'completed' | 'cancelled';
@@ -168,7 +117,7 @@ export type Booking = {
   trip_id?: string | null;
   traveler_id: string;
   requester_id?: string | null;
-  offer_price: number;
+  price: number;
   status: BookingStatus;
 
   // Handshake Fields
@@ -222,7 +171,6 @@ export type Rating = {
   comment: string | null;
   comment_status: string | null;
   booking_id: string | null;
-  offer_id: string | null;
   created_at: string;
   rater?: Profile;
   rated?: Profile;
@@ -238,7 +186,7 @@ export type Message = {
   sender?: { full_name: string };
 };
 
-export type ReportTarget = 'user' | 'driver' | 'company' | 'shipment' | 'rating' | 'trip';
+export type ReportTarget = 'user' | 'driver' | 'rating' | 'trip';
 
 export type Report = {
   id: string;
@@ -261,7 +209,6 @@ export type Report = {
   resolved_by?: string;
   // First-class report targets
   target_type?: ReportTarget;
-  target_shipment_id?: string | null;
   target_rating_id?: string | null;
   target_trip_id?: string | null;
   created_at: string;
@@ -319,7 +266,7 @@ export type AppSettings = {
   first_launch_popup_body_ar: string | null;
   first_launch_popup_image_url: string | null;
   first_launch_popup_action_url: string | null;
-  first_launch_popup_target: 'all' | 'drivers' | 'companies' | 'individuals' | 'new_users';
+  first_launch_popup_target: 'all' | 'drivers' | 'individuals' | 'new_users';
   first_launch_popup_version: number;
 
   occasional_popup_active: boolean;
@@ -329,7 +276,7 @@ export type AppSettings = {
   occasional_popup_body_ar: string | null;
   occasional_popup_image_url: string | null;
   occasional_popup_action_url: string | null;
-  occasional_popup_target: 'all' | 'drivers' | 'companies' | 'individuals' | 'new_users';
+  occasional_popup_target: 'all' | 'drivers' | 'individuals' | 'new_users';
   occasional_popup_published_at: string | null;
 
   created_at: string;

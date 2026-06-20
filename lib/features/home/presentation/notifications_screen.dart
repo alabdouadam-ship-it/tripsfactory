@@ -281,7 +281,6 @@ class NotificationsScreen extends ConsumerWidget {
     final type = data['type']?.toString();
     final bookingId = data['booking_id'] ?? data['bookingId'];
     final tripId = data['trip_id'] ?? data['tripId'];
-    final shipmentId = data['shipment_id'] ?? data['shipmentId'];
     final ticketId = data['ticket_id'] ?? data['ticketId'];
     final otherUserName = data['other_user_name'] ?? data['otherUserName'];
     final otherUserId = data['other_user_id'] ?? data['otherUserId'];
@@ -315,20 +314,7 @@ class NotificationsScreen extends ConsumerWidget {
       return;
     }
 
-    // 3. Offer Details - prioritized for traveler view
-    final offerId = data['offer_id'] ?? data['offerId'];
-    if (offerId != null) {
-      context.push('${AppRoutes.offerDetails}?id=$offerId');
-      return;
-    }
-
-    // 4. Shipment Details
-    if (shipmentId != null) {
-      context.push('${AppRoutes.shipmentDetails}?id=$shipmentId');
-      return;
-    }
-
-    // 4. Fallback: booking with chat info or my-requests
+    // 3. Fallback: booking with chat info or my-requests
     if (bookingId != null) {
       if (otherUserName != null && otherUserName.toString().isNotEmpty) {
         context.push(

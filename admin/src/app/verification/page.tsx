@@ -10,14 +10,14 @@ import Loading from '@/app/loading';
 import { useT } from '@/lib/i18n';
 import { advanceVerificationStep } from '@/app/actions/verification-actions';
 
-type VerificationFilter = 'all' | 'traveler' | 'company';
+type VerificationFilter = 'all' | 'traveler';
 type Capability = {
-    entityType: 'driver' | 'company';
+    entityType: 'driver';
     label: string;
     buttonLabel: string;
 };
 
-const FILTERS: VerificationFilter[] = ['all', 'traveler', 'company'];
+const FILTERS: VerificationFilter[] = ['all', 'traveler'];
 
 function hasIdentityDoc(user: Profile) {
     return Boolean(user.identity_doc_url || user.identity_doc_url_pending);
@@ -42,10 +42,6 @@ function hasTravelerDoc(user: Profile, vehicles: any[]) {
     return hasLicense;
 }
 
-function hasCompanyDoc(user: Profile) {
-    return Boolean(user.company_cr_url || user.company_cr_url_pending);
-}
-
 export default function VerificationCenter() {
     const t = useT();
     const { toast } = useToast();
@@ -67,7 +63,7 @@ export default function VerificationCenter() {
         const { data, error } = await supabase
             .from('profiles')
             .select('*')
-            .or('traveler_status.eq.pending,company_status.eq.pending')
+            .eq('traveler_status', 'pending')
             .order('created_at', { ascending: false });
 
         if (error) {
@@ -121,13 +117,6 @@ export default function VerificationCenter() {
                 buttonLabel: t('verification.approveTraveler', 'Approve traveler'),
             });
         }
-        if (user.company_status === 'pending') {
-            capabilities.push({
-                entityType: 'company',
-                label: t('verification.company', 'Company'),
-                buttonLabel: t('verification.approveCompany', 'Approve company'),
-            });
-        }
         return capabilities;
     }
 
@@ -143,10 +132,7 @@ export default function VerificationCenter() {
         setApprovingKey(null);
 
         if (res.success) {
-            const successKey = capability.entityType === 'company'
-                ? 'verification.toast.companyApproved'
-                : 'verification.toast.travelerApproved';
-            toast(t(successKey, '{capability} approved').replace('{capability}', capability.label), 'success');
+            toast(t('verification.toast.travelerApproved', '{capability} approved').replace('{capability}', capability.label), 'success');
             fetchVerificationData();
         } else {
             toast(res.error || t('verification.toast.approveFailed', 'Approval failed'), 'error');
@@ -179,9 +165,7 @@ export default function VerificationCenter() {
             user.phone_number?.includes(searchQuery);
         const matchesFilter = activeFilter === 'all'
             ? true
-            : activeFilter === 'traveler'
-                ? user.traveler_status === 'pending'
-                : user.company_status === 'pending';
+            : user.traveler_status === 'pending';
         return matchesSearch && matchesFilter;
     });
 
@@ -196,7 +180,7 @@ export default function VerificationCenter() {
                         {t('verification.title', 'Verification Center')}
                     </h1>
                     <p className="theme-muted mt-1 font-medium opacity-70">
-                        {t('verification.queueSubtitle', 'Review pending traveler and company approvals.')}
+                        {t('verification.queueSubtitle', 'Review pending traveler approvals.')}
                     </p>
                 </div>
                 <div className="theme-bg-secondary px-5 py-3 rounded-2xl border border-[var(--surface-border)] flex items-center gap-4 shadow-sm">
@@ -296,7 +280,6 @@ export default function VerificationCenter() {
                                                         {renderDocStatus(t('verification.vehicleRegistration', 'Vehicle Registration'), vehicles.some(v => v.registration_doc_url))}
                                                     </>
                                                 )}
-                                                {user.company_status === 'pending' && renderDocStatus(t('verification.companyDocs', 'Company documents'), hasCompanyDoc(user))}
                                             </div>
                                             <div className="flex items-center gap-2">
                                                 <ShieldAlert className="h-3.5 w-3.5 theme-muted opacity-40" />

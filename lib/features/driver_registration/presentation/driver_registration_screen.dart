@@ -245,8 +245,6 @@ class _TravelerRegistrationScreenState
         return l10n.pleaseUploadVehicleDocuments;
       case MissingDocPrompt.rentalContract:
         return l10n.pleaseUploadRentalContract;
-      case MissingDocPrompt.companyCr:
-        return l10n.pleaseUploadCRDocument;
     }
   }
 

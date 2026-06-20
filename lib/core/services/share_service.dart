@@ -13,14 +13,6 @@ Future<void> shareTrip(String tripId) async {
   );
 }
 
-/// Share a shipment with a friend.
-Future<void> shareShipment(String shipmentId) async {
-  final url = '${AppConstants.shipmentBaseUrl}/$shipmentId';
-  await SharePlus.instance.share(
-    ShareParams(text: url, subject: 'Shipment on TripShip'),
-  );
-}
-
 /// Shares the app store link. Uses Google Play on Android, App Store on iOS.
 Future<void> shareApp() async {
   final url = defaultTargetPlatform == TargetPlatform.iOS

@@ -5,8 +5,6 @@
  *
  * Subscribes to:
  *   - INSERT on `reports`              (a user filed a new report)
- *   - UPDATE on `shipments` is_flagged (a shipment was flagged)
- *   - INSERT on `shipments` is_flagged (rare: shipment created already flagged)
  *
  * Maintains a counts object that the Sidebar consumes to render badges, and
  * pops a toast when a new event arrives while the admin has the dashboard
@@ -21,17 +19,14 @@ import { useT } from '@/lib/i18n';
 
 export type ViolationCounts = {
     openReports: number;
-    pendingShipments: number;
     pendingTrips: number;
 };
 
 const DEFAULT_COUNTS: ViolationCounts = {
     openReports: 0,
-    pendingShipments: 0,
     pendingTrips: 0,
 };
 const OPEN_REPORT_STATUSES = new Set(['open', 'pending', 'investigating']);
-const PENDING_SHIPMENT_STATUSES = new Set(['pending_review', 'escalated']);
 
 type ViolationAlertsValue = {
     counts: ViolationCounts;
@@ -63,13 +58,10 @@ export function ViolationAlertsProvider({ children }: { children: React.ReactNod
     }, [toast, t]);
 
     async function refresh() {
-        const [reportsRes, shipmentsRes, tripsRes] = await Promise.all([
+        const [reportsRes, tripsRes] = await Promise.all([
             (supabase.from('reports') as any)
                 .select('*', { count: 'exact', head: true })
                 .or('status.is.null,status.eq.open,status.eq.pending,status.eq.investigating'),
-            (supabase.from('shipments') as any)
-                .select('*', { count: 'exact', head: true })
-                .or('moderation_status.eq.pending_review,moderation_status.eq.escalated,is_flagged.eq.true'),
             (supabase.from('trips') as any)
                 .select('*', { count: 'exact', head: true })
                 .eq('status', 'pending_approval'),
@@ -77,7 +69,6 @@ export function ViolationAlertsProvider({ children }: { children: React.ReactNod
 
         setCounts({
             openReports: reportsRes.count ?? 0,
-            pendingShipments: shipmentsRes.count ?? 0,
             pendingTrips: tripsRes.count ?? 0,
         });
     }
@@ -104,30 +95,6 @@ export function ViolationAlertsProvider({ children }: { children: React.ReactNod
             })
             .subscribe();
 
-        const shipmentsChannel = supabase
-            .channel('admin-violation-alerts-shipments')
-            .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'shipments' }, (payload) => {
-                const newRow = payload.new as any;
-                const oldRow = payload.old as any;
-                if (initialized.current && newRow?.is_flagged && !oldRow?.is_flagged) {
-                    toastRef.current(
-                        tRef.current('alerts.shipmentFlagged', 'A shipment was flagged for moderation'),
-                        'info',
-                    );
-                    refresh();
-                } else if (initialized.current && newRow?.moderation_status !== oldRow?.moderation_status) {
-                    refresh();
-                }
-            })
-            .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'shipments' }, (payload) => {
-                const newRow = payload.new as any;
-                const isPending = PENDING_SHIPMENT_STATUSES.has(String(newRow?.moderation_status ?? ''));
-                if (initialized.current && (newRow?.is_flagged || isPending)) {
-                    toastRef.current(tRef.current('alerts.shipmentFlagged', 'A shipment was flagged for moderation'), 'info');
-                    refresh();
-                }
-            })
-            .subscribe();
         const tripsChannel = supabase
             .channel('admin-violation-alerts-trips')
             .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'trips' }, (payload) => {
@@ -146,7 +113,6 @@ export function ViolationAlertsProvider({ children }: { children: React.ReactNod
         return () => {
             cancelled = true;
             supabase.removeChannel(reportsChannel);
-            supabase.removeChannel(shipmentsChannel);
             supabase.removeChannel(tripsChannel);
             clearInterval(interval);
         };

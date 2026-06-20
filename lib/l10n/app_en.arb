@@ -1,4 +1,4 @@
-{
+﻿{
     "appTitle": "TripShip",
     "welcomeBack": "Welcome Back",
     "signInToContinue": "Sign in to continue",
@@ -29,7 +29,7 @@
     "emailNotConfirmed": "Please confirm your email before logging in",
     "userAlreadyRegistered": "This email is already registered. Please sign in.",
     "pleaseEnterName": "Please enter your full name",
-    "unexpectedError": "An unexpected error occurred",
+    "unexpectedError": "Unexpected error occurred",
     "arabic": "Arabic",
     "english": "English",
     "french": "French",
@@ -48,9 +48,7 @@
     "myProfile": "My Profile",
     "editProfile": "Edit Profile",
     "bio": "Bio / Description",
-    "accountType": "Account Type",
     "individual": "Individual",
-    "company": "Company",
     "verificationStatus": "Verification Status",
     "verified": "Verified",
     "unverified": "Unverified",
@@ -75,25 +73,19 @@
     "pleaseSelectTime": "Please select a time",
     "enterCity": "Enter city name",
     "invalidWeight": "Invalid weight",
-    "postShipment": "Send a Package",
-    "editShipment": "Edit Shipment",
-    "shipmentUpdated": "Shipment updated successfully!",
+    "postPackage": "Send a Package",
     "iAmTraveler": "Driver OR Traveler",
     "iAmSender": "I am a Sender",
     "packageDetails": "Package Details",
     "description": "Description (What are you sending?)",
-    "createRequest": "Create Shipment Request",
-    "shipmentPosted": "Shipment request created successfully",
+    "createRequest": "Create Delivery Request",
     "pickup": "Pickup Location",
     "dropoff": "Dropoff Location",
-    "companyOnlyFeature": "Corporate Feature",
-    "mustBeCompany": "Only verified companies can post shipment requests. Please switch your account type to 'Company' in your profile.",
     "goToProfile": "Go to Profile",
     "internalTrips": "Internal",
     "externalTrips": "External",
-    "requestedShipments": "Last Requested Shipments",
     "noTripsFound": "No available trips found.",
-    "noShipmentsFound": "No shipment requests found.",
+    "noRequestsFound": "No requests found.",
     "country": "Country",
     "province": "Province",
     "city": "City",
@@ -120,8 +112,6 @@
     "normalTraveler": "Normal Traveler",
     "travelerAsPerson": "Traveling as person",
     "driverLabel": "Driver",
-    "shipmentDriversOnly": "Shipment offers are for drivers only (travelers with a vehicle)",
-    "requestedShipmentsOnlyForVehicleOwners": "Requested shipments only available for vehicle owners",
     "pendingRating": "Pending Rating",
     "rateUser": "Rate",
     "isVehicleRented": "Is the vehicle rented?",
@@ -139,43 +129,21 @@
     "applicationRejected": "Application Rejected",
     "cannotReapply": "Your application was rejected. You cannot reapply at this time.",
     "alreadyApproved": "Already Approved",
-    "alreadyCompanyAccount": "You already have an approved company account.",
     "alreadyDriverAccount": "You already have an approved driver account.",
     "ok": "OK",
-    "companyRegistration": "Company Registration",
-    "companyInfo": "Company Information",
-    "companyName": "Company Name",
-    "companyAddress": "Company Address",
-    "crNumber": "CR Number",
-    "crNumberDigitsOnly": "The CR number must contain digits only",
-    "uploadCR": "Upload CR Document",
-    "upgradeToBusiness": "Upgrade to Business Account",
     "upgradeToDriver": "Upgrade to Driver (with vehicle)",
-    "companyAccessRestricted": "Company Feature",
-    "mustBeVerifiedCompany": "Only verified companies can access this feature.",
-    "applicationRejected": "Application Rejected",
-    "verifiedCompanyAccount": "Verified Company Account",
     "driverRating": "Traveler Rating",
     "clientRating": "Sender Rating",
     "noRatings": "No ratings yet",
-
     "reviews": "reviews",
     "search": "Search",
     "findTrip": "Find Trip",
     "findDriver": "Find Driver",
     "weight": "Weight",
     "myTrips": "My Trips",
-
-    "myOffers": "My Offers",
-    "myShipments": "My Shipments",
     "myRequests": "My Requests",
-    "noOffersYet": "No offers received yet",
     "fieldRequired": "Field required",
-
-    "makeOffer": "Make an Offer",
     "submit": "Submit",
-    "shipmentDetails": "Shipment Details",
-    "offersReceived": "Offers Received",
     "accept": "Accept",
     "invalidCredentialsMessage": "Invalid email or password",
     "emailNotConfirmedMessage": "Please confirm your email before logging in",
@@ -189,19 +157,15 @@
     "confirmCloseRequest": "Are you sure you want to close this request? This action cannot be undone.",
     "requestClosed": "Request Closed",
     "statusUpdated": "Status updated",
-    "offerAccepted": "Offer Accepted! Shipment marked as Booked.",
     "startTrip": "Start Trip",
     "deliver": "Deliver",
     "markDelivered": "Mark Delivered",
     "done": "Done",
-    "ok": "OK",
-    "selectShipment": "Select Shipment",
     "tripDetails": "Trip Details",
     "rememberMe": "Remember Me",
     "logoutConfirmation": "Are you sure you want to logout?",
     "traveler": "Traveler",
     "unknownTraveler": "Unknown Traveler",
-    "createShipmentFirst": "Please create a shipment request first",
     "requestSent": "Request sent to traveler!",
     "ratings": "Ratings",
     "travelerRating": "Traveler Rating",
@@ -280,15 +244,27 @@
     "travelerPerson": "Traveler (Person)",
     "errorInternalOnlyHomeCountry": "Internal routes must be within {country}.",
     "@errorInternalOnlyHomeCountry": {
-        "placeholders": { "country": { "type": "String" } }
+        "placeholders": {
+            "country": {
+                "type": "String"
+            }
+        }
     },
     "errorExternalMustBeOutside": "This route is internal as both locations are in {country}. Please select External mode for outside routes.",
     "@errorExternalMustBeOutside": {
-        "placeholders": { "country": { "type": "String" } }
+        "placeholders": {
+            "country": {
+                "type": "String"
+            }
+        }
     },
     "errorExternalMustInvolveHomeCountry": "For external routes, {country} must be either the origin or the destination.",
     "@errorExternalMustInvolveHomeCountry": {
-        "placeholders": { "country": { "type": "String" } }
+        "placeholders": {
+            "country": {
+                "type": "String"
+            }
+        }
     },
     "bookNow": "Send Booking Request",
     "orders": "Orders",
@@ -297,7 +273,6 @@
     "noGpsProvided": "No precise GPS location provided",
     "gpsAvailable": "GPS Coordinates Available",
     "openInMaps": "Open in Maps",
-    "shipment": "Shipment",
     "type": "Type",
     "weightLabel": "Weight",
     "timeLabel": "Time",
@@ -313,9 +288,7 @@
     "inTransitBadge": "In Transit",
     "completedBadge": "Completed",
     "cancelledBadge": "Cancelled",
-    "offerSent": "Offer sent!",
     "now": "Now",
-    "offerSentTitle": "Offer Sent",
     "pickupLabel": "Pickup",
     "dropoffLabel": "Dropoff",
     "optionalMessage": "Optional Message",
@@ -338,7 +311,7 @@
     "commentHint": "Add a comment (optional)...",
     "enterComment": "Enter your comment",
     "subject": "Subject",
-    "ticketStatus": "Status",
+    "ticketStatus": "Ticket Status",
     "ticketIsClosed": "This ticket is closed.",
     "updatedAt": "Updated at",
     "noMessagesYet": "No messages yet. Start the conversation!",
@@ -360,7 +333,6 @@
     "uploadFailed": "Upload failed. Please try again.",
     "driverLicense": "Driver License",
     "rentalContract": "Rental Contract",
-    "crDocument": "CR Document",
     "view": "View",
     "replace": "Replace",
     "avatarUpdateRestricted": "You can update your profile photo in",
@@ -392,25 +364,14 @@
     "thankYouForRating": "Thank you for rating!",
     "waitingForSenderToHandOver": "Waiting for sender to hand over the goods",
     "waitingForSenderToPay": "Waiting for sender to mark payment",
-    "anotherOfferAccepted": "Another offer has already been accepted",
-    "otherOfferAcceptedBadge": "OTHER ACCEPTED",
     "requestedOnLabel": "Requested on",
-    "offerStartTripHint": "Action: Start trip to update status",
-    "offerMarkDeliveredHint": "Action: Mark delivered when done",
-    "offerStartButton": "Start",
-    "offerDeliverButton": "Deliver",
-    "offerTripStarted": "Trip started",
-    "offerMarkedDelivered": "Marked as delivered",
     "chatClientLabel": "Client",
     "operationHistory": "Operation History",
-    "eventOfferCreated": "Offer Created",
     "eventRequestCreated": "Request Created",
     "eventBookingCreated": "Booking Created",
     "eventBookingAccepted": "Booking Accepted",
     "eventBookingRejected": "Booking Rejected",
     "eventCommunicationStarted": "Communication Started",
-    "eventOfferAccepted": "Offer Accepted",
-    "eventOfferRejected": "Offer Rejected",
     "eventDeliveredVerifiedOtp": "Delivered (Verified OTP)",
     "eventGoodsHanded": "Goods Handed Over",
     "eventGoodsReceived": "Goods Received",
@@ -440,17 +401,10 @@
     "credentialsExpired": "Your subscription or license has expired. Please renew.",
     "cannotCancelTripActiveBookings": "Cannot cancel trip: Contains active bookings that are in transit, delivered, or paid.",
     "errorFetchingTrips": "Could not fetch trips. Please try again.",
-    "requestAlreadySent": "Request already sent to this driver for this shipment.",
+    "requestAlreadySent": "Request already sent to this driver for this delivery.",
     "bookingRequestExists": "You already have a booking request for this trip.",
-    "anotherOfferAccepted": "Another offer has already been accepted for this shipment.",
-    "shipmentAlreadyBooked": "This shipment has already been booked with another driver.",
     "cannotCancelGoodsHandedOver": "Cannot cancel: goods have already been handed over to the driver.",
     "cannotCancelPaymentConfirmed": "Cannot cancel: payment has already been confirmed.",
-    "failedCreateShipment": "Failed to create shipment. Please try again.",
-    "failedLoadShipments": "Failed to load shipments. Please try again.",
-    "failedSearchShipments": "Failed to search shipments. Please try again.",
-    "failedUpdateShipmentStatus": "Failed to update shipment status.",
-    "failedLoadShipmentDetails": "Failed to load shipment details.",
     "couldNotResolveLocation": "Could not resolve location address. Please select a specific town if available.",
     "reportUser": "Report User",
     "reportUserDescription": "Please describe why you are reporting this user:",
@@ -462,37 +416,33 @@
     "warningCheckGoodsTitle": "Important Traveler Notice",
     "warningCheckGoodsBody": "We advise you to inspect the goods and ensure their legality. The platform only connects parties and bears no legal or ethical responsibility.",
     "warningCheckTravelerTitle": "Important Sender Notice",
-    "warningCheckTravelerBody": "Please verify the traveler's identity. The platform is not responsible for any loss or damage to the shipment, legally or ethically.",
+    "warningCheckTravelerBody": "Please verify the traveler's identity. The platform is not responsible for any loss or damage to the goods, legally or ethically.",
     "policyWarningDialogTitle": "Disclaimer",
-    "policyWarningDialogBody": "Are you sure you want to accept this offer?\n\nWe advise you to verify the traveler. The platform explicitly disclaims all liability for any loss or damage to the shipment, legally or ethically. Our role is solely to connect the parties.",
-    "acceptAndProceed": "Agree & Accept Offer",
+    "policyWarningDialogBody": "Are you sure you want to accept this request?\n\nWe advise you to verify the traveler. The platform explicitly disclaims all liability for any loss or damage to the goods, legally or ethically. Our role is solely to connect the parties.",
+    "acceptAndProceed": "Agree & Accept",
     "acceptBookingAndProceed": "Agree & Accept Booking",
     "chatDisabledRejected": "Chat disabled because booking is rejected.",
-    "chatDisabledOtherAccepted": "Chat disabled because another offer was accepted.",
+    "chatDisabledOtherAccepted": "Chat disabled because another booking was accepted.",
     "chatDisabledCompleted": "Chat disabled as the trip is completed.",
     "chatDisabledCancelled": "Chat disabled because booking is cancelled.",
-    "chatDisabledGeneric": "Chat is currently unavailable.",
     "chatDisabledGeneric": "Chat is currently unavailable.",
     "privacyAndSafety": "Privacy & Safety",
     "blockedUsers": "Blocked Users",
     "noBlockedUsers": "No blocked users found",
     "unblock": "Unblock",
-    "unknown": "Unknown",
-    "unexpectedError": "Unexpected error occurred",
-    "blockUserConfirm": "Are you sure you want to block this user? You will no longer see their messages or offers.",
+    "blockUserConfirm": "Are you sure you want to block this user? You will no longer see their messages or requests.",
     "userBlockedSuccess": "User blocked successfully.",
     "userUnblockedSuccess": "User unblocked successfully.",
     "unblockUserConfirm": "Are you sure you want to unblock this user? You will be able to communicate with them again.",
-    "cannotBlockActiveEngagement": "You cannot block this user because you have an active trip or shipment with them.",
+    "cannotBlockActiveEngagement": "You cannot block this user because you have an active trip or delivery with them.",
     "cannotBookBlockedUser": "Cannot book trip with a blocked user.",
     "errorLoadingProfile": "Error loading profile",
     "errorSavingProfile": "Error saving profile",
     "pleaseSelectPickupDropoff": "Please select Pickup and Dropoff locations",
-    "errorCreatingShipment": "Error creating shipment",
     "couldNotGetLocation": "Could not get location",
     "errorLoadingReviews": "Error loading reviews",
     "prohibitedItemsTitle": "Prohibited Items",
-    "prohibitedItemsDisclaimer": "Please ensure your shipment does not contain any of the following items:",
+    "prohibitedItemsDisclaimer": "Please ensure your package does not contain any of the following items:",
     "prohibitedDrugs": "Drugs & Narcotics",
     "prohibitedAlcohol": "Alcohol",
     "prohibitedWeapons": "Weapons & Explosives",
@@ -502,18 +452,17 @@
     "viewProhibitedItems": "View Prohibited Items",
     "close": "Close",
     "deliveryCodeLabel": "Delivery Code (OTP)",
-    "deliveryCodeInstruction": "Share this code with the traveler only when you receive your shipment.",
+    "deliveryCodeInstruction": "Share this code with the traveler only when you receive your package.",
     "enterDeliveryCode": "Enter Delivery Code",
     "deliveryCodeOptional": "Enter 4-digit code if available to confirm instantly.",
     "confirmWithCode": "Confirm with Code",
     "markDeliveredWithoutCode": "Mark Delivered without Code",
     "invalidCode": "Invalid Code",
     "notifDeliveredVerified": "Delivery Verified!",
-    "notifDeliveredVerifiedBody": "The shipment has been delivered and verified with OTP.",
+    "notifDeliveredVerifiedBody": "The package has been delivered and verified with OTP.",
     "notifClientConfirmedReceipt": "Receipt Confirmed",
-    "notifClientConfirmedReceiptBody": "Client has confirmed receipt of the shipment.",
-    "pleaseUploadCRDocument": "Please upload the CR Document.",
-    "pleaseLogin": "Please login",
+    "notifClientConfirmedReceiptBody": "Client has confirmed receipt of the package.",
+    "pleaseLogin": "Please login to subscribe to alerts",
     "searchRadius": "Search Radius",
     "fileSelected": "File selected",
     "fileSelectedFor": "File selected for {type}",
@@ -538,26 +487,21 @@
     "aboutTripShipDescription": "TripShip is a comprehensive logistics platform connecting travelers and senders. We make shipping easier, faster, and more reliable.",
     "notifBookingApproved": "Booking Request Approved",
     "notifBookingApprovedBody": "Your booking request has been approved",
-    "notifOfferAcceptedBody": "Your offer has been accepted! Get ready to deliver",
     "notifSenderHandedGoods": "Sender Handed Over Goods",
     "notifConfirmReceipt": "Please confirm receipt",
     "notifPaymentMarked": "Payment Marked",
     "notifConfirmPayment": "Please confirm payment received",
-    "notifTravelerDelivered": "Traveler Delivered Shipment",
+    "notifTravelerDelivered": "Traveler Delivered Package",
     "notifGoodsReceived": "Goods Received",
-    "notifGoodsInTransit": "Traveler confirmed receipt - shipment in transit",
+    "notifGoodsInTransit": "Traveler confirmed receipt - goods in transit",
     "notifPaymentConfirmed": "Payment Confirmed",
     "notifPaymentConfirmedBody": "Traveler confirmed payment received",
     "notifDeliveryCompleted": "Sender confirmed receipt - request closed",
     "notifNewMessage": "New message",
-    "notifNewOffer": "New Offer!",
-    "notifNewOfferBody": "You have received a new offer for your shipment",
-    "notifNewRequest": "New Shipment Request",
-    "notifNewRequestBody": "You have received a new shipment request",
     "notifNewBookingRequest": "New Booking Request!",
     "notifNewBookingRequestBody": "Someone wants to book your trip",
-    "notifOfferDeclined": "Offer Declined",
-    "notifOfferDeclinedBody": "Your offer was not accepted this time",
+    "notifBookingDeclined": "Booking Declined",
+    "notifBookingDeclinedBody": "Your booking request was not accepted this time",
     "notifBookingCancelled": "Booking Cancelled",
     "notifBookingCancelledBody": "A booking has been cancelled",
     "notifNewTripMatchingAlert": "New Trip Matching Your Alert",
@@ -577,14 +521,11 @@
     "sendCode": "Send Code",
     "allProvinces": "All Provinces",
     "allCities": "All Cities",
-    "province": "Province",
-    "city": "City",
     "allOfProvince": "{province} Province",
     "allOrigins": "All Origins",
     "allDestinations": "All Destinations",
     "selectProvince": "Select Province",
     "selectCity": "Select City",
-    "clearFilters": "Clear Filters",
     "repeatTrip": "Repeat Trip",
     "selectRepeatDays": "Select Repeat Days",
     "createAlert": "Create Alert",
@@ -594,25 +535,21 @@
     "alertRequiresOriginAndDest": "Please specify origin and destination to create an alert",
     "pleaseSelectOriginAndDest": "Please select both origin and destination cities",
     "myAlerts": "My Alerts",
-  "shipmentAlerts": "Shipment Alerts",
-  "addAlert": "Add Alert",
+    "addAlert": "Add Alert",
     "noAlertsYet": "No alerts yet. Create one from the trips search.",
     "deleteAlert": "Delete Alert",
     "confirmDeleteAlert": "Delete this alert?",
     "alertDeleted": "Alert deleted",
     "delete": "Delete",
-    "pleaseLogin": "Please login to subscribe to alerts",
     "arrivalTime": "Arrival Time",
     "estimatedTime": "Estimated Time",
     "dateTime": "Date and Time",
     "alertsLimitReached": "You have reached the limit of {limit} alerts. Please delete an alert to add a new one.",
     "maxAlertsReachedTitle": "Limit Reached",
     "alertType": "Alert Type",
-    "myShipmentAlerts": "My Shipment Alerts",
     "manageAlerts": "Manage Alerts",
     "alertLimitExceeded": "Alert Limit Exceeded",
     "deleteAlertToAddNew": "Please delete an existing alert to add a new one.",
-    "shipmentAlertsLimitReached": "You have reached the limit of {limit} shipment alerts. Please delete one to add a new one.",
     "profilePhotoLabel": "Profile Photo",
     "completeYourProfile": "Complete Your Profile",
     "missing": "Missing",
@@ -623,31 +560,19 @@
     "vehicleColor": "Vehicle Color",
     "supportChat": "Support Chat",
     "typeMessage": "Type a message",
-    "companyOnlyFeatureTitle": "Company Feature",
-    "companyOnlyFeatureBody": "This feature is only available for company accounts.",
-    "becomeACompany": "Become a Company",
     "driverOnlyFeatureTitle": "Driver Feature",
-    "driverOnlyFeatureBody": "Accessing shipment requests is restricted to drivers with registered vehicles. Would you like to upgrade to a driver account now?",
-    "onboardingEarnMoney": "Earn money by delivering shipments during your travels",
+    "driverOnlyFeatureBody": "Accessing delivery requests is restricted to drivers with registered vehicles. Would you like to upgrade to a driver account now?",
+    "onboardingEarnMoney": "Earn money by delivering packages during your travels",
     "onboardingSendPackages": "Send packages anywhere at affordable prices",
     "onboardingSecure": "Secure",
     "onboardingFast": "Fast",
     "onboardingAffordable": "Affordable",
-    "notifNewShipmentMatchingAlert": "New Shipment Match",
-    "notifNewShipmentMatchingAlertBody": "A new shipment matches your saved route alert!",
-    "@shipmentAlertsLimitReached": {
-      "placeholders": {
-        "limit": {
-          "type": "int"
-        }
-      }
-    },
     "@alertsLimitReached": {
-      "placeholders": {
-        "limit": {
-          "type": "int"
+        "placeholders": {
+            "limit": {
+                "type": "int"
+            }
         }
-      }
     },
     "uploadingAvatar": "Uploading avatar...",
     "shareLocation": "Share Location",
@@ -656,35 +581,31 @@
     "locationServiceDisabled": "Location services are disabled",
     "sharingLocation": "Sharing location...",
     "@allOfProvince": {
-      "placeholders": {
-        "province": {
-          "type": "String"
+        "placeholders": {
+            "province": {
+                "type": "String"
+            }
         }
-      }
     },
-    "shipmentDeliveryCode": "Delivery Code",
-    "shipmentDeliveryCodeCopied": "Code copied",
-    "shipmentShareCodeHint": "Share this code with the driver at delivery",
-    "shipmentHandedToDriver": "Handed shipment to driver",
-    "shipmentPaymentSentToDriver": "Payment Sent to Driver",
-    "shipmentDriverReceivedGoods": "Driver received shipment",
-    "shipmentDriverConfirmedPayment": "Driver confirmed payment",
-    "shipmentConfirmReceived": "Confirm Shipment Received",
-    "shipmentMarkDelivered": "Mark Shipment as Delivered",
-    "shipmentConfirmPaymentReceived": "Confirm Payment Received",
-    "shipmentCancelShipment": "Cancel Shipment",
-    "shipmentCancelConfirm": "Cancel this shipment engagement?",
-    "shipmentCancelConfirmYes": "Yes, Cancel",
-    "statusPickedUp": "Picked Up",
+    "deliveryCode": "Delivery Code",
+    "deliveryCodeCopied": "Code copied",
+    "shareDeliveryCodeHint": "Share this code with the driver at delivery",
+    "goodsHandedToDriver": "Handed goods to driver",
+    "paymentSentToDriver": "Payment Sent to Driver",
+    "driverReceivedGoods": "Driver received goods",
+    "driverConfirmedPayment": "Driver confirmed payment",
+    "confirmGoodsReceived": "Confirm Goods Received",
+    "markGoodsDelivered": "Mark Goods as Delivered",
+    "confirmPaymentReceived": "Confirm Payment Received",
+    "cancelDelivery": "Cancel Delivery",
+    "cancelDeliveryConfirm": "Cancel this delivery engagement?",
+    "cancelDeliveryConfirmYes": "Yes, Cancel",
     "statusInTransit": "In Transit",
-    "statusCompleted": "Completed",
     "supportTickets": "Support Tickets",
     "noTicketsFound": "No support tickets found",
     "newTicket": "New Ticket",
-    "subject": "Subject",
     "createTicket": "Create Ticket",
     "ticketCreated": "Ticket created successfully",
-    "ticketStatus": "Ticket Status",
     "open": "Open",
     "closed": "Closed",
     "admin": "Admin",
@@ -698,15 +619,14 @@
     "chatOnWhatsApp": "Chat on WhatsApp",
     "updateRequired": "Update Required",
     "updateNow": "Update Now",
-    "cancelOffer": "Cancel Offer",
     "domestic": "Domestic",
     "international": "International",
     "acceptAction": "Accept",
     "rejectAction": "Reject",
     "chatAction": "Chat",
-    "onboardingSubtitle1": "Request shipments from different countries and cities at affordable prices",
-    "onboardingSubtitle2": "Deliver shipments to different countries and cities and earn money",
-    "onboardingSubtitle3": "Fast, safe, and reliable delivery for all your shipments",
+    "onboardingSubtitle1": "Request deliveries from different countries and cities at affordable prices",
+    "onboardingSubtitle2": "Deliver packages to different countries and cities and earn money",
+    "onboardingSubtitle3": "Fast, safe, and reliable delivery for all your packages",
     "getStarted": "Get Started",
     "skip": "Skip",
     "next": "Next",
@@ -715,35 +635,35 @@
     "yesterday": "Yesterday",
     "daysAgo": "{count} days ago",
     "@daysAgo": {
-      "placeholders": {
-        "count": {
-          "type": "int"
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
         }
-      }
     },
     "weeksAgo": "{count} weeks ago",
     "@weeksAgo": {
-      "placeholders": {
-        "count": {
-          "type": "int"
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
         }
-      }
     },
     "monthsAgo": "{count} months ago",
     "@monthsAgo": {
-      "placeholders": {
-        "count": {
-          "type": "int"
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
         }
-      }
     },
     "yearsAgo": "{count} years ago",
     "@yearsAgo": {
-      "placeholders": {
-        "count": {
-          "type": "int"
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
         }
-      }
     },
     "updateMessage": "A new version of TripShip is available. Please update to continue using the app.",
     "showMore": "Show more",

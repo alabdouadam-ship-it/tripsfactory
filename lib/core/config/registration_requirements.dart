@@ -2,7 +2,7 @@
 /// documents must a role provide to apply".
 ///
 /// The logic here is a faithful, side-effect-free extraction of the validators
-/// that previously lived inline in the traveler/company registration screens.
+/// that previously lived inline in the traveler registration screen.
 /// It returns *which* prompt to show (a [MissingDocPrompt]); the screens map
 /// that to a localized message, keeping copy in the ARB layer.
 ///
@@ -16,8 +16,7 @@ library;
 ///   identity         → pleaseUploadIdentityProof
 ///   vehicleDocuments → pleaseUploadVehicleDocuments
 ///   rentalContract   → pleaseUploadRentalContract
-///   companyCr        → pleaseUploadCRDocument
-enum MissingDocPrompt { identity, vehicleDocuments, rentalContract, companyCr }
+enum MissingDocPrompt { identity, vehicleDocuments, rentalContract }
 
 class RegistrationRequirements {
   RegistrationRequirements._();
@@ -52,12 +51,6 @@ class RegistrationRequirements {
       }
     }
 
-    return null;
-  }
-
-  /// Company application requirement check — the CR document is mandatory.
-  static MissingDocPrompt? missingCompanyDoc({required bool hasCr}) {
-    if (!hasCr) return MissingDocPrompt.companyCr;
     return null;
   }
 }

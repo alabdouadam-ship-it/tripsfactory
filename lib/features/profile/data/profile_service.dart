@@ -97,7 +97,6 @@ class ProfileService {
     required String fullName,
     String? phoneNumber,
     String? bio,
-    String? accountType,
   }) async {
     final updates = <String, dynamic>{'full_name': fullName.trim()};
     if (phoneNumber != null) {
@@ -108,7 +107,6 @@ class ProfileService {
     if (bio != null) {
       updates['bio'] = bio.trim().isEmpty ? null : bio.trim();
     }
-    // account_type omitted - column may not exist in profiles table; name/phone/bio are core fields
 
     await _client.from('profiles').update(updates).eq('id', userId);
   }
@@ -200,46 +198,6 @@ class ProfileService {
       );
       rethrow;
     }
-  }
-
-  // Get Company Status
-  Future<String> getCompanyStatus(String userId) async {
-    try {
-      final response = await _client
-          .from('profiles')
-          .select('company_status')
-          .eq('id', userId)
-          .single();
-      final status = response['company_status'] as String? ?? 'none';
-      _cacheString('company_status_$userId', status);
-      return status;
-    } catch (e) {
-      return await _getStringFromCache('company_status_$userId') ?? 'none';
-    }
-  }
-
-  // Submit Company Application
-  Future<void> submitCompanyApplication({
-    required String userId,
-    required String companyName,
-    required String companyAddress,
-    required String crNumber,
-    required String crUrl,
-    String? phoneNumber,
-  }) async {
-    final updates = {
-      'company_status': DomainConfig.statusPending,
-      'company_name': companyName,
-      'company_address': companyAddress,
-      'company_cr_number': crNumber,
-      'company_cr_url': crUrl,
-      // We don't set 'account_type' to 'company' yet. Admin approval does that.
-    };
-    if (phoneNumber != null && phoneNumber.isNotEmpty) {
-      updates['phone_number'] = phoneNumber;
-    }
-
-    await _client.from('profiles').update(updates).eq('id', userId);
   }
 
   // Search Travelers (Available & Approved)
@@ -374,8 +332,6 @@ class ProfileService {
     'traveler_license_url_pending',
     'rental_contract_url',
     'rental_contract_url_pending',
-    'company_cr_url',
-    'company_cr_url_pending',
     'avatar_url',
   };
 

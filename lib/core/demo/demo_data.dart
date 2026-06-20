@@ -72,26 +72,22 @@ class DemoData {
     id: DemoConfig.demoUserId,
     fullName: 'Demo User',
     phoneNumber: '+971500000000',
-    accountType: DomainConfig.accountCompany,
     bio: 'Exploring TripShip in demo mode.',
     createdAt: DateTime.now().subtract(const Duration(days: 3)),
     clientRatingAvg: 4.8,
     clientRatingCount: 12,
-    // Approved on both sides so demo can enter Driver mode and Company features.
+    // Approved so demo can enter Driver mode.
     travelerStatus: DomainConfig.statusApproved,
     travelerType: DomainConfig.travelerWithVehicle,
     isDriver: true,
     travelerRatingAvg: 4.7,
     travelerRatingCount: 9,
-    companyStatus: DomainConfig.statusApproved,
-    companyName: 'Demo Logistics LLC',
     isTrusted: true,
   );
 
   static final Profile _driverSara = Profile(
     id: 'demo-driver-1',
     fullName: 'Sara Al Maktoum',
-    accountType: 'individual',
     isDriver: true,
     travelerRatingAvg: 4.9,
     travelerRatingCount: 47,
@@ -102,7 +98,6 @@ class DemoData {
   static final Profile _driverOmar = Profile(
     id: 'demo-driver-2',
     fullName: 'Omar Haddad',
-    accountType: 'individual',
     isDriver: true,
     travelerRatingAvg: 4.6,
     travelerRatingCount: 23,

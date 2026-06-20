@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart'
 /// White-label seam for authentication options.
 ///
 /// ## Apple requirement (App Store Review Guideline 4.8)
-/// Apple requires that an iOS app offering **any** third-party or social login
-/// (e.g. Google) **must also** offer **Sign in with Apple**. This product ships
+/// Apple requires that an iOS app providing **any** third-party or social login
+/// (e.g. Google) **must also** provide **Sign in with Apple**. This product ships
 /// with Sign in with Apple **not implemented**, so to stay App-Store-compliant
 /// out of the box, social sign-in (Google) is **hidden on Apple platforms**
 /// (iOS/macOS) by default. Android and other platforms show Google normally.

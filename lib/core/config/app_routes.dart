@@ -17,17 +17,9 @@ class AppRoutes {
   static const String tripDetails = '/trip-details';
   static const String myTrips = '/my-trips';
 
-  static const String postShipment = '/post-shipment';
-  static const String shipmentDetails = '/shipment-details';
-  static const String myShipments = '/my-shipments';
-
   static const String myAlerts = '/my-alerts';
-  static const String myShipmentAlerts = '/my-shipment-alerts';
-
-  static const String offerDetails = '/offer-details';
 
   static const String travelerRegistration = '/traveler-registration';
-  static const String companyRegistration = '/company-registration';
   static const String internalOnly = '/internal-only';
   static const String onboarding = '/onboarding';
 
@@ -35,8 +27,6 @@ class AppRoutes {
   static const String splash = '/splash';
   static const String notifications = '/notifications';
   static const String otpVerification = '/otp-verification';
-  static const String editShipment = '/edit-shipment';
-  static const String myOffers = '/my-offers';
   static const String myRequests = '/my-requests';
   static const String chat = '/chat';
   static const String travelerProfile = '/traveler-profile';

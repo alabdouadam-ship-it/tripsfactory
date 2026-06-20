@@ -21,7 +21,7 @@
     "default": "en"
   },
   "theme": {
-    "$comment": "Themes this fork offers and the first-launch default. Must match AppTheme.supportedThemes and ThemeNotifier.defaultThemeMode (order matters).",
+    "$comment": "Themes this fork supports and the first-launch default. Must match AppTheme.supportedThemes and ThemeNotifier.defaultThemeMode (order matters).",
     "supported": [
       "tripshipLight",
       "tripshipDark",

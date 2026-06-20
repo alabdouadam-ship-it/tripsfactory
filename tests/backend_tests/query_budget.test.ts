@@ -51,20 +51,4 @@ describe('Stage 3: Query and payload budget', () => {
     const rows = (data as unknown[]) ?? [];
     expect(rows.length).toBeLessThanOrEqualTo(maxRows);
   });
-
-  it('RPC search_shipments_rpc returns at most max_rows_per_fetch rows', async () => {
-    const client = createClient(supabaseUrl!, serviceRoleKey!, { auth: { persistSession: false } });
-    const maxRows = getBudget('max_rows_per_fetch', 50);
-    const limit = Math.min(20, maxRows);
-    const { data, error } = await client.rpc('search_shipments_rpc', {
-      p_limit: limit,
-      p_offset: 0,
-    });
-    if (error) {
-      expect(error.message).toBeDefined();
-      return;
-    }
-    const rows = (data as unknown[]) ?? [];
-    expect(rows.length).toBeLessThanOrEqualTo(maxRows);
-  });
 });

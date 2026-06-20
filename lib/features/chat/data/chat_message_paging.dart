@@ -4,8 +4,7 @@ import 'package:tripship/features/chat/data/chat_model.dart';
 ///
 /// The realtime subscription is capped to this many of the most recent
 /// messages so a long-lived thread never streams its entire history. Older
-/// messages are paged in on demand via `fetchOlderMessages` /
-/// `fetchOlderOfferMessages`.
+/// messages are paged in on demand via `fetchOlderMessages`.
 const int kChatPageSize = 100;
 
 /// Merges [incoming] messages into [current], keyed by message id, and returns

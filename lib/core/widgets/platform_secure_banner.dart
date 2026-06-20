@@ -3,7 +3,7 @@ import 'package:tripship/l10n/generated/app_localizations.dart';
 
 /// A structured banner that communicates platform security and mediation
 /// on high-stakes screens like booking confirmations, payment screens,
-/// and shipment posting.
+/// and trip posting.
 class PlatformSecureBanner extends StatelessWidget {
   final String message;
   final IconData icon;

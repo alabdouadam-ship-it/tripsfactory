@@ -10,7 +10,6 @@ abstract class ChatMessage with _$ChatMessage {
   const factory ChatMessage({
     required String id,
     @JsonKey(name: 'booking_id') required String bookingId,
-    @JsonKey(name: 'offer_id') String? offerId,
     @JsonKey(name: 'sender_id') required String senderId,
     required String content,
     @JsonKey(name: 'created_at') required DateTime createdAt,
@@ -20,11 +19,8 @@ abstract class ChatMessage with _$ChatMessage {
     @JsonKey(name: 'is_read') @Default(false) bool isRead,
   }) = _ChatMessage;
 
-  /// True when this message belongs to an offer chat thread.
-  bool get isOfferThread => offerId != null && offerId!.isNotEmpty;
-
   /// True when this message belongs to a booking chat thread.
-  bool get isBookingThread => !isOfferThread && bookingId.isNotEmpty;
+  bool get isBookingThread => bookingId.isNotEmpty;
 
   factory ChatMessage.fromJson(Map<String, dynamic> json) =>
       _$ChatMessageFromJson(json);

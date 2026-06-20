@@ -245,7 +245,6 @@ class _NotificationTile extends StatelessWidget {
     final type = data['type']?.toString();
     final bookingId = data['booking_id'] ?? data['bookingId'];
     final tripId = data['trip_id'] ?? data['tripId'];
-    final shipmentId = data['shipment_id'] ?? data['shipmentId'];
     final ticketId = data['ticket_id'] ?? data['ticketId'];
     final otherUserName = data['other_user_name'] ?? data['otherUserName'];
     final otherUserId = data['other_user_id'] ?? data['otherUserId'];
@@ -279,13 +278,7 @@ class _NotificationTile extends StatelessWidget {
       return;
     }
 
-    // 3. Shipment Details
-    if (shipmentId != null) {
-      context.push('${AppRoutes.shipmentDetails}?id=$shipmentId');
-      return;
-    }
-
-    // 4. Fallback: booking with chat info
+    // 3. Fallback: booking with chat info
     if (bookingId != null &&
         otherUserName != null &&
         otherUserName.toString().isNotEmpty) {

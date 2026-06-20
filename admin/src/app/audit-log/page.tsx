@@ -60,11 +60,9 @@ function targetIcon(targetType: string | null) {
   if (!targetType) return '📄';
   const normalized = targetType.toLowerCase();
   if (/(user|profile|admin)/.test(normalized)) return '👤';
-  if (/(shipment|package)/.test(normalized)) return '📦';
+  if (/(delivery|package)/.test(normalized)) return '📦';
   if (/(trip|journey)/.test(normalized)) return '🚚';
   if (/(booking|reservation)/.test(normalized)) return '🛒';
-  if (/(offer|bid)/.test(normalized)) return '🤝';
-  if (/(company|merchant)/.test(normalized)) return '🏢';
   if (/(driver|traveler)/.test(normalized)) return '🚗';
   if (/(notification|message)/.test(normalized)) return '📧';
   return '📄';

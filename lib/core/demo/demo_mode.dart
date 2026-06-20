@@ -12,8 +12,6 @@ import 'package:tripship/core/services/notification_service.dart';
 import 'package:tripship/core/utils/logger.dart';
 import 'package:tripship/features/auth/data/auth_service.dart';
 import 'package:tripship/features/bookings/data/repositories/booking_repository_impl.dart';
-import 'package:tripship/features/offers/data/offer_model.dart';
-import 'package:tripship/features/offers/data/offer_providers.dart';
 import 'package:tripship/features/trips/data/repositories/trip_repository_impl.dart';
 import 'package:tripship/features/trips/data/trip_service.dart';
 
@@ -54,16 +52,10 @@ List<Override> demoProviderOverrides() {
     notificationServiceProvider.overrideWith(
       (ref) => DemoNotificationService(),
     ),
-    // Avoid backend queries for config/ads/offers/shipments.
+    // Avoid backend queries for config/ads.
     appConfigProvider.overrideWith((ref) async => AppConfig(updateRequired: false)),
     activeAdsProvider.overrideWith(
       (ref) async => const <Map<String, dynamic>>[],
-    ),
-    myOffersStreamProvider.overrideWith(
-      (ref) => Stream.value(const <Offer>[]),
-    ),
-    myShipmentsWithOffersProvider.overrideWith(
-      (ref) => Stream.value(const <ShipmentWithOfferCount>[]),
     ),
   ];
 }

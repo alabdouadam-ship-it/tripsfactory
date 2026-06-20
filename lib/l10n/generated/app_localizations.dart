@@ -398,23 +398,11 @@ abstract class AppLocalizations {
   /// **'Bio / Description'**
   String get bio;
 
-  /// No description provided for @accountType.
-  ///
-  /// In en, this message translates to:
-  /// **'Account Type'**
-  String get accountType;
-
   /// No description provided for @individual.
   ///
   /// In en, this message translates to:
   /// **'Individual'**
   String get individual;
-
-  /// No description provided for @company.
-  ///
-  /// In en, this message translates to:
-  /// **'Company'**
-  String get company;
 
   /// No description provided for @verificationStatus.
   ///
@@ -560,23 +548,11 @@ abstract class AppLocalizations {
   /// **'Invalid weight'**
   String get invalidWeight;
 
-  /// No description provided for @postShipment.
+  /// No description provided for @postPackage.
   ///
   /// In en, this message translates to:
   /// **'Send a Package'**
-  String get postShipment;
-
-  /// No description provided for @editShipment.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit Shipment'**
-  String get editShipment;
-
-  /// No description provided for @shipmentUpdated.
-  ///
-  /// In en, this message translates to:
-  /// **'Shipment updated successfully!'**
-  String get shipmentUpdated;
+  String get postPackage;
 
   /// No description provided for @iAmTraveler.
   ///
@@ -605,14 +581,8 @@ abstract class AppLocalizations {
   /// No description provided for @createRequest.
   ///
   /// In en, this message translates to:
-  /// **'Create Shipment Request'**
+  /// **'Create Delivery Request'**
   String get createRequest;
-
-  /// No description provided for @shipmentPosted.
-  ///
-  /// In en, this message translates to:
-  /// **'Shipment request created successfully'**
-  String get shipmentPosted;
 
   /// No description provided for @pickup.
   ///
@@ -625,18 +595,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Dropoff Location'**
   String get dropoff;
-
-  /// No description provided for @companyOnlyFeature.
-  ///
-  /// In en, this message translates to:
-  /// **'Corporate Feature'**
-  String get companyOnlyFeature;
-
-  /// No description provided for @mustBeCompany.
-  ///
-  /// In en, this message translates to:
-  /// **'Only verified companies can post shipment requests. Please switch your account type to \'Company\' in your profile.'**
-  String get mustBeCompany;
 
   /// No description provided for @goToProfile.
   ///
@@ -656,23 +614,17 @@ abstract class AppLocalizations {
   /// **'External'**
   String get externalTrips;
 
-  /// No description provided for @requestedShipments.
-  ///
-  /// In en, this message translates to:
-  /// **'Last Requested Shipments'**
-  String get requestedShipments;
-
   /// No description provided for @noTripsFound.
   ///
   /// In en, this message translates to:
   /// **'No available trips found.'**
   String get noTripsFound;
 
-  /// No description provided for @noShipmentsFound.
+  /// No description provided for @noRequestsFound.
   ///
   /// In en, this message translates to:
-  /// **'No shipment requests found.'**
-  String get noShipmentsFound;
+  /// **'No requests found.'**
+  String get noRequestsFound;
 
   /// No description provided for @country.
   ///
@@ -830,18 +782,6 @@ abstract class AppLocalizations {
   /// **'Driver'**
   String get driverLabel;
 
-  /// No description provided for @shipmentDriversOnly.
-  ///
-  /// In en, this message translates to:
-  /// **'Shipment offers are for drivers only (travelers with a vehicle)'**
-  String get shipmentDriversOnly;
-
-  /// No description provided for @requestedShipmentsOnlyForVehicleOwners.
-  ///
-  /// In en, this message translates to:
-  /// **'Requested shipments only available for vehicle owners'**
-  String get requestedShipmentsOnlyForVehicleOwners;
-
   /// No description provided for @pendingRating.
   ///
   /// In en, this message translates to:
@@ -944,12 +884,6 @@ abstract class AppLocalizations {
   /// **'Already Approved'**
   String get alreadyApproved;
 
-  /// No description provided for @alreadyCompanyAccount.
-  ///
-  /// In en, this message translates to:
-  /// **'You already have an approved company account.'**
-  String get alreadyCompanyAccount;
-
   /// No description provided for @alreadyDriverAccount.
   ///
   /// In en, this message translates to:
@@ -962,77 +896,11 @@ abstract class AppLocalizations {
   /// **'OK'**
   String get ok;
 
-  /// No description provided for @companyRegistration.
-  ///
-  /// In en, this message translates to:
-  /// **'Company Registration'**
-  String get companyRegistration;
-
-  /// No description provided for @companyInfo.
-  ///
-  /// In en, this message translates to:
-  /// **'Company Information'**
-  String get companyInfo;
-
-  /// No description provided for @companyName.
-  ///
-  /// In en, this message translates to:
-  /// **'Company Name'**
-  String get companyName;
-
-  /// No description provided for @companyAddress.
-  ///
-  /// In en, this message translates to:
-  /// **'Company Address'**
-  String get companyAddress;
-
-  /// No description provided for @crNumber.
-  ///
-  /// In en, this message translates to:
-  /// **'CR Number'**
-  String get crNumber;
-
-  /// No description provided for @crNumberDigitsOnly.
-  ///
-  /// In en, this message translates to:
-  /// **'The CR number must contain digits only'**
-  String get crNumberDigitsOnly;
-
-  /// No description provided for @uploadCR.
-  ///
-  /// In en, this message translates to:
-  /// **'Upload CR Document'**
-  String get uploadCR;
-
-  /// No description provided for @upgradeToBusiness.
-  ///
-  /// In en, this message translates to:
-  /// **'Upgrade to Business Account'**
-  String get upgradeToBusiness;
-
   /// No description provided for @upgradeToDriver.
   ///
   /// In en, this message translates to:
   /// **'Upgrade to Driver (with vehicle)'**
   String get upgradeToDriver;
-
-  /// No description provided for @companyAccessRestricted.
-  ///
-  /// In en, this message translates to:
-  /// **'Company Feature'**
-  String get companyAccessRestricted;
-
-  /// No description provided for @mustBeVerifiedCompany.
-  ///
-  /// In en, this message translates to:
-  /// **'Only verified companies can access this feature.'**
-  String get mustBeVerifiedCompany;
-
-  /// No description provided for @verifiedCompanyAccount.
-  ///
-  /// In en, this message translates to:
-  /// **'Verified Company Account'**
-  String get verifiedCompanyAccount;
 
   /// No description provided for @driverRating.
   ///
@@ -1088,29 +956,11 @@ abstract class AppLocalizations {
   /// **'My Trips'**
   String get myTrips;
 
-  /// No description provided for @myOffers.
-  ///
-  /// In en, this message translates to:
-  /// **'My Offers'**
-  String get myOffers;
-
-  /// No description provided for @myShipments.
-  ///
-  /// In en, this message translates to:
-  /// **'My Shipments'**
-  String get myShipments;
-
   /// No description provided for @myRequests.
   ///
   /// In en, this message translates to:
   /// **'My Requests'**
   String get myRequests;
-
-  /// No description provided for @noOffersYet.
-  ///
-  /// In en, this message translates to:
-  /// **'No offers received yet'**
-  String get noOffersYet;
 
   /// No description provided for @fieldRequired.
   ///
@@ -1118,29 +968,11 @@ abstract class AppLocalizations {
   /// **'Field required'**
   String get fieldRequired;
 
-  /// No description provided for @makeOffer.
-  ///
-  /// In en, this message translates to:
-  /// **'Make an Offer'**
-  String get makeOffer;
-
   /// No description provided for @submit.
   ///
   /// In en, this message translates to:
   /// **'Submit'**
   String get submit;
-
-  /// No description provided for @shipmentDetails.
-  ///
-  /// In en, this message translates to:
-  /// **'Shipment Details'**
-  String get shipmentDetails;
-
-  /// No description provided for @offersReceived.
-  ///
-  /// In en, this message translates to:
-  /// **'Offers Received'**
-  String get offersReceived;
 
   /// No description provided for @accept.
   ///
@@ -1220,12 +1052,6 @@ abstract class AppLocalizations {
   /// **'Status updated'**
   String get statusUpdated;
 
-  /// No description provided for @offerAccepted.
-  ///
-  /// In en, this message translates to:
-  /// **'Offer Accepted! Shipment marked as Booked.'**
-  String get offerAccepted;
-
   /// No description provided for @startTrip.
   ///
   /// In en, this message translates to:
@@ -1249,12 +1075,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Done'**
   String get done;
-
-  /// No description provided for @selectShipment.
-  ///
-  /// In en, this message translates to:
-  /// **'Select Shipment'**
-  String get selectShipment;
 
   /// No description provided for @tripDetails.
   ///
@@ -1285,12 +1105,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unknown Traveler'**
   String get unknownTraveler;
-
-  /// No description provided for @createShipmentFirst.
-  ///
-  /// In en, this message translates to:
-  /// **'Please create a shipment request first'**
-  String get createShipmentFirst;
 
   /// No description provided for @requestSent.
   ///
@@ -1808,12 +1622,6 @@ abstract class AppLocalizations {
   /// **'Open in Maps'**
   String get openInMaps;
 
-  /// No description provided for @shipment.
-  ///
-  /// In en, this message translates to:
-  /// **'Shipment'**
-  String get shipment;
-
   /// No description provided for @type.
   ///
   /// In en, this message translates to:
@@ -1904,23 +1712,11 @@ abstract class AppLocalizations {
   /// **'Cancelled'**
   String get cancelledBadge;
 
-  /// No description provided for @offerSent.
-  ///
-  /// In en, this message translates to:
-  /// **'Offer sent!'**
-  String get offerSent;
-
   /// No description provided for @now.
   ///
   /// In en, this message translates to:
   /// **'Now'**
   String get now;
-
-  /// No description provided for @offerSentTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Offer Sent'**
-  String get offerSentTitle;
 
   /// No description provided for @pickupLabel.
   ///
@@ -2186,12 +1982,6 @@ abstract class AppLocalizations {
   /// **'Rental Contract'**
   String get rentalContract;
 
-  /// No description provided for @crDocument.
-  ///
-  /// In en, this message translates to:
-  /// **'CR Document'**
-  String get crDocument;
-
   /// No description provided for @view.
   ///
   /// In en, this message translates to:
@@ -2378,59 +2168,11 @@ abstract class AppLocalizations {
   /// **'Waiting for sender to mark payment'**
   String get waitingForSenderToPay;
 
-  /// No description provided for @anotherOfferAccepted.
-  ///
-  /// In en, this message translates to:
-  /// **'Another offer has already been accepted for this shipment.'**
-  String get anotherOfferAccepted;
-
-  /// No description provided for @otherOfferAcceptedBadge.
-  ///
-  /// In en, this message translates to:
-  /// **'OTHER ACCEPTED'**
-  String get otherOfferAcceptedBadge;
-
   /// No description provided for @requestedOnLabel.
   ///
   /// In en, this message translates to:
   /// **'Requested on'**
   String get requestedOnLabel;
-
-  /// No description provided for @offerStartTripHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Action: Start trip to update status'**
-  String get offerStartTripHint;
-
-  /// No description provided for @offerMarkDeliveredHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Action: Mark delivered when done'**
-  String get offerMarkDeliveredHint;
-
-  /// No description provided for @offerStartButton.
-  ///
-  /// In en, this message translates to:
-  /// **'Start'**
-  String get offerStartButton;
-
-  /// No description provided for @offerDeliverButton.
-  ///
-  /// In en, this message translates to:
-  /// **'Deliver'**
-  String get offerDeliverButton;
-
-  /// No description provided for @offerTripStarted.
-  ///
-  /// In en, this message translates to:
-  /// **'Trip started'**
-  String get offerTripStarted;
-
-  /// No description provided for @offerMarkedDelivered.
-  ///
-  /// In en, this message translates to:
-  /// **'Marked as delivered'**
-  String get offerMarkedDelivered;
 
   /// No description provided for @chatClientLabel.
   ///
@@ -2443,12 +2185,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Operation History'**
   String get operationHistory;
-
-  /// No description provided for @eventOfferCreated.
-  ///
-  /// In en, this message translates to:
-  /// **'Offer Created'**
-  String get eventOfferCreated;
 
   /// No description provided for @eventRequestCreated.
   ///
@@ -2479,18 +2215,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Communication Started'**
   String get eventCommunicationStarted;
-
-  /// No description provided for @eventOfferAccepted.
-  ///
-  /// In en, this message translates to:
-  /// **'Offer Accepted'**
-  String get eventOfferAccepted;
-
-  /// No description provided for @eventOfferRejected.
-  ///
-  /// In en, this message translates to:
-  /// **'Offer Rejected'**
-  String get eventOfferRejected;
 
   /// No description provided for @eventDeliveredVerifiedOtp.
   ///
@@ -2669,7 +2393,7 @@ abstract class AppLocalizations {
   /// No description provided for @requestAlreadySent.
   ///
   /// In en, this message translates to:
-  /// **'Request already sent to this driver for this shipment.'**
+  /// **'Request already sent to this driver for this delivery.'**
   String get requestAlreadySent;
 
   /// No description provided for @bookingRequestExists.
@@ -2677,12 +2401,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You already have a booking request for this trip.'**
   String get bookingRequestExists;
-
-  /// No description provided for @shipmentAlreadyBooked.
-  ///
-  /// In en, this message translates to:
-  /// **'This shipment has already been booked with another driver.'**
-  String get shipmentAlreadyBooked;
 
   /// No description provided for @cannotCancelGoodsHandedOver.
   ///
@@ -2695,36 +2413,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cannot cancel: payment has already been confirmed.'**
   String get cannotCancelPaymentConfirmed;
-
-  /// No description provided for @failedCreateShipment.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to create shipment. Please try again.'**
-  String get failedCreateShipment;
-
-  /// No description provided for @failedLoadShipments.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to load shipments. Please try again.'**
-  String get failedLoadShipments;
-
-  /// No description provided for @failedSearchShipments.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to search shipments. Please try again.'**
-  String get failedSearchShipments;
-
-  /// No description provided for @failedUpdateShipmentStatus.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to update shipment status.'**
-  String get failedUpdateShipmentStatus;
-
-  /// No description provided for @failedLoadShipmentDetails.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to load shipment details.'**
-  String get failedLoadShipmentDetails;
 
   /// No description provided for @couldNotResolveLocation.
   ///
@@ -2795,7 +2483,7 @@ abstract class AppLocalizations {
   /// No description provided for @warningCheckTravelerBody.
   ///
   /// In en, this message translates to:
-  /// **'Please verify the traveler\'s identity. The platform is not responsible for any loss or damage to the shipment, legally or ethically.'**
+  /// **'Please verify the traveler\'s identity. The platform is not responsible for any loss or damage to the goods, legally or ethically.'**
   String get warningCheckTravelerBody;
 
   /// No description provided for @policyWarningDialogTitle.
@@ -2807,13 +2495,13 @@ abstract class AppLocalizations {
   /// No description provided for @policyWarningDialogBody.
   ///
   /// In en, this message translates to:
-  /// **'Are you sure you want to accept this offer?\n\nWe advise you to verify the traveler. The platform explicitly disclaims all liability for any loss or damage to the shipment, legally or ethically. Our role is solely to connect the parties.'**
+  /// **'Are you sure you want to accept this request?\n\nWe advise you to verify the traveler. The platform explicitly disclaims all liability for any loss or damage to the goods, legally or ethically. Our role is solely to connect the parties.'**
   String get policyWarningDialogBody;
 
   /// No description provided for @acceptAndProceed.
   ///
   /// In en, this message translates to:
-  /// **'Agree & Accept Offer'**
+  /// **'Agree & Accept'**
   String get acceptAndProceed;
 
   /// No description provided for @acceptBookingAndProceed.
@@ -2831,7 +2519,7 @@ abstract class AppLocalizations {
   /// No description provided for @chatDisabledOtherAccepted.
   ///
   /// In en, this message translates to:
-  /// **'Chat disabled because another offer was accepted.'**
+  /// **'Chat disabled because another booking was accepted.'**
   String get chatDisabledOtherAccepted;
 
   /// No description provided for @chatDisabledCompleted.
@@ -2879,7 +2567,7 @@ abstract class AppLocalizations {
   /// No description provided for @blockUserConfirm.
   ///
   /// In en, this message translates to:
-  /// **'Are you sure you want to block this user? You will no longer see their messages or offers.'**
+  /// **'Are you sure you want to block this user? You will no longer see their messages or requests.'**
   String get blockUserConfirm;
 
   /// No description provided for @userBlockedSuccess.
@@ -2903,7 +2591,7 @@ abstract class AppLocalizations {
   /// No description provided for @cannotBlockActiveEngagement.
   ///
   /// In en, this message translates to:
-  /// **'You cannot block this user because you have an active trip or shipment with them.'**
+  /// **'You cannot block this user because you have an active trip or delivery with them.'**
   String get cannotBlockActiveEngagement;
 
   /// No description provided for @cannotBookBlockedUser.
@@ -2930,12 +2618,6 @@ abstract class AppLocalizations {
   /// **'Please select Pickup and Dropoff locations'**
   String get pleaseSelectPickupDropoff;
 
-  /// No description provided for @errorCreatingShipment.
-  ///
-  /// In en, this message translates to:
-  /// **'Error creating shipment'**
-  String get errorCreatingShipment;
-
   /// No description provided for @couldNotGetLocation.
   ///
   /// In en, this message translates to:
@@ -2957,7 +2639,7 @@ abstract class AppLocalizations {
   /// No description provided for @prohibitedItemsDisclaimer.
   ///
   /// In en, this message translates to:
-  /// **'Please ensure your shipment does not contain any of the following items:'**
+  /// **'Please ensure your package does not contain any of the following items:'**
   String get prohibitedItemsDisclaimer;
 
   /// No description provided for @prohibitedDrugs.
@@ -3017,7 +2699,7 @@ abstract class AppLocalizations {
   /// No description provided for @deliveryCodeInstruction.
   ///
   /// In en, this message translates to:
-  /// **'Share this code with the traveler only when you receive your shipment.'**
+  /// **'Share this code with the traveler only when you receive your package.'**
   String get deliveryCodeInstruction;
 
   /// No description provided for @enterDeliveryCode.
@@ -3059,7 +2741,7 @@ abstract class AppLocalizations {
   /// No description provided for @notifDeliveredVerifiedBody.
   ///
   /// In en, this message translates to:
-  /// **'The shipment has been delivered and verified with OTP.'**
+  /// **'The package has been delivered and verified with OTP.'**
   String get notifDeliveredVerifiedBody;
 
   /// No description provided for @notifClientConfirmedReceipt.
@@ -3071,14 +2753,8 @@ abstract class AppLocalizations {
   /// No description provided for @notifClientConfirmedReceiptBody.
   ///
   /// In en, this message translates to:
-  /// **'Client has confirmed receipt of the shipment.'**
+  /// **'Client has confirmed receipt of the package.'**
   String get notifClientConfirmedReceiptBody;
-
-  /// No description provided for @pleaseUploadCRDocument.
-  ///
-  /// In en, this message translates to:
-  /// **'Please upload the CR Document.'**
-  String get pleaseUploadCRDocument;
 
   /// No description provided for @pleaseLogin.
   ///
@@ -3230,12 +2906,6 @@ abstract class AppLocalizations {
   /// **'Your booking request has been approved'**
   String get notifBookingApprovedBody;
 
-  /// No description provided for @notifOfferAcceptedBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Your offer has been accepted! Get ready to deliver'**
-  String get notifOfferAcceptedBody;
-
   /// No description provided for @notifSenderHandedGoods.
   ///
   /// In en, this message translates to:
@@ -3263,7 +2933,7 @@ abstract class AppLocalizations {
   /// No description provided for @notifTravelerDelivered.
   ///
   /// In en, this message translates to:
-  /// **'Traveler Delivered Shipment'**
+  /// **'Traveler Delivered Package'**
   String get notifTravelerDelivered;
 
   /// No description provided for @notifGoodsReceived.
@@ -3275,7 +2945,7 @@ abstract class AppLocalizations {
   /// No description provided for @notifGoodsInTransit.
   ///
   /// In en, this message translates to:
-  /// **'Traveler confirmed receipt - shipment in transit'**
+  /// **'Traveler confirmed receipt - goods in transit'**
   String get notifGoodsInTransit;
 
   /// No description provided for @notifPaymentConfirmed.
@@ -3302,30 +2972,6 @@ abstract class AppLocalizations {
   /// **'New message'**
   String get notifNewMessage;
 
-  /// No description provided for @notifNewOffer.
-  ///
-  /// In en, this message translates to:
-  /// **'New Offer!'**
-  String get notifNewOffer;
-
-  /// No description provided for @notifNewOfferBody.
-  ///
-  /// In en, this message translates to:
-  /// **'You have received a new offer for your shipment'**
-  String get notifNewOfferBody;
-
-  /// No description provided for @notifNewRequest.
-  ///
-  /// In en, this message translates to:
-  /// **'New Shipment Request'**
-  String get notifNewRequest;
-
-  /// No description provided for @notifNewRequestBody.
-  ///
-  /// In en, this message translates to:
-  /// **'You have received a new shipment request'**
-  String get notifNewRequestBody;
-
   /// No description provided for @notifNewBookingRequest.
   ///
   /// In en, this message translates to:
@@ -3338,17 +2984,17 @@ abstract class AppLocalizations {
   /// **'Someone wants to book your trip'**
   String get notifNewBookingRequestBody;
 
-  /// No description provided for @notifOfferDeclined.
+  /// No description provided for @notifBookingDeclined.
   ///
   /// In en, this message translates to:
-  /// **'Offer Declined'**
-  String get notifOfferDeclined;
+  /// **'Booking Declined'**
+  String get notifBookingDeclined;
 
-  /// No description provided for @notifOfferDeclinedBody.
+  /// No description provided for @notifBookingDeclinedBody.
   ///
   /// In en, this message translates to:
-  /// **'Your offer was not accepted this time'**
-  String get notifOfferDeclinedBody;
+  /// **'Your booking request was not accepted this time'**
+  String get notifBookingDeclinedBody;
 
   /// No description provided for @notifBookingCancelled.
   ///
@@ -3548,12 +3194,6 @@ abstract class AppLocalizations {
   /// **'My Alerts'**
   String get myAlerts;
 
-  /// No description provided for @shipmentAlerts.
-  ///
-  /// In en, this message translates to:
-  /// **'Shipment Alerts'**
-  String get shipmentAlerts;
-
   /// No description provided for @addAlert.
   ///
   /// In en, this message translates to:
@@ -3626,12 +3266,6 @@ abstract class AppLocalizations {
   /// **'Alert Type'**
   String get alertType;
 
-  /// No description provided for @myShipmentAlerts.
-  ///
-  /// In en, this message translates to:
-  /// **'My Shipment Alerts'**
-  String get myShipmentAlerts;
-
   /// No description provided for @manageAlerts.
   ///
   /// In en, this message translates to:
@@ -3649,12 +3283,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please delete an existing alert to add a new one.'**
   String get deleteAlertToAddNew;
-
-  /// No description provided for @shipmentAlertsLimitReached.
-  ///
-  /// In en, this message translates to:
-  /// **'You have reached the limit of {limit} shipment alerts. Please delete one to add a new one.'**
-  String shipmentAlertsLimitReached(int limit);
 
   /// No description provided for @profilePhotoLabel.
   ///
@@ -3716,24 +3344,6 @@ abstract class AppLocalizations {
   /// **'Type a message'**
   String get typeMessage;
 
-  /// No description provided for @companyOnlyFeatureTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Company Feature'**
-  String get companyOnlyFeatureTitle;
-
-  /// No description provided for @companyOnlyFeatureBody.
-  ///
-  /// In en, this message translates to:
-  /// **'This feature is only available for company accounts.'**
-  String get companyOnlyFeatureBody;
-
-  /// No description provided for @becomeACompany.
-  ///
-  /// In en, this message translates to:
-  /// **'Become a Company'**
-  String get becomeACompany;
-
   /// No description provided for @driverOnlyFeatureTitle.
   ///
   /// In en, this message translates to:
@@ -3743,13 +3353,13 @@ abstract class AppLocalizations {
   /// No description provided for @driverOnlyFeatureBody.
   ///
   /// In en, this message translates to:
-  /// **'Accessing shipment requests is restricted to drivers with registered vehicles. Would you like to upgrade to a driver account now?'**
+  /// **'Accessing delivery requests is restricted to drivers with registered vehicles. Would you like to upgrade to a driver account now?'**
   String get driverOnlyFeatureBody;
 
   /// No description provided for @onboardingEarnMoney.
   ///
   /// In en, this message translates to:
-  /// **'Earn money by delivering shipments during your travels'**
+  /// **'Earn money by delivering packages during your travels'**
   String get onboardingEarnMoney;
 
   /// No description provided for @onboardingSendPackages.
@@ -3775,18 +3385,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Affordable'**
   String get onboardingAffordable;
-
-  /// No description provided for @notifNewShipmentMatchingAlert.
-  ///
-  /// In en, this message translates to:
-  /// **'New Shipment Match'**
-  String get notifNewShipmentMatchingAlert;
-
-  /// No description provided for @notifNewShipmentMatchingAlertBody.
-  ///
-  /// In en, this message translates to:
-  /// **'A new shipment matches your saved route alert!'**
-  String get notifNewShipmentMatchingAlertBody;
 
   /// No description provided for @uploadingAvatar.
   ///
@@ -3824,83 +3422,83 @@ abstract class AppLocalizations {
   /// **'Sharing location...'**
   String get sharingLocation;
 
-  /// No description provided for @shipmentDeliveryCode.
+  /// No description provided for @deliveryCode.
   ///
   /// In en, this message translates to:
   /// **'Delivery Code'**
-  String get shipmentDeliveryCode;
+  String get deliveryCode;
 
-  /// No description provided for @shipmentDeliveryCodeCopied.
+  /// No description provided for @deliveryCodeCopied.
   ///
   /// In en, this message translates to:
   /// **'Code copied'**
-  String get shipmentDeliveryCodeCopied;
+  String get deliveryCodeCopied;
 
-  /// No description provided for @shipmentShareCodeHint.
+  /// No description provided for @shareDeliveryCodeHint.
   ///
   /// In en, this message translates to:
   /// **'Share this code with the driver at delivery'**
-  String get shipmentShareCodeHint;
+  String get shareDeliveryCodeHint;
 
-  /// No description provided for @shipmentHandedToDriver.
+  /// No description provided for @goodsHandedToDriver.
   ///
   /// In en, this message translates to:
-  /// **'Handed shipment to driver'**
-  String get shipmentHandedToDriver;
+  /// **'Handed goods to driver'**
+  String get goodsHandedToDriver;
 
-  /// No description provided for @shipmentPaymentSentToDriver.
+  /// No description provided for @paymentSentToDriver.
   ///
   /// In en, this message translates to:
   /// **'Payment Sent to Driver'**
-  String get shipmentPaymentSentToDriver;
+  String get paymentSentToDriver;
 
-  /// No description provided for @shipmentDriverReceivedGoods.
+  /// No description provided for @driverReceivedGoods.
   ///
   /// In en, this message translates to:
-  /// **'Driver received shipment'**
-  String get shipmentDriverReceivedGoods;
+  /// **'Driver received goods'**
+  String get driverReceivedGoods;
 
-  /// No description provided for @shipmentDriverConfirmedPayment.
+  /// No description provided for @driverConfirmedPayment.
   ///
   /// In en, this message translates to:
   /// **'Driver confirmed payment'**
-  String get shipmentDriverConfirmedPayment;
+  String get driverConfirmedPayment;
 
-  /// No description provided for @shipmentConfirmReceived.
+  /// No description provided for @confirmGoodsReceived.
   ///
   /// In en, this message translates to:
-  /// **'Confirm Shipment Received'**
-  String get shipmentConfirmReceived;
+  /// **'Confirm Goods Received'**
+  String get confirmGoodsReceived;
 
-  /// No description provided for @shipmentMarkDelivered.
+  /// No description provided for @markGoodsDelivered.
   ///
   /// In en, this message translates to:
-  /// **'Mark Shipment as Delivered'**
-  String get shipmentMarkDelivered;
+  /// **'Mark Goods as Delivered'**
+  String get markGoodsDelivered;
 
-  /// No description provided for @shipmentConfirmPaymentReceived.
+  /// No description provided for @confirmPaymentReceived.
   ///
   /// In en, this message translates to:
   /// **'Confirm Payment Received'**
-  String get shipmentConfirmPaymentReceived;
+  String get confirmPaymentReceived;
 
-  /// No description provided for @shipmentCancelShipment.
+  /// No description provided for @cancelDelivery.
   ///
   /// In en, this message translates to:
-  /// **'Cancel Shipment'**
-  String get shipmentCancelShipment;
+  /// **'Cancel Delivery'**
+  String get cancelDelivery;
 
-  /// No description provided for @shipmentCancelConfirm.
+  /// No description provided for @cancelDeliveryConfirm.
   ///
   /// In en, this message translates to:
-  /// **'Cancel this shipment engagement?'**
-  String get shipmentCancelConfirm;
+  /// **'Cancel this delivery engagement?'**
+  String get cancelDeliveryConfirm;
 
-  /// No description provided for @shipmentCancelConfirmYes.
+  /// No description provided for @cancelDeliveryConfirmYes.
   ///
   /// In en, this message translates to:
   /// **'Yes, Cancel'**
-  String get shipmentCancelConfirmYes;
+  String get cancelDeliveryConfirmYes;
 
   /// No description provided for @statusInTransit.
   ///
@@ -4016,12 +3614,6 @@ abstract class AppLocalizations {
   /// **'Update Now'**
   String get updateNow;
 
-  /// No description provided for @cancelOffer.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel Offer'**
-  String get cancelOffer;
-
   /// No description provided for @domestic.
   ///
   /// In en, this message translates to:
@@ -4055,19 +3647,19 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingSubtitle1.
   ///
   /// In en, this message translates to:
-  /// **'Request shipments from different countries and cities at affordable prices'**
+  /// **'Request deliveries from different countries and cities at affordable prices'**
   String get onboardingSubtitle1;
 
   /// No description provided for @onboardingSubtitle2.
   ///
   /// In en, this message translates to:
-  /// **'Deliver shipments to different countries and cities and earn money'**
+  /// **'Deliver packages to different countries and cities and earn money'**
   String get onboardingSubtitle2;
 
   /// No description provided for @onboardingSubtitle3.
   ///
   /// In en, this message translates to:
-  /// **'Fast, safe, and reliable delivery for all your shipments'**
+  /// **'Fast, safe, and reliable delivery for all your packages'**
   String get onboardingSubtitle3;
 
   /// No description provided for @getStarted.

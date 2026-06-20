@@ -164,7 +164,7 @@ Or use the helper script (validates + minifies the JSON, avoids shell-quoting is
 # Part C — Google Sign-In (a login method)
 
 > **iOS / Apple requirement (App Store Review Guideline 4.8).** Apple requires
-> that any iOS app offering third-party/social login (like Google) **also** offer
+> that any iOS app providing third-party/social login (like Google) **also** provide
 > **Sign in with Apple**. This product ships with Apple Sign-In **not
 > implemented**, so social sign-in (Google) is **hidden on iOS/macOS by default**
 > (`AuthConfig.appleSignInEnabled = false` in `lib/core/config/auth_config.dart`).
@@ -453,7 +453,7 @@ Names are defined in `lib/core/config/storage_buckets.dart` and must match.
 | `chat-attachments` | **Private** (participant-gated signed URLs) |
 | `admin_exports` | **Private** (24h signed URLs) |
 | `avatars` | Public-read |
-| `shipment_photos` | Public-read |
+| `delivery_photos` | Public-read |
 | `ads` | Public-read, admin-write |
 
 ## Edge functions & `verify_jwt`
@@ -478,7 +478,6 @@ Five functions in `supabase/functions/`:
 ## pg_cron jobs
 
 - `auto-expire-trips` — every 15 min → calls the `auto-expire-trips` function.
-- `expire_pending_shipments_job` — every 30 min → `public.fn_expire_pending_shipments()`.
 - `process-export-jobs` — every 5 min → calls the `process-export-jobs` function.
 
 The cron commands read the service key from Vault inline:

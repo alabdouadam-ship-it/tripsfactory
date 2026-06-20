@@ -33,7 +33,6 @@ const MAX_JOBS_PER_INVOCATION = 10; // process up to N queued jobs per call
 const ALLOWED_TABLES = new Set([
   "profiles",
   "trips",
-  "shipments",
   "bookings",
   "ratings",
   "reports",

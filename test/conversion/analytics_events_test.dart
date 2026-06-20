@@ -15,7 +15,6 @@ void main() {
       analytics.track('booking_viewed', {
         'bookingId': 'b1',
         'tripId': 't1',
-        'shipmentId': 's1',
         'role': 'driver',
         'state': 'accepted',
       });
@@ -27,7 +26,7 @@ void main() {
 
     test('exactly one event per action when each called once', () {
       analytics.track('booking_viewed', {'bookingId': 'b1'});
-      analytics.track('offer_accepted_clicked', {'bookingId': 'b1'});
+      analytics.track('booking_accepted_clicked', {'bookingId': 'b1'});
       analytics.track('payment_started', {'bookingId': 'b1'});
       analytics.track('payment_succeeded', {'bookingId': 'b1'});
       analytics.track('handover_confirmed', {'bookingId': 'b1'});
@@ -36,7 +35,7 @@ void main() {
       analytics.track('review_submitted', {'bookingId': 'b1'});
 
       expect(analytics.countNamed('booking_viewed'), 1);
-      expect(analytics.countNamed('offer_accepted_clicked'), 1);
+      expect(analytics.countNamed('booking_accepted_clicked'), 1);
       expect(analytics.countNamed('payment_started'), 1);
       expect(analytics.countNamed('payment_succeeded'), 1);
       expect(analytics.countNamed('handover_confirmed'), 1);
@@ -49,7 +48,6 @@ void main() {
       analytics.track('booking_viewed', {
         'bookingId': 'b1',
         'tripId': 't1',
-        'shipmentId': 's1',
         'role': 'driver',
         'state': 'pending',
       });

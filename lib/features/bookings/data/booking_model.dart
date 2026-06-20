@@ -6,8 +6,8 @@ import 'package:tripship/core/enums/app_enums.dart';
 part 'booking_model.freezed.dart';
 part 'booking_model.g.dart';
 
-Object? _readOfferPrice(Map json, String key) {
-  final val = json['offer_price'];
+Object? _readPrice(Map json, String key) {
+  final val = json['price'];
   if (val is num) return val.toDouble();
   if (val is String) return double.tryParse(val) ?? 0.0;
   return 0.0;
@@ -32,8 +32,8 @@ abstract class Booking with _$Booking {
   const factory Booking({
     required String id,
     @JsonKey(name: 'traveler_id') required String driverId,
-    @JsonKey(name: 'offer_price', readValue: _readOfferPrice)
-    required double offerPrice,
+    @JsonKey(name: 'price', readValue: _readPrice)
+    required double price,
     @JsonKey(unknownEnumValue: BookingStatus.pending)
     required BookingStatus status,
     @JsonKey(name: 'created_at') required DateTime createdAt,

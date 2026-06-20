@@ -67,10 +67,9 @@ describe('UsersPage', () => {
     expect(screen.getByText('users')).toBeInTheDocument(); // Compact design shows "0 users" instead of "Total: 0"
     expect(screen.getByText('Individuals')).toBeInTheDocument();
     expect(screen.getByText('Drivers / Travelers')).toBeInTheDocument();
-    expect(screen.getByText('Merchants / Companies')).toBeInTheDocument();
   });
 
-  it('renders combined company and driver capability labels', async () => {
+  it('renders a user row', async () => {
     mockGetPaginated.mockResolvedValueOnce({
       success: true,
       totalCount: 1,
@@ -78,17 +77,14 @@ describe('UsersPage', () => {
         id: 'user-1',
         full_name: 'Multi Role User',
         phone_number: '+966500000000',
-        account_type: 'company',
-        company_status: 'approved',
         traveler_status: 'approved',
         is_driver: true,
         created_at: '2026-01-01T00:00:00.000Z',
       }],
-    });
+    } as any);
 
     render(<UsersPage />);
 
     expect(await screen.findByText('Multi Role User')).toBeInTheDocument();
-    expect(screen.getByText('Company + Driver')).toBeInTheDocument();
   });
 });

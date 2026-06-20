@@ -318,7 +318,7 @@ export default function BookingDetailPage() {
           </div>
           <div className="theme-bg-secondary p-4 rounded-xl text-left">
             <p className="text-[0.625rem] theme-muted uppercase font-bold mb-2 flex items-center gap-1"><CreditCard className="h-3 w-3" /> {t('bookingDetail.reservationPrice', 'Reservation Price')}</p>
-            <p className="font-bold text-lg text-gray-900">{booking.offer_price} <span className="text-xs font-normal text-gray-500">{t('common.currencySar', '')}</span></p>
+            <p className="font-bold text-lg text-gray-900">{booking.price} <span className="text-xs font-normal text-gray-500">{t('common.currencySar', '')}</span></p>
             {booking.message && <p className="text-xs text-gray-500 mt-1 italic">"{booking.message}"</p>}
           </div>
         </div>

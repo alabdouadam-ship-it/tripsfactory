@@ -37,7 +37,7 @@ Keep that in sync with the entries below when you cut a release.
 ### Fixed
 - Onboarding "Next/Get Started" button no longer overflows on narrow screens or
   with longer translations (label is now flexible/ellipsized).
-- Demo mode is fully offline now: seeded notifications/bookings/offers/shipments
+- Demo mode is fully offline now: seeded notifications/bookings/deliveries
   and app-config/ads overrides eliminate failed network/realtime calls; FCM init
   is skipped; onboarding is auto-skipped so the demo lands on a populated Home.
 - Aligned the support WhatsApp fallback to the UAE number across `BrandConfig`

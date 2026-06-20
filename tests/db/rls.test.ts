@@ -11,7 +11,6 @@ import {
 const SENSITIVE_TABLES = [
   'profiles',
   'trips',
-  'shipments',
   'bookings',
   'messages',
   'notifications',
@@ -47,9 +46,8 @@ describe('Stage 1: RLS coverage', () => {
           .insert({
             requester_id: admin.userId,
             traveler_id: traveler.userId,
-            offer_price: 10,
+            price: 10,
             status: 'pending',
-            booking_type: 'shipment',
           })
           .select('id')
           .single();
@@ -115,15 +113,6 @@ describe('Stage 1: RLS coverage', () => {
         departure_time: new Date().toISOString(),
         trip_type: 'scheduled',
         status: 'available',
-      });
-      expect(error).toBeTruthy();
-    });
-
-    it('traveler cannot insert shipment as sender (sender_id = requester)', async () => {
-      const { error } = await traveler.client.from('shipments').insert({
-        sender_id: requester.userId,
-        status: 'pending',
-        description: 'test',
       });
       expect(error).toBeTruthy();
     });

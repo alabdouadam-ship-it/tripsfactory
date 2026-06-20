@@ -11,12 +11,12 @@
 
 ### 2. إخلاء المسؤولية — مهم جداً
 
-**بالرغم من قيام المنصة بالتحقق من أوراق السائقين وأوراق الشركات، فإن المنصة:**
+**بالرغم من قيام المنصة بالتحقق من أوراق السائقين، فإن المنصة:**
 
 - **لا تتحمل أي مسؤولية** عن فقدان البضائع أو تلفها أو التأخر في التسليم.
 - **لا تتحمل أي مسؤولية** إذا كانت البضاعة تحتوي على مواد مشبوهة أو ممنوعة في بلد المنشأ أو بلد الوجهة.
 - **لا تتحمل أي مسؤولية** عن النزاعات أو الأضرار الناشئة بين المرسلين والسائقين.
-- **لا تتحمل أي مسؤولية** عن المخالفات القانونية أو الجمركية أو الأمنية الناتجة عن محتوى الشحنة.
+- **لا تتحمل أي مسؤولية** عن المخالفات القانونية أو الجمركية أو الأمنية الناتجة عن محتوى الطرد.
 
 التحقق من الوثائق يُجرى لأغراض إدارية داخل المنصة فقط، ولا يعد ضماناً أو التزاماً قانونياً من المنصة تجاه أي طرف.
 
@@ -25,9 +25,9 @@
 ### 3. شروط الاستخدام
 
 - يجب أن تكون بالغاً وقادراً على إبرام العقود.
-- التزم بالصدق في بياناتك وأوراقك وتفاصيل شحناتك.
+- التزم بالصدق في بياناتك وأوراقك وتفاصيل التوصيل.
 - لا تستخدم المنصة لنقل مواد محظورة أو غير قانونية.
-- أنت مسؤول عن التأكد من أن الشحنة مسموح بها في بلد المنشأ والوجهة.
+- أنت مسؤول عن التأكد من أن البضاعة مسموح بها في بلد المنشأ والوجهة.
 - نحتفظ بحق تعليق أو إغلاق الحسابات المخالفة.
 
 ### 4. القبول
@@ -42,12 +42,12 @@ TripShip is a logistics platform that connects senders with drivers/travelers. T
 
 ### 2. Disclaimer — Very Important
 
-**Although the platform verifies driver and company documents, the platform:**
+**Although the platform verifies driver documents, the platform:**
 
 - **Assumes no liability** for loss, damage, or delay of goods.
 - **Assumes no liability** if goods contain suspicious or prohibited materials in the country of origin or destination.
 - **Assumes no liability** for disputes or damages arising between senders and drivers.
-- **Assumes no liability** for legal, customs, or security violations resulting from shipment contents.
+- **Assumes no liability** for legal, customs, or security violations resulting from package contents.
 
 Document verification is performed for internal administrative purposes only and does not constitute a guarantee or legal commitment by the platform toward any party.
 
@@ -56,9 +56,9 @@ Document verification is performed for internal administrative purposes only and
 ### 3. Terms of Use
 
 - You must be of legal age and capable of entering into contracts.
-- Be truthful in your information, documents, and shipment details.
+- Be truthful in your information, documents, and delivery details.
 - Do not use the platform to transport prohibited or illegal materials.
-- You are responsible for ensuring that shipments are permitted in the origin and destination countries.
+- You are responsible for ensuring that goods are permitted in the origin and destination countries.
 - We reserve the right to suspend or close accounts that violate these terms.
 
 ### 4. Acceptance

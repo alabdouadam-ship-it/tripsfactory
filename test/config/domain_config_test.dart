@@ -7,11 +7,6 @@ void main() {
     // These values are persisted in / compared against Supabase columns.
     // Changing them is a backend-coordinated migration, NOT a free rename —
     // this test pins them so an accidental edit fails loudly.
-    test('account types', () {
-      expect(DomainConfig.accountIndividual, 'individual');
-      expect(DomainConfig.accountCompany, 'company');
-    });
-
     test('verification statuses', () {
       expect(DomainConfig.statusNone, 'none');
       expect(DomainConfig.statusPending, 'pending');

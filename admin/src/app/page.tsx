@@ -5,10 +5,7 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import {
   AlertCircle,
-  Building2,
   CheckCircle2,
-  Handshake,
-  Package,
   Plane,
   RefreshCw,
   ShoppingCart,
@@ -32,21 +29,6 @@ import Loading from '@/app/loading';
 import { useT } from '@/lib/i18n';
 import { useToast } from '@/lib/toast';
 
-const SHIPMENT_STATUSES = [
-  'pending',
-  'in_communication',
-  'accepted',
-  'picked_up',
-  'in_transit',
-  'delivered',
-  'completed',
-  'cancelled',
-  'rejected',
-  'expired',
-  'frozen',
-  'disputed',
-] as const;
-
 const TRIP_STATUSES = [
   'pending_approval',
   'available',
@@ -60,15 +42,6 @@ const TRIP_STATUSES = [
 ] as const;
 
 const ACTIVE_TRIP_STATUSES = ['available', 'booked', 'in_transit', 'pending_confirmation'];
-const ACTIVE_SHIPMENT_STATUSES = [
-  'pending',
-  'in_communication',
-  'accepted',
-  'picked_up',
-  'in_transit',
-  'frozen',
-  'disputed',
-];
 
 const STATUS_COLORS: Record<string, string> = {
   pending_approval: '#f59e0b',
@@ -99,23 +72,17 @@ const TRIP_STATUS_COLORS: Record<string, string> = {
 type DashboardStats = {
   totalUsers: number;
   totalDrivers: number;
-  totalCompanies: number;
   activeTrips: number;
   totalTrips: number;
-  activeShipments: number;
   bookings: number;
-  offers: number;
-  shipments: number;
   disputes: number;
   pendingDrivers: number;
-  shipmentReviews: number;
-  pendingCompanies: number;
   growthData: Array<{ name: string; users: number; drivers: number; trips: number }>;
 };
 
 type RecentActivity = {
   id: string;
-  type: 'user' | 'booking' | 'shipment' | 'driver';
+  type: 'user' | 'booking' | 'driver';
   labelKey: string;
   name?: string | null;
   createdAt: string;
@@ -134,17 +101,11 @@ type StatusDistributionItem = {
 const initialStats: DashboardStats = {
   totalUsers: 0,
   totalDrivers: 0,
-  totalCompanies: 0,
   activeTrips: 0,
   totalTrips: 0,
-  activeShipments: 0,
   bookings: 0,
-  offers: 0,
-  shipments: 0,
   disputes: 0,
   pendingDrivers: 0,
-  shipmentReviews: 0,
-  pendingCompanies: 0,
   growthData: [],
 };
 
@@ -161,7 +122,6 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
-  const [statusDistribution, setStatusDistribution] = useState<StatusDistributionItem[]>([]);
   const [tripStatusDistribution, setTripStatusDistribution] = useState<StatusDistributionItem[]>([]);
   const [recentActivity, setRecentActivity] = useState<RecentActivity[]>([]);
 
@@ -179,51 +139,25 @@ export default function Home() {
 
     try {
       const [
-        companiesReq,
         tripsReq,
         activeTripsReq,
-        shipmentsReq,
-        activeShipmentsReq,
         bookingsReq,
-        offersReq,
         disputesReq,
         pendingDriversReq,
-        shipmentReviewsReq,
-        pendingCompaniesReq,
       ] = await Promise.all([
-        supabase
-          .from('profiles')
-          .select('*', { count: 'exact', head: true })
-          .eq('account_type', 'company')
-          .neq('company_status', 'none'),
         supabase.from('trips').select('*', { count: 'exact', head: true }),
         supabase.from('trips').select('*', { count: 'exact', head: true }).in('status', ACTIVE_TRIP_STATUSES),
-        supabase.from('shipments').select('*', { count: 'exact', head: true }),
-        supabase.from('shipments').select('*', { count: 'exact', head: true }).in('status', ACTIVE_SHIPMENT_STATUSES),
         supabase.from('bookings').select('*', { count: 'exact', head: true }),
-        supabase.from('offers').select('*', { count: 'exact', head: true }),
         supabase.from('bookings').select('*', { count: 'exact', head: true }).eq('status', 'disputed'),
         supabase.from('profiles').select('*', { count: 'exact', head: true }).eq('traveler_status', 'pending'),
-        supabase.from('shipments').select('*', { count: 'exact', head: true }).eq('moderation_status', 'pending_review'),
-        supabase
-          .from('profiles')
-          .select('*', { count: 'exact', head: true })
-          .eq('account_type', 'company')
-          .eq('company_status', 'pending'),
       ]);
 
       const countError =
-        companiesReq.error ||
         tripsReq.error ||
         activeTripsReq.error ||
-        shipmentsReq.error ||
-        activeShipmentsReq.error ||
         bookingsReq.error ||
-        offersReq.error ||
         disputesReq.error ||
-        pendingDriversReq.error ||
-        shipmentReviewsReq.error ||
-        pendingCompaniesReq.error;
+        pendingDriversReq.error;
       if (countError) {
         throw countError;
       }
@@ -280,24 +214,17 @@ export default function Home() {
       setStats({
         totalUsers,
         totalDrivers,
-        totalCompanies: companiesReq.count || 0,
         activeTrips: activeTripsReq.count || 0,
         totalTrips: tripsReq.count || 0,
-        activeShipments: activeShipmentsReq.count || 0,
         bookings: bookingsReq.count || 0,
-        offers: offersReq.count || 0,
-        shipments: shipmentsReq.count || 0,
         disputes: disputesReq.count || 0,
         pendingDrivers: pendingDriversReq.count || 0,
-        shipmentReviews: shipmentReviewsReq.count || 0,
-        pendingCompanies: pendingCompaniesReq.count || 0,
         growthData,
       });
 
-      const [profilesRes, bookingsRes, shipmentsRes, pendingDriversRes] = await Promise.all([
+      const [profilesRes, bookingsRes, pendingDriversRes] = await Promise.all([
         supabase.from('profiles').select('id, full_name, created_at').order('created_at', { ascending: false }).limit(3),
         supabase.from('bookings').select('id, status, created_at').order('created_at', { ascending: false }).limit(5),
-        supabase.from('shipments').select('id, created_at').order('created_at', { ascending: false }).limit(3),
         supabase
           .from('profiles')
           .select('id, traveler_status, created_at')
@@ -306,10 +233,10 @@ export default function Home() {
           .limit(3),
       ]);
 
-      if (profilesRes.error || bookingsRes.error || shipmentsRes.error || pendingDriversRes.error) {
+      if (profilesRes.error || bookingsRes.error || pendingDriversRes.error) {
         console.warn(
           '[Dashboard] recent activity partially unavailable:',
-          profilesRes.error || bookingsRes.error || shipmentsRes.error || pendingDriversRes.error,
+          profilesRes.error || bookingsRes.error || pendingDriversRes.error,
         );
       }
 
@@ -341,18 +268,6 @@ export default function Home() {
           sortAt: b.created_at,
         });
       });
-      (shipmentsRes.data || []).forEach((s: any) => {
-        activities.push({
-          id: `shipment-${s.id}`,
-          type: 'shipment',
-          labelKey: 'dashboard.activity.newShipment',
-          createdAt: s.created_at,
-          icon: Package,
-          color: 'text-orange-500',
-          href: `/shipments/${s.id}`,
-          sortAt: s.created_at,
-        });
-      });
       (pendingDriversRes.data || []).forEach((driver: any) => {
         activities.push({
           id: `driver-${driver.id}`,
@@ -368,36 +283,6 @@ export default function Home() {
 
       activities.sort((a, b) => new Date(b.sortAt).getTime() - new Date(a.sortAt).getTime());
       setRecentActivity(activities.slice(0, 8).map(({ sortAt, ...rest }) => rest));
-
-      const statusResults = await Promise.all(
-        SHIPMENT_STATUSES.map(async (shipmentStatus) => {
-          const result = await supabase.from('shipments').select('*', { count: 'exact', head: true }).eq('status', shipmentStatus);
-          return { shipmentStatus, ...result };
-        }),
-      );
-      const failedStatus = statusResults.find((result) => result.error);
-      if (failedStatus) {
-        console.warn('[Dashboard] shipment status distribution partially unavailable:', failedStatus.error);
-        toast(
-          t('dashboard.statusDistributionUnavailable', 'Shipment status chart is partially unavailable.'),
-          'info',
-        );
-      }
-
-      const distribution = statusResults
-        .filter((result) => !result.error && (result.count || 0) > 0)
-        .map((result) => ({
-          status: result.shipmentStatus,
-          name: formatStatusLabel(result.shipmentStatus),
-          value: result.count || 0,
-          color: STATUS_COLORS[result.shipmentStatus] || '#94a3b8',
-        }));
-
-      setStatusDistribution(
-        distribution.length === 0
-          ? [{ status: 'none', name: t('dashboard.noData'), value: 1, color: '#e2e8f0' }]
-          : distribution,
-      );
 
       const tripStatusResults = await Promise.all(
         TRIP_STATUSES.map(async (tripStatus) => {
@@ -442,7 +327,6 @@ export default function Home() {
   const statCards = [
     { key: 'dashboard.totalUsers', label: 'Total Users', value: stats.totalUsers, icon: Users, color: 'bg-blue-500' },
     { key: 'dashboard.drivers', label: 'Drivers', value: stats.totalDrivers, icon: Truck, color: 'bg-orange-500' },
-    { key: 'dashboard.companies', label: 'Companies', value: stats.totalCompanies, icon: Building2, color: 'bg-cyan-500' },
     {
       key: 'dashboard.trips',
       label: 'Trips',
@@ -453,16 +337,6 @@ export default function Home() {
       color: 'bg-purple-500',
     },
     { key: 'dashboard.bookings', label: 'Bookings', value: stats.bookings, icon: ShoppingCart, color: 'bg-green-500' },
-    {
-      key: 'dashboard.shipments',
-      label: 'Shipments',
-      value: `${stats.activeShipments}/${stats.shipments}`,
-      detailKey: 'dashboard.activeTotal',
-      detail: 'Active / total',
-      icon: Package,
-      color: 'bg-indigo-500',
-    },
-    { key: 'dashboard.offers', label: 'Offers', value: stats.offers, icon: Handshake, color: 'bg-emerald-500' },
   ];
 
   const actionQueue = [
@@ -485,26 +359,6 @@ export default function Home() {
       href: '/bookings?status=disputed',
       icon: AlertCircle,
       color: 'text-red-500',
-    },
-    {
-      key: 'dashboard.shipmentReviews',
-      label: 'Shipment Reviews',
-      detailKey: 'dashboard.pendingReview',
-      detail: 'Pending review',
-      value: stats.shipmentReviews,
-      href: '/shipments?moderation=pending_review',
-      icon: Package,
-      color: 'text-amber-500',
-    },
-    {
-      key: 'dashboard.pendingCompanies',
-      label: 'Pending Companies',
-      detailKey: 'dashboard.awaitingApproval',
-      detail: 'Awaiting approval',
-      value: stats.pendingCompanies,
-      href: '/companies',
-      icon: Building2,
-      color: 'text-cyan-500',
     },
   ];
 
@@ -594,7 +448,7 @@ export default function Home() {
         </button>
       </div>
 
-      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-7">
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
         {statCards.map((stat) => (
           <div key={stat.key} className="theme-card p-4 rounded-2xl shadow-sm flex items-center transition-all hover:shadow-md group border border-[var(--surface-border)] min-w-0">
             <div className={`p-2.5 rounded-xl ${stat.color} bg-opacity-10 mr-3 group-hover:scale-105 transition-transform flex-shrink-0`}>
@@ -708,61 +562,6 @@ export default function Home() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <div className="theme-card p-8 rounded-2xl shadow-sm border border-[var(--surface-border)]">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-xl font-black theme-heading tracking-tight">
-              {t('dashboard.shipmentStatus', 'Shipment Status')}
-            </h2>
-            <CheckCircle2 className="h-5 w-5 text-blue-500" />
-          </div>
-          <div className="h-64 flex flex-col md:flex-row items-center gap-8">
-            <div className="h-full flex-1 w-full md:w-auto">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={statusDistribution}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={60}
-                    outerRadius={90}
-                    paddingAngle={8}
-                    dataKey="value"
-                    stroke="none"
-                  >
-                    {statusDistribution.map((entry, index) => (
-                      <Cell key={`${entry.status}-${index}`} fill={entry.color} />
-                    ))}
-                  </Pie>
-                  <RechartsTooltip
-                    contentStyle={{
-                      borderRadius: '16px',
-                      border: '1px solid var(--surface-border)',
-                      backgroundColor: 'var(--surface)',
-                      color: 'var(--text-primary)',
-                      fontSize: '12px',
-                      fontWeight: 'bold',
-                    }}
-                  />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-            <div className="grid grid-cols-2 gap-4 w-full md:w-auto">
-              {statusDistribution.map((entry) => (
-                <div
-                  key={entry.status}
-                  className="flex items-center gap-3 theme-bg-secondary p-3 rounded-xl border border-[var(--surface-border)]"
-                >
-                  <div className="w-3 h-3 rounded-full shadow-sm" style={{ backgroundColor: entry.color }}></div>
-                  <div className="flex flex-col">
-                    <span className="text-[0.625rem] theme-muted font-black uppercase tracking-widest leading-none mb-1">{entry.name}</span>
-                    <span className="text-sm font-black theme-heading leading-none">{entry.value}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
         <div className="theme-card p-8 rounded-2xl shadow-sm border border-[var(--surface-border)]">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-xl font-black theme-heading tracking-tight">

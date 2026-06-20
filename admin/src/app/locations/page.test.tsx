@@ -88,8 +88,6 @@ const mocks = vi.hoisted(() => {
     locationsError: null as any,
     tripCount: 0,
     tripCountError: null as any,
-    shipmentCount: 0,
-    shipmentCountError: null as any,
     insertError: null as any,
     updateError: null as any,
     deleteError: null as any,
@@ -105,9 +103,6 @@ const mocks = vi.hoisted(() => {
     }
     if (record.table === 'trips') {
       return { count: state.tripCount, error: state.tripCountError };
-    }
-    if (record.table === 'shipments') {
-      return { count: state.shipmentCount, error: state.shipmentCountError };
     }
     return { data: [], error: null };
   };
@@ -207,8 +202,6 @@ describe('LocationsPage', () => {
     mocks.state.locationsError = null;
     mocks.state.tripCount = 0;
     mocks.state.tripCountError = null;
-    mocks.state.shipmentCount = 0;
-    mocks.state.shipmentCountError = null;
     mocks.state.insertError = null;
     mocks.state.updateError = null;
     mocks.state.deleteError = null;

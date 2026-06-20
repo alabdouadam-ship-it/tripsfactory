@@ -8,9 +8,6 @@ import {
     LayoutDashboard,
     Users,
     Truck,
-    Building2,
-    Package,
-    Handshake,
     MessageSquare,
     Settings,
     Map,
@@ -60,7 +57,6 @@ const navigationSections: Array<{
         items: [
             { key: 'nav.users', href: '/users', icon: Users },
             { key: 'nav.drivers', href: '/drivers', icon: Truck },
-            { key: 'nav.companies', href: '/companies', icon: Building2 },
             { key: 'nav.verification', href: '/verification', icon: UserCheck },
             { key: 'nav.documents', href: '/documents', icon: FileText },
         ],
@@ -70,8 +66,6 @@ const navigationSections: Array<{
         items: [
             { key: 'nav.trips', href: '/trips', icon: Route },
             { key: 'nav.bookings', href: '/bookings', icon: MessageSquare },
-            { key: 'nav.shipments', href: '/shipments', icon: Package },
-            { key: 'nav.offers', href: '/offers', icon: Handshake },
         ],
     },
     {
@@ -105,7 +99,6 @@ export function Sidebar({ isCollapsed = false, onToggleCollapse }: { isCollapsed
 
     const badgeFor = (href: string): number => {
         if (href === '/reports') return counts.openReports;
-        if (href === '/shipments') return counts.pendingShipments;
         if (href === '/trips') return counts.pendingTrips;
         return 0;
     };

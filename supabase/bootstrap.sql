@@ -18,9 +18,9 @@ insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_typ
   ('ads',             'ads',              true,  null, null),
   ('admin_exports',   'admin_exports',    false, 104857600,
      array['text/csv','application/zip','application/json']),
-  -- shipment_photos is referenced by the app (booking handshake photos) but did
+  -- delivery_photos is referenced by the app (booking handshake photos) but did
   -- not exist in the source project. Created here so that code path works.
-  ('shipment_photos', 'shipment_photos',  true,  null, null)
+  ('delivery_photos', 'delivery_photos',  true,  null, null)
 on conflict (id) do nothing;
 
 -- 2. pg_cron jobs (idempotent: unschedule-if-exists, then schedule) ------------
@@ -29,10 +29,6 @@ begin
   -- expire past trips — every 5 min (plain SQL fn)
   perform cron.unschedule('expire_past_trips_job') where exists (select 1 from cron.job where jobname='expire_past_trips_job');
   perform cron.schedule('expire_past_trips_job', '*/5 * * * *', 'SELECT public.fn_expire_past_trips()');
-
-  -- expire pending shipments — every 30 min (plain SQL fn)
-  perform cron.unschedule('expire_pending_shipments_job') where exists (select 1 from cron.job where jobname='expire_pending_shipments_job');
-  perform cron.schedule('expire_pending_shipments_job', '*/30 * * * *', 'SELECT public.fn_expire_pending_shipments()');
 
   -- auto-expire-trips edge fn — every 15 min
   perform cron.unschedule('auto-expire-trips') where exists (select 1 from cron.job where jobname='auto-expire-trips');

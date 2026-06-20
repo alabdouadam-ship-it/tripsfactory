@@ -15,8 +15,6 @@ type DocEntry = {
   userId: string;
   userName: string;
   phoneNumber: string | null;
-  companyName: string | null;
-  companyCrNumber: string | null;
   docTypeKey: string;
   currentUrl: string | null;
   pendingUrl: string | null;
@@ -28,7 +26,6 @@ const DOC_FIELDS = [
   { field: 'identity_doc_url', pendingField: 'identity_doc_url_pending', labelKey: 'documents.type.identity' },
   { field: 'traveler_license_url', pendingField: 'traveler_license_url_pending', labelKey: 'documents.type.travelerLicense' },
   { field: 'rental_contract_url', pendingField: 'rental_contract_url_pending', labelKey: 'documents.type.rentalContract' },
-  { field: 'company_cr_url', pendingField: 'company_cr_url_pending', labelKey: 'documents.type.companyCr' },
 ];
 
 type FilterMode = 'pending' | 'all';
@@ -89,8 +86,8 @@ export default function DocumentsPage() {
     setError(null);
     const { data, error: err } = await supabase
       .from('profiles')
-      .select('id, full_name, phone_number, company_name, company_cr_number, identity_doc_url, identity_doc_url_pending, traveler_license_url, traveler_license_url_pending, rental_contract_url, rental_contract_url_pending, company_cr_url, company_cr_url_pending')
-      .or('identity_doc_url.neq.,traveler_license_url.neq.,rental_contract_url.neq.,company_cr_url.neq.,identity_doc_url_pending.neq.,traveler_license_url_pending.neq.,rental_contract_url_pending.neq.,company_cr_url_pending.neq.');
+      .select('id, full_name, phone_number, identity_doc_url, identity_doc_url_pending, traveler_license_url, traveler_license_url_pending, rental_contract_url, rental_contract_url_pending')
+      .or('identity_doc_url.neq.,traveler_license_url.neq.,rental_contract_url.neq.,identity_doc_url_pending.neq.,traveler_license_url_pending.neq.,rental_contract_url_pending.neq.');
 
     if (err) {
       console.error(err);
@@ -110,8 +107,6 @@ export default function DocumentsPage() {
             userId: p.id,
             userName: p.full_name || 'Anonymous',
             phoneNumber: p.phone_number || null,
-            companyName: p.company_name || null,
-            companyCrNumber: p.company_cr_number || null,
             docTypeKey: df.labelKey,
             currentUrl,
             pendingUrl,
@@ -194,8 +189,6 @@ export default function DocumentsPage() {
       d.userName,
       d.phoneNumber,
       d.userId,
-      d.companyName,
-      d.companyCrNumber,
       docTypeLabel,
     ].filter(Boolean).join(' ').toLowerCase();
     const matchesSearch = searchable.includes(normalizedSearch);
@@ -224,7 +217,7 @@ export default function DocumentsPage() {
           <Search className={cn('absolute top-1/2 h-4 w-4 -translate-y-1/2 theme-muted opacity-50', dir === 'rtl' ? 'right-3' : 'left-3')} />
           <input
             type="text"
-            placeholder={t('documents.search.expandedPlaceholder', 'Search by name, phone, user ID, company, CR, or document type...')}
+            placeholder={t('documents.search.expandedPlaceholder', 'Search by name, phone, user ID, or document type...')}
             className={cn('w-full theme-bg-secondary rounded-lg border border-[var(--surface-border)] py-2.5 text-sm theme-heading focus:ring-2 focus:ring-blue-500/20 focus:outline-none transition-all shadow-sm', dir === 'rtl' ? 'pr-10 pl-4' : 'pl-10 pr-4')}
             value={search}
             onChange={e => setSearch(e.target.value)}

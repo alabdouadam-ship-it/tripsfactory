@@ -30,7 +30,7 @@ async function requireUser() {
  */
 export async function advanceVerificationStep(
     userId: string,
-    entityType: 'driver' | 'company',
+    entityType: 'driver',
     nextStep: 'approve' | 'confirm' | 'approved' | 'rejected',
     notes?: string
 ) {
@@ -48,16 +48,6 @@ export async function advanceVerificationStep(
 
         const approvalsCount = workflow?.approvals_count || 0;
         const approverIds: string[] = workflow?.approver_ids || [];
-
-        // Soft business rule: an admin cannot dual-approve a company alone.
-        // Hard enforcement would need a DB trigger; for now this is a
-        // best-effort UX guard — a malicious admin could still bypass it via
-        // the raw Supabase REST API.
-        if (approverIds.includes(adminUser.id)) {
-            if (entityType === 'company' && nextStep === 'approved') {
-                throw new Error('Dual-approval requires a different administrator.');
-            }
-        }
 
         const updates: JsonObject = {
             entity_id: userId,
@@ -90,16 +80,12 @@ export async function advanceVerificationStep(
         if (nextStep === 'approved' || nextStep === 'rejected') {
             const profileUpdate: JsonObject = {};
             if (entityType === 'driver') profileUpdate.traveler_status = nextStep;
-            else {
-                profileUpdate.company_status = nextStep;
-                if (nextStep === 'approved') profileUpdate.account_type = 'company';
-            }
             const { error: profileError } = await supabase.from('profiles').update(profileUpdate).eq('id', userId);
             if (profileError) throw profileError;
             
             // Send notification to user about approval/rejection
             try {
-                const capabilityName = entityType === 'driver' ? 'Traveler' : 'Company';
+                const capabilityName = 'Traveler';
                 const isApproved = nextStep === 'approved';
                 
                 const notificationTitle = isApproved 

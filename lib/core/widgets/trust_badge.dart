@@ -76,10 +76,8 @@ class TrustBadge extends StatelessWidget {
   }) {
     switch (trustBadge) {
       case 'featured_driver':
-      case 'featured_company':
         return TrustBadge.featured(showLabel: showLabel, iconSize: iconSize);
       case 'trusted_driver':
-      case 'trusted_company':
         return TrustBadge.trusted(showLabel: showLabel, iconSize: iconSize);
       case 'verified_partner':
         return TrustBadge.verifiedPartner(

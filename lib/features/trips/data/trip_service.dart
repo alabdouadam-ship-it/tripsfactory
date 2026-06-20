@@ -324,7 +324,7 @@ class TripService {
   }
 
   Future<void> cancelTrip(String tripId) async {
-    // Safety Check: Cannot cancel if any booking has goods received, payment confirmed, or shipment delivered
+    // Safety Check: Cannot cancel if any booking has goods received, payment confirmed, or goods delivered
     final bookings = await _client
         .from('bookings')
         .select(

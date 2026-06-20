@@ -6,11 +6,9 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 /// Fetches the delivery OTP from the sender-only `delivery_codes` table.
 /// Returns null when no code exists or the caller is not the sender (RLS).
 final deliveryCodeProvider = FutureProvider.autoDispose
-    .family<String?, ({String? shipmentId, String? bookingId})>((ref, args) async {
+    .family<String?, String>((ref, bookingId) async {
   final query = Supabase.instance.client.from('delivery_codes').select('code');
-  final row = args.shipmentId != null
-      ? await query.eq('shipment_id', args.shipmentId!).maybeSingle()
-      : await query.eq('booking_id', args.bookingId!).maybeSingle();
+  final row = await query.eq('booking_id', bookingId).maybeSingle();
   return row?['code'] as String?;
 });
 
@@ -19,17 +17,14 @@ final deliveryCodeProvider = FutureProvider.autoDispose
 class DeliveryCodeCard extends ConsumerWidget {
   const DeliveryCodeCard({
     super.key,
-    this.shipmentId,
-    this.bookingId,
+    required this.bookingId,
     required this.title,
     required this.hint,
     required this.copiedLabel,
     this.padding = EdgeInsets.zero,
-  }) : assert((shipmentId == null) != (bookingId == null),
-            'Provide exactly one of shipmentId or bookingId');
+  });
 
-  final String? shipmentId;
-  final String? bookingId;
+  final String bookingId;
   final String title;
   final String hint;
   final String copiedLabel;
@@ -37,9 +32,7 @@ class DeliveryCodeCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final codeAsync = ref.watch(
-      deliveryCodeProvider((shipmentId: shipmentId, bookingId: bookingId)),
-    );
+    final codeAsync = ref.watch(deliveryCodeProvider(bookingId));
     final code = codeAsync.valueOrNull;
     if (code == null || code.isEmpty) return const SizedBox.shrink();
 

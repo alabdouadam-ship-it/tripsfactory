@@ -37,28 +37,4 @@ class FakeChatService implements IChatService {
 
   @override
   Future<void> markMessagesAsRead(String bookingId) async {}
-
-  @override
-  Stream<List<ChatMessage>> getOfferMessages(
-    String offerId, {
-    int limit = kChatPageSize,
-  }) => Stream.value([]);
-
-  @override
-  Future<List<ChatMessage>> fetchOlderOfferMessages(
-    String offerId, {
-    required DateTime before,
-    int limit = kChatPageSize,
-  }) async => [];
-
-  @override
-  Future<void> sendOfferMessage(
-    String offerId,
-    String content, {
-    String type = 'text',
-    Map<String, dynamic>? metadata,
-  }) async {}
-
-  @override
-  Future<void> markOfferMessagesAsRead(String offerId) async {}
 }

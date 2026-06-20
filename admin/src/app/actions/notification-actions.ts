@@ -35,7 +35,7 @@ export async function sendAdminNotification(opts: {
     title: string;
     body: string;
     targetUserId?: string;
-    segment?: 'all' | 'drivers' | 'clients' | 'companies' | 'individuals';
+    segment?: 'all' | 'drivers' | 'clients' | 'individuals';
 }) {
     try {
         const adminUser = await requireUser();
@@ -71,12 +71,10 @@ export async function sendAdminNotification(opts: {
         if (mode === 'segment' && segment && segment !== 'all') {
             if (segment === 'drivers') {
                 query = query.neq('traveler_status', 'none').not('traveler_status', 'is', null);
-            } else if (segment === 'companies') {
-                query = query.eq('account_type', 'company');
             } else if (segment === 'clients') {
                 query = query.or('traveler_status.is.null,traveler_status.eq.none');
             } else if (segment === 'individuals') {
-                query = query.eq('account_type', 'individual').or('traveler_status.is.null,traveler_status.eq.none');
+                query = query.or('traveler_status.is.null,traveler_status.eq.none');
             }
         }
 

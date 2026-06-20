@@ -22,7 +22,7 @@ Included:
 - Fixing reproducible defects in the unmodified product within the support
   period.
 
-Not included (available as paid custom work, if offered):
+Not included (available as paid custom work, if available):
 - Custom feature development or domain re-orientation.
 - Debugging your modifications to the source.
 - Third-party services (Supabase, Firebase, Apple/Google) account issues.
@@ -31,7 +31,7 @@ Not included (available as paid custom work, if offered):
 ## Support period
 
 - **Duration:** [e.g. 6 months from purchase], per the marketplace's policy.
-- **Extension/renewal:** [if offered, terms here].
+- **Extension/renewal:** [if available, terms here].
 
 ## Updates
 

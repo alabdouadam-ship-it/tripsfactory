@@ -9,29 +9,29 @@ import '../test_helpers/perf_budgets_loader.dart';
 /// do not rebuild when an unrelated profile field changes (Stage 3 optimization).
 void main() {
   late Profile profileA;
-  late Profile profileSameCompanyNewName;
-  late Profile profileNewCompany;
+  late Profile profileSameStatusNewName;
+  late Profile profileNewStatus;
 
   setUpAll(() {
     profileA = const Profile(
       id: 'u1',
       fullName: 'User One',
-      companyStatus: 'pending',
+      travelerStatus: 'pending',
     );
-    profileSameCompanyNewName = const Profile(
+    profileSameStatusNewName = const Profile(
       id: 'u1',
       fullName: 'User One Updated Name',
-      companyStatus: 'pending',
+      travelerStatus: 'pending',
     );
-    profileNewCompany = const Profile(
+    profileNewStatus = const Profile(
       id: 'u1',
       fullName: 'User One',
-      companyStatus: 'approved',
+      travelerStatus: 'approved',
     );
   });
 
   testWidgets(
-    'widget watching companyStatus via .select() rebuilds only when companyStatus changes',
+    'widget watching travelerStatus via .select() rebuilds only when travelerStatus changes',
     (tester) async {
       final budgets = loadPerfBudgets();
       final maxRecomputes = getInt(
@@ -61,7 +61,7 @@ void main() {
                       rebuildCount++;
                       final status = ref.watch(
                         currentUserProfileProvider.select(
-                          (p) => p.value?.companyStatus ?? 'none',
+                          (p) => p.value?.travelerStatus ?? 'none',
                         ),
                       );
                       return Text('Status: $status');
@@ -75,13 +75,13 @@ void main() {
                           TextButton(
                             onPressed: () =>
                                 ref.read(profileState.notifier).state =
-                                    profileSameCompanyNewName,
+                                    profileSameStatusNewName,
                             child: const Text('Unrelated'),
                           ),
                           TextButton(
                             onPressed: () =>
                                 ref.read(profileState.notifier).state =
-                                    profileNewCompany,
+                                    profileNewStatus,
                             child: const Text('Related'),
                           ),
                         ],
@@ -106,7 +106,7 @@ void main() {
         afterUnrelatedChange - afterFirstBuild,
         lessThanOrEqualTo(maxRecomputes),
         reason:
-            'Unrelated profile change (fullName) should not trigger rebuild when using .select(companyStatus)',
+            'Unrelated profile change (fullName) should not trigger rebuild when using .select(travelerStatus)',
       );
 
       await tester.tap(find.text('Related'));
@@ -117,7 +117,7 @@ void main() {
       expect(
         rebuildCount,
         greaterThan(afterUnrelatedChange),
-        reason: 'Changing companyStatus should trigger rebuild',
+        reason: 'Changing travelerStatus should trigger rebuild',
       );
     },
   );

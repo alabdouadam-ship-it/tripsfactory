@@ -13,22 +13,8 @@ import { Rating } from '@/lib/types';
 
 type CommentFilter = 'all' | 'pending' | 'approved' | 'rejected';
 
-type LocationLite = {
-  city_name_en?: string | null;
-  city_name_ar?: string | null;
-};
-
 type ReviewRating = Rating & {
   booking?: { id?: string | null; trip_id?: string | null } | null;
-  offer?: {
-    id?: string | null;
-    shipment_id?: string | null;
-    shipment?: {
-      id?: string | null;
-      pickup?: LocationLite | null;
-      dropoff?: LocationLite | null;
-    } | null;
-  } | null;
 };
 
 function hasReviewComment(rating: Rating) {
@@ -43,21 +29,6 @@ function shortId(id: string | null | undefined) {
 function localDateBoundaryIso(value: string, endOfDay = false) {
   const time = endOfDay ? 'T23:59:59.999' : 'T00:00:00.000';
   return new Date(`${value}${time}`).toISOString();
-}
-
-function locationName(location: LocationLite | null | undefined, language: string) {
-  if (!location) return '';
-  return language === 'ar'
-    ? location.city_name_ar || location.city_name_en || ''
-    : location.city_name_en || location.city_name_ar || '';
-}
-
-function offerShipmentRouteLabel(offer: ReviewRating['offer'], language: string) {
-  const pickup = locationName(offer?.shipment?.pickup, language);
-  const dropoff = locationName(offer?.shipment?.dropoff, language);
-  if (pickup && dropoff) return `${pickup} - ${dropoff}`;
-  if (pickup || dropoff) return pickup || dropoff;
-  return '';
 }
 
 function humanize(value: string) {
@@ -90,16 +61,7 @@ export default function ReviewsPage() {
         *,
         rater:profiles!ratings_rater_id_fkey(full_name),
         rated:profiles!ratings_rated_id_fkey(full_name),
-        booking:bookings!ratings_booking_id_fkey(id, trip_id),
-        offer:offers!ratings_offer_id_fkey(
-          id,
-          shipment_id,
-          shipment:shipments!offers_shipment_id_fkey(
-            id,
-            pickup:locations!shipments_pickup_location_id_fkey(city_name_ar, city_name_en),
-            dropoff:locations!shipments_dropoff_location_id_fkey(city_name_ar, city_name_en)
-          )
-        )
+        booking:bookings!ratings_booking_id_fkey(id, trip_id)
       `);
 
     if (dateFrom) query = query.gte('created_at', localDateBoundaryIso(dateFrom));
@@ -144,7 +106,7 @@ export default function ReviewsPage() {
       case 'traveler':
         return t('reviews.role.traveler', 'Traveler');
       case 'client':
-        return t('reviews.role.client', 'Sender / Company');
+        return t('reviews.role.client', 'Sender');
       case 'sender':
         return t('reviews.role.sender', 'Sender');
       default:
@@ -167,17 +129,7 @@ export default function ReviewsPage() {
       );
     }
 
-    if (rating.offer_id) {
-      const routeLabel = offerShipmentRouteLabel(rating.offer, language);
-      const href = rating.offer?.shipment_id ? `/shipments/${rating.offer.shipment_id}` : '/offers';
-      return (
-        <Link href={href} className="text-blue-600 hover:underline text-xs font-bold">
-          {t('reviews.context.offer', 'Shipment offer')}{routeLabel ? ` - ${routeLabel}` : ` ${shortId(rating.offer_id)}`}
-        </Link>
-      );
-    }
-
-    return <span className="text-xs theme-muted opacity-50">{t('reviews.context.none', 'No linked trip or shipment')}</span>;
+    return <span className="text-xs theme-muted opacity-50">{t('reviews.context.none', 'No linked trip')}</span>;
   }
 
   const filtered = useMemo(() => {
@@ -185,8 +137,6 @@ export default function ReviewsPage() {
     return ratings.filter(r => {
       const contextText = [
         r.booking_id,
-        r.offer_id,
-        offerShipmentRouteLabel(r.offer, language),
         roleLabel(r.role_rated),
       ].filter(Boolean).join(' ');
       const matchesSearch = !query || [

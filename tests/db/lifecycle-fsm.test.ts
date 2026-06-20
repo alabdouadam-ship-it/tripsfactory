@@ -38,9 +38,8 @@ async function createBooking(status: string) {
     .insert({
       requester_id: requester.userId,
       traveler_id: traveler.userId,
-      offer_price: 10,
+      price: 10,
       status,
-      booking_type: 'shipment',
     })
     .select('id')
     .single();

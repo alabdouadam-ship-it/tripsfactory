@@ -13,7 +13,7 @@ interface PushPayload {
   body: string;
   data?: Record<string, string>;
   target_user_id?: string;
-  segment_filter?: { role?: string; account_type?: string };
+  segment_filter?: { role?: string };
 }
 
 Deno.serve(async (req: Request) => {
@@ -102,8 +102,6 @@ Deno.serve(async (req: Request) => {
       let query = adminClient.from("profiles").select("id");
       if (segment_filter?.role === "drivers") {
         query = query.not("traveler_status", "is", null).neq("traveler_status", "none");
-      } else if (segment_filter?.role === "companies") {
-        query = query.eq("account_type", "company");
       } else if (segment_filter?.role === "clients") {
         query = query.or("traveler_status.is.null,traveler_status.eq.none");
       }

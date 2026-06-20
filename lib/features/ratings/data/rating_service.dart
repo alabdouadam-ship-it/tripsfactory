@@ -28,7 +28,6 @@ class RatingService {
     required int rating,
     String? comment,
     String? bookingId,
-    String? offerId,
   }) async {
     // Input validation first — before any DB reads
     if (rating < 1 || rating > 5) {
@@ -41,10 +40,6 @@ class RatingService {
     // Guard: prevent duplicate ratings
     if (bookingId != null) {
       final alreadyRated = await hasRatedForBooking(bookingId);
-      if (alreadyRated) return;
-    }
-    if (offerId != null) {
-      final alreadyRated = await hasRatedForOffer(offerId);
       if (alreadyRated) return;
     }
 
@@ -63,7 +58,6 @@ class RatingService {
         'rating': rating,
         'comment': safeComment,
         'booking_id': bookingId,
-        'offer_id': offerId,
       });
       StructuredLogger.info(
         'RatingService',
@@ -101,35 +95,6 @@ class RatingService {
         .eq('rater_id', userId);
     return (res as List)
         .map((r) => r['booking_id'] as String)
-        .whereType<String>()
-        .toSet();
-  }
-
-  /// Check if the current user has rated the other party for this offer
-  Future<bool> hasRatedForOffer(String offerId) async {
-    final userId = _client.auth.currentUser?.id;
-    if (userId == null) return false;
-    final res = await _client
-        .from('ratings')
-        .select('id')
-        .eq('offer_id', offerId)
-        .eq('rater_id', userId)
-        .limit(1)
-        .maybeSingle();
-    return res != null;
-  }
-
-  /// Get set of offer IDs that the current user has already rated
-  Future<Set<String>> getRatedOfferIds(List<String> offerIds) async {
-    final userId = _client.auth.currentUser?.id;
-    if (userId == null || offerIds.isEmpty) return {};
-    final res = await _client
-        .from('ratings')
-        .select('offer_id')
-        .inFilter('offer_id', offerIds)
-        .eq('rater_id', userId);
-    return (res as List)
-        .map((r) => r['offer_id'] as String)
         .whereType<String>()
         .toSet();
   }

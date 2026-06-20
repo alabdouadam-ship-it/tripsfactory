@@ -28,10 +28,6 @@ const baseUser = {
   avatar_url: null,
   phone_number: '+966500000000',
   bio: 'Existing bio',
-  account_type: 'company' as const,
-  company_status: 'approved' as const,
-  company_name: 'Existing Company',
-  company_cr_number: 'CR-1',
   identity_type: 'passport',
   traveler_type: 'with_vehicle' as const,
   is_available: true,
@@ -53,8 +49,6 @@ describe('UserEditModal', () => {
 
     fireEvent.change(screen.getByDisplayValue('+966500000000'), { target: { value: '' } });
     fireEvent.change(screen.getByDisplayValue('Existing bio'), { target: { value: '' } });
-    fireEvent.change(screen.getByDisplayValue('Existing Company'), { target: { value: '' } });
-    fireEvent.change(screen.getByDisplayValue('CR-1'), { target: { value: '' } });
     fireEvent.change(screen.getAllByRole('combobox')[0], { target: { value: '' } });
 
     fireEvent.click(screen.getByRole('button', { name: /save/i }));
@@ -64,12 +58,11 @@ describe('UserEditModal', () => {
       full_name: 'Existing User',
       phone_number: null,
       bio: null,
-      company_name: null,
-      company_cr_number: null,
       identity_type: null,
       is_available: true,
     }));
-    expect(mockUpdateUserProfile.mock.calls[0][1]).not.toHaveProperty('account_type');
-    expect(mockUpdateUserProfile.mock.calls[0][1]).not.toHaveProperty('is_driver');
+    const callArgs = (mockUpdateUserProfile.mock.calls[0] as any[])[1];
+    expect(callArgs).not.toHaveProperty('account_type');
+    expect(callArgs).not.toHaveProperty('is_driver');
   });
 });

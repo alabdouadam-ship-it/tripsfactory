@@ -13,14 +13,12 @@ import 'package:url_launcher/url_launcher.dart';
 class OccasionalPopupGate extends ConsumerStatefulWidget {
   final Widget child;
   final bool isDriver;
-  final bool isCompany;
   final bool isNewUser;
 
   const OccasionalPopupGate({
     super.key,
     required this.child,
     this.isDriver = false,
-    this.isCompany = false,
     this.isNewUser = false,
   });
 
@@ -48,9 +46,8 @@ class _OccasionalPopupGateState extends ConsumerState<OccasionalPopupGate> {
     final target = popup.target;
     final matches = switch (target) {
       'all' => true,
-      'individuals' => !widget.isDriver && !widget.isCompany,
+      'individuals' => !widget.isDriver,
       'drivers' => widget.isDriver,
-      'companies' => widget.isCompany,
       'new_users' => widget.isNewUser,
       _ => true,
     };

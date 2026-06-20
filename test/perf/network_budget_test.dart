@@ -17,7 +17,7 @@ void main() {
     expect(maxKb, greaterThan(0));
   });
 
-  test('default_page_size matches trip and shipment search (20)', () {
+  test('default_page_size matches trip search (20)', () {
     final budgets = loadPerfBudgets();
     final pageSize = getInt(budgets['flutter'] as Map<String, dynamic>, 'default_page_size', 20);
     expect(pageSize, 20);

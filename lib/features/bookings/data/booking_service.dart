@@ -51,7 +51,7 @@ class BookingService {
         });
   }
 
-  // Create a direct booking request without a shipment
+  // Create a direct booking request without a separate listing
   Future<void> createDirectBooking({
     required String userId,
     required String driverId,
@@ -101,7 +101,6 @@ class BookingService {
         await NotificationLocationHelper.addOriginDestinationToData(
           _supabase,
           notifData,
-          null,
           tripId,
         );
 
@@ -129,7 +128,7 @@ class BookingService {
       'traveler_id': driverId,
       'trip_id': tripId,
       'requester_id': userId, // Track who created this booking
-      'offer_price': 0.0, // Price to be negotiated
+      'price': 0.0, // Price to be negotiated
       'status': BookingStatus.pending.toStringValue(),
       'timeline': [
         {
@@ -150,7 +149,6 @@ class BookingService {
     await NotificationLocationHelper.addOriginDestinationToData(
       _supabase,
       notifData,
-      null,
       tripId,
     );
 
@@ -204,7 +202,7 @@ class BookingService {
           'traveler_id': driverId,
           'trip_id': tripId,
           'requester_id': userId,
-          'offer_price': 0.0,
+          'price': 0.0,
           'status': BookingStatus.inCommunication.toStringValue(),
           'timeline': [
             {

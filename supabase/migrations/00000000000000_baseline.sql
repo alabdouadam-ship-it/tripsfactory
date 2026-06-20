@@ -99,7 +99,6 @@ CREATE TYPE public.app_role AS ENUM (
     'traveler_with_car',
     'traveler_no_car',
     'sender',
-    'company_sender',
     'suspended',
     'banned'
 );
@@ -119,20 +118,6 @@ CREATE TYPE public.dispute_outcome AS ENUM (
 
 
 --
--- TOC entry 2237 (class 1247 OID 55157)
--- Name: offer_status; Type: TYPE; Schema: public; Owner: -
---
-
-CREATE TYPE public.offer_status AS ENUM (
-    'sent',
-    'accepted',
-    'rejected',
-    'cancelled',
-    'completed'
-);
-
-
---
 -- TOC entry 2190 (class 1247 OID 19025)
 -- Name: rating_role; Type: TYPE; Schema: public; Owner: -
 --
@@ -141,76 +126,6 @@ CREATE TYPE public.rating_role AS ENUM (
     'driver',
     'client'
 );
-
-
---
--- TOC entry 1055 (class 1255 OID 55207)
--- Name: accept_offer(uuid, uuid); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.accept_offer(p_offer_id uuid, p_shipment_owner_id uuid) RETURNS void
-    LANGUAGE plpgsql SECURITY DEFINER
-    SET search_path TO 'public'
-    AS $$
-DECLARE
-  v_offer_status public.offer_status;
-  v_shipment_id uuid;
-  v_sender_id uuid;
-BEGIN
-  SELECT o.status, o.shipment_id, s.sender_id
-  INTO v_offer_status, v_shipment_id, v_sender_id
-  FROM public.offers o
-  JOIN public.shipments s ON s.id = o.shipment_id
-  WHERE o.id = p_offer_id
-  FOR UPDATE;
-
-  IF v_sender_id IS NULL THEN
-    RAISE EXCEPTION 'OFFER_NOT_FOUND';
-  END IF;
-
-  IF auth.uid() IS DISTINCT FROM p_shipment_owner_id OR v_sender_id IS DISTINCT FROM p_shipment_owner_id THEN
-    RAISE EXCEPTION 'FORBIDDEN';
-  END IF;
-
-  IF v_offer_status <> 'sent' THEN
-    RAISE EXCEPTION 'OFFER_NOT_SENT';
-  END IF;
-
-  PERFORM 1
-  FROM public.offers
-  WHERE shipment_id = v_shipment_id
-  FOR UPDATE;
-
-  IF EXISTS (
-    SELECT 1
-    FROM public.offers
-    WHERE shipment_id = v_shipment_id
-      AND status = 'accepted'
-      AND id <> p_offer_id
-  ) THEN
-    RAISE EXCEPTION 'SHIPMENT_ALREADY_ACCEPTED';
-  END IF;
-
-  UPDATE public.offers
-  SET status = 'accepted', rejection_reason = NULL
-  WHERE id = p_offer_id;
-
-  UPDATE public.offers
-  SET status = 'rejected', rejection_reason = 'other_offer_accepted'
-  WHERE shipment_id = v_shipment_id
-    AND id <> p_offer_id
-    AND status = 'sent';
-
-  INSERT INTO public.delivery_codes (shipment_id, code)
-  VALUES (v_shipment_id, public.fn_new_delivery_code())
-  ON CONFLICT (shipment_id) DO NOTHING;
-
-  UPDATE public.shipments
-  SET status = 'accepted'
-  WHERE id = v_shipment_id
-    AND status IN ('pending', 'in_communication');
-END;
-$$;
 
 
 --
@@ -286,17 +201,11 @@ CREATE TABLE public.profiles (
     phone_number text,
     full_name text,
     avatar_url text,
-    account_type text DEFAULT 'individual'::text,
     created_at timestamp with time zone DEFAULT timezone('utc'::text, now()),
     bio text,
     is_available boolean DEFAULT false,
     traveler_status text DEFAULT 'none'::text,
     traveler_license_url text,
-    company_status text DEFAULT 'none'::text,
-    company_name text,
-    company_address text,
-    company_cr_number text,
-    company_cr_url text,
     traveler_rating_avg numeric(3,2) DEFAULT 0.0,
     traveler_rating_count integer DEFAULT 0,
     client_rating_avg numeric(3,2) DEFAULT 0.0,
@@ -310,13 +219,11 @@ CREATE TABLE public.profiles (
     subscription_expires_at timestamp with time zone,
     license_expires_at timestamp with time zone,
     is_driver boolean DEFAULT false,
-    company_validity_date timestamp with time zone,
     driver_validity_date timestamp with time zone,
     avatar_updated_at timestamp with time zone,
     identity_doc_url_pending text,
     traveler_license_url_pending text,
     rental_contract_url_pending text,
-    company_cr_url_pending text,
     suspension_reason text,
     suspended_at timestamp with time zone,
     suspended_by uuid,
@@ -337,8 +244,6 @@ CREATE TABLE public.profiles (
     trust_badge text,
     trust_badge_set_at timestamp with time zone,
     trust_badge_set_by uuid,
-    CONSTRAINT profiles_account_type_check CHECK ((account_type = ANY (ARRAY['individual'::text, 'company'::text]))),
-    CONSTRAINT profiles_company_status_check CHECK ((company_status = ANY (ARRAY['none'::text, 'pending'::text, 'approved'::text, 'rejected'::text, 'suspended'::text, 'blocked'::text]))),
     CONSTRAINT profiles_traveler_status_check CHECK ((traveler_status = ANY (ARRAY['none'::text, 'pending'::text, 'approved'::text, 'rejected'::text, 'suspended'::text, 'blocked'::text])))
 );
 
@@ -350,33 +255,6 @@ CREATE TABLE public.profiles (
 --
 
 COMMENT ON COLUMN public.profiles.traveler_status IS 'Status of the driver application: none, pending, approved, rejected';
-
-
---
--- TOC entry 5651 (class 0 OID 0)
--- Dependencies: 400
--- Name: COLUMN profiles.company_status; Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON COLUMN public.profiles.company_status IS 'Status of the company verification: none, pending, approved, rejected';
-
-
---
--- TOC entry 5652 (class 0 OID 0)
--- Dependencies: 400
--- Name: COLUMN profiles.company_cr_number; Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON COLUMN public.profiles.company_cr_number IS 'Commercial Registration (CR) Number';
-
-
---
--- TOC entry 5653 (class 0 OID 0)
--- Dependencies: 400
--- Name: COLUMN profiles.company_validity_date; Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON COLUMN public.profiles.company_validity_date IS 'Expiration date for company privileges';
 
 
 --
@@ -403,7 +281,7 @@ COMMENT ON COLUMN public.profiles.is_blocked IS 'Hard block: account cannot log 
 -- Name: COLUMN profiles.is_trusted; Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON COLUMN public.profiles.is_trusted IS 'Marks profile as a trusted account (driver/company). Use trust_badge for label.';
+COMMENT ON COLUMN public.profiles.is_trusted IS 'Marks profile as a trusted account (driver). Use trust_badge for label.';
 
 
 --
@@ -412,15 +290,15 @@ COMMENT ON COLUMN public.profiles.is_trusted IS 'Marks profile as a trusted acco
 -- Name: COLUMN profiles.is_featured; Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON COLUMN public.profiles.is_featured IS 'Marks profile as featured (e.g. featured driver/company on home).';
+COMMENT ON COLUMN public.profiles.is_featured IS 'Marks profile as featured (e.g. featured driver on home).';
 
 
 --
 -- TOC entry 650 (class 1255 OID 92860)
--- Name: admin_provision_profile(uuid, text, text, text, boolean, boolean); Type: FUNCTION; Schema: public; Owner: -
+-- Name: admin_provision_profile(uuid, text, text, boolean); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION public.admin_provision_profile(p_user_id uuid, p_full_name text, p_phone text, p_account_type text DEFAULT 'individual'::text, p_make_driver boolean DEFAULT false, p_make_company boolean DEFAULT false) RETURNS public.profiles
+CREATE FUNCTION public.admin_provision_profile(p_user_id uuid, p_full_name text, p_phone text, p_make_driver boolean DEFAULT false) RETURNS public.profiles
     LANGUAGE sql SECURITY DEFINER
     SET search_path TO 'public'
     AS $$
@@ -428,9 +306,7 @@ INSERT INTO public.profiles (
   id,
   full_name,
   phone_number,
-  account_type,
   traveler_status,
-  company_status,
   is_driver,
   traveler_type
 )
@@ -438,16 +314,13 @@ VALUES (
   p_user_id,
   p_full_name,
   p_phone,
-  COALESCE(p_account_type, 'individual'),
   CASE WHEN p_make_driver THEN 'pending' ELSE 'none' END,
-  CASE WHEN p_make_company THEN 'pending' ELSE 'none' END,
   p_make_driver,
   CASE WHEN p_make_driver THEN 'with_vehicle' ELSE 'no_vehicle' END
 )
 ON CONFLICT (id) DO UPDATE SET
   full_name = EXCLUDED.full_name,
   phone_number = COALESCE(EXCLUDED.phone_number, public.profiles.phone_number),
-  account_type = COALESCE(EXCLUDED.account_type, public.profiles.account_type),
   traveler_status = CASE
     WHEN p_make_driver THEN
       CASE
@@ -464,15 +337,6 @@ ON CONFLICT (id) DO UPDATE SET
   traveler_type = CASE
     WHEN p_make_driver THEN 'with_vehicle'
     ELSE public.profiles.traveler_type
-  END,
-  company_status = CASE
-    WHEN p_make_company THEN
-      CASE
-        WHEN public.profiles.company_status IN ('approved', 'blocked', 'rejected')
-          THEN public.profiles.company_status
-        ELSE 'pending'
-      END
-    ELSE public.profiles.company_status
   END
 RETURNING *;
 $$;
@@ -481,10 +345,10 @@ $$;
 --
 -- TOC entry 5658 (class 0 OID 0)
 -- Dependencies: 650
--- Name: FUNCTION admin_provision_profile(p_user_id uuid, p_full_name text, p_phone text, p_account_type text, p_make_driver boolean, p_make_company boolean); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION admin_provision_profile(p_user_id uuid, p_full_name text, p_phone text, p_make_driver boolean); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION public.admin_provision_profile(p_user_id uuid, p_full_name text, p_phone text, p_account_type text, p_make_driver boolean, p_make_company boolean) IS 'Provision or update a profile row for a newly-created auth user (service_role only).';
+COMMENT ON FUNCTION public.admin_provision_profile(p_user_id uuid, p_full_name text, p_phone text, p_make_driver boolean) IS 'Provision or update a profile row for a newly-created auth user (service_role only).';
 
 
 --
@@ -560,8 +424,6 @@ BEGIN
         WHEN COALESCE(p.traveler_status, 'none') <> 'none'
           AND COALESCE(p.is_driver, false) = true THEN 'driver'
         WHEN COALESCE(p.traveler_status, 'none') <> 'none' THEN 'traveler'
-        WHEN COALESCE(p.account_type, 'individual') = 'company'
-          AND COALESCE(p.company_status, 'none') <> 'none' THEN 'company'
         ELSE 'individual'
       END AS bucket
     FROM public.profiles p
@@ -570,7 +432,6 @@ BEGIN
     VALUES
       ('driver'::text, 1),
       ('traveler'::text, 2),
-      ('company'::text, 3),
       ('individual'::text, 4)
   )
   SELECT expected.bucket_name, COUNT(classified.bucket)::bigint AS total
@@ -594,55 +455,13 @@ CREATE FUNCTION public.can_read_chat_attachment(object_name text) RETURNS boolea
   SELECT EXISTS (
     SELECT 1
     FROM public.messages m
-    LEFT JOIN public.bookings b ON b.id = m.booking_id
-    LEFT JOIN public.offers o ON o.id = m.offer_id
-    LEFT JOIN public.shipments s ON s.id = o.shipment_id
+    JOIN public.bookings b ON b.id = m.booking_id
     WHERE m.content LIKE '%' || object_name
       AND (
         b.requester_id = auth.uid()
         OR b.traveler_id = auth.uid()
-        OR o.driver_id = auth.uid()
-        OR s.sender_id = auth.uid()
       )
   );
-$$;
-
-
---
--- TOC entry 1340 (class 1255 OID 55205)
--- Name: cancel_offer(uuid, uuid); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.cancel_offer(p_offer_id uuid, p_driver_id uuid) RETURNS void
-    LANGUAGE plpgsql SECURITY DEFINER
-    SET search_path TO 'public'
-    AS $$
-DECLARE
-  v_status public.offer_status;
-  v_driver_id uuid;
-BEGIN
-  SELECT status, driver_id
-  INTO v_status, v_driver_id
-  FROM public.offers
-  WHERE id = p_offer_id
-  FOR UPDATE;
-
-  IF v_driver_id IS NULL THEN
-    RAISE EXCEPTION 'OFFER_NOT_FOUND';
-  END IF;
-
-  IF auth.uid() IS DISTINCT FROM p_driver_id OR v_driver_id IS DISTINCT FROM p_driver_id THEN
-    RAISE EXCEPTION 'FORBIDDEN';
-  END IF;
-
-  IF v_status <> 'sent' THEN
-    RAISE EXCEPTION 'INVALID_STATE';
-  END IF;
-
-  UPDATE public.offers
-  SET status = 'cancelled', rejection_reason = NULL
-  WHERE id = p_offer_id;
-END;
 $$;
 
 
@@ -753,15 +572,6 @@ BEGIN
         identity_expiry < NOW() 
         AND is_suspended = false
         AND traveler_status = 'approved';
-
-    -- Suspend users with expired subscription
-    UPDATE public.profiles
-    SET is_suspended = true,
-        internal_notes = COALESCE(internal_notes, '') || ' [Auto-Suspension] Subscription Expired.'
-    WHERE 
-        subscription_expires_at < NOW() 
-        AND is_suspended = false
-        AND account_type = 'company';
 END;
 $$;
 
@@ -967,63 +777,6 @@ $$;
 
 
 --
--- TOC entry 910 (class 1255 OID 93048)
--- Name: fn_expire_pending_shipments(); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.fn_expire_pending_shipments() RETURNS TABLE(expired_count integer, notified_count integer)
-    LANGUAGE plpgsql SECURITY DEFINER
-    SET search_path TO 'public'
-    AS $$
-DECLARE
-    v_expired integer := 0;
-    v_notified integer := 0;
-    r RECORD;
-BEGIN
-    -- Find shipments worth expiring: still in an open state and pickup_date
-    -- has been passed by more than 24h.
-    FOR r IN
-        SELECT id, sender_id, title
-        FROM public.shipments
-        WHERE status IN ('pending', 'pending_approval', 'in_communication')
-          AND pickup_date IS NOT NULL
-          AND pickup_date < (NOW() - INTERVAL '1 day')
-    LOOP
-        UPDATE public.shipments
-        SET status = 'expired',
-            internal_notes = COALESCE(internal_notes, '')
-                             || E'\n[AUTO_EXPIRED] pickup_date passed by >1 day at '
-                             || NOW()::text
-        WHERE id = r.id;
-
-        v_expired := v_expired + 1;
-
-        -- Best-effort sender notification. The DB webhook on
-        -- notifications INSERT will dispatch the push.
-        BEGIN
-            INSERT INTO public.notifications (user_id, title, body, data)
-            VALUES (
-                r.sender_id,
-                'انتهت صلاحية شحنتك',
-                COALESCE(r.title, 'شحنتك') || ' - تم إغلاقها تلقائياً لأن تاريخ الاستلام انقضى',
-                jsonb_build_object(
-                    'type', 'shipment_auto_expired',
-                    'shipment_id', r.id::text
-                )
-            );
-            v_notified := v_notified + 1;
-        EXCEPTION WHEN OTHERS THEN
-            -- Don't let a notification insert failure break the whole batch
-            RAISE NOTICE 'Notification insert failed for shipment %: %', r.id, SQLERRM;
-        END;
-    END LOOP;
-
-    RETURN QUERY SELECT v_expired, v_notified;
-END;
-$$;
-
-
---
 -- TOC entry 1269 (class 1255 OID 94329)
 -- Name: fn_generate_booking_delivery_code(); Type: FUNCTION; Schema: public; Owner: -
 --
@@ -1113,7 +866,7 @@ BEGIN
   END IF;
 
   -- The agreed price freezes once goods are moving.
-  IF NEW.offer_price IS DISTINCT FROM OLD.offer_price
+  IF NEW.price IS DISTINCT FROM OLD.price
      AND OLD.status IN ('in_transit', 'delivered', 'completed', 'cancelled', 'rejected') THEN
     RAISE EXCEPTION 'FORBIDDEN: price is frozen after transit starts';
   END IF;
@@ -1148,180 +901,6 @@ BEGIN
     OR (OLD.goods_delivered_by_traveler_at IS NULL AND NEW.goods_delivered_by_traveler_at IS NOT NULL)
     THEN
       RAISE EXCEPTION 'FORBIDDEN: driver-side timestamps can only be set by the driver';
-    END IF;
-  END IF;
-
-  RETURN NEW;
-END;
-$$;
-
-
---
--- TOC entry 1218 (class 1255 OID 94345)
--- Name: fn_guard_offers_update(); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.fn_guard_offers_update() RETURNS trigger
-    LANGUAGE plpgsql
-    AS $$
-DECLARE
-  v_uid uuid := auth.uid();
-  v_is_sender boolean;
-BEGIN
-  IF v_uid IS NULL OR public.is_admin() THEN
-    RETURN NEW;
-  END IF;
-
-  NEW.driver_id := OLD.driver_id;
-  NEW.shipment_id := OLD.shipment_id;
-
-  IF NEW.price IS DISTINCT FROM OLD.price
-     AND NOT (OLD.status = 'sent' AND v_uid = OLD.driver_id) THEN
-    RAISE EXCEPTION 'FORBIDDEN: offer price can only be changed by the driver while the offer is sent';
-  END IF;
-
-  IF NEW.status IS DISTINCT FROM OLD.status THEN
-    v_is_sender := EXISTS (
-      SELECT 1 FROM public.shipments s
-      WHERE s.id = OLD.shipment_id AND s.sender_id = v_uid
-    );
-    IF NOT (
-      (OLD.status = 'sent'     AND NEW.status IN ('accepted', 'rejected') AND v_is_sender)
-      OR (OLD.status = 'sent'     AND NEW.status = 'cancelled' AND (v_is_sender OR v_uid = OLD.driver_id))
-      OR (OLD.status = 'accepted' AND NEW.status IN ('completed', 'cancelled') AND (v_is_sender OR v_uid = OLD.driver_id))
-    ) THEN
-      RAISE EXCEPTION 'ILLEGAL_TRANSITION: offer % -> % not allowed for this user', OLD.status, NEW.status;
-    END IF;
-  END IF;
-
-  RETURN NEW;
-END;
-$$;
-
-
---
--- TOC entry 1126 (class 1255 OID 94337)
--- Name: fn_guard_shipments_insert(); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.fn_guard_shipments_insert() RETURNS trigger
-    LANGUAGE plpgsql
-    AS $$
-BEGIN
-  IF auth.uid() IS NULL OR public.is_admin() THEN
-    RETURN NEW;
-  END IF;
-  NEW.delivery_code := NULL;
-  IF COALESCE(NEW.status, 'pending') <> 'pending' THEN
-    RAISE EXCEPTION 'FORBIDDEN: new shipments must start as pending';
-  END IF;
-  NEW.goods_handed_by_sender_at := NULL;
-  NEW.goods_received_by_driver_at := NULL;
-  NEW.payment_marked_by_sender_at := NULL;
-  NEW.payment_confirmed_by_driver_at := NULL;
-  NEW.goods_delivered_by_driver_at := NULL;
-  NEW.goods_received_by_client_at := NULL;
-  RETURN NEW;
-END;
-$$;
-
-
---
--- TOC entry 1028 (class 1255 OID 94335)
--- Name: fn_guard_shipments_update(); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.fn_guard_shipments_update() RETURNS trigger
-    LANGUAGE plpgsql
-    AS $$
-DECLARE
-  v_uid uuid := auth.uid();
-  v_otp_ok boolean := COALESCE(current_setting('tripship.delivery_verified', true), '') = 'true';
-  -- Columns the assigned driver may legitimately change.
-  v_driver_keys text[] := ARRAY[
-    'status',
-    'goods_handed_by_sender_at', 'goods_received_by_driver_at',
-    'payment_marked_by_sender_at', 'payment_confirmed_by_driver_at',
-    'goods_delivered_by_driver_at', 'goods_received_by_client_at',
-    'delivery_code', 'updated_at'
-  ];
-BEGIN
-  IF v_uid IS NULL OR public.is_admin() THEN
-    RETURN NEW;
-  END IF;
-
-  -- Legacy column is retired: silently ignore any client-sent value.
-  NEW.delivery_code := OLD.delivery_code;
-
-  -- Terminal rows are frozen for non-admins.
-  IF OLD.status IN ('completed', 'cancelled', 'expired', 'rejected', 'frozen', 'disputed') THEN
-    RAISE EXCEPTION 'SHIPMENT_LOCKED: % shipments cannot be modified', OLD.status;
-  END IF;
-
-  NEW.sender_id := OLD.sender_id;
-
-  -- Write-once handshake timestamps (dispute evidence).
-  IF (OLD.goods_handed_by_sender_at    IS NOT NULL AND NEW.goods_handed_by_sender_at    IS DISTINCT FROM OLD.goods_handed_by_sender_at)
-  OR (OLD.goods_received_by_driver_at  IS NOT NULL AND NEW.goods_received_by_driver_at  IS DISTINCT FROM OLD.goods_received_by_driver_at)
-  OR (OLD.payment_marked_by_sender_at  IS NOT NULL AND NEW.payment_marked_by_sender_at  IS DISTINCT FROM OLD.payment_marked_by_sender_at)
-  OR (OLD.payment_confirmed_by_driver_at IS NOT NULL AND NEW.payment_confirmed_by_driver_at IS DISTINCT FROM OLD.payment_confirmed_by_driver_at)
-  OR (OLD.goods_delivered_by_driver_at IS NOT NULL AND NEW.goods_delivered_by_driver_at IS DISTINCT FROM OLD.goods_delivered_by_driver_at)
-  OR (OLD.goods_received_by_client_at  IS NOT NULL AND NEW.goods_received_by_client_at  IS DISTINCT FROM OLD.goods_received_by_client_at)
-  THEN
-    RAISE EXCEPTION 'TIMESTAMP_IMMUTABLE: handshake timestamps are write-once';
-  END IF;
-
-  -- Status transition whitelist (mirrors the app FSM).
-  IF NEW.status IS DISTINCT FROM OLD.status THEN
-    IF NOT (
-      (OLD.status = 'pending'          AND NEW.status IN ('in_communication', 'accepted', 'cancelled'))
-      OR (OLD.status = 'in_communication' AND NEW.status IN ('accepted', 'cancelled'))
-      OR (OLD.status = 'accepted'      AND NEW.status IN ('picked_up', 'in_transit', 'cancelled'))
-      OR (OLD.status = 'picked_up'     AND NEW.status IN ('in_transit', 'delivered', 'completed'))
-      OR (OLD.status = 'in_transit'    AND NEW.status IN ('delivered', 'completed'))
-      OR (OLD.status = 'delivered'     AND NEW.status = 'completed')
-    ) THEN
-      RAISE EXCEPTION 'ILLEGAL_TRANSITION: % -> %', OLD.status, NEW.status;
-    END IF;
-
-    -- Status<->timestamp coherence (evidence must accompany progress).
-    IF NEW.status = 'in_transit' AND NEW.goods_received_by_driver_at IS NULL THEN
-      RAISE EXCEPTION 'INCOHERENT_STATE: in_transit requires goods_received_by_driver_at';
-    END IF;
-    IF NEW.status = 'delivered' AND NEW.goods_delivered_by_driver_at IS NULL THEN
-      RAISE EXCEPTION 'INCOHERENT_STATE: delivered requires goods_delivered_by_driver_at';
-    END IF;
-    IF NEW.status = 'completed' AND NEW.goods_received_by_client_at IS NULL THEN
-      RAISE EXCEPTION 'INCOHERENT_STATE: completed requires goods_received_by_client_at';
-    END IF;
-  END IF;
-
-  IF v_uid = OLD.sender_id THEN
-    -- The sender cannot fabricate driver-side actions.
-    IF (OLD.goods_received_by_driver_at  IS NULL AND NEW.goods_received_by_driver_at  IS NOT NULL)
-    OR (OLD.payment_confirmed_by_driver_at IS NULL AND NEW.payment_confirmed_by_driver_at IS NOT NULL)
-    OR (OLD.goods_delivered_by_driver_at IS NULL AND NEW.goods_delivered_by_driver_at IS NOT NULL)
-    THEN
-      RAISE EXCEPTION 'FORBIDDEN: driver-side timestamps can only be set by the driver';
-    END IF;
-    IF NEW.status IS DISTINCT FROM OLD.status
-       AND NEW.status IN ('picked_up', 'in_transit', 'delivered') THEN
-      RAISE EXCEPTION 'FORBIDDEN: only the driver can set %', NEW.status;
-    END IF;
-  ELSE
-    -- The driver may only touch handshake fields and status.
-    IF (to_jsonb(OLD) - v_driver_keys) <> (to_jsonb(NEW) - v_driver_keys) THEN
-      RAISE EXCEPTION 'FORBIDDEN: drivers may only update handshake fields';
-    END IF;
-    -- The driver cannot complete or confirm client receipt without a
-    -- server-verified delivery code (the sender confirms manually otherwise).
-    IF NOT v_otp_ok THEN
-      IF NEW.status = 'completed' AND NEW.status IS DISTINCT FROM OLD.status THEN
-        RAISE EXCEPTION 'FORBIDDEN: completion requires the delivery code or sender confirmation';
-      END IF;
-      IF OLD.goods_received_by_client_at IS NULL AND NEW.goods_received_by_client_at IS NOT NULL THEN
-        RAISE EXCEPTION 'FORBIDDEN: client receipt can only be confirmed by the sender or via delivery code';
-      END IF;
     END IF;
   END IF;
 
@@ -1592,73 +1171,6 @@ $$;
 
 
 --
--- TOC entry 401 (class 1259 OID 18886)
--- Name: shipments; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.shipments (
-    id uuid DEFAULT extensions.uuid_generate_v4() NOT NULL,
-    sender_id uuid NOT NULL,
-    weight_kg double precision,
-    description text,
-    status text DEFAULT 'pending'::text,
-    created_at timestamp with time zone DEFAULT timezone('utc'::text, now()),
-    pickup_location_id uuid,
-    dropoff_location_id uuid,
-    pickup_latitude double precision,
-    pickup_longitude double precision,
-    dropoff_latitude double precision,
-    dropoff_longitude double precision,
-    transport_type text DEFAULT 'internal'::text,
-    pickup_date timestamp with time zone,
-    width_cm double precision,
-    height_cm double precision,
-    length_cm double precision,
-    price numeric,
-    goods_handed_by_sender_at timestamp with time zone,
-    goods_received_by_driver_at timestamp with time zone,
-    payment_marked_by_sender_at timestamp with time zone,
-    payment_confirmed_by_driver_at timestamp with time zone,
-    goods_delivered_by_driver_at timestamp with time zone,
-    goods_received_by_client_at timestamp with time zone,
-    delivery_code text,
-    is_flagged boolean DEFAULT false NOT NULL,
-    flag_category text,
-    flag_reason text,
-    flagged_at timestamp with time zone,
-    flagged_by uuid,
-    moderation_status text DEFAULT 'clean'::text NOT NULL,
-    moderation_notes text,
-    moderation_reviewed_at timestamp with time zone,
-    moderation_reviewed_by uuid,
-    CONSTRAINT shipments_status_check CHECK ((status = ANY (ARRAY['pending_approval'::text, 'pending'::text, 'in_communication'::text, 'accepted'::text, 'picked_up'::text, 'in_transit'::text, 'delivered'::text, 'completed'::text, 'cancelled'::text, 'rejected'::text, 'expired'::text])))
-);
-
-
---
--- TOC entry 5659 (class 0 OID 0)
--- Dependencies: 401
--- Name: COLUMN shipments.delivery_code; Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON COLUMN public.shipments.delivery_code IS 'OTP code for delivery verification, generated when offer is accepted';
-
-
---
--- TOC entry 5660 (class 0 OID 0)
--- Dependencies: 401
--- Name: COLUMN shipments.moderation_status; Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON COLUMN public.shipments.moderation_status IS 'Moderation lifecycle: clean | pending_review | cleared | removed | escalated.';
-
-
---
--- TOC entry 558 (class 1255 OID 24306)
--- Name: get_filtered_shipments(text, uuid, integer, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
---
 -- Name: is_home_country(text, text); Type: FUNCTION; Schema: public; Owner: -
 -- White-label seam: the home country for the internal/external route split.
 -- A fork sets its country by editing the two literals below (mirror of the
@@ -1672,38 +1184,6 @@ CREATE FUNCTION public.is_home_country(country_code text, name_en text, name_ar 
     AS $$
   SELECT CASE WHEN country_code IS NOT NULL AND length(trim(country_code)) > 0 THEN upper(trim(country_code)) IN ('AE', 'ARE') ELSE lower(coalesce(name_en, '')) IN ('united arab emirates', 'uae')
       OR coalesce(name_ar, '') IN ('الإمارات العربية المتحدة', 'الإمارات') END;
-$$;
-
-
-CREATE FUNCTION public.get_filtered_shipments(p_transport_type text DEFAULT NULL::text, p_sender_id uuid DEFAULT NULL::uuid, p_limit integer DEFAULT 20, p_offset integer DEFAULT 0) RETURNS SETOF public.shipments
-    LANGUAGE plpgsql SECURITY DEFINER
-    SET search_path TO 'public'
-    AS $$
-BEGIN
-  RETURN QUERY
-  SELECT s.*
-  FROM public.shipments s
-  JOIN public.locations p_loc ON s.pickup_location_id = p_loc.id
-  JOIN public.locations d_loc ON s.dropoff_location_id = d_loc.id
-  WHERE
-    (p_sender_id IS NULL OR s.sender_id = p_sender_id)
-    AND (
-      CASE
-        WHEN p_transport_type = 'internal' THEN
-          public.is_home_country(p_loc.country_code, p_loc.country_name_en, p_loc.country_name_ar)
-          AND public.is_home_country(d_loc.country_code, d_loc.country_name_en, d_loc.country_name_ar)
-        WHEN p_transport_type = 'external' THEN
-          NOT (
-            public.is_home_country(p_loc.country_code, p_loc.country_name_en, p_loc.country_name_ar)
-            AND public.is_home_country(d_loc.country_code, d_loc.country_name_en, d_loc.country_name_ar)
-          )
-        ELSE TRUE
-      END
-    )
-    AND s.status = 'pending'
-  ORDER BY s.created_at DESC
-  LIMIT p_limit OFFSET p_offset;
-END;
 $$;
 
 
@@ -1775,77 +1255,6 @@ BEGIN
   ORDER BY t.departure_time ASC
   LIMIT p_limit
   OFFSET p_offset;
-END;
-$$;
-
-
---
--- TOC entry 876 (class 1255 OID 65747)
--- Name: get_matching_alerts_rpc(uuid, uuid, uuid, boolean, uuid); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.get_matching_alerts_rpc(p_shipment_id uuid, p_origin_loc_id uuid, p_dest_loc_id uuid, p_is_internal boolean, p_sender_id uuid) RETURNS TABLE(matched_user_id uuid)
-    LANGUAGE plpgsql SECURITY DEFINER
-    SET search_path TO 'public'
-    AS $$
-DECLARE
-  v_origin_prov_ar text;
-  v_origin_prov_en text;
-  v_origin_city_ar text;
-  v_origin_city_en text;
-  v_dest_prov_ar text;
-  v_dest_prov_en text;
-  v_dest_city_ar text;
-  v_dest_city_en text;
-BEGIN
-  -- We pre-fetch the actual text strings of the origin and destination 
-  -- so we can do wildcard matching against text-based alerts.
-  SELECT province_name_ar, province_name_en, city_name_ar, city_name_en
-  INTO v_origin_prov_ar, v_origin_prov_en, v_origin_city_ar, v_origin_city_en
-  FROM public.locations
-  WHERE id = p_origin_loc_id;
-
-  SELECT province_name_ar, province_name_en, city_name_ar, city_name_en
-  INTO v_dest_prov_ar, v_dest_prov_en, v_dest_city_ar, v_dest_city_en
-  FROM public.locations
-  WHERE id = p_dest_loc_id;
-
-  RETURN QUERY
-  SELECT a.user_id
-  FROM public.shipment_alerts a
-  WHERE a.is_internal = p_is_internal
-    AND a.user_id <> p_sender_id
-    -- N+1 FIX: Ensure the user receiving the alert has NOT been blocked by the sender
-    AND NOT EXISTS (
-      SELECT 1 FROM public.blocked_users bu
-      WHERE bu.blocker_id = p_sender_id
-        AND bu.blocked_user_id = a.user_id
-    )
-    -- N+1 FIX: Ensure the user receiving the alert has NOT blocked the sender
-    AND NOT EXISTS (
-      SELECT 1 FROM public.blocked_users bu2
-      WHERE bu2.blocker_id = a.user_id
-        AND bu2.blocked_user_id = p_sender_id
-    )
-    AND (
-      -- Origin Location Match Constraint
-      (a.origin_location_id IS NULL OR a.origin_location_id = p_origin_loc_id) AND
-      (
-        (a.origin_province IS NULL AND a.origin_city IS NULL) OR
-        (a.origin_province IS NOT NULL AND LOWER(TRIM(a.origin_province)) IN (LOWER(TRIM(v_origin_prov_ar)), LOWER(TRIM(v_origin_prov_en)))) OR
-        (a.origin_city IS NOT NULL AND (LOWER(v_origin_city_ar) LIKE '%' || LOWER(TRIM(a.origin_city)) || '%' OR LOWER(v_origin_city_en) LIKE '%' || LOWER(TRIM(a.origin_city)) || '%'))
-      )
-    )
-    AND (
-      -- Destination Location Match Constraint
-      (a.dest_location_id IS NULL OR a.dest_location_id = p_dest_loc_id) AND
-      (
-        (a.dest_province IS NULL AND a.dest_city IS NULL) OR
-        (a.dest_province IS NOT NULL AND LOWER(TRIM(a.dest_province)) IN (LOWER(TRIM(v_dest_prov_ar)), LOWER(TRIM(v_dest_prov_en)))) OR
-        (a.dest_city IS NOT NULL AND (LOWER(v_dest_city_ar) LIKE '%' || LOWER(TRIM(a.dest_city)) || '%' OR LOWER(v_dest_city_en) LIKE '%' || LOWER(TRIM(a.dest_city)) || '%'))
-      )
-    );
-
 END;
 $$;
 
@@ -2091,7 +1500,7 @@ DECLARE
   v_has_active BOOLEAN := FALSE;
 BEGIN
   -- Check for active bookings in Trips
-  -- Only block if the shipment has been handed over to the driver and is en route
+  -- Only block if the goods have been handed over to the driver and are en route
   -- 'in_transit': Goods are being transported
   SELECT EXISTS (
     SELECT 1 FROM bookings
@@ -2104,20 +1513,6 @@ BEGIN
   IF v_has_active THEN
     RETURN TRUE;
   END IF;
-
-  -- Check for active offers in Shipments
-  -- Only block if the shipment has been handed over to the driver and is en route
-  -- 'picked_up': Goods collected by driver at origin
-  -- 'in_transit': Goods en route to destination
-  SELECT EXISTS (
-    SELECT 1 FROM offers o
-    JOIN shipments s ON o.shipment_id = s.id
-    WHERE 
-      ((o.driver_id = p_user_a AND s.sender_id = p_user_b) OR 
-       (o.driver_id = p_user_b AND s.sender_id = p_user_a))
-      AND o.status = 'accepted'
-      AND s.status IN ('picked_up', 'in_transit')
-  ) INTO v_has_active;
 
   RETURN v_has_active;
 END;
@@ -2225,7 +1620,6 @@ CREATE FUNCTION public.is_user_blocked() RETURNS boolean
       AND (
         is_suspended = true
         OR traveler_status = 'blocked'
-        OR company_status = 'blocked'
       )
   );
 $$;
@@ -2391,15 +1785,6 @@ BEGIN
       NEW.traveler_status := OLD.traveler_status;
     END IF;
     
-    -- Same logic for company status
-    IF NOT (
-      (OLD.company_status = 'none' AND NEW.company_status = 'pending') OR
-      (OLD.company_status = 'approved' AND NEW.company_status = 'pending') OR
-      (OLD.company_status = NEW.company_status)
-    ) THEN
-      NEW.company_status := OLD.company_status;
-    END IF;
-    
     NEW.traveler_rating_avg := OLD.traveler_rating_avg;
     NEW.traveler_rating_count := OLD.traveler_rating_count;
     NEW.client_rating_avg := OLD.client_rating_avg;
@@ -2407,7 +1792,6 @@ BEGIN
     NEW.subscription_expires_at := OLD.subscription_expires_at;
     NEW.license_expires_at := OLD.license_expires_at;
     NEW.driver_validity_date := OLD.driver_validity_date;
-    NEW.company_validity_date := OLD.company_validity_date;
   END IF;
   RETURN NEW;
 END;
@@ -2605,113 +1989,6 @@ COMMENT ON FUNCTION public.record_admin_logout_event() IS 'Records admin logout 
 
 
 --
--- TOC entry 520 (class 1255 OID 55206)
--- Name: reject_offer(uuid, uuid); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.reject_offer(p_offer_id uuid, p_shipment_owner_id uuid) RETURNS void
-    LANGUAGE plpgsql SECURITY DEFINER
-    SET search_path TO 'public'
-    AS $$
-DECLARE
-  v_status public.offer_status;
-  v_sender_id uuid;
-BEGIN
-  SELECT o.status, s.sender_id
-  INTO v_status, v_sender_id
-  FROM public.offers o
-  JOIN public.shipments s ON s.id = o.shipment_id
-  WHERE o.id = p_offer_id
-  FOR UPDATE;
-
-  IF v_sender_id IS NULL THEN
-    RAISE EXCEPTION 'OFFER_NOT_FOUND';
-  END IF;
-
-  IF auth.uid() IS DISTINCT FROM p_shipment_owner_id OR v_sender_id IS DISTINCT FROM p_shipment_owner_id THEN
-    RAISE EXCEPTION 'FORBIDDEN';
-  END IF;
-
-  IF v_status <> 'sent' THEN
-    RAISE EXCEPTION 'INVALID_STATE';
-  END IF;
-
-  UPDATE public.offers
-  SET status = 'rejected', rejection_reason = NULL
-  WHERE id = p_offer_id;
-END;
-$$;
-
-
---
--- TOC entry 537 (class 1255 OID 56518)
--- Name: search_shipments_rpc(text, uuid, uuid, numeric, date, text, text, integer, integer, uuid); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.search_shipments_rpc(p_transport_type text DEFAULT NULL::text, p_pickup_location_id uuid DEFAULT NULL::uuid, p_dropoff_location_id uuid DEFAULT NULL::uuid, p_min_weight numeric DEFAULT NULL::numeric, p_date date DEFAULT NULL::date, p_pickup_province text DEFAULT NULL::text, p_dropoff_province text DEFAULT NULL::text, p_limit integer DEFAULT 20, p_offset integer DEFAULT 0, p_traveler_id uuid DEFAULT NULL::uuid) RETURNS SETOF json
-    LANGUAGE sql STABLE SECURITY DEFINER
-    AS $$
-  SELECT row_to_json(s)
-  FROM (
-    SELECT
-      sh.id,
-      sh.sender_id,
-      sh.pickup_location_id,
-      sh.dropoff_location_id,
-      sh.weight_kg,
-      sh.description,
-      sh.transport_type,
-      sh.status,
-      sh.pickup_latitude,
-      sh.pickup_longitude,
-      sh.dropoff_latitude,
-      sh.dropoff_longitude,
-      sh.pickup_date,
-      sh.width_cm,
-      sh.height_cm,
-      sh.length_cm,
-      sh.price,
-      sh.created_at,
-      row_to_json(pl.*) AS pickup_loc,
-      row_to_json(dl.*) AS dropoff_loc,
-      row_to_json(pr.*) AS profiles
-    FROM public.shipments sh
-    LEFT JOIN public.locations pl ON pl.id = sh.pickup_location_id
-    LEFT JOIN public.locations dl ON dl.id = sh.dropoff_location_id
-    LEFT JOIN public.profiles pr ON pr.id = sh.sender_id
-    WHERE
-      sh.status IN ('pending', 'in_communication')
-      AND (pr.id IS NOT NULL AND pr.deleted_at IS NULL)
-      AND (p_transport_type      IS NULL OR sh.transport_type       = p_transport_type)
-      AND (p_pickup_location_id  IS NULL OR sh.pickup_location_id   = p_pickup_location_id)
-      AND (p_dropoff_location_id IS NULL OR sh.dropoff_location_id  = p_dropoff_location_id)
-      AND (p_min_weight          IS NULL OR sh.weight_kg            >= p_min_weight)
-      AND (p_date                IS NULL OR sh.pickup_date::date     = p_date)
-      AND (p_pickup_province     IS NULL OR pl.province_name_en      ILIKE p_pickup_province)
-      AND (p_dropoff_province    IS NULL OR dl.province_name_en      ILIKE p_dropoff_province)
-      AND (
-        p_traveler_id IS NULL
-        OR (
-          sh.sender_id != p_traveler_id
-          AND sh.id NOT IN (
-            SELECT o.shipment_id
-            FROM public.offers o
-            WHERE o.driver_id = p_traveler_id
-              AND o.status <> 'cancelled'
-          )
-        )
-      )
-    ORDER BY
-      CASE WHEN COALESCE(pr.is_featured, false) THEN 1 ELSE 0 END DESC,
-      CASE WHEN pr.promoted_until IS NOT NULL AND pr.promoted_until > now() THEN 1 ELSE 0 END DESC,
-      sh.created_at DESC
-    LIMIT  p_limit
-    OFFSET p_offset
-  ) s;
-$$;
-
-
---
 -- TOC entry 762 (class 1255 OID 62302)
 -- Name: search_trips_rpc(text, text, uuid, uuid, boolean, text, numeric, date, integer, integer, uuid); Type: FUNCTION; Schema: public; Owner: -
 --
@@ -2796,104 +2073,6 @@ $$;
 
 
 --
--- TOC entry 440 (class 1259 OID 55343)
--- Name: offers; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.offers (
-    id uuid DEFAULT gen_random_uuid() NOT NULL,
-    shipment_id uuid NOT NULL,
-    driver_id uuid NOT NULL,
-    price numeric(12,2) NOT NULL,
-    status public.offer_status DEFAULT 'sent'::public.offer_status NOT NULL,
-    rejection_reason text,
-    metadata jsonb DEFAULT '{}'::jsonb NOT NULL,
-    created_at timestamp with time zone DEFAULT now() NOT NULL,
-    updated_at timestamp with time zone DEFAULT now() NOT NULL,
-    message text,
-    CONSTRAINT offers_price_check CHECK ((price >= (0)::numeric))
-);
-
-
---
--- TOC entry 705 (class 1255 OID 93231)
--- Name: send_offer(uuid, uuid, numeric); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.send_offer(p_driver_id uuid, p_shipment_id uuid, p_price numeric) RETURNS public.offers
-    LANGUAGE sql SECURITY DEFINER
-    SET search_path TO 'public'
-    AS $$
-  SELECT public.send_offer_with_message(
-    p_driver_id,
-    p_shipment_id,
-    p_price,
-    NULL
-  );
-$$;
-
-
---
--- TOC entry 1022 (class 1255 OID 55387)
--- Name: send_offer_with_message(uuid, uuid, numeric, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.send_offer_with_message(p_driver_id uuid, p_shipment_id uuid, p_price numeric, p_message text DEFAULT NULL::text) RETURNS public.offers
-    LANGUAGE plpgsql SECURITY DEFINER
-    SET search_path TO 'public'
-    AS $$
-DECLARE
-  v_sender_id uuid;
-  v_offer public.offers;
-BEGIN
-  IF auth.uid() IS DISTINCT FROM p_driver_id THEN
-    RAISE EXCEPTION 'FORBIDDEN';
-  END IF;
-
-  IF p_price IS NULL OR p_price < 0 THEN
-    RAISE EXCEPTION 'INVALID_PRICE';
-  END IF;
-
-  SELECT sender_id INTO v_sender_id
-  FROM public.shipments
-  WHERE id = p_shipment_id
-  FOR UPDATE;
-
-  IF v_sender_id IS NULL THEN
-    RAISE EXCEPTION 'SHIPMENT_NOT_FOUND';
-  END IF;
-
-  IF EXISTS (
-    SELECT 1 FROM public.offers
-    WHERE shipment_id = p_shipment_id
-      AND status = 'accepted'
-  ) THEN
-    RAISE EXCEPTION 'SHIPMENT_ALREADY_ACCEPTED';
-  END IF;
-
-  -- 1) Create the offer
-  INSERT INTO public.offers (shipment_id, driver_id, price, status, message)
-  VALUES (p_shipment_id, p_driver_id, p_price, 'sent', p_message)
-  RETURNING * INTO v_offer;
-
-  -- 2) Insert first chat message in the offer thread
-  IF p_message IS NOT NULL AND p_message <> '' THEN
-    INSERT INTO public.messages (offer_id, sender_id, content, type)
-    VALUES (v_offer.id, p_driver_id, p_message, 'text');
-  END IF;
-
-  -- 3) Update shipment status to in_communication if still pending
-  UPDATE public.shipments
-  SET status = 'in_communication'
-  WHERE id = p_shipment_id
-    AND status = 'pending';
-
-  RETURN v_offer;
-END;
-$$;
-
-
---
 -- TOC entry 958 (class 1255 OID 94355)
 -- Name: send_user_notification(uuid, text, text, jsonb, text); Type: FUNCTION; Schema: public; Owner: -
 --
@@ -2940,14 +2119,6 @@ BEGIN
         WHERE (b.requester_id = v_caller AND b.traveler_id = p_recipient_id)
            OR (b.traveler_id = v_caller AND b.requester_id = p_recipient_id)
       )
-      -- Offer participants.
-      OR EXISTS (
-        SELECT 1
-        FROM public.offers o
-        JOIN public.shipments s ON s.id = o.shipment_id
-        WHERE (o.driver_id = v_caller AND s.sender_id = p_recipient_id)
-           OR (s.sender_id = v_caller AND o.driver_id = p_recipient_id)
-      )
       -- Alert fan-out: fresh trip poster -> route-alert subscriber.
       OR (
         EXISTS (
@@ -2957,17 +2128,6 @@ BEGIN
         )
         AND EXISTS (
           SELECT 1 FROM public.route_alerts a WHERE a.user_id = p_recipient_id
-        )
-      )
-      -- Alert fan-out: fresh shipment poster -> shipment-alert subscriber.
-      OR (
-        EXISTS (
-          SELECT 1 FROM public.shipments s2
-          WHERE s2.sender_id = v_caller
-            AND s2.created_at > now() - interval '15 minutes'
-        )
-        AND EXISTS (
-          SELECT 1 FROM public.shipment_alerts sa WHERE sa.user_id = p_recipient_id
         )
       )
     ) THEN
@@ -3093,45 +2253,6 @@ BEGIN
     WHERE v.owner_id = p_user_id
   )
   WHERE p.id = p_user_id;
-END;
-$$;
-
-
---
--- TOC entry 1011 (class 1255 OID 61172)
--- Name: sync_shipment_cancelled_offers(); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.sync_shipment_cancelled_offers() RETURNS trigger
-    LANGUAGE plpgsql SECURITY DEFINER
-    AS $$
-BEGIN
-  IF NEW.status = 'cancelled' AND OLD.status != 'cancelled' THEN
-     -- Mark all explicitly accepted or pending offers as cancelled
-     UPDATE offers 
-     SET status = 'cancelled' 
-     WHERE shipment_id = NEW.id AND status IN ('sent', 'accepted');
-  END IF;
-  RETURN NEW;
-END;
-$$;
-
-
---
--- TOC entry 1016 (class 1255 OID 94348)
--- Name: sync_shipment_completed_offers(); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.sync_shipment_completed_offers() RETURNS trigger
-    LANGUAGE plpgsql SECURITY DEFINER
-    AS $$
-BEGIN
-  IF NEW.status = 'completed' AND OLD.status != 'completed' THEN
-    UPDATE public.offers
-    SET status = 'completed'
-    WHERE shipment_id = NEW.id AND status = 'accepted';
-  END IF;
-  RETURN NEW;
 END;
 $$;
 
@@ -3423,83 +2544,6 @@ $$;
 
 
 --
--- TOC entry 748 (class 1255 OID 94331)
--- Name: verify_delivery_and_complete_shipment(uuid, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.verify_delivery_and_complete_shipment(p_shipment_id uuid, p_code text) RETURNS text
-    LANGUAGE plpgsql SECURITY DEFINER
-    SET search_path TO 'public'
-    AS $$
-DECLARE
-  v_status text;
-  v_rec public.delivery_codes%ROWTYPE;
-  v_now timestamptz := now();
-BEGIN
-  -- Caller must be the driver of the accepted offer.
-  IF NOT EXISTS (
-    SELECT 1 FROM public.offers o
-    WHERE o.shipment_id = p_shipment_id
-      AND o.driver_id = auth.uid()
-      AND o.status = 'accepted'
-  ) THEN
-    RAISE EXCEPTION 'FORBIDDEN';
-  END IF;
-
-  SELECT status INTO v_status
-  FROM public.shipments
-  WHERE id = p_shipment_id
-  FOR UPDATE;
-
-  IF v_status IS NULL THEN
-    RAISE EXCEPTION 'SHIPMENT_NOT_FOUND';
-  END IF;
-
-  IF v_status NOT IN ('picked_up', 'in_transit', 'delivered') THEN
-    RAISE EXCEPTION 'ILLEGAL_TRANSITION: cannot complete from %', v_status;
-  END IF;
-
-  SELECT * INTO v_rec
-  FROM public.delivery_codes
-  WHERE shipment_id = p_shipment_id
-  FOR UPDATE;
-
-  IF v_rec.id IS NULL THEN
-    RETURN 'invalid_code';
-  END IF;
-
-  IF v_rec.failed_attempts >= 5 THEN
-    RETURN 'code_locked';
-  END IF;
-
-  IF v_rec.code <> p_code THEN
-    UPDATE public.delivery_codes
-    SET failed_attempts = failed_attempts + 1
-    WHERE id = v_rec.id;
-    RETURN CASE WHEN v_rec.failed_attempts + 1 >= 5
-                THEN 'code_locked' ELSE 'invalid_code' END;
-  END IF;
-
-  -- Verified: allow the guarded completion for this transaction only.
-  PERFORM set_config('tripship.delivery_verified', 'true', true);
-
-  UPDATE public.shipments
-  SET status = 'completed',
-      goods_delivered_by_driver_at = COALESCE(goods_delivered_by_driver_at, v_now),
-      goods_received_by_client_at  = COALESCE(goods_received_by_client_at, v_now)
-  WHERE id = p_shipment_id;
-
-  UPDATE public.offers
-  SET status = 'completed'
-  WHERE shipment_id = p_shipment_id
-    AND status = 'accepted';
-
-  RETURN 'ok';
-END;
-$$;
-
-
---
 -- TOC entry 422 (class 1259 OID 39373)
 -- Name: admin_audit_log; Type: TABLE; Schema: public; Owner: -
 --
@@ -3568,7 +2612,7 @@ CREATE TABLE public.admin_preferences (
 CREATE TABLE public.bookings (
     id uuid DEFAULT gen_random_uuid() NOT NULL,
     traveler_id uuid NOT NULL,
-    offer_price double precision NOT NULL,
+    price double precision NOT NULL,
     status text DEFAULT 'pending'::text,
     created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL,
     trip_id uuid,
@@ -3606,7 +2650,7 @@ CREATE TABLE public.bookings (
 -- Name: COLUMN bookings.requester_id; Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON COLUMN public.bookings.requester_id IS 'ID of the user who created this booking request. For shipment-based bookings, this is the shipment sender. For direct trip bookings, this is the person requesting to book the trip.';
+COMMENT ON COLUMN public.bookings.requester_id IS 'ID of the user who created this booking request. This is the person requesting to book the trip.';
 
 
 --
@@ -3885,12 +2929,11 @@ CREATE TABLE public.blocks (
 
 CREATE TABLE public.delivery_codes (
     id uuid DEFAULT gen_random_uuid() NOT NULL,
-    shipment_id uuid,
     booking_id uuid,
     code text NOT NULL,
     failed_attempts integer DEFAULT 0 NOT NULL,
     created_at timestamp with time zone DEFAULT now() NOT NULL,
-    CONSTRAINT delivery_codes_check CHECK (((shipment_id IS NULL) <> (booking_id IS NULL)))
+    CONSTRAINT delivery_codes_check CHECK ((booking_id IS NOT NULL))
 );
 
 
@@ -3950,8 +2993,7 @@ CREATE TABLE public.messages (
     created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL,
     is_read boolean DEFAULT false NOT NULL,
     type text DEFAULT 'text'::text,
-    metadata jsonb DEFAULT '{}'::jsonb,
-    offer_id uuid
+    metadata jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -4001,7 +3043,6 @@ CREATE TABLE public.ratings (
     comment text,
     comment_status text DEFAULT 'pending'::text,
     booking_id uuid,
-    offer_id uuid,
     CONSTRAINT ratings_comment_status_check CHECK ((comment_status = ANY (ARRAY['pending'::text, 'approved'::text, 'rejected'::text]))),
     CONSTRAINT ratings_rater_rated_role_check CHECK ((rater_id <> rated_id)),
     CONSTRAINT ratings_rating_check CHECK (((rating >= 1) AND (rating <= 5))),
@@ -4030,7 +3071,6 @@ CREATE TABLE public.reports (
     resolution_action text,
     deleted_at timestamp with time zone,
     target_type text DEFAULT 'user'::text NOT NULL,
-    target_shipment_id uuid,
     target_rating_id uuid,
     target_trip_id uuid,
     CONSTRAINT reports_no_self_report CHECK ((reporter_id <> reported_id)),
@@ -4044,7 +3084,7 @@ CREATE TABLE public.reports (
 -- Name: COLUMN reports.target_type; Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON COLUMN public.reports.target_type IS 'Type of entity being reported: user | driver | company | shipment | rating | trip.';
+COMMENT ON COLUMN public.reports.target_type IS 'Type of entity being reported: user | driver | rating | trip.';
 
 
 --
@@ -4111,25 +3151,6 @@ CREATE TABLE public.scheduled_notifications (
     created_at timestamp with time zone DEFAULT now(),
     CONSTRAINT scheduled_notifications_status_check CHECK ((status = ANY (ARRAY['pending'::text, 'sent'::text, 'cancelled'::text, 'failed'::text]))),
     CONSTRAINT scheduled_notifications_target_type_check CHECK ((target_type = ANY (ARRAY['broadcast'::text, 'segment'::text, 'user'::text])))
-);
-
-
---
--- TOC entry 421 (class 1259 OID 38128)
--- Name: shipment_alerts; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.shipment_alerts (
-    id uuid DEFAULT gen_random_uuid() NOT NULL,
-    user_id uuid NOT NULL,
-    origin_location_id uuid,
-    dest_location_id uuid,
-    origin_province text,
-    dest_province text,
-    origin_city text,
-    dest_city text,
-    is_internal boolean DEFAULT true NOT NULL,
-    created_at timestamp with time zone DEFAULT now() NOT NULL
 );
 
 
@@ -4445,15 +3466,6 @@ ALTER TABLE ONLY public.delivery_codes
 
 
 --
--- TOC entry 5240 (class 2606 OID 94313)
--- Name: delivery_codes delivery_codes_shipment_id_key; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.delivery_codes
-    ADD CONSTRAINT delivery_codes_shipment_id_key UNIQUE (shipment_id);
-
-
---
 -- TOC entry 5223 (class 2606 OID 52651)
 -- Name: export_jobs export_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
@@ -4505,15 +3517,6 @@ ALTER TABLE ONLY public.notification_tokens
 
 ALTER TABLE ONLY public.notifications
     ADD CONSTRAINT notifications_pkey PRIMARY KEY (id);
-
-
---
--- TOC entry 5229 (class 2606 OID 55355)
--- Name: offers offers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.offers
-    ADD CONSTRAINT offers_pkey PRIMARY KEY (id);
 
 
 --
@@ -4595,24 +3598,6 @@ ALTER TABLE ONLY public.saved_filters
 
 ALTER TABLE ONLY public.scheduled_notifications
     ADD CONSTRAINT scheduled_notifications_pkey PRIMARY KEY (id);
-
-
---
--- TOC entry 5173 (class 2606 OID 38137)
--- Name: shipment_alerts shipment_alerts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.shipment_alerts
-    ADD CONSTRAINT shipment_alerts_pkey PRIMARY KEY (id);
-
-
---
--- TOC entry 5080 (class 2606 OID 18896)
--- Name: shipments shipments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.shipments
-    ADD CONSTRAINT shipments_pkey PRIMARY KEY (id);
 
 
 --
@@ -4890,14 +3875,6 @@ CREATE INDEX idx_messages_created_at ON public.messages USING btree (created_at 
 
 
 --
--- TOC entry 5106 (class 1259 OID 55386)
--- Name: idx_messages_offer_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_messages_offer_id ON public.messages USING btree (offer_id);
-
-
---
 -- TOC entry 5107 (class 1259 OID 39538)
 -- Name: idx_messages_sender_id; Type: INDEX; Schema: public; Owner: -
 --
@@ -4954,38 +3931,6 @@ CREATE INDEX idx_notifications_user_unread ON public.notifications USING btree (
 
 
 --
--- TOC entry 5226 (class 1259 OID 55368)
--- Name: idx_offers_driver_status; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_offers_driver_status ON public.offers USING btree (driver_id, status);
-
-
---
--- TOC entry 5227 (class 1259 OID 55367)
--- Name: idx_offers_shipment_status; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_offers_shipment_status ON public.offers USING btree (shipment_id, status);
-
-
---
--- TOC entry 5056 (class 1259 OID 39427)
--- Name: idx_profiles_account_type; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_profiles_account_type ON public.profiles USING btree (account_type);
-
-
---
--- TOC entry 5057 (class 1259 OID 39426)
--- Name: idx_profiles_company_status; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_profiles_company_status ON public.profiles USING btree (company_status);
-
-
---
 -- TOC entry 5058 (class 1259 OID 52760)
 -- Name: idx_profiles_full_name_trgm; Type: INDEX; Schema: public; Owner: -
 --
@@ -5039,14 +3984,6 @@ CREATE INDEX idx_ratings_booking_id ON public.ratings USING btree (booking_id);
 --
 
 CREATE INDEX idx_ratings_comment_status ON public.ratings USING btree (comment_status) WHERE (comment_status = 'pending'::text);
-
-
---
--- TOC entry 5089 (class 1259 OID 57650)
--- Name: idx_ratings_offer_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_ratings_offer_id ON public.ratings USING btree (offer_id);
 
 
 --
@@ -5127,78 +4064,6 @@ CREATE INDEX idx_route_alerts_origin_loc ON public.route_alerts USING btree (ori
 --
 
 CREATE INDEX idx_scheduled_notifications_status_time ON public.scheduled_notifications USING btree (status, scheduled_at) WHERE (status = 'pending'::text);
-
-
---
--- TOC entry 5170 (class 1259 OID 39543)
--- Name: idx_shipment_alerts_dest_loc; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_shipment_alerts_dest_loc ON public.shipment_alerts USING btree (dest_location_id);
-
-
---
--- TOC entry 5171 (class 1259 OID 39542)
--- Name: idx_shipment_alerts_origin_loc; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_shipment_alerts_origin_loc ON public.shipment_alerts USING btree (origin_location_id);
-
-
---
--- TOC entry 5070 (class 1259 OID 39433)
--- Name: idx_shipments_created_at; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_shipments_created_at ON public.shipments USING btree (created_at DESC);
-
-
---
--- TOC entry 5071 (class 1259 OID 23160)
--- Name: idx_shipments_dropoff_loc; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_shipments_dropoff_loc ON public.shipments USING btree (dropoff_location_id);
-
-
---
--- TOC entry 5072 (class 1259 OID 49961)
--- Name: idx_shipments_locations; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_shipments_locations ON public.shipments USING btree (pickup_location_id, dropoff_location_id);
-
-
---
--- TOC entry 5073 (class 1259 OID 49960)
--- Name: idx_shipments_pickup_date; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_shipments_pickup_date ON public.shipments USING btree (pickup_date);
-
-
---
--- TOC entry 5074 (class 1259 OID 23159)
--- Name: idx_shipments_pickup_loc; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_shipments_pickup_loc ON public.shipments USING btree (pickup_location_id);
-
-
---
--- TOC entry 5075 (class 1259 OID 39432)
--- Name: idx_shipments_sender_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_shipments_sender_id ON public.shipments USING btree (sender_id);
-
-
---
--- TOC entry 5076 (class 1259 OID 39431)
--- Name: idx_shipments_status; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_shipments_status ON public.shipments USING btree (status);
 
 
 --
@@ -5394,14 +4259,6 @@ CREATE INDEX reports_target_rating_id_idx ON public.reports USING btree (target_
 
 
 --
--- TOC entry 5116 (class 1259 OID 92857)
--- Name: reports_target_shipment_id_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX reports_target_shipment_id_idx ON public.reports USING btree (target_shipment_id);
-
-
---
 -- TOC entry 5117 (class 1259 OID 92856)
 -- Name: reports_target_type_idx; Type: INDEX; Schema: public; Owner: -
 --
@@ -5418,30 +4275,6 @@ CREATE INDEX route_alerts_user_id_idx ON public.route_alerts USING btree (user_i
 
 
 --
--- TOC entry 5174 (class 1259 OID 38156)
--- Name: shipment_alerts_user_id_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX shipment_alerts_user_id_idx ON public.shipment_alerts USING btree (user_id);
-
-
---
--- TOC entry 5077 (class 1259 OID 92838)
--- Name: shipments_is_flagged_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX shipments_is_flagged_idx ON public.shipments USING btree (is_flagged) WHERE (is_flagged = true);
-
-
---
--- TOC entry 5078 (class 1259 OID 92839)
--- Name: shipments_moderation_status_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX shipments_moderation_status_idx ON public.shipments USING btree (moderation_status);
-
-
---
 -- TOC entry 5139 (class 1259 OID 23096)
 -- Name: trips_dest_id_idx; Type: INDEX; Schema: public; Owner: -
 --
@@ -5455,14 +4288,6 @@ CREATE INDEX trips_dest_id_idx ON public.trips USING btree (dest_location_id);
 --
 
 CREATE INDEX trips_origin_id_idx ON public.trips USING btree (origin_location_id);
-
-
---
--- TOC entry 5230 (class 1259 OID 55366)
--- Name: uq_offers_one_accepted_per_shipment; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX uq_offers_one_accepted_per_shipment ON public.offers USING btree (shipment_id) WHERE (status = 'accepted'::public.offer_status);
 
 
 --
@@ -5495,14 +4320,6 @@ CREATE TRIGGER audit_trigger_bookings AFTER INSERT OR DELETE OR UPDATE ON public
 --
 
 CREATE TRIGGER audit_trigger_profiles AFTER INSERT OR DELETE OR UPDATE ON public.profiles FOR EACH ROW EXECUTE FUNCTION public.proc_universal_audit();
-
-
---
--- TOC entry 5311 (class 2620 OID 52454)
--- Name: shipments audit_trigger_shipments; Type: TRIGGER; Schema: public; Owner: -
---
-
-CREATE TRIGGER audit_trigger_shipments AFTER INSERT OR DELETE OR UPDATE ON public.shipments FOR EACH ROW EXECUTE FUNCTION public.proc_universal_audit();
 
 
 --
@@ -5567,22 +4384,6 @@ CREATE TRIGGER protect_profile_admin_columns BEFORE UPDATE ON public.profiles FO
 --
 
 CREATE TRIGGER support_messages_touch_ticket_updated_at AFTER INSERT ON public.support_messages FOR EACH ROW EXECUTE FUNCTION public.touch_support_ticket_updated_at();
-
-
---
--- TOC entry 5312 (class 2620 OID 61173)
--- Name: shipments tr_sync_shipment_cancelled_offers; Type: TRIGGER; Schema: public; Owner: -
---
-
-CREATE TRIGGER tr_sync_shipment_cancelled_offers AFTER UPDATE OF status ON public.shipments FOR EACH ROW EXECUTE FUNCTION public.sync_shipment_cancelled_offers();
-
-
---
--- TOC entry 5313 (class 2620 OID 94349)
--- Name: shipments tr_sync_shipment_completed_offers; Type: TRIGGER; Schema: public; Owner: -
---
-
-CREATE TRIGGER tr_sync_shipment_completed_offers AFTER UPDATE OF status ON public.shipments FOR EACH ROW EXECUTE FUNCTION public.sync_shipment_completed_offers();
 
 
 --
@@ -5658,30 +4459,6 @@ CREATE TRIGGER trg_guard_bookings_update BEFORE UPDATE ON public.bookings FOR EA
 
 
 --
--- TOC entry 5346 (class 2620 OID 94346)
--- Name: offers trg_guard_offers_update; Type: TRIGGER; Schema: public; Owner: -
---
-
-CREATE TRIGGER trg_guard_offers_update BEFORE UPDATE ON public.offers FOR EACH ROW EXECUTE FUNCTION public.fn_guard_offers_update();
-
-
---
--- TOC entry 5314 (class 2620 OID 94338)
--- Name: shipments trg_guard_shipments_insert; Type: TRIGGER; Schema: public; Owner: -
---
-
-CREATE TRIGGER trg_guard_shipments_insert BEFORE INSERT ON public.shipments FOR EACH ROW EXECUTE FUNCTION public.fn_guard_shipments_insert();
-
-
---
--- TOC entry 5315 (class 2620 OID 94336)
--- Name: shipments trg_guard_shipments_update; Type: TRIGGER; Schema: public; Owner: -
---
-
-CREATE TRIGGER trg_guard_shipments_update BEFORE UPDATE ON public.shipments FOR EACH ROW EXECUTE FUNCTION public.fn_guard_shipments_update();
-
-
---
 -- TOC entry 5337 (class 2620 OID 94344)
 -- Name: trips trg_guard_trips_update; Type: TRIGGER; Schema: public; Owner: -
 --
@@ -5695,14 +4472,6 @@ CREATE TRIGGER trg_guard_trips_update BEFORE UPDATE ON public.trips FOR EACH ROW
 --
 
 CREATE TRIGGER trg_handle_expiry_update BEFORE UPDATE OF identity_expiry ON public.profiles FOR EACH ROW EXECUTE FUNCTION public.fn_handle_expiry_update();
-
-
---
--- TOC entry 5347 (class 2620 OID 55369)
--- Name: offers trg_offers_set_updated_at; Type: TRIGGER; Schema: public; Owner: -
---
-
-CREATE TRIGGER trg_offers_set_updated_at BEFORE UPDATE ON public.offers FOR EACH ROW EXECUTE FUNCTION public.fn_set_updated_at();
 
 
 --
@@ -5927,15 +4696,6 @@ ALTER TABLE ONLY public.delivery_codes
 
 
 --
--- TOC entry 5304 (class 2606 OID 94316)
--- Name: delivery_codes delivery_codes_shipment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.delivery_codes
-    ADD CONSTRAINT delivery_codes_shipment_id_fkey FOREIGN KEY (shipment_id) REFERENCES public.shipments(id) ON DELETE CASCADE;
-
-
---
 -- TOC entry 5299 (class 2606 OID 52652)
 -- Name: export_jobs export_jobs_admin_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
@@ -5951,15 +4711,6 @@ ALTER TABLE ONLY public.export_jobs
 
 ALTER TABLE ONLY public.messages
     ADD CONSTRAINT messages_booking_id_fkey FOREIGN KEY (booking_id) REFERENCES public.bookings(id) ON DELETE CASCADE;
-
-
---
--- TOC entry 5261 (class 2606 OID 55381)
--- Name: messages messages_offer_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.messages
-    ADD CONSTRAINT messages_offer_id_fkey FOREIGN KEY (offer_id) REFERENCES public.offers(id) ON DELETE CASCADE;
 
 
 --
@@ -5987,24 +4738,6 @@ ALTER TABLE ONLY public.notification_tokens
 
 ALTER TABLE ONLY public.notifications
     ADD CONSTRAINT notifications_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.profiles(id) ON DELETE CASCADE;
-
-
---
--- TOC entry 5300 (class 2606 OID 55361)
--- Name: offers offers_driver_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.offers
-    ADD CONSTRAINT offers_driver_id_fkey FOREIGN KEY (driver_id) REFERENCES public.profiles(id) ON DELETE CASCADE;
-
-
---
--- TOC entry 5301 (class 2606 OID 55356)
--- Name: offers offers_shipment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.offers
-    ADD CONSTRAINT offers_shipment_id_fkey FOREIGN KEY (shipment_id) REFERENCES public.shipments(id) ON DELETE CASCADE;
 
 
 --
@@ -6050,15 +4783,6 @@ ALTER TABLE ONLY public.profiles
 
 ALTER TABLE ONLY public.ratings
     ADD CONSTRAINT ratings_booking_id_fkey FOREIGN KEY (booking_id) REFERENCES public.bookings(id) ON DELETE SET NULL;
-
-
---
--- TOC entry 5252 (class 2606 OID 57645)
--- Name: ratings ratings_offer_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ratings
-    ADD CONSTRAINT ratings_offer_id_fkey FOREIGN KEY (offer_id) REFERENCES public.offers(id) ON DELETE CASCADE;
 
 
 --
@@ -6113,15 +4837,6 @@ ALTER TABLE ONLY public.reports
 
 ALTER TABLE ONLY public.reports
     ADD CONSTRAINT reports_target_rating_id_fkey FOREIGN KEY (target_rating_id) REFERENCES public.ratings(id) ON DELETE SET NULL;
-
-
---
--- TOC entry 5267 (class 2606 OID 92841)
--- Name: reports reports_target_shipment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.reports
-    ADD CONSTRAINT reports_target_shipment_id_fkey FOREIGN KEY (target_shipment_id) REFERENCES public.shipments(id) ON DELETE SET NULL;
 
 
 --
@@ -6194,78 +4909,6 @@ ALTER TABLE ONLY public.scheduled_notifications
 
 ALTER TABLE ONLY public.scheduled_notifications
     ADD CONSTRAINT scheduled_notifications_target_user_id_fkey FOREIGN KEY (target_user_id) REFERENCES auth.users(id);
-
-
---
--- TOC entry 5279 (class 2606 OID 38148)
--- Name: shipment_alerts shipment_alerts_dest_location_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.shipment_alerts
-    ADD CONSTRAINT shipment_alerts_dest_location_id_fkey FOREIGN KEY (dest_location_id) REFERENCES public.locations(id);
-
-
---
--- TOC entry 5280 (class 2606 OID 38143)
--- Name: shipment_alerts shipment_alerts_origin_location_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.shipment_alerts
-    ADD CONSTRAINT shipment_alerts_origin_location_id_fkey FOREIGN KEY (origin_location_id) REFERENCES public.locations(id);
-
-
---
--- TOC entry 5281 (class 2606 OID 38138)
--- Name: shipment_alerts shipment_alerts_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.shipment_alerts
-    ADD CONSTRAINT shipment_alerts_user_id_fkey FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE;
-
-
---
--- TOC entry 5245 (class 2606 OID 23154)
--- Name: shipments shipments_dropoff_location_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.shipments
-    ADD CONSTRAINT shipments_dropoff_location_id_fkey FOREIGN KEY (dropoff_location_id) REFERENCES public.locations(id);
-
-
---
--- TOC entry 5246 (class 2606 OID 92828)
--- Name: shipments shipments_flagged_by_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.shipments
-    ADD CONSTRAINT shipments_flagged_by_fkey FOREIGN KEY (flagged_by) REFERENCES auth.users(id);
-
-
---
--- TOC entry 5247 (class 2606 OID 92833)
--- Name: shipments shipments_moderation_reviewed_by_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.shipments
-    ADD CONSTRAINT shipments_moderation_reviewed_by_fkey FOREIGN KEY (moderation_reviewed_by) REFERENCES auth.users(id);
-
-
---
--- TOC entry 5248 (class 2606 OID 23149)
--- Name: shipments shipments_pickup_location_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.shipments
-    ADD CONSTRAINT shipments_pickup_location_id_fkey FOREIGN KEY (pickup_location_id) REFERENCES public.locations(id);
-
-
---
--- TOC entry 5249 (class 2606 OID 18897)
--- Name: shipments shipments_sender_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.shipments
-    ADD CONSTRAINT shipments_sender_id_fkey FOREIGN KEY (sender_id) REFERENCES public.profiles(id);
 
 
 --
@@ -6383,14 +5026,6 @@ ALTER TABLE ONLY public.verification_documents
 
 ALTER TABLE ONLY public.verification_documents
     ADD CONSTRAINT verification_documents_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.profiles(id) ON DELETE CASCADE;
-
-
---
--- TOC entry 5546 (class 3256 OID 21595)
--- Name: shipments Admins can delete shipments; Type: POLICY; Schema: public; Owner: -
---
-
-CREATE POLICY "Admins can delete shipments" ON public.shipments FOR DELETE TO authenticated USING (public.is_admin());
 
 
 --
@@ -6594,14 +5229,6 @@ CREATE POLICY "OpsAdmin+ can delete ratings" ON public.ratings FOR DELETE USING 
 
 
 --
--- TOC entry 5633 (class 3256 OID 93070)
--- Name: shipments OpsAdmin+ can delete shipments; Type: POLICY; Schema: public; Owner: -
---
-
-CREATE POLICY "OpsAdmin+ can delete shipments" ON public.shipments FOR DELETE USING (public.has_role('ops_admin'::public.admin_role));
-
-
---
 -- TOC entry 5628 (class 3256 OID 93065)
 -- Name: risk_score_history OpsAdmin+ can insert risk score history; Type: POLICY; Schema: public; Owner: -
 --
@@ -6671,30 +5298,6 @@ CREATE POLICY "ReadOnly: Admins can view history" ON public.admin_audit_log FOR 
 --
 
 CREATE POLICY "Restrictions viewable by admins and target user" ON public.user_restrictions FOR SELECT USING ((public.has_role('support_agent'::public.admin_role) OR (auth.uid() = user_id)));
-
-
---
--- TOC entry 5632 (class 3256 OID 93069)
--- Name: shipments Sender or OpsAdmin+ can update shipments; Type: POLICY; Schema: public; Owner: -
---
-
-CREATE POLICY "Sender or OpsAdmin+ can update shipments" ON public.shipments FOR UPDATE USING (((auth.uid() = sender_id) OR public.has_role('ops_admin'::public.admin_role))) WITH CHECK (((auth.uid() = sender_id) OR public.has_role('ops_admin'::public.admin_role)));
-
-
---
--- TOC entry 5568 (class 3256 OID 52293)
--- Name: shipments Shipments are viewable by everyone.; Type: POLICY; Schema: public; Owner: -
---
-
-CREATE POLICY "Shipments are viewable by everyone." ON public.shipments FOR SELECT USING (true);
-
-
---
--- TOC entry 5538 (class 3256 OID 93071)
--- Name: shipments SupportAgent can flag shipments; Type: POLICY; Schema: public; Owner: -
---
-
-CREATE POLICY "SupportAgent can flag shipments" ON public.shipments FOR UPDATE USING (public.has_role('support_agent'::public.admin_role)) WITH CHECK (public.has_role('support_agent'::public.admin_role));
 
 
 --
@@ -6814,16 +5417,6 @@ CREATE POLICY "Users can view blocks they are part of." ON public.blocks FOR SEL
 
 
 --
--- TOC entry 5583 (class 3256 OID 27768)
--- Name: messages Users can view messages for their bookings; Type: POLICY; Schema: public; Owner: -
---
-
-CREATE POLICY "Users can view messages for their bookings" ON public.messages FOR SELECT USING (((auth.uid() = sender_id) OR (EXISTS ( SELECT 1
-   FROM public.bookings
-  WHERE ((bookings.id = messages.booking_id) AND ((bookings.requester_id = auth.uid()) OR (bookings.traveler_id = auth.uid())))))));
-
-
---
 -- TOC entry 5564 (class 3256 OID 52288)
 -- Name: reports Users can view their own reports.; Type: POLICY; Schema: public; Owner: -
 --
@@ -6845,14 +5438,6 @@ CREATE POLICY "Users delete own notifications" ON public.notifications FOR DELET
 --
 
 CREATE POLICY "Users manage their route alerts." ON public.route_alerts USING (((auth.uid() = user_id) OR public.is_admin()));
-
-
---
--- TOC entry 5567 (class 3256 OID 52292)
--- Name: shipment_alerts Users manage their shipment alerts.; Type: POLICY; Schema: public; Owner: -
---
-
-CREATE POLICY "Users manage their shipment alerts." ON public.shipment_alerts USING (((auth.uid() = user_id) OR public.is_admin()));
 
 
 --
@@ -7051,9 +5636,7 @@ ALTER TABLE public.delivery_codes ENABLE ROW LEVEL SECURITY;
 -- Name: delivery_codes delivery_codes_select_sender; Type: POLICY; Schema: public; Owner: -
 --
 
-CREATE POLICY delivery_codes_select_sender ON public.delivery_codes FOR SELECT TO authenticated USING ((((shipment_id IS NOT NULL) AND (EXISTS ( SELECT 1
-   FROM public.shipments s
-  WHERE ((s.id = delivery_codes.shipment_id) AND (s.sender_id = auth.uid()))))) OR ((booking_id IS NOT NULL) AND (EXISTS ( SELECT 1
+CREATE POLICY delivery_codes_select_sender ON public.delivery_codes FOR SELECT TO authenticated USING ((((booking_id IS NOT NULL) AND (EXISTS ( SELECT 1
    FROM public.bookings b
   WHERE ((b.id = delivery_codes.booking_id) AND (b.requester_id = auth.uid()))))) OR public.is_admin()));
 
@@ -7107,81 +5690,13 @@ ALTER TABLE public.notification_tokens ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.notifications ENABLE ROW LEVEL SECURITY;
 
 --
--- TOC entry 5627 (class 3256 OID 55389)
--- Name: messages offer_messages_insert; Type: POLICY; Schema: public; Owner: -
---
-
-CREATE POLICY offer_messages_insert ON public.messages FOR INSERT WITH CHECK (((booking_id IS NOT NULL) OR ((offer_id IS NOT NULL) AND (EXISTS ( SELECT 1
-   FROM public.offers o
-  WHERE ((o.id = messages.offer_id) AND ((o.driver_id = auth.uid()) OR (EXISTS ( SELECT 1
-           FROM public.shipments s
-          WHERE ((s.id = o.shipment_id) AND (s.sender_id = auth.uid()))))) AND (o.status = ANY (ARRAY['sent'::public.offer_status, 'accepted'::public.offer_status]))))))));
-
-
---
 -- TOC entry 5626 (class 3256 OID 55388)
--- Name: messages offer_messages_select; Type: POLICY; Schema: public; Owner: -
+-- Name: messages messages_select_participant; Type: POLICY; Schema: public; Owner: -
 --
 
-CREATE POLICY offer_messages_select ON public.messages FOR SELECT USING (((offer_id IS NULL) OR (EXISTS ( SELECT 1
-   FROM public.offers o
-  WHERE ((o.id = messages.offer_id) AND ((o.driver_id = auth.uid()) OR (EXISTS ( SELECT 1
-           FROM public.shipments s
-          WHERE ((s.id = o.shipment_id) AND (s.sender_id = auth.uid())))))))) OR public.is_admin()));
-
-
---
--- TOC entry 5535 (class 0 OID 55343)
--- Dependencies: 440
--- Name: offers; Type: ROW SECURITY; Schema: public; Owner: -
---
-
-ALTER TABLE public.offers ENABLE ROW LEVEL SECURITY;
-
---
--- TOC entry 5618 (class 3256 OID 55376)
--- Name: offers offers_delete; Type: POLICY; Schema: public; Owner: -
---
-
-CREATE POLICY offers_delete ON public.offers FOR DELETE USING (public.is_admin());
-
-
---
--- TOC entry 5617 (class 3256 OID 55375)
--- Name: offers offers_insert; Type: POLICY; Schema: public; Owner: -
---
-
-CREATE POLICY offers_insert ON public.offers FOR INSERT WITH CHECK ((driver_id = auth.uid()));
-
-
---
--- TOC entry 5616 (class 3256 OID 55374)
--- Name: offers offers_select; Type: POLICY; Schema: public; Owner: -
---
-
-CREATE POLICY offers_select ON public.offers FOR SELECT USING (((driver_id = auth.uid()) OR (EXISTS ( SELECT 1
-   FROM public.shipments s
-  WHERE ((s.id = offers.shipment_id) AND (s.sender_id = auth.uid())))) OR public.is_admin()));
-
-
---
--- TOC entry 5588 (class 3256 OID 61123)
--- Name: offers offers_update_driver; Type: POLICY; Schema: public; Owner: -
---
-
-CREATE POLICY offers_update_driver ON public.offers FOR UPDATE USING ((driver_id = auth.uid())) WITH CHECK ((driver_id = auth.uid()));
-
-
---
--- TOC entry 5589 (class 3256 OID 61124)
--- Name: offers offers_update_sender; Type: POLICY; Schema: public; Owner: -
---
-
-CREATE POLICY offers_update_sender ON public.offers FOR UPDATE USING ((EXISTS ( SELECT 1
-   FROM public.shipments s
-  WHERE ((s.id = offers.shipment_id) AND (s.sender_id = auth.uid()))))) WITH CHECK ((EXISTS ( SELECT 1
-   FROM public.shipments s
-  WHERE ((s.id = offers.shipment_id) AND (s.sender_id = auth.uid())))));
+CREATE POLICY messages_select_participant ON public.messages FOR SELECT USING ((((booking_id IS NOT NULL) AND (EXISTS ( SELECT 1
+   FROM public.bookings b
+  WHERE ((b.id = messages.booking_id) AND ((b.requester_id = auth.uid()) OR (b.traveler_id = auth.uid())))))) OR public.is_admin()));
 
 
 --
@@ -7271,50 +5786,6 @@ ALTER TABLE public.saved_filters ENABLE ROW LEVEL SECURITY;
 --
 
 ALTER TABLE public.scheduled_notifications ENABLE ROW LEVEL SECURITY;
-
---
--- TOC entry 5519 (class 0 OID 38128)
--- Dependencies: 421
--- Name: shipment_alerts; Type: ROW SECURITY; Schema: public; Owner: -
---
-
-ALTER TABLE public.shipment_alerts ENABLE ROW LEVEL SECURITY;
-
---
--- TOC entry 5505 (class 0 OID 18886)
--- Dependencies: 401
--- Name: shipments; Type: ROW SECURITY; Schema: public; Owner: -
---
-
-ALTER TABLE public.shipments ENABLE ROW LEVEL SECURITY;
-
---
--- TOC entry 5539 (class 3256 OID 28922)
--- Name: shipments shipments_delete_own; Type: POLICY; Schema: public; Owner: -
---
-
-CREATE POLICY shipments_delete_own ON public.shipments FOR DELETE USING ((auth.uid() = sender_id));
-
-
---
--- TOC entry 5606 (class 3256 OID 39646)
--- Name: shipments shipments_insert_own; Type: POLICY; Schema: public; Owner: -
---
-
-CREATE POLICY shipments_insert_own ON public.shipments FOR INSERT WITH CHECK (((sender_id = auth.uid()) AND (NOT public.is_user_blocked())));
-
-
---
--- TOC entry 5586 (class 3256 OID 94333)
--- Name: shipments shipments_update_driver; Type: POLICY; Schema: public; Owner: -
---
-
-CREATE POLICY shipments_update_driver ON public.shipments FOR UPDATE USING ((EXISTS ( SELECT 1
-   FROM public.offers
-  WHERE ((offers.shipment_id = shipments.id) AND (offers.driver_id = auth.uid()) AND (offers.status = 'accepted'::public.offer_status))))) WITH CHECK ((EXISTS ( SELECT 1
-   FROM public.offers
-  WHERE ((offers.shipment_id = shipments.id) AND (offers.driver_id = auth.uid()) AND (offers.status = 'accepted'::public.offer_status)))));
-
 
 --
 -- TOC entry 5523 (class 0 OID 39607)

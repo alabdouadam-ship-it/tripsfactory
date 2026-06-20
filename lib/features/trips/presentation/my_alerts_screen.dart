@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:tripship/core/config/domain_config.dart';
 import 'package:tripship/core/config/geography_config.dart';
 import 'package:tripship/features/auth/data/auth_service.dart';
 import 'package:tripship/features/trips/data/route_alert_model.dart';
@@ -86,10 +85,7 @@ class _MyAlertsScreenState extends ConsumerState<MyAlertsScreen> {
   Future<void> _showAddAlertDialog() async {
     final profile = ref.read(currentUserProfileProvider).value;
     final isAdmin = profile?.isAdmin ?? false;
-    final isVerifiedCompany =
-        profile?.accountType == DomainConfig.accountCompany &&
-        profile?.companyStatus == DomainConfig.statusApproved;
-    final limit = isVerifiedCompany ? 10 : 3;
+    final limit = 3;
 
     if (_alerts.length >= limit && !isAdmin) {
       showDialog(

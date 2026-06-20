@@ -28,7 +28,7 @@ interface QueryFilter {
 const BOOKING_ORDER_FIELDS = new Set([
     'id',
     'status',
-    'offer_price',
+    'price',
     'created_at',
     'updated_at',
     'traveler_id',
@@ -181,7 +181,7 @@ export async function getPaginatedBookings({
             const idFilter = `id.ilike.%${normalizedSearch}%`;
             query = query.or(
                 isNumericSearch
-                    ? `${idFilter},offer_price.eq.${numericSearch}`
+                    ? `${idFilter},price.eq.${numericSearch}`
                     : idFilter
             );
         }

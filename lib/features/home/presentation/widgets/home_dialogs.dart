@@ -91,62 +91,6 @@ class HomeDialogs {
     );
   }
 
-  /// Shows dialog when a feature requires company approval.
-  static void showCompanyOnly(BuildContext context, {String? status}) {
-    final l10n = AppLocalizations.of(context)!;
-    
-    // Check if application is pending
-    if (status == DomainConfig.statusPending) {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(l10n.applicationPending),
-          content: Text(l10n.waitAdminApproval),
-          actions: [
-            TextButton(
-              onPressed: () => context.pop(),
-              child: Text(l10n.ok),
-            ),
-          ],
-        ),
-      );
-      return;
-    }
-    
-    // Check if application was rejected
-    if (status == DomainConfig.statusRejected) {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(l10n.applicationRejected),
-          content: Text(l10n.cannotReapply),
-          actions: [
-            TextButton(
-              onPressed: () => context.pop(),
-              child: Text(l10n.ok),
-            ),
-          ],
-        ),
-      );
-      return;
-    }
-    
-    // Show registration dialog for 'none' status
-    TripShipDialog.show(
-      context,
-      title: l10n.companyOnlyFeatureTitle,
-      content: l10n.companyOnlyFeatureBody,
-      cancelLabel: l10n.cancel,
-      confirmLabel: l10n.registerNow,
-      onCancel: () => Navigator.pop(context),
-      onConfirm: () {
-        Navigator.pop(context);
-        context.push(AppRoutes.companyRegistration);
-      },
-      icon: Icons.business_center_outlined,
-    );
-  }
-
   /// Shows dialog when a feature requires driver (with vehicle) registration.
   static void showDriverOnly(BuildContext context, {String? status}) {
     final l10n = AppLocalizations.of(context)!;

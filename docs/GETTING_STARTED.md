@@ -166,7 +166,7 @@ one-file change plus one command.
 **Need a new icon?** Hand this prompt to an image generator:
 
 > A modern, minimal mobile app icon for a logistics and parcel-delivery
-> marketplace. A single bold geometric symbol combining a shipping/parcel box
+> marketplace. A single bold geometric symbol combining a parcel/delivery box
 > with a directional arrow or route path, suggesting movement and delivery.
 > Flat vector style, clean lines, no text or letters. Centered symbol with
 > generous padding. Solid or subtle two-tone background. Professional,

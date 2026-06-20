@@ -18,7 +18,6 @@ type RouteData = {
   origin: CityNode;
   destination: CityNode;
   trips: Array<{ id: string; status: string }>;
-  shipments: Array<{ id: string; status: string }>;
   totalCount: number;
 };
 
@@ -48,37 +47,12 @@ export function RouteArrows({ allCities, selectedRouteKey, onRouteClick }: Route
             origin: city,
             destination: destCity,
             trips: [],
-            shipments: [],
             totalCount: 0,
           });
         }
         
         const route = routeMap.get(routeKey)!;
         route.trips.push({ id: trip.id, status: trip.status });
-        route.totalCount++;
-      });
-      
-      // Process outgoing shipments from this city
-      city.outgoingShipments.forEach(shipment => {
-        if (!shipment.dropoff_location_id) return;
-        const destCity = allCities.get(shipment.dropoff_location_id);
-        if (!destCity) return;
-        
-        const routeKey = `${city.locationId}-${shipment.dropoff_location_id}`;
-        
-        if (!routeMap.has(routeKey)) {
-          routeMap.set(routeKey, {
-            key: routeKey,
-            origin: city,
-            destination: destCity,
-            trips: [],
-            shipments: [],
-            totalCount: 0,
-          });
-        }
-        
-        const route = routeMap.get(routeKey)!;
-        route.shipments.push({ id: shipment.id, status: shipment.status });
         route.totalCount++;
       });
     });
@@ -93,17 +67,7 @@ export function RouteArrows({ allCities, selectedRouteKey, onRouteClick }: Route
         const isFaded = selectedRouteKey !== null && !isSelected;
         
         // Determine color based on content
-        const hasTrips = route.trips.length > 0;
-        const hasShipments = route.shipments.length > 0;
-        let color = '#3b82f6'; // Default blue
-        
-        if (hasTrips && hasShipments) {
-          color = '#8b5cf6'; // Purple for mixed
-        } else if (hasTrips) {
-          color = '#f97316'; // Orange for trips
-        } else if (hasShipments) {
-          color = '#10b981'; // Green for shipments
-        }
+        const color = '#f97316'; // Orange for trips
         
         // Calculate line weight based on count
         const baseWeight = 2;
@@ -142,15 +106,6 @@ export function RouteArrows({ allCities, selectedRouteKey, onRouteClick }: Route
                         {t('map.routes.trips', 'Trips')}:
                       </span>
                       <span className="font-bold">{route.trips.length}</span>
-                    </div>
-                  )}
-                  
-                  {route.shipments.length > 0 && (
-                    <div className="flex items-center justify-between">
-                      <span className="text-green-600 font-medium">
-                        {t('map.routes.shipments', 'Shipments')}:
-                      </span>
-                      <span className="font-bold">{route.shipments.length}</span>
                     </div>
                   )}
                   

@@ -95,7 +95,7 @@ vi.mock('@/lib/i18n', () => {
     'documents.filter.all': 'All Documents',
     'documents.filter.pendingOnly': 'Pending Only',
     'documents.pendingCount': 'Pending',
-    'documents.search.expandedPlaceholder': 'Search by name, phone, user ID, company, CR, or document type...',
+    'documents.search.expandedPlaceholder': 'Search by name, phone, user ID, or document type...',
     'documents.status.approved': 'Approved',
     'documents.status.pending': 'Pending Review',
     'documents.subtitle': 'Review and approve user document uploads',
@@ -244,21 +244,19 @@ describe('DocumentsPage', () => {
     expect(screen.getByRole('button', { name: /Retry/i })).toBeInTheDocument();
   });
 
-  it('searches by phone, user id, company name, and CR number', async () => {
+  it('searches by user name', async () => {
     state.profiles = [{
-      id: 'company-user-1',
+      id: 'user-9',
       full_name: 'Owner Name',
       phone_number: '+966555',
-      company_name: 'TripShip Cargo',
-      company_cr_number: 'CR-789',
       identity_doc_url: null,
-      identity_doc_url_pending: 'company-user-1/documents/identity.pdf',
+      identity_doc_url_pending: 'user-9/documents/identity.pdf',
     }];
 
     render(<DocumentsPage />);
 
     const search = await screen.findByPlaceholderText(/Search by name, phone/i);
-    fireEvent.change(search, { target: { value: 'CR-789' } });
+    fireEvent.change(search, { target: { value: 'Owner' } });
 
     expect(screen.getByText('Owner Name')).toBeInTheDocument();
   });

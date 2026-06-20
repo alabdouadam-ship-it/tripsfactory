@@ -16,7 +16,6 @@ class SafetyService {
     required String reason,
     String? comment,
     String? targetType,
-    String? targetShipmentId,
     String? targetRatingId,
     String? targetTripId,
   }) async {
@@ -32,9 +31,6 @@ class SafetyService {
       'comment': comment,
     };
     if (targetType != null) payload['target_type'] = targetType;
-    if (targetShipmentId != null) {
-      payload['target_shipment_id'] = targetShipmentId;
-    }
     if (targetRatingId != null) payload['target_rating_id'] = targetRatingId;
     if (targetTripId != null) payload['target_trip_id'] = targetTripId;
 
@@ -77,7 +73,7 @@ class SafetyService {
       return; // Prevent self-blocking
     }
 
-    // Prevent blocking if there's an active trip or shipment
+    // Prevent blocking if there's an active trip or delivery
     final hasActiveEngagement = await _supabase.rpc(
       'has_active_engagement',
       params: {'p_user_a': myId, 'p_user_b': blockedId},
@@ -86,7 +82,7 @@ class SafetyService {
     if (hasActiveEngagement == true) {
       throw TripShipException.withKey(
         'active_engagement_exists',
-        'Cannot block user during an active trip or shipment.',
+        'Cannot block user during an active trip or delivery.',
       );
     }
     try {

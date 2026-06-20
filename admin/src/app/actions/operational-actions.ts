@@ -121,13 +121,18 @@ export async function syncTripCapacity(tripId: string) {
 
         const { data: activeBookings } = await supabase
             .from('bookings')
-            .select('shipments(weight_kg)')
+            .select('reserved_weight_kg')
             .eq('trip_id', tripId)
             .not('status', 'in', '(cancelled,rejected)');
 
-        const rawLoad = activeBookings?.reduce((sum, b) => {
-            const shipment = Array.isArray(b.shipments) ? b.shipments[0] : b.shipments;
-            return sum + (Number(shipment?.weight_kg) || 0);
+        // TODO: the legacy goods-listing table was removed in the trips-only
+        // reorientation. Trip load can no longer be derived from a joined
+        // package weight. We now sum the booking-level `reserved_weight_kg`
+        // (the same column the canonical sync_trip_load trigger uses). If that
+        // column is absent/null the contribution is 0, so this is a reduced
+        // best-effort recompute compared to the previous joined-weight sum.
+        const rawLoad = activeBookings?.reduce((sum, b: { reserved_weight_kg?: number | null }) => {
+            return sum + (Number(b?.reserved_weight_kg) || 0);
         }, 0) ?? 0;
 
         // Clamp: current_load_kg must not exceed max_weight_kg.

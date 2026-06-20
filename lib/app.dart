@@ -57,7 +57,7 @@ class _TripShipAppState extends ConsumerState<TripShipApp>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     // Refresh the cached profile when the app returns to the foreground so
-    // admin-side changes (driver/company approval, suspension) show up
+    // admin-side changes (driver approval, suspension) show up
     // without a restart. Throttled: quick app switches don't re-fetch.
     if (state != AppLifecycleState.resumed) return;
     final now = DateTime.now();
@@ -131,16 +131,6 @@ class _TripShipAppState extends ConsumerState<TripShipApp>
               Uri(
                 path: AppRoutes.tripDetails,
                 queryParameters: {'id': tripId},
-              ).toString(),
-            );
-      } else if (uri.host == 'shipment' && uri.pathSegments.isNotEmpty) {
-        final shipmentId = uri.pathSegments.first;
-        ref
-            .read(routerProvider)
-            .push(
-              Uri(
-                path: AppRoutes.shipmentDetails,
-                queryParameters: {'id': shipmentId},
               ).toString(),
             );
       }

@@ -26,7 +26,6 @@ class NavigationService {
       final router = _ref.read(routerProvider);
       final type = data['type'] as String?;
       final bookingId = data['booking_id'] as String?;
-      final shipmentId = data['shipment_id'] as String?;
       final tripId = data['trip_id'] as String?;
       final ticketId = data['ticket_id'] ?? data['ticketId'];
       final otherUserName = data['other_user_name'] ?? data['other_name'] ?? '';
@@ -38,8 +37,8 @@ class NavigationService {
         return;
       }
 
-      // Driver/company application verdict: refresh the cached profile so
-      // the new traveler/company status is visible immediately, then show it.
+      // Driver application verdict: refresh the cached profile so the new
+      // traveler/driver status is visible immediately, then show it.
       if (type == 'verification_result') {
         _ref.invalidate(currentUserProfileProvider);
         router.push(AppRoutes.profile);
@@ -81,28 +80,7 @@ class NavigationService {
         return;
       }
 
-      // 4. Offer Details - special case for traveler notifications
-      final offerId = data['offer_id'] ?? data['offerId'];
-      if (offerId != null) {
-        final path = Uri(
-          path: AppRoutes.offerDetails,
-          queryParameters: {'id': offerId},
-        ).toString();
-        router.push(path);
-        return;
-      }
-
-      // 5. Shipment Details - specific routing for shipment-related events
-      if (shipmentId != null) {
-        final path = Uri(
-          path: AppRoutes.shipmentDetails,
-          queryParameters: {'id': shipmentId},
-        ).toString();
-        router.push(path);
-        return;
-      }
-
-      // 6. Fallback Chat
+      // 4. Fallback Chat
       if (bookingId != null) {
         router.push(
           AppRoutes.chat,

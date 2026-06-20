@@ -26,10 +26,9 @@ function loadRequiredIndexes(): string[] {
     }
   }
   return [
-    'idx_bookings_shipment_id', 'idx_bookings_traveler_id', 'idx_bookings_trip_id',
+    'idx_bookings_traveler_id', 'idx_bookings_trip_id',
     'idx_bookings_requester_id', 'idx_bookings_status',
     'idx_trips_traveler_id', 'idx_trips_origin_location', 'idx_trips_dest_location', 'idx_trips_status',
-    'idx_shipments_sender_id', 'idx_shipments_locations', 'idx_shipments_status',
     'idx_messages_booking_id', 'idx_notifications_user_id', 'idx_notification_tokens_user_id',
     'idx_blocks_blocker_id', 'idx_blocks_blocked_id', 'idx_reports_reported_id', 'idx_reports_status',
     'idx_vehicles_owner_id',
@@ -57,7 +56,7 @@ describe('Stage 3: Index existence', () => {
   });
 
   it('bookings and trips indexes exist', () => {
-    const bookingIndexes = ['idx_bookings_shipment_id', 'idx_bookings_trip_id', 'idx_bookings_status'];
+    const bookingIndexes = ['idx_bookings_trip_id', 'idx_bookings_status'];
     for (const name of bookingIndexes) {
       expect(existingIndexes).toContain(name);
     }

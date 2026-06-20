@@ -28,8 +28,6 @@ export function UserEditModal({ user, onClose, onSaved }: Props) {
     full_name: user.full_name || '',
     phone_number: user.phone_number || '',
     bio: user.bio || '',
-    company_name: user.company_name || '',
-    company_cr_number: user.company_cr_number || '',
     identity_type: user.identity_type || '',
     traveler_type: normalizeTravelerType(user.traveler_type),
     is_available: !!user.is_available,
@@ -40,7 +38,6 @@ export function UserEditModal({ user, onClose, onSaved }: Props) {
     const next = value.trim();
     return next ? next : null;
   };
-  const hasCompanyCapability = user.account_type === 'company' || !!(user.company_status && user.company_status !== 'none');
 
   async function submit() {
     const fullName = form.full_name.trim();
@@ -53,8 +50,6 @@ export function UserEditModal({ user, onClose, onSaved }: Props) {
       full_name: fullName,
       phone_number: nullableText(form.phone_number),
       bio: nullableText(form.bio),
-      company_name: hasCompanyCapability ? nullableText(form.company_name) : undefined,
-      company_cr_number: hasCompanyCapability ? nullableText(form.company_cr_number) : undefined,
       identity_type: form.identity_type || null,
       traveler_type: form.traveler_type || null,
       is_available: form.is_available,
@@ -103,17 +98,6 @@ export function UserEditModal({ user, onClose, onSaved }: Props) {
           <Field label={t('users.edit.bio', 'Bio')}>
             <textarea rows={2} value={form.bio} onChange={e => set('bio', e.target.value)} className={inputCls + ' resize-none'} />
           </Field>
-
-          {hasCompanyCapability && (
-            <div className="grid grid-cols-2 gap-3">
-              <Field label={t('users.edit.companyName', 'Company Name')}>
-                <input value={form.company_name} onChange={e => set('company_name', e.target.value)} className={inputCls} />
-              </Field>
-              <Field label={t('users.edit.crNumber', 'CR Number')}>
-                <input value={form.company_cr_number} onChange={e => set('company_cr_number', e.target.value)} className={inputCls} />
-              </Field>
-            </div>
-          )}
 
           <div className="grid grid-cols-2 gap-3">
             <Field label={t('users.edit.identityType', 'Identity Type')}>

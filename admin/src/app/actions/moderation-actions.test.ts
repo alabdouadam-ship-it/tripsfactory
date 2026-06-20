@@ -56,7 +56,7 @@ describe('applyReportAction', () => {
     const result = await applyReportAction('report-1', { action: 'delete_target' });
 
     expect(result.success).toBe(false);
-    expect(result.error).toContain('no deletable shipment, trip, or rating target');
+    expect(result.error).toContain('no deletable trip or rating target');
     expect(mocks.mockReportsUpdate).not.toHaveBeenCalled();
     expect(mocks.mockLogAdminAction).not.toHaveBeenCalled();
   });

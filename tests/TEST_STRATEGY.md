@@ -61,7 +61,7 @@ without corresponding test updates. See `.github/workflows/ci.yml`.
 
 | Area | What is tested |
 |---|---|
-| RLS coverage | RLS enabled on `profiles`, `trips`, `shipments`, `bookings`, `messages`, `notifications`, `notification_tokens` |
+| RLS coverage | RLS enabled on `profiles`, `trips`, `bookings`, `messages`, `notifications`, `notification_tokens` |
 | Unauthorized read | User A cannot SELECT user B's rows |
 | Unauthorized write | User A cannot INSERT/UPDATE/DELETE user B's rows |
 | Role restrictions | Traveler/requester/admin-only actions fail for the wrong role |
@@ -78,7 +78,7 @@ Files: `tests/db/rls.test.ts`, `security-definer.test.ts`,
 | Area | What is tested |
 |---|---|
 | FSM transitions | Allowed transitions succeed; forbidden fail (reject after accepted, cancel after in_transit, completed immutable) |
-| Concurrency / race | Concurrent `accept_booking_offer` → only one succeeds; no phantom availability |
+| Concurrency / race | Concurrent booking acceptance → only one succeeds; no phantom availability |
 | Delivery OTP | Code stored; verification enforces booking + role + state |
 
 Files: `tests/db/lifecycle-fsm.test.ts`, `concurrency.test.ts`, `delivery-otp.test.ts`.

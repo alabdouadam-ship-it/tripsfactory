@@ -116,17 +116,4 @@ void main() {
       );
     });
   });
-
-  group('missingCompanyDoc', () {
-    test('CR required', () {
-      expect(
-        RegistrationRequirements.missingCompanyDoc(hasCr: false),
-        MissingDocPrompt.companyCr,
-      );
-    });
-
-    test('CR present passes', () {
-      expect(RegistrationRequirements.missingCompanyDoc(hasCr: true), isNull);
-    });
-  });
 }

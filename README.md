@@ -1,9 +1,9 @@
-# TripShip — Logistics & Shipping Marketplace
+# TripShip — Logistics & Delivery Marketplace
 
 A production-grade, white-label logistics marketplace: a **Flutter** mobile app,
 a **Next.js** admin panel, and a **Supabase** backend. TripShip connects
-travelers/drivers with senders for shared shipping across cities and borders —
-post trips, request shipments, exchange offers, chat, and manage the whole
+travelers/drivers with senders for shared delivery across cities and borders —
+post trips, request deliveries, chat, and manage the whole
 lifecycle.
 
 > **Buyer? Start here:** [`docs/GETTING_STARTED.md`](docs/GETTING_STARTED.md) gets
@@ -17,22 +17,22 @@ lifecycle.
 - **White-label by design** — brand, 5 languages, themes/fonts, home country
   (ISO), and backend URLs are all configuration seams. One place to change per
   concern; a drift test keeps `fork.config.json` honest.
-- **Quality** — **196 Flutter tests + 209 admin tests**, GitHub Actions CI included.
+- **Quality** — **184 Flutter tests + 193 admin tests**, GitHub Actions CI included.
 - **0-config backend wiring** — no hardcoded URLs/keys; everything is env-driven.
 - **Scripted setup** — `scripts/setup_supabase.*` and `scripts/setup_firebase_hosting.*`
   provision the backend and hosting with minimal manual steps.
 
 ## Features
 
-- **Trips** — drivers post routes with origin, destination, and available capacity.
-- **Shipments** — senders post requests and receive offers from drivers.
-- **Bookings** — accept offers; track handover, payment, and delivery state.
+- **Trips** — travelers and drivers post routes with origin, destination, and available capacity.
+- **Deliveries** — senders request a delivery on a traveler's or driver's trip.
+- **Bookings** — accept requests; track handover, payment, and delivery state.
 - **Chat** — direct messaging with text and voice notes.
 - **Ratings & reviews**, **reports & blocks**, **ads/promotions**.
 - **KYC document verification** with private storage + signed URLs.
-- **Push notifications** (FCM v1) for offers, requests, and messages.
+- **Push notifications** (FCM v1) for trips, requests, and messages.
 - **Realtime** updates, **maps** (Leaflet/OpenStreetMap in admin).
-- **Admin panel** — users, drivers, trips, shipments, moderation, verification,
+- **Admin panel** — users, drivers, trips, moderation, verification,
   analytics, notifications, settings.
 - **Internationalization** — Arabic (RTL), English, French, Turkish, Spanish;
   configurable supported set + default.
@@ -86,8 +86,8 @@ npm run dev                          # http://localhost:3000
 ## Testing
 
 ```bash
-flutter test                                          # app: 196 tests
-cd admin && npx vitest run --config vitest.config.mts # admin: 209 tests
+flutter test                                          # app: 184 tests
+cd admin && npx vitest run --config vitest.config.mts # admin: 193 tests
 ```
 
 ## Documentation

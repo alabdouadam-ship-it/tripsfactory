@@ -61,7 +61,6 @@ describe('getPaginatedBookings', () => {
     expect(select.columns).toContain('requester_profile:profiles!bookings_requester_id_profiles_fkey');
     expect(select.columns).toContain('driver_profile:profiles!bookings_traveler_id_fkey');
     expect(select.columns).not.toContain('requester_profile:profiles!bookings_requester_id_fkey');
-    expect(select.columns).not.toContain('shipments');
   });
 
   it('returns the Supabase error message instead of Unknown error', async () => {

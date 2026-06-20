@@ -108,23 +108,6 @@ export function MapLegend({ isOpen, onToggle }: MapLegendProps) {
                     {t('map.legend.trips', 'Trips (Orange)')}
                   </span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <svg width="32" height="12" className="flex-shrink-0">
-                    <line
-                      x1="0"
-                      y1="6"
-                      x2="32"
-                      y2="6"
-                      stroke="#10b981"
-                      strokeWidth="2"
-                      strokeDasharray="4,4"
-                      opacity="0.7"
-                    />
-                  </svg>
-                  <span className="text-xs theme-text">
-                    {t('map.legend.shipments', 'Shipments (Green)')}
-                  </span>
-                </div>
               </div>
             </div>
             

@@ -59,7 +59,7 @@ export function MapFilters({
   
   if (!isOpen) return null;
   
-  const handleTypeChange = (type: 'trips' | 'shipments') => {
+  const handleTypeChange = (type: 'trips') => {
     const newTypes = localFilters.types.includes(type)
       ? localFilters.types.filter(t => t !== type)
       : [...localFilters.types, type];
@@ -94,7 +94,7 @@ export function MapFilters({
   
   const handleReset = () => {
     const resetFilters: FilterState = {
-      types: ['trips', 'shipments'],
+      types: ['trips'],
       statuses: [],
       dateFrom: null,
       dateTo: null,
@@ -112,15 +112,7 @@ export function MapFilters({
     'in_communication',
   ];
   
-  const shipmentStatuses = [
-    'pending',
-    'accepted',
-    'picked_up',
-    'in_transit',
-    'delivered',
-  ];
-  
-  const allStatuses = [...new Set([...tripStatuses, ...shipmentStatuses])];
+  const allStatuses = [...new Set(tripStatuses)];
   
   // Mobile: bottom sheet
   if (isMobile) {
@@ -171,15 +163,6 @@ export function MapFilters({
                     className="w-4 h-4 text-blue-500 rounded focus:ring-2 focus:ring-blue-500"
                   />
                   <span className="theme-text">{t('map.filters.trips', 'Trips')}</span>
-                </label>
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={localFilters.types.includes('shipments')}
-                    onChange={() => handleTypeChange('shipments')}
-                    className="w-4 h-4 text-blue-500 rounded focus:ring-2 focus:ring-blue-500"
-                  />
-                  <span className="theme-text">{t('map.filters.shipments', 'Shipments')}</span>
                 </label>
               </div>
             </div>
@@ -318,15 +301,6 @@ export function MapFilters({
                 className="w-4 h-4 text-blue-500 rounded focus:ring-2 focus:ring-blue-500"
               />
               <span className="theme-text">{t('map.filters.trips', 'Trips')}</span>
-            </label>
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={localFilters.types.includes('shipments')}
-                onChange={() => handleTypeChange('shipments')}
-                className="w-4 h-4 text-blue-500 rounded focus:ring-2 focus:ring-blue-500"
-              />
-              <span className="theme-text">{t('map.filters.shipments', 'Shipments')}</span>
             </label>
           </div>
         </div>

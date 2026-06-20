@@ -8,7 +8,7 @@ import { useToast } from '@/lib/toast';
 import { Profile, Vehicle } from '@/lib/types';
 import {
   ArrowLeft, User, Phone, Calendar, Shield, ShieldCheck, ShieldX, Ban,
-  Truck, Package, Route, Star, FileText, Eye, Clock, CheckCircle, XCircle,
+  Truck, Route, Star, FileText, Eye, Clock, CheckCircle, XCircle,
   AlertTriangle, MessageSquare, Flag, Send, X, Download, AlertOctagon,
   Lock, Unlock, Trash2, ShieldAlert, History, Gavel, Activity, ShieldOff,
   TrendingUp, TrendingDown, Info, AlertCircle, UserCheck,
@@ -34,10 +34,10 @@ import { Pencil } from 'lucide-react';
 
 
 
-type TabKey = 'overview' | 'documents' | 'vehicles' | 'trips' | 'shipments' | 'bookings' | 'ratings' | 'reports' | 'activity';
-type BlockTarget = 'account' | 'driver' | 'company';
-type UserDocField = 'identity_doc_url' | 'traveler_license_url' | 'rental_contract_url' | 'company_cr_url';
-type PendingDocField = 'identity_doc_url_pending' | 'traveler_license_url_pending' | 'rental_contract_url_pending' | 'company_cr_url_pending';
+type TabKey = 'overview' | 'documents' | 'vehicles' | 'trips' | 'bookings' | 'ratings' | 'reports' | 'activity';
+type BlockTarget = 'account' | 'driver';
+type UserDocField = 'identity_doc_url' | 'traveler_license_url' | 'rental_contract_url';
+type PendingDocField = 'identity_doc_url_pending' | 'traveler_license_url_pending' | 'rental_contract_url_pending';
 
 export default function UserDetailPage() {
   const params = useParams();
@@ -54,7 +54,6 @@ export default function UserDetailPage() {
   const [user, setUser] = useState<Profile | null>(null);
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [trips, setTrips] = useState<any[]>([]);
-  const [shipments, setShipments] = useState<any[]>([]);
   const [bookings, setBookings] = useState<any[]>([]);
   const [ratings, setRatings] = useState<any[]>([]);
   const [reports, setReports] = useState<any[]>([]);
@@ -98,7 +97,6 @@ export default function UserDetailPage() {
     identity_doc_url: 'identity_doc_url_pending',
     traveler_license_url: 'traveler_license_url_pending',
     rental_contract_url: 'rental_contract_url_pending',
-    company_cr_url: 'company_cr_url_pending',
   };
 
   async function uploadUserDocument(field: UserDocField, file: File) {
@@ -148,7 +146,6 @@ export default function UserDetailPage() {
     if (user.identity_doc_url) values.push(user.identity_doc_url);
     if (user.traveler_license_url) values.push(user.traveler_license_url);
     if (user.rental_contract_url) values.push(user.rental_contract_url);
-    if (user.company_cr_url) values.push(user.company_cr_url);
     vehicles.forEach(v => {
       if (v.registration_doc_url) values.push(v.registration_doc_url);
       if (v.vehicle_photo_url) values.push(v.vehicle_photo_url);
@@ -182,11 +179,10 @@ export default function UserDetailPage() {
     setLoading(true);
     setLoadError(null);
     try {
-      const [profileRes, vehiclesRes, tripsRes, shipmentsRes, bookingsRes, ratingsRes, reportsRes] = await Promise.all([
+      const [profileRes, vehiclesRes, tripsRes, bookingsRes, ratingsRes, reportsRes] = await Promise.all([
         supabase.from('profiles').select('*').eq('id', id).single(),
         supabase.from('vehicles').select('*').eq('owner_id', id),
         supabase.from('trips').select('*, origin_loc:locations!trips_origin_location_id_fkey(city_name_en, province_name_en), dest_loc:locations!trips_dest_location_id_fkey(city_name_en, province_name_en)').eq('traveler_id', id).order('created_at', { ascending: false }).limit(20),
-        supabase.from('shipments').select('*, pickup_loc:locations!shipments_pickup_location_id_fkey(city_name_en, province_name_en), dropoff_loc:locations!shipments_dropoff_location_id_fkey(city_name_en, province_name_en)').eq('sender_id', id).order('created_at', { ascending: false }).limit(20),
         supabase.from('bookings').select('*, trips(id, status)').or(`traveler_id.eq.${id},requester_id.eq.${id}`).order('created_at', { ascending: false }).limit(20),
         supabase.from('ratings').select('*, rater:profiles!ratings_rater_id_fkey(full_name)').eq('rated_id', id).order('created_at', { ascending: false }).limit(50),
         supabase.from('reports').select('*, reporter:profiles!reports_reporter_id_fkey(full_name)').eq('reported_id', id).order('created_at', { ascending: false }).limit(50),
@@ -201,7 +197,6 @@ export default function UserDetailPage() {
       const relatedErrors = [
         { label: t('users.detail.tab.vehicles', 'Vehicles'), error: vehiclesRes.error },
         { label: t('users.detail.tab.trips', 'Trips'), error: tripsRes.error },
-        { label: t('users.detail.tab.shipments', 'Shipments'), error: shipmentsRes.error },
         { label: t('users.detail.tab.bookings', 'Bookings'), error: bookingsRes.error },
         { label: t('users.detail.tab.ratings', 'Ratings'), error: ratingsRes.error },
         { label: t('users.detail.tab.reports', 'Reports'), error: reportsRes.error },
@@ -216,7 +211,6 @@ export default function UserDetailPage() {
       }
       setVehicles((vehiclesRes.data as Vehicle[]) || []);
       setTrips(tripsRes.data || []);
-      setShipments(shipmentsRes.data || []);
       setBookings(bookingsRes.data || []);
       setRatings(ratingsRes.data || []);
       setReports(reportsRes.data || []);
@@ -293,19 +287,16 @@ export default function UserDetailPage() {
       if (target === 'driver') {
         updates.traveler_status = 'blocked';
         label = t('users.detail.blockLabel.driver');
-      } else if (target === 'company') {
-        updates.company_status = 'blocked';
-        label = t('users.detail.blockLabel.company');
       }
 
       // Use server action to enforce role check and audit logging
-      const blockRes = await updateVerificationStatus(id, target as 'driver' | 'company', 'blocked');
+      const blockRes = await updateVerificationStatus(id, 'driver', 'blocked');
       if (!blockRes.success) { toast(blockRes.error || t('users.detail.toast.blockFailed'), 'error'); setBlocking(false); return; }
 
       // Send notification via server action if enabled
       if (sendNotification) {
         const reason = blockReason.trim();
-        const title = target === 'driver' ? t('users.detail.notifTitle.driver') : t('users.detail.notifTitle.company');
+        const title = t('users.detail.notifTitle.driver');
         const bodyPart = t('users.detail.notifBody.blocked').replace('{target}', target);
         const body = reason ? bodyPart + t('users.detail.notifBody.reason').replace('{reason}', reason) : bodyPart + t('users.detail.notifBody.byAdmin');
         await sendAdminNotification({ mode: 'single', targetUserId: id, title, body });
@@ -343,15 +334,14 @@ export default function UserDetailPage() {
 
         const updates: Record<string, any> = {};
         if (target === 'driver') updates.traveler_status = 'approved';
-        else if (target === 'company') updates.company_status = 'approved';
 
         // Use server action to enforce role check and audit logging
-        const unblockRes = await updateVerificationStatus(id, target as 'driver' | 'company', 'approved');
+        const unblockRes = await updateVerificationStatus(id, 'driver', 'approved');
         if (!unblockRes.success) { toast(unblockRes.error || t('users.detail.toast.updateFailed'), 'error'); return; }
         setUser(prev => prev ? { ...prev, ...updates } : null);
         toast(t('users.detail.toast.unblockSuccess').replace('{label}', label), 'success');
 
-        const targetLabel = target === 'driver' ? t('users.detail.dialog.targetDriverAccount') : t('users.detail.dialog.targetCompanyAccount');
+        const targetLabel = t('users.detail.dialog.targetDriverAccount');
         await sendAdminNotification({
           mode: 'single',
           targetUserId: id,
@@ -368,14 +358,6 @@ export default function UserDetailPage() {
     if (!res.success) { toast(res.error || t('users.detail.toast.updateFailed'), 'error'); return; }
     setUser(prev => prev ? { ...prev, traveler_status: status as any } : null);
     toast(t('users.detail.toast.driverStatusSet').replace('{status}', status), 'success');
-  }
-
-  async function updateCompanyStatus(status: string) {
-    if (status === 'blocked') { openBlockDialog('company'); return; }
-    const res = await updateVerificationStatus(id, 'company', status);
-    if (!res.success) { toast(res.error || t('users.detail.toast.updateFailed'), 'error'); return; }
-    setUser(prev => prev ? { ...prev, company_status: status as any } : null);
-    toast(t('users.detail.toast.companyStatusSet').replace('{status}', status), 'success');
   }
 
   async function applyCapabilityUpdate(updates: Partial<Profile>, successMessage: string) {
@@ -404,14 +386,6 @@ export default function UserDetailPage() {
       traveler_type: 'with_vehicle',
       is_driver: true,
     }, t('users.detail.toast.driverEnabled', 'Driver capability enabled'));
-  }
-
-  async function enableCompany() {
-    await applyCapabilityUpdate({
-      account_type: 'company',
-      company_status: 'approved',
-      company_name: user?.company_name || user?.full_name || null,
-    }, t('users.detail.toast.companyEnabled', 'Company capability enabled'));
   }
 
   if (loading) return <Loading />;
@@ -444,7 +418,6 @@ export default function UserDetailPage() {
     { key: 'documents', label: t('users.detail.tab.documents', 'Documents'), icon: FileText },
     { key: 'vehicles', label: t('users.detail.tab.vehicles', 'Vehicles'), icon: Truck, count: vehicles.length },
     { key: 'trips', label: t('users.detail.tab.trips', 'Trips'), icon: Route, count: trips.length },
-    { key: 'shipments', label: t('users.detail.tab.shipments', 'Shipments'), icon: Package, count: shipments.length },
     { key: 'bookings', label: t('users.detail.tab.bookings', 'Bookings'), icon: MessageSquare, count: bookings.length },
     { key: 'ratings', label: t('users.detail.tab.ratings', 'Ratings'), icon: Star, count: ratings.length },
     { key: 'reports', label: t('users.detail.tab.reports', 'Reports'), icon: Flag, count: reports.length },
@@ -474,9 +447,7 @@ export default function UserDetailPage() {
   const badgeTierLabel = (tier: string | null | undefined) => {
     const labels: Record<string, string> = {
       trusted_driver: t('badges.tier.trustedDriver', 'Trusted Driver'),
-      trusted_company: t('badges.tier.trustedCompany', 'Trusted Company'),
       featured_driver: t('badges.tier.featuredDriver', 'Featured Driver'),
-      featured_company: t('badges.tier.featuredCompany', 'Featured Company'),
       verified_partner: t('badges.tier.verifiedPartner', 'Verified Partner'),
     };
     if (!tier) return t('badges.tier.none', 'None');
@@ -487,9 +458,7 @@ export default function UserDetailPage() {
     if (!tier) return null;
     const colors: Record<string, string> = {
       trusted_driver: 'bg-green-500/10 text-green-600 border-green-500/20',
-      trusted_company: 'bg-green-500/10 text-green-600 border-green-500/20',
       featured_driver: 'bg-yellow-500/10 text-yellow-700 border-yellow-500/20',
-      featured_company: 'bg-yellow-500/10 text-yellow-700 border-yellow-500/20',
       verified_partner: 'bg-blue-500/10 text-blue-600 border-blue-500/20',
     };
     return (
@@ -609,18 +578,15 @@ export default function UserDetailPage() {
               {user.is_admin && <span className="px-2.5 py-1 rounded bg-purple-500/10 text-purple-600 text-[0.625rem] font-black uppercase tracking-widest border border-purple-500/20">{t('users.detail.badge.admin')}</span>}
               {user.is_suspended && <span className="px-2.5 py-1 rounded bg-red-600 text-white text-[0.625rem] font-black uppercase tracking-widest shadow-lg shadow-red-600/20">{t('users.status.suspendedBadge', 'Suspended')}</span>}
               {user.traveler_status === 'blocked' && <span className="px-2.5 py-1 rounded bg-red-600 text-white text-[0.625rem] font-black uppercase tracking-widest shadow-lg shadow-red-600/20">{t('users.detail.badge.driverBlocked')}</span>}
-              {user.company_status === 'blocked' && <span className="px-2.5 py-1 rounded bg-red-600 text-white text-[0.625rem] font-black uppercase tracking-widest shadow-lg shadow-red-600/20">{t('users.detail.badge.companyBlocked')}</span>}
               {badgeTierBadge(user.trust_badge)}
             </div>
             <p className="text-[0.6875rem] theme-muted font-black uppercase tracking-widest opacity-40 mb-3">{user.id}</p>
             <div className="flex gap-8 mt-4 text-[0.75rem] theme-muted font-bold">
               <span className="flex items-center gap-2"><Phone className="h-4 w-4 opacity-50" /> {user.phone_number || t('common.na')}</span>
               <span className="flex items-center gap-2"><Calendar className="h-4 w-4 opacity-50" /> {t('users.detail.joined')} {new Date(user.created_at).toLocaleDateString()}</span>
-              <span className="flex items-center gap-2"><Shield className="h-4 w-4 opacity-50" /> {user.account_type === 'company' ? t('users.badge.company') : t('users.badge.individual')}</span>
             </div>
             <div className="flex gap-3 mt-5">
               {statusBadge(user.traveler_status)}
-              {user.account_type === 'company' && statusBadge(user.company_status)}
             </div>
           </div>
           <div className="text-right space-y-3">
@@ -666,7 +632,6 @@ export default function UserDetailPage() {
                 </h3>
                 <div className="theme-bg-secondary/50 p-4 rounded-xl border border-[var(--surface-border)] space-y-1">
                   <InfoRow label={t('users.detail.field.bio', 'Bio')} value={user.bio} />
-                  <InfoRow label={t('users.detail.field.accountType', 'Account Type')} value={user.account_type === 'company' ? t('users.badge.company') : t('users.badge.individual')} />
                   <InfoRow label={t('users.detail.field.available', 'Available')} value={user.is_available ? t('common.yes') : t('common.no')} />
                   <InfoRow label={t('users.detail.field.travelerType', 'Traveler Type')} value={user.traveler_type ? t(`users.detail.value.${user.traveler_type}` as 'users.detail.value.no_vehicle', user.traveler_type.replace(/_/g, ' ')) : null} />
                   <InfoRow label={t('users.detail.field.identityType', 'Identity Type')} value={user.identity_type ? t(`users.detail.value.${user.identity_type}` as 'users.detail.value.id_card', user.identity_type.replace(/_/g, ' ')) : null} />
@@ -679,7 +644,7 @@ export default function UserDetailPage() {
               <div className="space-y-4">
                 <h3 className="font-black theme-heading uppercase text-xs tracking-widest flex items-center gap-2">
                   <ShieldCheck className="h-4 w-4 text-green-500" />
-                  {t('users.detail.section.driverCompanyActions', 'Driver/Company Actions')}
+                  {t('users.detail.section.driverActions', 'Driver Actions')}
                 </h3>
                 <div className="theme-bg-secondary/50 p-4 rounded-xl border border-[var(--surface-border)] space-y-4">
                   <div className="flex gap-2 flex-wrap pb-4">
@@ -698,21 +663,9 @@ export default function UserDetailPage() {
                       {user.traveler_status === 'blocked' && <button onClick={() => unblock('driver')} className="w-full py-3 bg-green-600 text-white rounded-xl text-[0.625rem] font-black uppercase tracking-widest hover:bg-green-700 shadow-lg shadow-green-600/10 transition-all active:scale-95"><ShieldCheck className="h-3.5 w-3.5 inline mr-1" />{t('users.detail.action.unblock', 'Unblock')}</button>}
                     </div>
                   </div>
-                  <div className="flex gap-2 flex-wrap pt-4 border-t border-[var(--surface-border)]">
-                    <p className="w-full text-[0.625rem] theme-muted font-black uppercase tracking-widest leading-none mb-2 opacity-60">{t('users.detail.companyStatus', 'Company Status')}</p>
-                    <div className="w-full mb-3">{statusBadge(user.company_status)}</div>
-                    <div className="flex gap-2 w-full flex-wrap">
-                      {user.company_status !== 'blocked' && !(user.account_type === 'company' && user.company_status === 'approved') && <button onClick={enableCompany} className="flex-1 min-w-36 py-3 bg-purple-600 text-white rounded-xl text-[0.625rem] font-black uppercase tracking-widest hover:bg-purple-700 shadow-lg shadow-purple-600/10 transition-all active:scale-95"><ShieldCheck className="h-3.5 w-3.5 inline mr-1" />{t('users.detail.action.makeCompany', 'Make company')}</button>}
-                      {user.company_status && user.company_status !== 'none' && user.company_status !== 'rejected' && user.company_status !== 'blocked' && <button onClick={() => updateCompanyStatus('rejected')} className="flex-1 min-w-32 py-3 bg-[var(--surface)] text-orange-600 border border-orange-500/20 rounded-xl text-[0.625rem] font-black uppercase tracking-widest hover:bg-orange-500/10 shadow-sm transition-all active:scale-95"><XCircle className="h-3.5 w-3.5 inline mr-1" />{t('users.detail.action.reject', 'Reject')}</button>}
-                      {user.company_status && user.company_status !== 'none' && user.company_status !== 'blocked' && <button onClick={() => updateCompanyStatus('blocked')} className="flex-1 min-w-32 py-3 bg-red-600 text-white rounded-xl text-[0.625rem] font-black uppercase tracking-widest hover:bg-red-700 shadow-lg shadow-red-600/10 transition-all active:scale-95"><Ban className="h-3.5 w-3.5 inline mr-1" />{t('users.detail.action.block', 'Block')}</button>}
-                      {user.company_status === 'blocked' && <button onClick={() => unblock('company')} className="w-full py-3 bg-green-600 text-white rounded-xl text-[0.625rem] font-black uppercase tracking-widest hover:bg-green-700 shadow-lg shadow-green-600/10 transition-all active:scale-95"><ShieldCheck className="h-3.5 w-3.5 inline mr-1" />{t('users.detail.action.unblock', 'Unblock')}</button>}
-                    </div>
-                  </div>
                   <div className="pt-2 border-t border-[var(--surface-border)] space-y-1">
                     <InfoRow label={t('users.detail.field.subscriptionExpires', 'Subscription Expires')} value={user.subscription_expires_at ? new Date(user.subscription_expires_at).toLocaleDateString() : null} />
                     <InfoRow label={t('users.detail.field.licenseExpires', 'License Expires')} value={user.license_expires_at ? new Date(user.license_expires_at).toLocaleDateString() : null} />
-                    {user.company_name && <InfoRow label={t('users.detail.field.companyName', 'Company Name')} value={user.company_name} />}
-                    {user.company_cr_number && <InfoRow label={t('users.detail.field.companyCrNumber', 'CR Number')} value={user.company_cr_number} />}
                   </div>
                 </div>
               </div>
@@ -1109,15 +1062,7 @@ export default function UserDetailPage() {
                 uploading={uploadingDocField === 'rental_contract_url'}
                 onUpload={(file) => uploadUserDocument('rental_contract_url', file)}
               />
-              <DocRow
-                t={t}
-                label={t('users.detail.documents.companyCr')}
-                url={user.company_cr_url ? (signedUrls[user.company_cr_url] ?? null) : null}
-                pending={user.company_cr_url_pending}
-                uploading={uploadingDocField === 'company_cr_url'}
-                onUpload={(file) => uploadUserDocument('company_cr_url', file)}
-              />
-              {!user.identity_doc_url && !user.traveler_license_url && !user.rental_contract_url && !user.company_cr_url && (
+              {!user.identity_doc_url && !user.traveler_license_url && !user.rental_contract_url && (
                 <div className="py-12 text-center">
                   <FileText className="h-12 w-12 theme-muted mx-auto mb-4 opacity-20" />
                   <p className="theme-muted text-sm italic">{t('users.detail.documents.empty')}</p>
@@ -1181,19 +1126,10 @@ export default function UserDetailPage() {
           { key: 'created_at', label: t('users.detail.table.created'), render: (v: any) => new Date(v.created_at).toLocaleDateString() },
         ]} emptyText={t('users.detail.trips.empty')} />}
 
-        {activeTab === 'shipments' && <DataTable data={shipments} columns={[
-          { key: 'status', label: t('users.detail.table.status'), render: (v: any) => statusBadge(v.status) },
-          { key: 'pickup', label: t('users.detail.table.from'), render: (v: any) => v.pickup_loc?.city_name_en || '—' },
-          { key: 'dropoff', label: t('users.detail.table.to'), render: (v: any) => v.dropoff_loc?.city_name_en || '—' },
-          { key: 'weight_kg', label: t('users.detail.table.weight'), render: (v: any) => v.weight_kg ? `${v.weight_kg} kg` : '—' },
-          { key: 'created_at', label: t('users.detail.table.created'), render: (v: any) => new Date(v.created_at).toLocaleDateString() },
-        ]} emptyText={t('users.detail.shipments.empty')} />}
-
         {activeTab === 'bookings' && <DataTable data={bookings} columns={[
           { key: 'status', label: t('users.detail.table.status'), render: (v: any) => statusBadge(v.status) },
-          { key: 'offer_price', label: t('users.detail.table.price'), render: (v: any) => v.offer_price || '—' },
+          { key: 'price', label: t('users.detail.table.price'), render: (v: any) => v.price || '—' },
           { key: 'trip', label: t('users.detail.table.trip'), render: (v: any) => v.trip_id ? v.trip_id.slice(0, 8) : '—' },
-          { key: 'shipment', label: t('users.detail.table.shipment'), render: (v: any) => v.shipment_id ? v.shipment_id.slice(0, 8) : t('users.detail.table.direct') },
           { key: 'created_at', label: t('users.detail.table.created'), render: (v: any) => new Date(v.created_at).toLocaleDateString() },
         ]} emptyText={t('users.detail.bookings.empty')} />}
 
@@ -1229,7 +1165,7 @@ export default function UserDetailPage() {
                   </div>
                   <div>
                     <h3 className="font-black theme-heading text-sm">
-                      {blockDialog.target === 'account' ? t('users.detail.notifTitle.account') : blockDialog.target === 'driver' ? t('users.detail.notifTitle.driver') : t('users.detail.notifTitle.company')}
+                      {blockDialog.target === 'account' ? t('users.detail.notifTitle.account') : t('users.detail.notifTitle.driver')}
                     </h3>
                     <p className="text-[0.625rem] theme-muted font-bold uppercase tracking-widest">{user.full_name || t('common.unknown')}</p>
                   </div>
@@ -1244,9 +1180,7 @@ export default function UserDetailPage() {
                 <p className="text-sm theme-muted font-medium leading-relaxed">
                   {blockDialog.target === 'account'
                     ? t('users.detail.dialog.suspendDesc')
-                    : blockDialog.target === 'driver'
-                      ? t('users.detail.dialog.blockDriverDesc')
-                      : t('users.detail.dialog.blockCompanyDesc')}
+                    : t('users.detail.dialog.blockDriverDesc')}
                 </p>
 
                 {/* Reason */}

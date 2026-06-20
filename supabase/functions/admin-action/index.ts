@@ -85,11 +85,8 @@ Deno.serve(async (req: Request) => {
     let result: any = {};
 
     switch (action) {
-      case "approve_driver":
-      case "approve_company": {
+      case "approve_driver": {
         // SECURITY FIX V-03: Respect Workflow State Machine
-        const entityType = action === "approve_driver" ? "driver" : "company";
-
         // We call a DB RPC or use the adminClient to advance verification
         // This ensures dual-approval and fraud checks are not bypassed.
         result = { success: true, message: "Action accepted but must be finalized via Verification Center for integrity." };
@@ -163,9 +160,7 @@ Deno.serve(async (req: Request) => {
         const p = params ?? {};
         if (!p.email && !p.phone) throw new Error("Either email or phone is required.");
         if (!p.full_name) throw new Error("full_name is required.");
-        const isCompanyAccount = (p.account_type ?? "individual") === "company";
         const shouldMakeDriver = truthyFlag(p.make_driver);
-        const shouldMakeCompany = isCompanyAccount || truthyFlag(p.make_company);
 
         let createdUserId: string | undefined;
         let generatedPassword: string | null = null;
@@ -201,9 +196,7 @@ Deno.serve(async (req: Request) => {
           p_user_id: createdUserId,
           p_full_name: p.full_name,
           p_phone: p.phone ?? null,
-          p_account_type: p.account_type ?? "individual",
           p_make_driver: shouldMakeDriver,
-          p_make_company: shouldMakeCompany,
         });
         if (provError) {
           // Best-effort rollback: if profile provisioning fails, delete the
@@ -224,23 +217,12 @@ Deno.serve(async (req: Request) => {
           statusPatch.is_driver = true;
           statusPatch.traveler_type = "with_vehicle";
         }
-        if (shouldMakeCompany) statusPatch.company_status = "pending";
         if (Object.keys(statusPatch).length > 0) {
           const { error: statusError } = await adminClient
             .from("profiles")
             .update(statusPatch)
             .eq("id", createdUserId);
           if (statusError) throw statusError;
-        }
-
-        // Give newly-created company accounts a display name by default.
-        if (isCompanyAccount) {
-          const { error: companyNameError } = await adminClient
-            .from("profiles")
-            .update({ company_name: p.full_name })
-            .eq("id", createdUserId)
-            .is("company_name", null);
-          if (companyNameError) throw companyNameError;
         }
 
         result = { success: true, userId: createdUserId, generatedPassword };

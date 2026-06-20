@@ -32,7 +32,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   final _phoneController = TextEditingController();
   final _bioController = TextEditingController();
 
-  String _companyStatus = 'none';
   Profile? _profileData;
   bool _isLoading = true;
   bool _isSaving = false;
@@ -50,7 +49,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     try {
       final profileService = ref.read(profileServiceProvider);
       final profile = await profileService.getProfile(user.id);
-      final status = await profileService.getCompanyStatus(user.id);
 
       if (profile != null) {
         if (mounted) {
@@ -58,8 +56,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             _nameController.text = profile.fullName;
             _phoneController.text = profile.phoneNumber ?? '';
             _bioController.text = profile.bio ?? '';
-            // Account Type is now derived from status or legacy value
-            _companyStatus = status;
             _profileData = profile;
             _isLoading = false;
           });
@@ -101,9 +97,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               fullName: _nameController.text.trim(),
               phoneNumber: _phoneController.text.trim(),
               bio: _bioController.text.trim(),
-              accountType: _companyStatus == DomainConfig.statusApproved
-                  ? DomainConfig.accountCompany
-                  : DomainConfig.accountIndividual, // Legacy support
             );
 
         if (mounted) {
@@ -153,69 +146,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
     if (confirmed == true) {
       ref.read(authServiceProvider).signOut();
-    }
-  }
-
-  Future<void> _handleCompanyUpgrade() async {
-    final localizations = AppLocalizations.of(context)!;
-    
-    // Check current status
-    if (_companyStatus == DomainConfig.statusPending) {
-      await showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(localizations.applicationPending),
-          content: Text(localizations.waitAdminApproval),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text(localizations.ok),
-            ),
-          ],
-        ),
-      );
-      return;
-    }
-    
-    if (_companyStatus == DomainConfig.statusRejected) {
-      await showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(localizations.applicationRejected),
-          content: Text(localizations.cannotReapply),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text(localizations.ok),
-            ),
-          ],
-        ),
-      );
-      return;
-    }
-    
-    if (_companyStatus == DomainConfig.statusApproved) {
-      await showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(localizations.alreadyApproved),
-          content: Text(localizations.alreadyCompanyAccount),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text(localizations.ok),
-            ),
-          ],
-        ),
-      );
-      return;
-    }
-    
-    // Navigate to registration
-    if (mounted) {
-      context
-          .push(AppRoutes.companyRegistration)
-          .then((_) => _loadProfile());
     }
   }
 
@@ -362,7 +292,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 if (_profileData != null &&
                     (_profileData!.isSuspended ||
                         (ref.read(isClientModeProvider)
-                            ? _companyStatus == DomainConfig.statusSuspended
+                            ? false
                             : _profileData!.travelerStatus == DomainConfig.statusSuspended)))
                   const AccountSuspendedBanner(),
 
@@ -420,8 +350,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     ),
                   ).animate().scale().fadeIn(),
                 ),
-                if (_profileData?.identityDocUrl != null &&
-                    _companyStatus != DomainConfig.statusApproved) ...[
+                if (_profileData?.identityDocUrl != null) ...[
                   const SizedBox(height: 16),
                   Container(
                     padding: const EdgeInsets.symmetric(
@@ -519,116 +448,11 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
                       const SizedBox(height: 24),
 
-                      // --- Account Upgrade / Status Section ---
-                      if (ref.watch(isClientModeProvider)) ...[
-                        // SENDER MODE: Company Upgrade
-                        if (_companyStatus == DomainConfig.statusApproved) ...[
-                          Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              color: Colors.green.withValues(alpha: 0.1),
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color: Colors.green.withValues(alpha: 0.3),
-                              ),
-                            ),
-                            child: Row(
-                              children: [
-                                const Icon(Icons.business, color: Colors.green),
-                                const SizedBox(width: 12),
-                                Expanded(
-                                  child: Text(
-                                    localizations.verifiedCompanyAccount,
-                                    style: TextStyle(
-                                      color: Colors.green[800],
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                const Icon(
-                                  Icons.check_circle,
-                                  color: Colors.green,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ] else if (_companyStatus == DomainConfig.statusPending) ...[
-                          Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              color: Colors.orange.withValues(alpha: 0.1),
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color: Colors.orange.withValues(alpha: 0.3),
-                              ),
-                            ),
-                            child: Row(
-                              children: [
-                                const Icon(
-                                  Icons.hourglass_empty,
-                                  color: Colors.orange,
-                                ),
-                                const SizedBox(width: 12),
-                                Expanded(
-                                  child: Text(
-                                    localizations.applicationPending,
-                                    style: TextStyle(
-                                      color: Colors.orange[800],
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ] else if (_companyStatus == DomainConfig.statusRejected) ...[
-                          Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              color: Colors.red.withValues(alpha: 0.1),
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color: Colors.red.withValues(alpha: 0.3),
-                              ),
-                            ),
-                            child: Row(
-                              children: [
-                                const Icon(
-                                  Icons.cancel,
-                                  color: Colors.red,
-                                ),
-                                const SizedBox(width: 12),
-                                Expanded(
-                                  child: Text(
-                                    localizations.applicationRejected,
-                                    style: TextStyle(
-                                      color: Colors.red[800],
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ] else ...[
-                          // Company Upgrade Button
-                          OutlinedButton.icon(
-                            onPressed: () => _handleCompanyUpgrade(),
-                            icon: const Icon(Icons.business),
-                            label: Text(localizations.upgradeToBusiness),
-                            style: OutlinedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(vertical: 12),
-                              minimumSize: const Size(double.infinity, 48),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ] else ...[
-                        // TRAVELER MODE: Driver Upgrade
-                        if (_profileData != null &&
-                            !_profileData!.isDriver) ...[
+                      // --- Account Upgrade / Status Section (Driver only) ---
+                      // TRAVELER MODE: Driver Upgrade
+                      if (!ref.watch(isClientModeProvider) &&
+                          _profileData != null &&
+                          !_profileData!.isDriver) ...[
                           if (_profileData!.travelerStatus == DomainConfig.statusPending) ...[
                             Container(
                               padding: const EdgeInsets.all(12),
@@ -704,7 +528,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                             ),
                           ],
                         ],
-                      ],
 
                       // Driver Validity Section
                       if (_profileData?.subscriptionExpiresAt != null ||
@@ -760,21 +583,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                             size: 16,
                           ),
                           onTap: () => context.push(AppRoutes.myAlerts),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        )
-                      else
-                        ListTile(
-                          leading: const Icon(
-                            Icons.notifications_active_outlined,
-                          ),
-                          title: Text(localizations.myShipmentAlerts),
-                          trailing: const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 16,
-                          ),
-                          onTap: () => context.push(AppRoutes.myShipmentAlerts),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),

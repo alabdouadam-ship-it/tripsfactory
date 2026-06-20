@@ -28,7 +28,7 @@ The Licensee may **not**:
 - redistribute, resell, sublicense, lease, lend, or share the Software's source
   code (in whole or in part), modified or unmodified;
 - repackage or sell the Software (or a derivative) as a template, starter kit,
-  boilerplate, source-code product, or competing offering;
+  boilerplate, source-code product, or competing product;
 - make the source code publicly available (e.g. public repositories) or
   open-source it;
 - use a single license to produce more than one Licensed Application.

@@ -23,7 +23,7 @@ const statusStyles: Record<string, string> = {
     in_transit: 'bg-orange-500/10 text-orange-600 border-orange-500/20',
     full: 'bg-purple-500/10 text-purple-600 border-purple-500/20',
 
-    // Shipment specific
+    // Delivery specific
     in_communication: 'bg-yellow-500/10 text-yellow-600 border-yellow-500/20',
     accepted: 'bg-blue-500/10 text-blue-600 border-blue-500/20',
     picked_up: 'bg-indigo-500/10 text-indigo-600 border-indigo-500/20',

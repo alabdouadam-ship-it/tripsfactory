@@ -2,8 +2,8 @@
 -- Run with Supabase SQL Editor (service role) or: psql $DATABASE_URL -f tests/seed.sql
 -- Test users must exist in auth.users (create via Dashboard or Auth API). Profiles are upserted by tests/db/setup.ts.
 
--- 1) Locations (if your DB has no locations; required for trips/shipments with location FKs)
--- Uncomment and run once; then use the returned id in trip/shipment inserts if needed.
+-- 1) Locations (if your DB has no locations; required for trips with location FKs)
+-- Uncomment and run once; then use the returned id in trip inserts if needed.
 /*
 INSERT INTO public.locations (
   country_name_ar, country_name_en, province_name_ar, province_name_en,

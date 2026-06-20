@@ -4,13 +4,6 @@
       "target": "legal",
       "public": "public",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-      "redirects": [
-        {
-          "source": "/SYSTEM_AUDIT.html",
-          "destination": "/system_audit.html",
-          "type": 301
-        }
-      ],
       "rewrites": [
         { "source": "/trip/**", "destination": "/trip.html" },
         { "source": "**", "destination": "/index.html" }
@@ -43,7 +36,6 @@
       "rewrites": [
         { "source": "/users/*", "destination": "/users/placeholder.html" },
         { "source": "/bookings/*", "destination": "/bookings/placeholder.html" },
-        { "source": "/shipments/*", "destination": "/shipments/placeholder.html" },
         { "source": "/trips/*", "destination": "/trips/placeholder.html" }
       ],
       "cleanUrls": true

@@ -116,7 +116,7 @@ class NotificationService {
       const channel = AndroidNotificationChannel(
         BrandConfig.notificationChannelId,
         BrandConfig.notificationChannelName,
-        description: 'Crucial notifications for trips, shipments, and offers',
+        description: 'Crucial notifications for trips and deliveries',
         importance: Importance.max,
         playSound: true,
         sound: RawResourceAndroidNotificationSound(
@@ -218,7 +218,7 @@ class NotificationService {
       BrandConfig.notificationChannelId,
       BrandConfig.notificationChannelName,
       channelDescription:
-          'Crucial notifications for trips, shipments, and offers',
+          'Crucial notifications for trips and deliveries',
       importance: Importance.max,
       priority: Priority.max,
       playSound: true,

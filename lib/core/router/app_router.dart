@@ -11,11 +11,8 @@ import 'package:tripship/features/auth/presentation/forgot_password_screen.dart'
 import 'package:tripship/features/auth/presentation/reset_password_screen.dart';
 import 'package:tripship/features/auth/presentation/signup_screen.dart';
 import 'package:tripship/features/auth/presentation/otp_verification_screen.dart';
-import 'package:tripship/features/bookings/presentation/my_offers_screen.dart';
 import 'package:tripship/features/bookings/presentation/my_requests_screen.dart';
-import 'package:tripship/features/bookings/presentation/my_shipments_screen.dart';
 import 'package:tripship/features/chat/presentation/chat_screen.dart';
-import 'package:tripship/features/company_registration/presentation/company_registration_screen.dart';
 import 'package:tripship/features/driver_registration/presentation/driver_registration_screen.dart';
 import 'package:tripship/features/profile/presentation/driver_profile_screen.dart';
 import 'package:tripship/features/profile/presentation/profile_screen.dart';
@@ -27,15 +24,9 @@ import 'package:tripship/features/safety/presentation/blocked_users_screen.dart'
 import 'package:tripship/features/support/presentation/support_screen.dart';
 import 'package:tripship/features/support/presentation/support_chat_screen.dart';
 import 'package:tripship/features/support/data/support_service.dart';
-import 'package:tripship/features/shipments/data/shipment_model.dart';
-import 'package:tripship/features/shipments/presentation/post_shipment_screen.dart';
-import 'package:tripship/features/shipments/presentation/shipment_details_screen.dart';
-import 'package:tripship/features/offers/data/offer_model.dart';
-import 'package:tripship/features/offers/presentation/offer_details_screen.dart';
 import 'package:tripship/features/trips/data/trip_model.dart';
 import 'package:tripship/features/trips/presentation/my_trips_screen.dart';
 import 'package:tripship/features/trips/presentation/my_alerts_screen.dart';
-import 'package:tripship/features/shipments/presentation/my_shipment_alerts_screen.dart';
 import 'package:tripship/features/trips/presentation/post_trip_screen.dart';
 import 'package:tripship/features/trips/presentation/trip_details_screen.dart';
 import 'package:tripship/core/router/app_redirect.dart';
@@ -213,36 +204,6 @@ final routerProvider = Provider<GoRouter>((ref) {
         },
       ),
       GoRoute(
-        path: AppRoutes.postShipment,
-        pageBuilder: (context, state) {
-          Widget screen;
-          if (state.extra is Map<String, dynamic>) {
-            final e = state.extra! as Map<String, dynamic>;
-            screen = PostShipmentScreen(
-              transportMode: e['transportMode'] as String?,
-              tripId: e['tripId'] as String?,
-              driverId: e['driverId'] as String?,
-            );
-          } else {
-            screen = PostShipmentScreen(transportMode: state.extra as String?);
-          }
-          return _fadeUpPage(state: state, child: screen);
-        },
-      ),
-      GoRoute(
-        path: AppRoutes.editShipment,
-        pageBuilder: (context, state) {
-          final shipment = state.extra as Shipment?;
-          return _fadeUpPage(
-            state: state,
-            child: PostShipmentScreen(
-              transportMode: shipment?.transportType,
-              initialShipment: shipment,
-            ),
-          );
-        },
-      ),
-      GoRoute(
         path: AppRoutes.travelerRegistration,
         pageBuilder: (context, state) {
           final isUpgrade = state.extra as bool? ?? false;
@@ -253,11 +214,6 @@ final routerProvider = Provider<GoRouter>((ref) {
         },
       ),
       GoRoute(
-        path: AppRoutes.companyRegistration,
-        pageBuilder: (context, state) =>
-            _fadeUpPage(state: state, child: const CompanyRegistrationScreen()),
-      ),
-      GoRoute(
         path: AppRoutes.myTrips,
         pageBuilder: (context, state) =>
             _fadeUpPage(state: state, child: const MyTripsScreen()),
@@ -266,21 +222,6 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: AppRoutes.myAlerts,
         pageBuilder: (context, state) =>
             _fadeUpPage(state: state, child: const MyAlertsScreen()),
-      ),
-      GoRoute(
-        path: AppRoutes.myShipmentAlerts,
-        pageBuilder: (context, state) =>
-            _fadeUpPage(state: state, child: const MyShipmentAlertsScreen()),
-      ),
-      GoRoute(
-        path: AppRoutes.myOffers,
-        pageBuilder: (context, state) =>
-            _fadeUpPage(state: state, child: const MyOffersScreen()),
-      ),
-      GoRoute(
-        path: AppRoutes.myShipments,
-        pageBuilder: (context, state) =>
-            _fadeUpPage(state: state, child: const MyShipmentsScreen()),
       ),
       GoRoute(
         path: AppRoutes.tripDetails,
@@ -302,47 +243,9 @@ final routerProvider = Provider<GoRouter>((ref) {
             '${AppRoutes.tripDetails}?id=${state.pathParameters['id']}',
       ),
       GoRoute(
-        path: '/shipment/:id',
-        redirect: (context, state) =>
-            '${AppRoutes.shipmentDetails}?id=${state.pathParameters['id']}',
-      ),
-      GoRoute(
         path: AppRoutes.myRequests,
         pageBuilder: (context, state) =>
             _fadeUpPage(state: state, child: const MyRequestsScreen()),
-      ),
-      GoRoute(
-        path: AppRoutes.shipmentDetails,
-        pageBuilder: (context, state) {
-          final extra = state.extra;
-          final shipment = extra is Shipment
-              ? extra
-              : (extra is Map<String, dynamic>
-                    ? Shipment.fromJson(extra)
-                    : null);
-          final shipmentId = state.uri.queryParameters['id'] ?? shipment?.id;
-          return _fadeUpPage(
-            state: state,
-            child: ShipmentDetailsScreen(
-              shipment: shipment,
-              shipmentId: shipmentId,
-            ),
-          );
-        },
-      ),
-      GoRoute(
-        path: AppRoutes.offerDetails,
-        pageBuilder: (context, state) {
-          final extra = state.extra;
-          final offer = extra is Offer
-              ? extra
-              : (extra is Map<String, dynamic> ? Offer.fromJson(extra) : null);
-          final offerId = state.uri.queryParameters['id'] ?? offer?.id;
-          return _fadeUpPage(
-            state: state,
-            child: OfferDetailsScreen(offer: offer, offerId: offerId),
-          );
-        },
       ),
       GoRoute(
         path: AppRoutes.chat,

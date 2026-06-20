@@ -123,8 +123,8 @@ class RejectBookingCommand {
     await _ctx.notifications.notifyUser(
       bookingId: bookingId,
       userId: notifyUserId,
-      title: l10n.notifOfferDeclined,
-      body: l10n.notifOfferDeclinedBody,
+      title: l10n.notifBookingDeclined,
+      body: l10n.notifBookingDeclinedBody,
       recipientRole: recipientRole,
       baseData: {'type': 'booking_rejected', 'booking_id': bookingId},
     );
@@ -177,7 +177,7 @@ class ConfirmGoodsReceivedCommand {
     }
 
     if (pickupPhoto != null) {
-      final url = await _ctx.photos.uploadShipmentPhoto(
+      final url = await _ctx.photos.uploadDeliveryPhoto(
         pickupPhoto,
         bookingId,
         'pickup',
@@ -226,7 +226,7 @@ class MarkGoodsDeliveredWithCodeCommand {
 
     String? photoUrl;
     if (deliveryPhoto != null) {
-      photoUrl = await _ctx.photos.uploadShipmentPhoto(
+      photoUrl = await _ctx.photos.uploadDeliveryPhoto(
         deliveryPhoto,
         bookingId,
         'delivery',
@@ -289,7 +289,7 @@ class MarkGoodsDeliveredCommand {
 
     final updates = <String, dynamic>{};
     if (deliveryPhoto != null) {
-      final url = await _ctx.photos.uploadShipmentPhoto(
+      final url = await _ctx.photos.uploadDeliveryPhoto(
         deliveryPhoto,
         bookingId,
         'delivery',

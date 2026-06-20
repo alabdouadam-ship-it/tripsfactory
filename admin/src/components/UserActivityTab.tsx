@@ -8,7 +8,6 @@ import {
     Activity,
     Clock,
     LogIn,
-    Package,
     Route,
     MessageSquare,
     Star,
@@ -34,7 +33,7 @@ type TimelineEvent = {
  * Cross-table user activity timeline. Pulls from:
  *   - profiles (created_at, last_seen_at if present)
  *   - admin_audit_log (admin actions targeting this user)
- *   - trips, shipments, bookings, ratings, reports (recent rows)
+ *   - trips, bookings, ratings, reports (recent rows)
  *
  * Everything is loaded with a low row-cap and merged client-side. The page
  * gracefully degrades if any individual source fails (e.g. table doesn't have
@@ -120,31 +119,7 @@ export function UserActivityTab({ user }: Props) {
                 });
             } catch { /* ignore */ }
 
-            // 4) Shipments published
-            try {
-                const { data, error } = await supabase
-                    .from('shipments')
-                    .select('id, created_at, status')
-                    .eq('sender_id', user.id)
-                    .order('created_at', { ascending: false })
-                    .limit(10);
-                if (error) {
-                    console.warn('[UserActivityTab] Failed to load user shipments:', error.message);
-                }
-                (data || []).forEach((row: any) => {
-                    merged.push({
-                        id: `shipment-${row.id}`,
-                        at: row.created_at,
-                        icon: Package,
-                        iconClass: 'bg-indigo-500/10 text-indigo-600',
-                        title: t('users.activity.shipmentPublished', 'Published a shipment'),
-                        detail: `#${String(row.id).slice(0, 8)} · ${row.status}`,
-                        href: `/shipments/${row.id}`,
-                    });
-                });
-            } catch { /* ignore */ }
-
-            // 5) Bookings
+            // 4) Bookings
             try {
                 const { data, error } = await (supabase
                     .from('bookings') as any)

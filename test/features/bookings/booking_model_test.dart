@@ -9,7 +9,7 @@ void main() {
       final b = Booking.fromJson(json);
       expect(b.id, 'b1');
       expect(b.driverId, 'd1');
-      expect(b.offerPrice, 50.0);
+      expect(b.price, 50.0);
       expect(b.status, BookingStatus.pending);
     });
 
@@ -52,11 +52,11 @@ void main() {
     test('parses timeline', () {
       final json = _minimalBookingJson()
         ..['timeline'] = [
-          {'event': 'offer_accepted', 'timestamp': '2025-01-01T12:00:00Z'},
+          {'event': 'booking_accepted', 'timestamp': '2025-01-01T12:00:00Z'},
         ];
       final b = Booking.fromJson(json);
       expect(b.timeline.length, 1);
-      expect(b.timeline.first['event'], 'offer_accepted');
+      expect(b.timeline.first['event'], 'booking_accepted');
     });
   });
 
@@ -113,7 +113,7 @@ void main() {
       final out = b.toJson();
       expect(out['id'], 'b1');
       expect(out['status'], 'accepted');
-      expect(out['offer_price'], 50.0);
+      expect(out['price'], 50.0);
     });
   });
 }
@@ -123,7 +123,7 @@ Map<String, dynamic> _minimalBookingJson({String status = 'pending'}) => {
       'traveler_id': 'd1',
       'trip_id': null,
       'requester_id': null,
-      'offer_price': 50.0,
+      'price': 50.0,
       'status': status,
       'created_at': '2025-01-01T00:00:00Z',
     };

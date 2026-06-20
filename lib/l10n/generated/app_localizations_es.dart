@@ -15,25 +15,25 @@ class AppLocalizationsEs extends AppLocalizations {
   String get welcomeBack => 'Bienvenido de nuevo';
 
   @override
-  String get signInToContinue => 'Inicia sesión para continuar';
+  String get signInToContinue => 'Inicia sesiÃ³n para continuar';
 
   @override
-  String get email => 'Correo electrónico';
+  String get email => 'Correo electrÃ³nico';
 
   @override
-  String get password => 'Contraseña';
+  String get password => 'ContraseÃ±a';
 
   @override
-  String get forgotPassword => '¿Olvidaste tu contraseña?';
+  String get forgotPassword => 'Â¿Olvidaste tu contraseÃ±a?';
 
   @override
-  String get signIn => 'Iniciar sesión';
+  String get signIn => 'Iniciar sesiÃ³n';
 
   @override
-  String get dontHaveAccount => '¿No tienes una cuenta? ';
+  String get dontHaveAccount => 'Â¿No tienes una cuenta? ';
 
   @override
-  String get add => 'Añadir';
+  String get add => 'AÃ±adir';
 
   @override
   String get pleaseSelectAllFields =>
@@ -50,13 +50,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get createAccount => 'Crear cuenta';
 
   @override
-  String get joinRevolution => 'Únete a la revolución logística';
+  String get joinRevolution => 'Ãšnete a la revoluciÃ³n logÃ­stica';
 
   @override
   String get fullName => 'Nombre completo';
 
   @override
-  String get alreadyHaveAccount => '¿Ya tienes una cuenta? ';
+  String get alreadyHaveAccount => 'Â¿Ya tienes una cuenta? ';
 
   @override
   String get settings => 'Ajustes';
@@ -68,13 +68,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get theme => 'Tema';
 
   @override
-  String get logout => 'Cerrar sesión';
+  String get logout => 'Cerrar sesiÃ³n';
 
   @override
   String get home => 'Inicio';
 
   @override
-  String get resetPassword => 'Restablecer contraseña';
+  String get resetPassword => 'Restablecer contraseÃ±a';
 
   @override
   String get enterEmailToReset =>
@@ -90,15 +90,15 @@ class AppLocalizationsEs extends AppLocalizations {
   String get linkSent => 'Enlace de restablecimiento enviado';
 
   @override
-  String get invalidCredentials => 'Correo o contraseña no válidos';
+  String get invalidCredentials => 'Correo o contraseÃ±a no vÃ¡lidos';
 
   @override
   String get emailNotConfirmed =>
-      'Por favor, confirma tu correo antes de iniciar sesión';
+      'Por favor, confirma tu correo antes de iniciar sesiÃ³n';
 
   @override
   String get userAlreadyRegistered =>
-      'Este correo ya está registrado. Por favor, inicia sesión.';
+      'Este correo ya estÃ¡ registrado. Por favor, inicia sesiÃ³n.';
 
   @override
   String get pleaseEnterName => 'Por favor, introduce tu nombre completo';
@@ -107,19 +107,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String get unexpectedError => 'Se produjo un error inesperado';
 
   @override
-  String get arabic => 'Árabe';
+  String get arabic => 'Ãrabe';
 
   @override
-  String get english => 'Inglés';
+  String get english => 'InglÃ©s';
 
   @override
-  String get french => 'Francés';
+  String get french => 'FrancÃ©s';
 
   @override
   String get turkish => 'Turco';
 
   @override
-  String get spanish => 'Español';
+  String get spanish => 'EspaÃ±ol';
 
   @override
   String get themeLight => 'Claro';
@@ -134,7 +134,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get themeMidnight => 'Medianoche';
 
   @override
-  String get themeOcean => 'Océano';
+  String get themeOcean => 'OcÃ©ano';
 
   @override
   String get themeSteel => 'Acero';
@@ -158,19 +158,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get editProfile => 'Editar perfil';
 
   @override
-  String get bio => 'Biografía / Descripción';
-
-  @override
-  String get accountType => 'Tipo de cuenta';
+  String get bio => 'BiografÃ­a / DescripciÃ³n';
 
   @override
   String get individual => 'Particular';
 
   @override
-  String get company => 'Empresa';
-
-  @override
-  String get verificationStatus => 'Estado de verificación';
+  String get verificationStatus => 'Estado de verificaciÃ³n';
 
   @override
   String get verified => 'Verificado';
@@ -185,7 +179,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get uploadDocument => 'Subir documento';
 
   @override
-  String get phoneNumber => 'Número de teléfono';
+  String get phoneNumber => 'NÃºmero de telÃ©fono';
 
   @override
   String get profileUpdated => 'Perfil actualizado correctamente';
@@ -239,16 +233,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get enterCity => 'Introduce el nombre de la ciudad';
 
   @override
-  String get invalidWeight => 'Peso no válido';
+  String get invalidWeight => 'Peso no vÃ¡lido';
 
   @override
-  String get postShipment => 'Enviar un paquete';
-
-  @override
-  String get editShipment => 'Editar envío';
-
-  @override
-  String get shipmentUpdated => '¡Envío actualizado correctamente!';
+  String get postPackage => 'Enviar un paquete';
 
   @override
   String get iAmTraveler => 'Conductor o viajero';
@@ -260,26 +248,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get packageDetails => 'Detalles del paquete';
 
   @override
-  String get description => 'Descripción';
+  String get description => 'DescripciÃ³n';
 
   @override
-  String get createRequest => 'Crear solicitud de envío';
-
-  @override
-  String get shipmentPosted => 'Solicitud de envío creada correctamente';
+  String get createRequest => 'Crear solicitud de envÃ­o';
 
   @override
   String get pickup => 'Lugar de recogida';
 
   @override
   String get dropoff => 'Lugar de entrega';
-
-  @override
-  String get companyOnlyFeature => 'Función corporativa';
-
-  @override
-  String get mustBeCompany =>
-      'Solo las empresas verificadas pueden publicar solicitudes de envío. Por favor, cambia el tipo de tu cuenta a \'Empresa\' en tu perfil.';
 
   @override
   String get goToProfile => 'Ir al perfil';
@@ -291,16 +269,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get externalTrips => 'Externos';
 
   @override
-  String get requestedShipments => 'Últimos envíos solicitados';
-
-  @override
   String get noTripsFound => 'No se encontraron viajes disponibles.';
 
   @override
-  String get noShipmentsFound => 'No se encontraron solicitudes de envío.';
+  String get noRequestsFound => 'No se encontraron solicitudes de envÃ­o.';
 
   @override
-  String get country => 'País';
+  String get country => 'PaÃ­s';
 
   @override
   String get province => 'Provincia';
@@ -312,16 +287,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get town => 'Pueblo';
 
   @override
-  String get confirmSwitchMode => '¿Cambiar de modo?';
+  String get confirmSwitchMode => 'Â¿Cambiar de modo?';
 
   @override
-  String get switchToTraveler => '¿Cambiar al modo Viajero?';
+  String get switchToTraveler => 'Â¿Cambiar al modo Viajero?';
 
   @override
-  String get switchToClient => '¿Cambiar al modo Remitente/Cliente?';
+  String get switchToClient => 'Â¿Cambiar al modo Remitente/Cliente?';
 
   @override
-  String get yes => 'Sí';
+  String get yes => 'SÃ­';
 
   @override
   String get no => 'No';
@@ -330,7 +305,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get travelerRegistration => 'Registro de viajero';
 
   @override
-  String get vehicleInfo => 'Información del vehículo';
+  String get vehicleInfo => 'InformaciÃ³n del vehÃ­culo';
 
   @override
   String get documents => 'Documentos';
@@ -342,10 +317,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get uploadID => 'Subir documento de identidad';
 
   @override
-  String get uploadVehiclePhoto => 'Subir foto del vehículo';
+  String get uploadVehiclePhoto => 'Subir foto del vehÃ­culo';
 
   @override
-  String get uploadRegistration => 'Subir matrícula';
+  String get uploadRegistration => 'Subir matrÃ­cula';
 
   @override
   String get uploadRentalContract => 'Subir contrato de alquiler';
@@ -366,7 +341,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get travelerType => 'Tipo de viajero';
 
   @override
-  String get travelerWithVehicle => 'Viajero con vehículo';
+  String get travelerWithVehicle => 'Viajero con vehÃ­culo';
 
   @override
   String get normalTraveler => 'Viajero normal';
@@ -378,43 +353,35 @@ class AppLocalizationsEs extends AppLocalizations {
   String get driverLabel => 'Conductor';
 
   @override
-  String get shipmentDriversOnly =>
-      'Las ofertas de envío son solo para conductores (viajeros con vehículo)';
-
-  @override
-  String get requestedShipmentsOnlyForVehicleOwners =>
-      'Los envíos solicitados solo están disponibles para propietarios de vehículos';
-
-  @override
-  String get pendingRating => 'Valoración pendiente';
+  String get pendingRating => 'ValoraciÃ³n pendiente';
 
   @override
   String get rateUser => 'Valorar';
 
   @override
-  String get isVehicleRented => '¿El vehículo es alquilado?';
+  String get isVehicleRented => 'Â¿El vehÃ­culo es alquilado?';
 
   @override
-  String get make => 'Marca del vehículo (p. ej. Toyota)';
+  String get make => 'Marca del vehÃ­culo (p. ej. Toyota)';
 
   @override
-  String get model => 'Modelo del vehículo (p. ej. Camry)';
+  String get model => 'Modelo del vehÃ­culo (p. ej. Camry)';
 
   @override
-  String get year => 'Año';
+  String get year => 'AÃ±o';
 
   @override
-  String get plateNumber => 'Número de matrícula';
+  String get plateNumber => 'NÃºmero de matrÃ­cula';
 
   @override
   String get submitApplication => 'Enviar solicitud';
 
   @override
   String get applicationSubmitted =>
-      '¡Solicitud enviada! Un administrador la revisará.';
+      'Â¡Solicitud enviada! Un administrador la revisarÃ¡.';
 
   @override
-  String get registerNow => 'Regístrate ahora';
+  String get registerNow => 'RegÃ­strate ahora';
 
   @override
   String get driverAccessRestricted => 'Acceso de conductor restringido';
@@ -428,7 +395,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get waitAdminApproval =>
-      'Tu solicitud está siendo revisada por un administrador.';
+      'Tu solicitud estÃ¡ siendo revisada por un administrador.';
 
   @override
   String get applicationRejected => 'Solicitud rechazada';
@@ -441,10 +408,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get alreadyApproved => 'Ya aprobado';
 
   @override
-  String get alreadyCompanyAccount =>
-      'Ya tienes una cuenta de empresa aprobada.';
-
-  @override
   String get alreadyDriverAccount =>
       'Ya tienes una cuenta de conductor aprobada.';
 
@@ -452,53 +415,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String get ok => 'OK';
 
   @override
-  String get companyRegistration => 'Registro de empresa';
+  String get upgradeToDriver => 'Cambiar a conductor (con vehÃ­culo)';
 
   @override
-  String get companyInfo => 'Información de la empresa';
+  String get driverRating => 'ValoraciÃ³n del viajero';
 
   @override
-  String get companyName => 'Nombre de la empresa';
+  String get clientRating => 'ValoraciÃ³n del remitente';
 
   @override
-  String get companyAddress => 'Dirección de la empresa';
+  String get noRatings => 'AÃºn no hay valoraciones';
 
   @override
-  String get crNumber => 'Número de CR';
-
-  @override
-  String get crNumberDigitsOnly => 'El número de CR debe contener solo dígitos';
-
-  @override
-  String get uploadCR => 'Subir documento CR';
-
-  @override
-  String get upgradeToBusiness => 'Cambiar a cuenta empresarial';
-
-  @override
-  String get upgradeToDriver => 'Cambiar a conductor (con vehículo)';
-
-  @override
-  String get companyAccessRestricted => 'Función de empresa';
-
-  @override
-  String get mustBeVerifiedCompany =>
-      'Solo las empresas verificadas pueden acceder a esta función.';
-
-  @override
-  String get verifiedCompanyAccount => 'Cuenta de empresa verificada';
-
-  @override
-  String get driverRating => 'Valoración del viajero';
-
-  @override
-  String get clientRating => 'Valoración del remitente';
-
-  @override
-  String get noRatings => 'Aún no hay valoraciones';
-
-  @override
-  String get reviews => 'reseñas';
+  String get reviews => 'reseÃ±as';
 
   @override
   String get search => 'Buscar';
@@ -516,45 +445,27 @@ class AppLocalizationsEs extends AppLocalizations {
   String get myTrips => 'Mis viajes';
 
   @override
-  String get myOffers => 'Mis ofertas';
-
-  @override
-  String get myShipments => 'Mis envíos';
-
-  @override
   String get myRequests => 'Mis solicitudes';
-
-  @override
-  String get noOffersYet => 'Aún no se han recibido ofertas';
 
   @override
   String get fieldRequired => 'Campo obligatorio';
 
   @override
-  String get makeOffer => 'Hacer una oferta';
-
-  @override
   String get submit => 'Enviar';
-
-  @override
-  String get shipmentDetails => 'Detalles del envío';
-
-  @override
-  String get offersReceived => 'Ofertas recibidas';
 
   @override
   String get accept => 'Aceptar';
 
   @override
-  String get invalidCredentialsMessage => 'Correo o contraseña no válidos';
+  String get invalidCredentialsMessage => 'Correo o contraseÃ±a no vÃ¡lidos';
 
   @override
   String get emailNotConfirmedMessage =>
-      'Por favor, confirma tu correo antes de iniciar sesión';
+      'Por favor, confirma tu correo antes de iniciar sesiÃ³n';
 
   @override
   String loginFailed(Object error) {
-    return 'Error al iniciar sesión: $error';
+    return 'Error al iniciar sesiÃ³n: $error';
   }
 
   @override
@@ -568,7 +479,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get confirmCancelTrip =>
-      '¿Estás seguro de que quieres cancelar este viaje?';
+      'Â¿EstÃ¡s seguro de que quieres cancelar este viaje?';
 
   @override
   String get confirm => 'Confirmar';
@@ -578,17 +489,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get confirmCloseRequest =>
-      '¿Estás seguro de que quieres cerrar esta solicitud? Esta acción no se puede deshacer.';
+      'Â¿EstÃ¡s seguro de que quieres cerrar esta solicitud? Esta acciÃ³n no se puede deshacer.';
 
   @override
   String get requestClosed => 'Solicitud cerrada';
 
   @override
   String get statusUpdated => 'Estado actualizado';
-
-  @override
-  String get offerAccepted =>
-      '¡Oferta aceptada! El envío se ha marcado como Reservado.';
 
   @override
   String get startTrip => 'Iniciar viaje';
@@ -603,9 +510,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get done => 'Hecho';
 
   @override
-  String get selectShipment => 'Seleccionar envío';
-
-  @override
   String get tripDetails => 'Detalles del viaje';
 
   @override
@@ -613,7 +517,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get logoutConfirmation =>
-      '¿Estás seguro de que quieres cerrar sesión?';
+      'Â¿EstÃ¡s seguro de que quieres cerrar sesiÃ³n?';
 
   @override
   String get traveler => 'Viajero';
@@ -622,20 +526,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get unknownTraveler => 'Viajero desconocido';
 
   @override
-  String get createShipmentFirst =>
-      'Por favor, crea primero una solicitud de envío';
-
-  @override
-  String get requestSent => '¡Solicitud enviada al viajero!';
+  String get requestSent => 'Â¡Solicitud enviada al viajero!';
 
   @override
   String get ratings => 'Valoraciones';
 
   @override
-  String get travelerRating => 'Valoración del viajero';
+  String get travelerRating => 'ValoraciÃ³n del viajero';
 
   @override
-  String get noReviews => 'Aún no hay reseñas';
+  String get noReviews => 'AÃºn no hay reseÃ±as';
 
   @override
   String get sendMessage => 'Enviar mensaje';
@@ -644,7 +544,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get messages => 'Mensajes';
 
   @override
-  String get travelerNotAvailable => 'Información del viajero no disponible';
+  String get travelerNotAvailable => 'InformaciÃ³n del viajero no disponible';
 
   @override
   String get user => 'Usuario';
@@ -659,13 +559,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get account => 'Cuenta';
 
   @override
-  String get comingSoon => '¡Próximamente!';
+  String get comingSoon => 'Â¡PrÃ³ximamente!';
 
   @override
-  String get appTagline => 'Tu socio de envíos de confianza';
+  String get appTagline => 'Tu socio de envÃ­os de confianza';
 
   @override
-  String get loginToYourAccount => 'Inicia sesión en tu cuenta';
+  String get loginToYourAccount => 'Inicia sesiÃ³n en tu cuenta';
 
   @override
   String get or => 'O';
@@ -674,20 +574,20 @@ class AppLocalizationsEs extends AppLocalizations {
   String get emailRequired => 'El correo es obligatorio';
 
   @override
-  String get invalidEmail => 'Por favor, introduce un correo válido';
+  String get invalidEmail => 'Por favor, introduce un correo vÃ¡lido';
 
   @override
-  String get passwordRequired => 'La contraseña es obligatoria';
+  String get passwordRequired => 'La contraseÃ±a es obligatoria';
 
   @override
   String get nameRequired => 'El nombre es obligatorio';
 
   @override
   String get passwordTooShort =>
-      'La contraseña debe tener al menos 6 caracteres';
+      'La contraseÃ±a debe tener al menos 6 caracteres';
 
   @override
-  String get weak => 'Débil';
+  String get weak => 'DÃ©bil';
 
   @override
   String get medium => 'Media';
@@ -700,56 +600,56 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get accountCreatedMessage =>
-      'Hemos enviado un correo de verificación a tu bandeja de entrada. Por favor, revisa tu correo (y la carpeta de spam) y haz clic en el enlace para activar tu cuenta.';
+      'Hemos enviado un correo de verificaciÃ³n a tu bandeja de entrada. Por favor, revisa tu correo (y la carpeta de spam) y haz clic en el enlace para activar tu cuenta.';
 
   @override
   String get emailAlreadyRegistered =>
-      'Este correo ya está registrado. Por favor, inicia sesión.';
+      'Este correo ya estÃ¡ registrado. Por favor, inicia sesiÃ³n.';
 
   @override
   String get checkBackLater =>
-      'Por favor, vuelve más tarde para ver nuevos elementos.';
+      'Por favor, vuelve mÃ¡s tarde para ver nuevos elementos.';
 
   @override
   String get retry => 'Reintentar';
 
   @override
-  String get resetPasswordTitle => 'Restablecer contraseña';
+  String get resetPasswordTitle => 'Restablecer contraseÃ±a';
 
   @override
-  String get enterNewPassword => 'Introduce la nueva contraseña';
+  String get enterNewPassword => 'Introduce la nueva contraseÃ±a';
 
   @override
-  String get newPasswordLabel => 'Nueva contraseña';
+  String get newPasswordLabel => 'Nueva contraseÃ±a';
 
   @override
-  String get confirmPasswordLabel => 'Confirmar contraseña';
+  String get confirmPasswordLabel => 'Confirmar contraseÃ±a';
 
   @override
-  String get updatePasswordButton => 'Actualizar contraseña';
+  String get updatePasswordButton => 'Actualizar contraseÃ±a';
 
   @override
   String get passwordUpdatedSuccess =>
-      '¡Contraseña actualizada correctamente! Por favor, inicia sesión con tu nueva contraseña.';
+      'Â¡ContraseÃ±a actualizada correctamente! Por favor, inicia sesiÃ³n con tu nueva contraseÃ±a.';
 
   @override
-  String get passwordsDoNotMatch => 'Las contraseñas no coinciden';
+  String get passwordsDoNotMatch => 'Las contraseÃ±as no coinciden';
 
   @override
-  String get internalShipping => 'Envío interno';
+  String get internalShipping => 'EnvÃ­o interno';
 
   @override
-  String get externalShipping => 'Envío externo';
+  String get externalShipping => 'EnvÃ­o externo';
 
   @override
   String get noDriversFound => 'No hay conductores disponibles';
 
   @override
   String get tryAgainLater =>
-      'Por favor, vuelve más tarde para ver conductores de transporte privado.';
+      'Por favor, vuelve mÃ¡s tarde para ver conductores de transporte privado.';
 
   @override
-  String get availableTravelers => 'Últimos viajeros disponibles';
+  String get availableTravelers => 'Ãšltimos viajeros disponibles';
 
   @override
   String get applyFilters => 'Aplicar filtros';
@@ -758,7 +658,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get clearFilters => 'Borrar filtros';
 
   @override
-  String get selectVehicleType => 'Seleccionar tipo de vehículo';
+  String get selectVehicleType => 'Seleccionar tipo de vehÃ­culo';
 
   @override
   String get originCity => 'Ciudad de origen';
@@ -770,16 +670,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get car => 'Coche';
 
   @override
-  String get sedan => 'Sedán';
+  String get sedan => 'SedÃ¡n';
 
   @override
   String get van => 'Furgoneta';
 
   @override
-  String get truck => 'Camión';
+  String get truck => 'CamiÃ³n';
 
   @override
-  String get bus => 'Autobús';
+  String get bus => 'AutobÃºs';
 
   @override
   String get tractorTrailer => 'Tractor y remolque';
@@ -791,16 +691,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get mediumCar => 'Coche mediano';
 
   @override
-  String get smallCar => 'Coche pequeño';
+  String get smallCar => 'Coche pequeÃ±o';
 
   @override
   String get refrigerated => 'Refrigerado';
 
   @override
-  String get noVehicle => 'No tengo vehículo';
+  String get noVehicle => 'No tengo vehÃ­culo';
 
   @override
-  String get shippingType => 'Tipo de envío';
+  String get shippingType => 'Tipo de envÃ­o';
 
   @override
   String get noTravelersFound => 'No hay viajeros disponibles';
@@ -818,10 +718,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get licenseVerified => 'Licencia verificada';
 
   @override
-  String get pendingVerification => 'Verificación pendiente';
+  String get pendingVerification => 'VerificaciÃ³n pendiente';
 
   @override
-  String get vehicleType => 'Tipo de vehículo';
+  String get vehicleType => 'Tipo de vehÃ­culo';
 
   @override
   String get nationalIdUrl => 'URL del documento de identidad';
@@ -833,7 +733,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get all => 'Todos';
 
   @override
-  String get moreFilters => 'Más filtros';
+  String get moreFilters => 'MÃ¡s filtros';
 
   @override
   String get apply => 'Aplicar';
@@ -866,7 +766,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String errorExternalMustBeOutside(String country) {
-    return 'Esta ruta es interna porque ambas ubicaciones están en $country. Por favor, selecciona el modo Externo para rutas fuera del país.';
+    return 'Esta ruta es interna porque ambas ubicaciones estÃ¡n en $country. Por favor, selecciona el modo Externo para rutas fuera del paÃ­s.';
   }
 
   @override
@@ -887,16 +787,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get externalRequests => 'Externas';
 
   @override
-  String get noGpsProvided => 'No se proporcionó una ubicación GPS precisa';
+  String get noGpsProvided => 'No se proporcionÃ³ una ubicaciÃ³n GPS precisa';
 
   @override
   String get gpsAvailable => 'Coordenadas GPS disponibles';
 
   @override
   String get openInMaps => 'Abrir en Mapas';
-
-  @override
-  String get shipment => 'Envío';
 
   @override
   String get type => 'Tipo';
@@ -908,7 +805,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get timeLabel => 'Hora';
 
   @override
-  String get waitingConfirmation => 'Esperando la confirmación del remitente';
+  String get waitingConfirmation => 'Esperando la confirmaciÃ³n del remitente';
 
   @override
   String get markAsPickedUp => 'Marcar como recogido';
@@ -917,13 +814,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get markAsDelivered => 'Marcar como entregado';
 
   @override
-  String get confirmReceiptPayment => 'Confirmar recepción y pago';
+  String get confirmReceiptPayment => 'Confirmar recepciÃ³n y pago';
 
   @override
   String get bookingsRequests => 'Reservas y solicitudes';
 
   @override
-  String get noBookingsYet => 'Aún no hay reservas.';
+  String get noBookingsYet => 'AÃºn no hay reservas.';
 
   @override
   String get pickedUp => 'Recogido';
@@ -935,7 +832,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get scheduledBadge => 'Programado';
 
   @override
-  String get inTransitBadge => 'En tránsito';
+  String get inTransitBadge => 'En trÃ¡nsito';
 
   @override
   String get completedBadge => 'Completado';
@@ -944,13 +841,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get cancelledBadge => 'Cancelado';
 
   @override
-  String get offerSent => '¡Oferta enviada!';
-
-  @override
   String get now => 'Ahora';
-
-  @override
-  String get offerSentTitle => 'Oferta enviada';
 
   @override
   String get pickupLabel => 'Recogida';
@@ -1002,16 +893,16 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get howWasTheExperience =>
-      '¿Cómo fue tu experiencia con esta transacción?';
+      'Â¿CÃ³mo fue tu experiencia con esta transacciÃ³n?';
 
   @override
-  String get submitRating => 'Enviar valoración';
+  String get submitRating => 'Enviar valoraciÃ³n';
 
   @override
-  String get ratingSaved => '¡Gracias! Tu valoración se ha guardado.';
+  String get ratingSaved => 'Â¡Gracias! Tu valoraciÃ³n se ha guardado.';
 
   @override
-  String get commentHint => 'Añade un comentario (opcional)...';
+  String get commentHint => 'AÃ±ade un comentario (opcional)...';
 
   @override
   String get enterComment => 'Introduce tu comentario';
@@ -1023,13 +914,14 @@ class AppLocalizationsEs extends AppLocalizations {
   String get ticketStatus => 'Estado';
 
   @override
-  String get ticketIsClosed => 'Este ticket está cerrado.';
+  String get ticketIsClosed => 'Este ticket estÃ¡ cerrado.';
 
   @override
   String get updatedAt => 'Actualizado el';
 
   @override
-  String get noMessagesYet => 'Aún no hay mensajes. ¡Inicia la conversación!';
+  String get noMessagesYet =>
+      'AÃºn no hay mensajes. Â¡Inicia la conversaciÃ³n!';
 
   @override
   String get typeAMessage => 'Escribe un mensaje...';
@@ -1041,7 +933,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get directBooking => 'Reserva directa';
 
   @override
-  String get statusInCommunication => 'En comunicación';
+  String get statusInCommunication => 'En comunicaciÃ³n';
 
   @override
   String get paid => 'Pagado';
@@ -1051,7 +943,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get accountSuspendedMessage =>
-      'Tu cuenta ha sido suspendida por los administradores. Por favor, contacta con soporte para más información.';
+      'Tu cuenta ha sido suspendida por los administradores. Por favor, contacta con soporte para mÃ¡s informaciÃ³n.';
 
   @override
   String get contactSupport => 'Contactar con soporte';
@@ -1069,25 +961,22 @@ class AppLocalizationsEs extends AppLocalizations {
   String get statusBlocked => 'Bloqueado';
 
   @override
-  String get camera => 'Cámara';
+  String get camera => 'CÃ¡mara';
 
   @override
-  String get gallery => 'Galería';
+  String get gallery => 'GalerÃ­a';
 
   @override
   String get uploading => 'Subiendo';
 
   @override
-  String get uploadFailed => 'Error al subir. Por favor, inténtalo de nuevo.';
+  String get uploadFailed => 'Error al subir. Por favor, intÃ©ntalo de nuevo.';
 
   @override
   String get driverLicense => 'Licencia de conducir';
 
   @override
   String get rentalContract => 'Contrato de alquiler';
-
-  @override
-  String get crDocument => 'Documento CR';
 
   @override
   String get view => 'Ver';
@@ -1099,48 +988,48 @@ class AppLocalizationsEs extends AppLocalizations {
   String get avatarUpdateRestricted => 'Puedes actualizar tu foto de perfil en';
 
   @override
-  String get days => 'días';
+  String get days => 'dÃ­as';
 
   @override
-  String get subscriptionExpiry => 'La suscripción caduca';
+  String get subscriptionExpiry => 'La suscripciÃ³n caduca';
 
   @override
   String get licenseExpiry => 'La licencia caduca';
 
   @override
-  String get markTripAsFull => 'El viaje está completo';
+  String get markTripAsFull => 'El viaje estÃ¡ completo';
 
   @override
   String get completeTrip => 'Viaje completado';
 
   @override
   String get confirmCompleteTrip =>
-      '¿Estás seguro de que este viaje está completado? El estado se actualizará a Completado.';
+      'Â¿EstÃ¡s seguro de que este viaje estÃ¡ completado? El estado se actualizarÃ¡ a Completado.';
 
   @override
-  String get unreadMessages => 'Mensajes no leídos';
+  String get unreadMessages => 'Mensajes no leÃ­dos';
 
   @override
   String get reject => 'Rechazar';
 
   @override
-  String get handshakeHandedGoods => 'Entregué la mercancía';
+  String get handshakeHandedGoods => 'EntreguÃ© la mercancÃ­a';
 
   @override
-  String get handshakePaymentSent => 'Envié el pago';
+  String get handshakePaymentSent => 'EnviÃ© el pago';
 
   @override
   String get handshakeWaitingDriver =>
-      'Esperando la confirmación del conductor';
+      'Esperando la confirmaciÃ³n del conductor';
 
   @override
-  String get handshakeGoodsReceived => 'Recibí la mercancía';
+  String get handshakeGoodsReceived => 'RecibÃ­ la mercancÃ­a';
 
   @override
   String get handshakeConfirmPickup => 'Confirmar recogida';
 
   @override
-  String get handshakeConfirmReceipt => 'Confirmar recepción';
+  String get handshakeConfirmReceipt => 'Confirmar recepciÃ³n';
 
   @override
   String get handshakeConfirmPaymentReceived => 'Confirmar pago recibido';
@@ -1149,17 +1038,17 @@ class AppLocalizationsEs extends AppLocalizations {
   String get handshakeMarkPaymentReceived => 'Marcar pago recibido';
 
   @override
-  String get handshakeWaitingClient => 'Esperando la confirmación del cliente';
+  String get handshakeWaitingClient => 'Esperando la confirmaciÃ³n del cliente';
 
   @override
   String get cancelBookingTitle => 'Cancelar reserva';
 
   @override
   String get cancelBookingConfirmMessage =>
-      '¿Estás seguro de que quieres cancelar esta reserva? Esta acción no se puede deshacer.';
+      'Â¿EstÃ¡s seguro de que quieres cancelar esta reserva? Esta acciÃ³n no se puede deshacer.';
 
   @override
-  String get cancelBookingReasonHint => 'Motivo de la cancelación...';
+  String get cancelBookingReasonHint => 'Motivo de la cancelaciÃ³n...';
 
   @override
   String get actionRequiredPayment => 'Confirmar pago recibido';
@@ -1172,59 +1061,30 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get goodsReceivedByTravelerIndicator =>
-      'El viajero confirmó la recogida';
+      'El viajero confirmÃ³ la recogida';
 
   @override
   String get rated => 'Valorado';
 
   @override
-  String get thankYouForRating => '¡Gracias por tu valoración!';
+  String get thankYouForRating => 'Â¡Gracias por tu valoraciÃ³n!';
 
   @override
   String get waitingForSenderToHandOver =>
-      'Esperando a que el remitente entregue la mercancía';
+      'Esperando a que el remitente entregue la mercancÃ­a';
 
   @override
   String get waitingForSenderToPay =>
       'Esperando a que el remitente marque el pago';
 
   @override
-  String get anotherOfferAccepted => 'Ya se ha aceptado otra oferta';
-
-  @override
-  String get otherOfferAcceptedBadge => 'OTRA ACEPTADA';
-
-  @override
   String get requestedOnLabel => 'Solicitado el';
-
-  @override
-  String get offerStartTripHint =>
-      'Acción: inicia el viaje para actualizar el estado';
-
-  @override
-  String get offerMarkDeliveredHint =>
-      'Acción: marca como entregado al finalizar';
-
-  @override
-  String get offerStartButton => 'Iniciar';
-
-  @override
-  String get offerDeliverButton => 'Entregar';
-
-  @override
-  String get offerTripStarted => 'Viaje iniciado';
-
-  @override
-  String get offerMarkedDelivered => 'Marcado como entregado';
 
   @override
   String get chatClientLabel => 'Cliente';
 
   @override
   String get operationHistory => 'Historial de operaciones';
-
-  @override
-  String get eventOfferCreated => 'Oferta creada';
 
   @override
   String get eventRequestCreated => 'Solicitud creada';
@@ -1239,22 +1099,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get eventBookingRejected => 'Reserva rechazada';
 
   @override
-  String get eventCommunicationStarted => 'Comunicación iniciada';
-
-  @override
-  String get eventOfferAccepted => 'Oferta aceptada';
-
-  @override
-  String get eventOfferRejected => 'Oferta rechazada';
+  String get eventCommunicationStarted => 'ComunicaciÃ³n iniciada';
 
   @override
   String get eventDeliveredVerifiedOtp => 'Entregado (OTP verificado)';
 
   @override
-  String get eventGoodsHanded => 'Mercancía entregada';
+  String get eventGoodsHanded => 'MercancÃ­a entregada';
 
   @override
-  String get eventGoodsReceived => 'Mercancía recibida';
+  String get eventGoodsReceived => 'MercancÃ­a recibida';
 
   @override
   String get eventPaymentSent => 'Pago enviado';
@@ -1272,7 +1126,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get eventCancelled => 'Cancelado';
 
   @override
-  String get noHistoryYet => 'Aún no hay historial de operaciones.';
+  String get noHistoryYet => 'AÃºn no hay historial de operaciones.';
 
   @override
   String get eventTime => 'Hora';
@@ -1281,41 +1135,41 @@ class AppLocalizationsEs extends AppLocalizations {
   String get viewAll => 'Ver todo';
 
   @override
-  String get noRatingsYet => 'Aún no hay valoraciones';
+  String get noRatingsYet => 'AÃºn no hay valoraciones';
 
   @override
-  String get showingCachedData => 'Mostrando datos almacenados en caché';
+  String get showingCachedData => 'Mostrando datos almacenados en cachÃ©';
 
   @override
   String get tripCompleted => 'Viaje completado';
 
   @override
   String get tripCompletedConfirmMessage =>
-      '¿Estás seguro de que este viaje está completado? Esto significa que has llegado a tu destino y que todas las entregas están finalizadas. Esta acción no se puede deshacer.';
+      'Â¿EstÃ¡s seguro de que este viaje estÃ¡ completado? Esto significa que has llegado a tu destino y que todas las entregas estÃ¡n finalizadas. Esta acciÃ³n no se puede deshacer.';
 
   @override
-  String get confirmCompletion => 'Confirmar finalización';
+  String get confirmCompletion => 'Confirmar finalizaciÃ³n';
 
   @override
   String get cancelTripTitle => 'Cancelar viaje';
 
   @override
   String get cancelTripConfirmMessage =>
-      '¿Estás seguro de que quieres cancelar este viaje? Todas las reservas pendientes y aceptadas se cancelarán. Esta acción no se puede deshacer.';
+      'Â¿EstÃ¡s seguro de que quieres cancelar este viaje? Todas las reservas pendientes y aceptadas se cancelarÃ¡n. Esta acciÃ³n no se puede deshacer.';
 
   @override
-  String get confirmCancellation => 'Confirmar cancelación';
+  String get confirmCancellation => 'Confirmar cancelaciÃ³n';
 
   @override
   String get bookingRequestSent =>
-      '¡Solicitud de reserva enviada al conductor correctamente!';
+      'Â¡Solicitud de reserva enviada al conductor correctamente!';
 
   @override
-  String get tripIsFull => 'El viaje está completo';
+  String get tripIsFull => 'El viaje estÃ¡ completo';
 
   @override
   String get markTripFullConfirmMessage =>
-      '¿Marcar este viaje como completo? Otros usuarios ya no podrán solicitar reservas.';
+      'Â¿Marcar este viaje como completo? Otros usuarios ya no podrÃ¡n solicitar reservas.';
 
   @override
   String get confirmFull => 'Confirmar completo';
@@ -1331,66 +1185,42 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get credentialsExpired =>
-      'Tu suscripción o licencia ha caducado. Por favor, renuévala.';
+      'Tu suscripciÃ³n o licencia ha caducado. Por favor, renuÃ©vala.';
 
   @override
   String get cannotCancelTripActiveBookings =>
-      'No se puede cancelar el viaje: contiene reservas activas que están en tránsito, entregadas o pagadas.';
+      'No se puede cancelar el viaje: contiene reservas activas que estÃ¡n en trÃ¡nsito, entregadas o pagadas.';
 
   @override
   String get errorFetchingTrips =>
-      'No se pudieron obtener los viajes. Por favor, inténtalo de nuevo.';
+      'No se pudieron obtener los viajes. Por favor, intÃ©ntalo de nuevo.';
 
   @override
   String get requestAlreadySent =>
-      'Ya se envió una solicitud a este conductor para este envío.';
+      'Ya se enviÃ³ una solicitud a este conductor para este envÃ­o.';
 
   @override
   String get bookingRequestExists =>
       'Ya tienes una solicitud de reserva para este viaje.';
 
   @override
-  String get shipmentAlreadyBooked =>
-      'Este envío ya ha sido reservado con otro conductor.';
-
-  @override
   String get cannotCancelGoodsHandedOver =>
-      'No se puede cancelar: la mercancía ya se ha entregado al conductor.';
+      'No se puede cancelar: la mercancÃ­a ya se ha entregado al conductor.';
 
   @override
   String get cannotCancelPaymentConfirmed =>
       'No se puede cancelar: el pago ya ha sido confirmado.';
 
   @override
-  String get failedCreateShipment =>
-      'No se pudo crear el envío. Por favor, inténtalo de nuevo.';
-
-  @override
-  String get failedLoadShipments =>
-      'No se pudieron cargar los envíos. Por favor, inténtalo de nuevo.';
-
-  @override
-  String get failedSearchShipments =>
-      'No se pudieron buscar los envíos. Por favor, inténtalo de nuevo.';
-
-  @override
-  String get failedUpdateShipmentStatus =>
-      'No se pudo actualizar el estado del envío.';
-
-  @override
-  String get failedLoadShipmentDetails =>
-      'No se pudieron cargar los detalles del envío.';
-
-  @override
   String get couldNotResolveLocation =>
-      'No se pudo resolver la dirección de la ubicación. Por favor, selecciona un pueblo concreto si está disponible.';
+      'No se pudo resolver la direcciÃ³n de la ubicaciÃ³n. Por favor, selecciona un pueblo concreto si estÃ¡ disponible.';
 
   @override
   String get reportUser => 'Reportar usuario';
 
   @override
   String get reportUserDescription =>
-      'Por favor, describe por qué estás reportando a este usuario:';
+      'Por favor, describe por quÃ© estÃ¡s reportando a este usuario:';
 
   @override
   String get reportReasonHint => 'Motivo (p. ej. acoso, spam)...';
@@ -1404,7 +1234,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get reportSubmittedCannotBlock =>
-      'Reporte enviado. El usuario no puede ser bloqueado debido a una interacción activa.';
+      'Reporte enviado. El usuario no puede ser bloqueado debido a una interacciÃ³n activa.';
 
   @override
   String get blockUser => 'Bloquear usuario';
@@ -1414,21 +1244,21 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get warningCheckGoodsBody =>
-      'Te recomendamos inspeccionar la mercancía y asegurarte de su legalidad. La plataforma solo conecta a las partes y no asume ninguna responsabilidad legal ni ética.';
+      'Te recomendamos inspeccionar la mercancÃ­a y asegurarte de su legalidad. La plataforma solo conecta a las partes y no asume ninguna responsabilidad legal ni Ã©tica.';
 
   @override
   String get warningCheckTravelerTitle => 'Aviso importante para el remitente';
 
   @override
   String get warningCheckTravelerBody =>
-      'Por favor, verifica la identidad del viajero. La plataforma no se hace responsable de ninguna pérdida o daño del envío, ni legal ni éticamente.';
+      'Por favor, verifica la identidad del viajero. La plataforma no se hace responsable de ninguna pÃ©rdida o daÃ±o del envÃ­o, ni legal ni Ã©ticamente.';
 
   @override
   String get policyWarningDialogTitle => 'Descargo de responsabilidad';
 
   @override
   String get policyWarningDialogBody =>
-      '¿Estás seguro de que quieres aceptar esta oferta?\n\nTe recomendamos verificar al viajero. La plataforma rechaza expresamente toda responsabilidad por cualquier pérdida o daño del envío, legal o éticamente. Nuestra función es únicamente conectar a las partes.';
+      'Â¿EstÃ¡s seguro de que quieres aceptar esta oferta?\n\nTe recomendamos verificar al viajero. La plataforma rechaza expresamente toda responsabilidad por cualquier pÃ©rdida o daÃ±o del envÃ­o, legal o Ã©ticamente. Nuestra funciÃ³n es Ãºnicamente conectar a las partes.';
 
   @override
   String get acceptAndProceed => 'Aceptar y confirmar oferta';
@@ -1442,11 +1272,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get chatDisabledOtherAccepted =>
-      'Chat deshabilitado porque se aceptó otra oferta.';
+      'Chat deshabilitado porque se aceptÃ³ otra oferta.';
 
   @override
   String get chatDisabledCompleted =>
-      'Chat deshabilitado porque el viaje está completado.';
+      'Chat deshabilitado porque el viaje estÃ¡ completado.';
 
   @override
   String get chatDisabledCancelled =>
@@ -1454,7 +1284,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get chatDisabledGeneric =>
-      'El chat no está disponible en este momento.';
+      'El chat no estÃ¡ disponible en este momento.';
 
   @override
   String get privacyAndSafety => 'Privacidad y seguridad';
@@ -1470,7 +1300,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get blockUserConfirm =>
-      '¿Estás seguro de que quieres bloquear a este usuario? Ya no verás sus mensajes ni sus ofertas.';
+      'Â¿EstÃ¡s seguro de que quieres bloquear a este usuario? Ya no verÃ¡s sus mensajes ni sus ofertas.';
 
   @override
   String get userBlockedSuccess => 'Usuario bloqueado correctamente.';
@@ -1480,11 +1310,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get unblockUserConfirm =>
-      '¿Estás seguro de que quieres desbloquear a este usuario? Podrás comunicarte con él de nuevo.';
+      'Â¿EstÃ¡s seguro de que quieres desbloquear a este usuario? PodrÃ¡s comunicarte con Ã©l de nuevo.';
 
   @override
   String get cannotBlockActiveEngagement =>
-      'No puedes bloquear a este usuario porque tienes un viaje o envío activo con él.';
+      'No puedes bloquear a este usuario porque tienes un viaje o envÃ­o activo con Ã©l.';
 
   @override
   String get cannotBookBlockedUser =>
@@ -1501,23 +1331,20 @@ class AppLocalizationsEs extends AppLocalizations {
       'Por favor, selecciona los lugares de recogida y entrega';
 
   @override
-  String get errorCreatingShipment => 'Error al crear el envío';
+  String get couldNotGetLocation => 'No se pudo obtener la ubicaciÃ³n';
 
   @override
-  String get couldNotGetLocation => 'No se pudo obtener la ubicación';
+  String get errorLoadingReviews => 'Error al cargar las reseÃ±as';
 
   @override
-  String get errorLoadingReviews => 'Error al cargar las reseñas';
-
-  @override
-  String get prohibitedItemsTitle => 'Artículos prohibidos';
+  String get prohibitedItemsTitle => 'ArtÃ­culos prohibidos';
 
   @override
   String get prohibitedItemsDisclaimer =>
-      'Por favor, asegúrate de que tu envío no contenga ninguno de los siguientes artículos:';
+      'Por favor, asegÃºrate de que tu envÃ­o no contenga ninguno de los siguientes artÃ­culos:';
 
   @override
-  String get prohibitedDrugs => 'Drogas y narcóticos';
+  String get prohibitedDrugs => 'Drogas y narcÃ³ticos';
 
   @override
   String get prohibitedAlcohol => 'Alcohol';
@@ -1535,56 +1362,53 @@ class AppLocalizationsEs extends AppLocalizations {
   String get prohibitedAnimals => 'Animales';
 
   @override
-  String get viewProhibitedItems => 'Ver artículos prohibidos';
+  String get viewProhibitedItems => 'Ver artÃ­culos prohibidos';
 
   @override
   String get close => 'Cerrar';
 
   @override
-  String get deliveryCodeLabel => 'Código de entrega (OTP)';
+  String get deliveryCodeLabel => 'CÃ³digo de entrega (OTP)';
 
   @override
   String get deliveryCodeInstruction =>
-      'Comparte este código con el viajero solo cuando recibas tu envío.';
+      'Comparte este cÃ³digo con el viajero solo cuando recibas tu envÃ­o.';
 
   @override
-  String get enterDeliveryCode => 'Introduce el código de entrega';
+  String get enterDeliveryCode => 'Introduce el cÃ³digo de entrega';
 
   @override
   String get deliveryCodeOptional =>
-      'Introduce el código de 4 dígitos si está disponible para confirmar al instante.';
+      'Introduce el cÃ³digo de 4 dÃ­gitos si estÃ¡ disponible para confirmar al instante.';
 
   @override
-  String get confirmWithCode => 'Confirmar con código';
+  String get confirmWithCode => 'Confirmar con cÃ³digo';
 
   @override
-  String get markDeliveredWithoutCode => 'Marcar como entregado sin código';
+  String get markDeliveredWithoutCode => 'Marcar como entregado sin cÃ³digo';
 
   @override
-  String get invalidCode => 'Código no válido';
+  String get invalidCode => 'CÃ³digo no vÃ¡lido';
 
   @override
-  String get notifDeliveredVerified => '¡Entrega verificada!';
+  String get notifDeliveredVerified => 'Â¡Entrega verificada!';
 
   @override
   String get notifDeliveredVerifiedBody =>
-      'El envío ha sido entregado y verificado con OTP.';
+      'El envÃ­o ha sido entregado y verificado con OTP.';
 
   @override
-  String get notifClientConfirmedReceipt => 'Recepción confirmada';
+  String get notifClientConfirmedReceipt => 'RecepciÃ³n confirmada';
 
   @override
   String get notifClientConfirmedReceiptBody =>
-      'El cliente ha confirmado la recepción del envío.';
+      'El cliente ha confirmado la recepciÃ³n del envÃ­o.';
 
   @override
-  String get pleaseUploadCRDocument => 'Por favor, sube el documento CR.';
+  String get pleaseLogin => 'Por favor, inicia sesiÃ³n';
 
   @override
-  String get pleaseLogin => 'Por favor, inicia sesión';
-
-  @override
-  String get searchRadius => 'Radio de búsqueda';
+  String get searchRadius => 'Radio de bÃºsqueda';
 
   @override
   String get fileSelected => 'Archivo seleccionado';
@@ -1600,24 +1424,24 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get pleaseUploadVehicleDocuments =>
-      'Por favor, sube todos los documentos relacionados con el vehículo.';
+      'Por favor, sube todos los documentos relacionados con el vehÃ­culo.';
 
   @override
   String get pleaseUploadRentalContract =>
       'Por favor, sube el contrato de alquiler.';
 
   @override
-  String get currentLocation => 'Ubicación actual';
+  String get currentLocation => 'UbicaciÃ³n actual';
 
   @override
   String get networkError =>
-      'Error de conexión. Por favor, comprueba tu conexión a internet e inténtalo de nuevo.';
+      'Error de conexiÃ³n. Por favor, comprueba tu conexiÃ³n a internet e intÃ©ntalo de nuevo.';
 
   @override
-  String get textSize => 'Tamaño del texto';
+  String get textSize => 'TamaÃ±o del texto';
 
   @override
-  String get textSizeSmall => 'Pequeño';
+  String get textSizeSmall => 'PequeÃ±o';
 
   @override
   String get textSizeNormal => 'Normal';
@@ -1651,11 +1475,11 @@ class AppLocalizationsEs extends AppLocalizations {
   String get aboutTripShip => 'Acerca de TripShip';
 
   @override
-  String get appVersion => 'Versión de la app';
+  String get appVersion => 'VersiÃ³n de la app';
 
   @override
   String get aboutTripShipDescription =>
-      'TripShip es una plataforma logística integral que conecta a viajeros y remitentes. Hacemos que los envíos sean más fáciles, rápidos y fiables.';
+      'TripShip es una plataforma logÃ­stica integral que conecta a viajeros y remitentes. Hacemos que los envÃ­os sean mÃ¡s fÃ¡ciles, rÃ¡pidos y fiables.';
 
   @override
   String get notifBookingApproved => 'Solicitud de reserva aprobada';
@@ -1665,14 +1489,10 @@ class AppLocalizationsEs extends AppLocalizations {
       'Tu solicitud de reserva ha sido aprobada';
 
   @override
-  String get notifOfferAcceptedBody =>
-      '¡Tu oferta ha sido aceptada! Prepárate para entregar';
+  String get notifSenderHandedGoods => 'El remitente entregÃ³ la mercancÃ­a';
 
   @override
-  String get notifSenderHandedGoods => 'El remitente entregó la mercancía';
-
-  @override
-  String get notifConfirmReceipt => 'Por favor, confirma la recepción';
+  String get notifConfirmReceipt => 'Por favor, confirma la recepciÃ³n';
 
   @override
   String get notifPaymentMarked => 'Pago marcado';
@@ -1681,52 +1501,40 @@ class AppLocalizationsEs extends AppLocalizations {
   String get notifConfirmPayment => 'Por favor, confirma el pago recibido';
 
   @override
-  String get notifTravelerDelivered => 'El viajero entregó el envío';
+  String get notifTravelerDelivered => 'El viajero entregÃ³ el envÃ­o';
 
   @override
-  String get notifGoodsReceived => 'Mercancía recibida';
+  String get notifGoodsReceived => 'MercancÃ­a recibida';
 
   @override
   String get notifGoodsInTransit =>
-      'El viajero confirmó la recepción - envío en tránsito';
+      'El viajero confirmÃ³ la recepciÃ³n - envÃ­o en trÃ¡nsito';
 
   @override
   String get notifPaymentConfirmed => 'Pago confirmado';
 
   @override
   String get notifPaymentConfirmedBody =>
-      'El viajero confirmó el pago recibido';
+      'El viajero confirmÃ³ el pago recibido';
 
   @override
   String get notifDeliveryCompleted =>
-      'El remitente confirmó la recepción - solicitud cerrada';
+      'El remitente confirmÃ³ la recepciÃ³n - solicitud cerrada';
 
   @override
   String get notifNewMessage => 'Nuevo mensaje';
 
   @override
-  String get notifNewOffer => '¡Nueva oferta!';
-
-  @override
-  String get notifNewOfferBody => 'Has recibido una nueva oferta para tu envío';
-
-  @override
-  String get notifNewRequest => 'Nueva solicitud de envío';
-
-  @override
-  String get notifNewRequestBody => 'Has recibido una nueva solicitud de envío';
-
-  @override
-  String get notifNewBookingRequest => '¡Nueva solicitud de reserva!';
+  String get notifNewBookingRequest => 'Â¡Nueva solicitud de reserva!';
 
   @override
   String get notifNewBookingRequestBody => 'Alguien quiere reservar tu viaje';
 
   @override
-  String get notifOfferDeclined => 'Oferta rechazada';
+  String get notifBookingDeclined => 'Oferta rechazada';
 
   @override
-  String get notifOfferDeclinedBody => 'Tu oferta no fue aceptada esta vez';
+  String get notifBookingDeclinedBody => 'Tu oferta no fue aceptada esta vez';
 
   @override
   String get notifBookingCancelled => 'Reserva cancelada';
@@ -1740,47 +1548,47 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get notifNewTripMatchingAlertBody =>
-      'Un nuevo viaje coincide con tu alerta de ruta. ¡Échale un vistazo!';
+      'Un nuevo viaje coincide con tu alerta de ruta. Â¡Ã‰chale un vistazo!';
 
   @override
   String get notifications => 'Notificaciones';
 
   @override
-  String get markAllRead => 'Marcar todas como leídas';
+  String get markAllRead => 'Marcar todas como leÃ­das';
 
   @override
-  String get noNotifications => 'Aún no hay notificaciones';
+  String get noNotifications => 'AÃºn no hay notificaciones';
 
   @override
   String get seeAllNotifications => 'Ver todas las notificaciones';
 
   @override
-  String get readNotifications => 'Leídas';
+  String get readNotifications => 'LeÃ­das';
 
   @override
-  String get verification => 'Verificación';
+  String get verification => 'VerificaciÃ³n';
 
   @override
   String get enterVerificationCode =>
-      'Introduce el código de 6 dígitos que se te ha enviado';
+      'Introduce el cÃ³digo de 6 dÃ­gitos que se te ha enviado';
 
   @override
-  String get codeSentTo => 'Código enviado a';
+  String get codeSentTo => 'CÃ³digo enviado a';
 
   @override
   String get verify => 'Verificar';
 
   @override
-  String get invalidPhone => 'Número de teléfono no válido';
+  String get invalidPhone => 'NÃºmero de telÃ©fono no vÃ¡lido';
 
   @override
-  String get phoneRequired => 'El número de teléfono es obligatorio';
+  String get phoneRequired => 'El nÃºmero de telÃ©fono es obligatorio';
 
   @override
-  String get phone => 'Número de teléfono';
+  String get phone => 'NÃºmero de telÃ©fono';
 
   @override
-  String get sendCode => 'Enviar código';
+  String get sendCode => 'Enviar cÃ³digo';
 
   @override
   String get allProvinces => 'Todas las provincias';
@@ -1794,7 +1602,7 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get allOrigins => 'Todos los orígenes';
+  String get allOrigins => 'Todos los orÃ­genes';
 
   @override
   String get allDestinations => 'Todos los destinos';
@@ -1809,7 +1617,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get repeatTrip => 'Repetir viaje';
 
   @override
-  String get selectRepeatDays => 'Seleccionar días de repetición';
+  String get selectRepeatDays => 'Seleccionar dÃ­as de repeticiÃ³n';
 
   @override
   String get createAlert => 'Crear alerta';
@@ -1819,7 +1627,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get alertMeWhenAvailable =>
-      'Avísame cuando haya un viaje que coincida disponible';
+      'AvÃ­same cuando haya un viaje que coincida disponible';
 
   @override
   String get alertMe => 'Avisarme';
@@ -1836,20 +1644,17 @@ class AppLocalizationsEs extends AppLocalizations {
   String get myAlerts => 'Mis alertas';
 
   @override
-  String get shipmentAlerts => 'Alertas de envíos';
-
-  @override
-  String get addAlert => 'Añadir alerta';
+  String get addAlert => 'AÃ±adir alerta';
 
   @override
   String get noAlertsYet =>
-      'Aún no hay alertas. Crea una desde la búsqueda de viajes.';
+      'AÃºn no hay alertas. Crea una desde la bÃºsqueda de viajes.';
 
   @override
   String get deleteAlert => 'Eliminar alerta';
 
   @override
-  String get confirmDeleteAlert => '¿Eliminar esta alerta?';
+  String get confirmDeleteAlert => 'Â¿Eliminar esta alerta?';
 
   @override
   String get alertDeleted => 'Alerta eliminada';
@@ -1868,32 +1673,24 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String alertsLimitReached(int limit) {
-    return 'Has alcanzado el límite de $limit alertas. Por favor, elimina una alerta para añadir una nueva.';
+    return 'Has alcanzado el lÃ­mite de $limit alertas. Por favor, elimina una alerta para aÃ±adir una nueva.';
   }
 
   @override
-  String get maxAlertsReachedTitle => 'Límite alcanzado';
+  String get maxAlertsReachedTitle => 'LÃ­mite alcanzado';
 
   @override
   String get alertType => 'Tipo de alerta';
 
   @override
-  String get myShipmentAlerts => 'Mis alertas de envíos';
-
-  @override
   String get manageAlerts => 'Gestionar alertas';
 
   @override
-  String get alertLimitExceeded => 'Límite de alertas superado';
+  String get alertLimitExceeded => 'LÃ­mite de alertas superado';
 
   @override
   String get deleteAlertToAddNew =>
-      'Por favor, elimina una alerta existente para añadir una nueva.';
-
-  @override
-  String shipmentAlertsLimitReached(int limit) {
-    return 'Has alcanzado el límite de $limit alertas de envíos. Por favor, elimina una para añadir una nueva.';
-  }
+      'Por favor, elimina una alerta existente para aÃ±adir una nueva.';
 
   @override
   String get profilePhotoLabel => 'Foto de perfil';
@@ -1914,10 +1711,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get noDocumentsFound => 'No se encontraron documentos';
 
   @override
-  String get underReview => 'En revisión';
+  String get underReview => 'En revisiÃ³n';
 
   @override
-  String get vehicleColor => 'Color del vehículo';
+  String get vehicleColor => 'Color del vehÃ­culo';
 
   @override
   String get supportChat => 'Chat de soporte';
@@ -1926,107 +1723,90 @@ class AppLocalizationsEs extends AppLocalizations {
   String get typeMessage => 'Escribe un mensaje';
 
   @override
-  String get companyOnlyFeatureTitle => 'Función de empresa';
-
-  @override
-  String get companyOnlyFeatureBody =>
-      'Esta función solo está disponible para cuentas de empresa.';
-
-  @override
-  String get becomeACompany => 'Conviértete en empresa';
-
-  @override
-  String get driverOnlyFeatureTitle => 'Función de conductor';
+  String get driverOnlyFeatureTitle => 'FunciÃ³n de conductor';
 
   @override
   String get driverOnlyFeatureBody =>
-      'El acceso a las solicitudes de envío está restringido a conductores con vehículos registrados. ¿Quieres cambiar ahora a una cuenta de conductor?';
+      'El acceso a las solicitudes de envÃ­o estÃ¡ restringido a conductores con vehÃ­culos registrados. Â¿Quieres cambiar ahora a una cuenta de conductor?';
 
   @override
   String get onboardingEarnMoney =>
-      'Gana dinero entregando envíos durante tus viajes';
+      'Gana dinero entregando envÃ­os durante tus viajes';
 
   @override
   String get onboardingSendPackages =>
-      'Envía paquetes a cualquier lugar a precios asequibles';
+      'EnvÃ­a paquetes a cualquier lugar a precios asequibles';
 
   @override
   String get onboardingSecure => 'Seguro';
 
   @override
-  String get onboardingFast => 'Rápido';
+  String get onboardingFast => 'RÃ¡pido';
 
   @override
   String get onboardingAffordable => 'Asequible';
 
   @override
-  String get notifNewShipmentMatchingAlert => 'Nueva coincidencia de envío';
-
-  @override
-  String get notifNewShipmentMatchingAlertBody =>
-      '¡Un nuevo envío coincide con tu alerta de ruta guardada!';
-
-  @override
   String get uploadingAvatar => 'Subiendo foto de perfil...';
 
   @override
-  String get shareLocation => 'Compartir ubicación';
+  String get shareLocation => 'Compartir ubicaciÃ³n';
 
   @override
-  String get locationShared => 'Ubicación compartida';
+  String get locationShared => 'UbicaciÃ³n compartida';
 
   @override
-  String get locationPermissionDenied => 'Permiso de ubicación denegado';
+  String get locationPermissionDenied => 'Permiso de ubicaciÃ³n denegado';
 
   @override
   String get locationServiceDisabled =>
-      'Los servicios de ubicación están desactivados';
+      'Los servicios de ubicaciÃ³n estÃ¡n desactivados';
 
   @override
-  String get sharingLocation => 'Compartiendo ubicación...';
+  String get sharingLocation => 'Compartiendo ubicaciÃ³n...';
 
   @override
-  String get shipmentDeliveryCode => 'Código de entrega';
+  String get deliveryCode => 'CÃ³digo de entrega';
 
   @override
-  String get shipmentDeliveryCodeCopied => 'Código copiado';
+  String get deliveryCodeCopied => 'CÃ³digo copiado';
 
   @override
-  String get shipmentShareCodeHint =>
-      'Comparte este código con el conductor en el momento de la entrega';
+  String get shareDeliveryCodeHint =>
+      'Comparte este cÃ³digo con el conductor en el momento de la entrega';
 
   @override
-  String get shipmentHandedToDriver => 'Mercancía entregada al conductor';
+  String get goodsHandedToDriver => 'MercancÃ­a entregada al conductor';
 
   @override
-  String get shipmentPaymentSentToDriver => 'Pago enviado al conductor';
+  String get paymentSentToDriver => 'Pago enviado al conductor';
 
   @override
-  String get shipmentDriverReceivedGoods => 'El conductor recibió el envío';
+  String get driverReceivedGoods => 'El conductor recibiÃ³ el envÃ­o';
 
   @override
-  String get shipmentDriverConfirmedPayment => 'El conductor confirmó el pago';
+  String get driverConfirmedPayment => 'El conductor confirmÃ³ el pago';
 
   @override
-  String get shipmentConfirmReceived => 'Confirmar envío recibido';
+  String get confirmGoodsReceived => 'Confirmar envÃ­o recibido';
 
   @override
-  String get shipmentMarkDelivered => 'Marcar envío como entregado';
+  String get markGoodsDelivered => 'Marcar envÃ­o como entregado';
 
   @override
-  String get shipmentConfirmPaymentReceived => 'Confirmar pago recibido';
+  String get confirmPaymentReceived => 'Confirmar pago recibido';
 
   @override
-  String get shipmentCancelShipment => 'Cancelar envío';
+  String get cancelDelivery => 'Cancelar envÃ­o';
 
   @override
-  String get shipmentCancelConfirm => '¿Cancelar esta interacción de envío?';
+  String get cancelDeliveryConfirm => 'Â¿Cancelar esta interacciÃ³n de envÃ­o?';
 
   @override
-  String get shipmentCancelConfirmYes => 'Sí, cancelar';
+  String get cancelDeliveryConfirmYes => 'SÃ­, cancelar';
 
   @override
-  String get statusInTransit => 'En tránsito';
+  String get statusInTransit => 'En trÃ¡nsito';
 
   @override
   String get supportTickets => 'Tickets de soporte';
@@ -2056,10 +1836,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get support => 'Soporte';
 
   @override
-  String get privacyPolicy => 'Política de privacidad';
+  String get privacyPolicy => 'PolÃ­tica de privacidad';
 
   @override
-  String get termsOfService => 'Términos del servicio';
+  String get termsOfService => 'TÃ©rminos del servicio';
 
   @override
   String get legal => 'Legal';
@@ -2068,7 +1848,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get promotedBadge => 'Promocionado';
 
   @override
-  String get howCanWeHelp => '¿Cómo podemos ayudarte?';
+  String get howCanWeHelp => 'Â¿CÃ³mo podemos ayudarte?';
 
   @override
   String get openSupportTicket => 'Abrir un ticket de soporte';
@@ -2077,13 +1857,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get chatOnWhatsApp => 'Chatear por WhatsApp';
 
   @override
-  String get updateRequired => 'Actualización requerida';
+  String get updateRequired => 'ActualizaciÃ³n requerida';
 
   @override
   String get updateNow => 'Actualizar ahora';
-
-  @override
-  String get cancelOffer => 'Cancelar oferta';
 
   @override
   String get domestic => 'Nacional';
@@ -2102,15 +1879,15 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get onboardingSubtitle1 =>
-      'Solicita envíos desde diferentes países y ciudades a precios asequibles';
+      'Solicita envÃ­os desde diferentes paÃ­ses y ciudades a precios asequibles';
 
   @override
   String get onboardingSubtitle2 =>
-      'Entrega envíos a diferentes países y ciudades y gana dinero';
+      'Entrega envÃ­os a diferentes paÃ­ses y ciudades y gana dinero';
 
   @override
   String get onboardingSubtitle3 =>
-      'Entrega rápida, segura y fiable para todos tus envíos';
+      'Entrega rÃ¡pida, segura y fiable para todos tus envÃ­os';
 
   @override
   String get getStarted => 'Empezar';
@@ -2122,7 +1899,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get next => 'Siguiente';
 
   @override
-  String get back => 'Atrás';
+  String get back => 'AtrÃ¡s';
 
   @override
   String get today => 'Hoy';
@@ -2132,7 +1909,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String daysAgo(int count) {
-    return 'hace $count días';
+    return 'hace $count dÃ­as';
   }
 
   @override
@@ -2147,15 +1924,15 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String yearsAgo(int count) {
-    return 'hace $count años';
+    return 'hace $count aÃ±os';
   }
 
   @override
   String get updateMessage =>
-      'Hay una nueva versión de TripShip disponible. Por favor, actualiza para seguir usando la app.';
+      'Hay una nueva versiÃ³n de TripShip disponible. Por favor, actualiza para seguir usando la app.';
 
   @override
-  String get showMore => 'Mostrar más';
+  String get showMore => 'Mostrar mÃ¡s';
 
   @override
   String get showLess => 'Mostrar menos';
@@ -2165,7 +1942,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get accountBlockedMessage =>
-      'Tu cuenta ha sido bloqueada permanentemente debido a una infracción de nuestros términos del servicio.';
+      'Tu cuenta ha sido bloqueada permanentemente debido a una infracciÃ³n de nuestros tÃ©rminos del servicio.';
 
   @override
   String get suspensionErrorNotice =>
@@ -2173,11 +1950,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get secureTransactionLogged =>
-      'Esta transacción está protegida y registrada por TripShip.';
+      'Esta transacciÃ³n estÃ¡ protegida y registrada por TripShip.';
 
   @override
   String get bookingSecuredLogged =>
-      'Reserva protegida y registrada a través de la plataforma TripShip.';
+      'Reserva protegida y registrada a travÃ©s de la plataforma TripShip.';
 
   @override
   String get paymentDetailsSecure =>
@@ -2185,7 +1962,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get conversationSecuredModerated =>
-      'Conversación protegida y moderada por TripShip.';
+      'ConversaciÃ³n protegida y moderada por TripShip.';
 
   @override
   String get sendImage => 'Enviar imagen';

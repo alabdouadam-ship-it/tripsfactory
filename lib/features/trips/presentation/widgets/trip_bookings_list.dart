@@ -11,7 +11,7 @@ import 'package:tripship/core/utils/l10n_context.dart';
 import 'package:tripship/core/enums/app_enums.dart';
 import 'package:tripship/features/ratings/presentation/rating_dialog.dart';
 import 'package:tripship/features/bookings/presentation/widgets/booking_progress_stepper.dart';
-import 'package:tripship/features/shipments/presentation/widgets/shipment_otp_dialog.dart';
+import 'package:tripship/features/bookings/presentation/widgets/delivery_otp_dialog.dart';
 import '../controllers/trip_details_controller.dart';
 import 'package:tripship/core/theme/tripship_motion_tokens.dart';
 
@@ -637,7 +637,7 @@ class _BookingActionButtons extends ConsumerWidget {
   ) async {
     final result = await showDialog<String>(
       context: context,
-      builder: (context) => const ShipmentOtpDialog(),
+      builder: (context) => const DeliveryOtpDialog(),
     );
 
     if (result == 'no_code') {
@@ -786,18 +786,12 @@ class _BookingActionButtons extends ConsumerWidget {
 
   String _getEventLabel(String eventKey, AppLocalizations localizations) {
     switch (eventKey) {
-      case 'offer_created':
-        return localizations.eventOfferCreated;
       case 'request_created':
         return localizations.eventRequestCreated;
       case 'booking_request_created':
         return localizations.eventBookingCreated;
       case 'communication_started':
         return localizations.eventCommunicationStarted;
-      case 'offer_accepted':
-        return localizations.eventOfferAccepted;
-      case 'offer_rejected':
-        return localizations.eventOfferRejected;
       case 'booking_accepted':
         return localizations.eventBookingAccepted;
       case 'booking_rejected':

@@ -9,22 +9,16 @@ import { useT } from '@/lib/i18n';
 
 type Badge =
   | 'trusted_driver'
-  | 'trusted_company'
   | 'featured_driver'
-  | 'featured_company'
   | 'verified_partner'
   | null;
 
 function flagsForTier(tier: Badge) {
   return {
     trust_badge: tier,
-    is_trusted: tier === 'trusted_driver' || tier === 'trusted_company' || tier === 'verified_partner',
-    is_featured: tier === 'featured_driver' || tier === 'featured_company',
+    is_trusted: tier === 'trusted_driver' || tier === 'verified_partner',
+    is_featured: tier === 'featured_driver',
   };
-}
-
-function hasCompanyCapability(user: Profile) {
-  return user.account_type === 'company' || !!(user.company_status && user.company_status !== 'none');
 }
 
 function hasTravelerCapability(user: Profile) {
@@ -32,21 +26,20 @@ function hasTravelerCapability(user: Profile) {
 }
 
 function trustedTierFor(user: Profile): Badge {
-  if (hasCompanyCapability(user)) return 'trusted_company';
   if (hasTravelerCapability(user)) return 'trusted_driver';
   return 'verified_partner';
 }
 
-function featuredTierFor(user: Profile): Badge {
-  return hasCompanyCapability(user) ? 'featured_company' : 'featured_driver';
+function featuredTierFor(): Badge {
+  return 'featured_driver';
 }
 
 function isTrustedTier(tier: string | null | undefined) {
-  return tier === 'trusted_driver' || tier === 'trusted_company' || tier === 'verified_partner';
+  return tier === 'trusted_driver' || tier === 'verified_partner';
 }
 
 function isFeaturedTier(tier: string | null | undefined) {
-  return tier === 'featured_driver' || tier === 'featured_company';
+  return tier === 'featured_driver';
 }
 
 interface Props {
@@ -93,7 +86,7 @@ export function TrustBadgeControls({ user, onChange }: Props) {
           </button>
           <button
             disabled={busy}
-            onClick={() => apply(flagsForTier(featuredActive ? null : featuredTierFor(user)))}
+            onClick={() => apply(flagsForTier(featuredActive ? null : featuredTierFor()))}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition ${
               featuredActive ? 'bg-yellow-500 text-white shadow-md' : 'theme-bg-secondary theme-muted border border-[var(--surface-border)] hover:theme-heading'
             }`}
@@ -111,9 +104,7 @@ export function TrustBadgeControls({ user, onChange }: Props) {
             {([
               { id: null as Badge, label: t('badges.tier.none', 'None') },
               { id: 'trusted_driver' as Badge, label: t('badges.tier.trustedDriver', 'Trusted Driver') },
-              { id: 'trusted_company' as Badge, label: t('badges.tier.trustedCompany', 'Trusted Company') },
               { id: 'featured_driver' as Badge, label: t('badges.tier.featuredDriver', 'Featured Driver') },
-              { id: 'featured_company' as Badge, label: t('badges.tier.featuredCompany', 'Featured Company') },
               { id: 'verified_partner' as Badge, label: t('badges.tier.verifiedPartner', 'Verified Partner') },
             ]).map(b => (
               <button

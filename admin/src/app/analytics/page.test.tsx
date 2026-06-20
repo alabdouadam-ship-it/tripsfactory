@@ -20,7 +20,6 @@ vi.mock('@/lib/i18n', () => {
   const labels: Record<string, string> = {
     'analytics.userTypes.traveler': 'Traveler',
     'analytics.userTypes.driver': 'Driver',
-    'analytics.userTypes.company': 'Company',
     'analytics.userTypes.individual': 'Individual',
   };
   // Stable function reference across renders — mirrors the real useT(), and
@@ -82,7 +81,6 @@ describe('AnalyticsPage', () => {
       data: [
         { user_type: 'driver', total: 2 },
         { user_type: 'traveler', total: 3 },
-        { user_type: 'company', total: 1 },
         { user_type: 'individual', total: 4 },
       ],
     });
@@ -107,7 +105,6 @@ describe('AnalyticsPage', () => {
     expect(screen.getByText('11')).toBeInTheDocument();
     expect(screen.getByText('Traveler')).toBeInTheDocument();
     expect(screen.getByText('Driver')).toBeInTheDocument();
-    expect(screen.getByText('Company')).toBeInTheDocument();
     expect(screen.getByText('Individual')).toBeInTheDocument();
     expect(screen.getByTestId('area-trip_count')).toBeInTheDocument();
     expect(screen.getAllByTestId('bar-trips').length).toBeGreaterThan(0);

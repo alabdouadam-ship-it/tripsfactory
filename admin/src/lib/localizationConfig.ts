@@ -1,7 +1,7 @@
 // White-label localization seam for the ADMIN console.
 //
 // The admin is an internal operator tool, so it does NOT need the full set of
-// end-user app languages. A fork chooses which operator languages to offer here.
+// end-user app languages. A fork chooses which operator languages to enable here.
 // Full dictionaries currently exist for English and Arabic (see i18n.tsx); to
 // enable Arabic, add 'ar' to `supported`.
 //
@@ -12,7 +12,7 @@
 export type AdminLanguage = 'en' | 'ar';
 
 export const AdminLocalizationConfig = {
-  /** Operator languages this fork offers. Default: English only. */
+  /** Operator languages this fork enables. Default: English only. */
   supported: ['en'] as AdminLanguage[],
   /** The language the console starts in. */
   default: 'en' as AdminLanguage,

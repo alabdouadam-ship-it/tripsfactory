@@ -21,7 +21,6 @@ abstract class Profile with _$Profile {
     @JsonKey(name: 'full_name') required String fullName,
     @JsonKey(name: 'phone_number') String? phoneNumber,
     String? bio,
-    @JsonKey(name: 'account_type') String? accountType,
     @JsonKey(name: 'is_available') @Default(false) bool isAvailable,
     @JsonKey(name: 'traveler_status') @Default(DomainConfig.statusNone) String travelerStatus,
     @JsonKey(name: 'traveler_type') @Default(DomainConfig.travelerNoVehicle) String travelerType,
@@ -29,17 +28,11 @@ abstract class Profile with _$Profile {
     @JsonKey(name: 'identity_doc_url') String? identityDocUrl,
     @JsonKey(name: 'traveler_license_url') String? driverLicenseUrl,
     @JsonKey(name: 'rental_contract_url') String? rentalContractUrl,
-    @JsonKey(name: 'company_status') @Default(DomainConfig.statusNone) String companyStatus,
-    @JsonKey(name: 'company_name') String? companyName,
-    @JsonKey(name: 'company_address') String? companyAddress,
-    @JsonKey(name: 'company_cr_number') String? companyCrNumber,
-    @JsonKey(name: 'company_cr_url') String? companyCrUrl,
     @JsonKey(name: 'identity_doc_url_pending') String? identityDocUrlPending,
     @JsonKey(name: 'traveler_license_url_pending')
     String? travelerLicenseUrlPending,
     @JsonKey(name: 'rental_contract_url_pending')
     String? rentalContractUrlPending,
-    @JsonKey(name: 'company_cr_url_pending') String? companyCrUrlPending,
     @JsonKey(name: 'created_at') DateTime? createdAt,
     @JsonKey(name: 'onesignal_player_id') String? oneSignalPlayerId,
     @JsonKey(name: 'avatar_url') String? avatarUrl,
@@ -54,7 +47,6 @@ abstract class Profile with _$Profile {
     num? clientRatingAvg,
     @JsonKey(name: 'client_rating_count') int? clientRatingCount,
     @JsonKey(name: 'is_driver') @Default(false) bool isDriver,
-    @JsonKey(name: 'company_validity_date') DateTime? companyValidityDate,
     @JsonKey(name: 'driver_validity_date') DateTime? driverValidityDate,
     @JsonKey(name: 'avatar_updated_at') DateTime? avatarUpdatedAt,
     @JsonKey(name: 'is_blocked') @Default(false) bool isBlocked,
@@ -68,12 +60,6 @@ abstract class Profile with _$Profile {
 
   factory Profile.fromJson(Map<String, dynamic> json) =>
       _$ProfileFromJson(json);
-
-  bool get isCompanyValid {
-    if (companyStatus != DomainConfig.statusApproved) return false;
-    if (companyValidityDate == null) return true;
-    return companyValidityDate!.isAfter(DateTime.now());
-  }
 
   bool get isDriverValid {
     if (travelerStatus != DomainConfig.statusApproved) return false;

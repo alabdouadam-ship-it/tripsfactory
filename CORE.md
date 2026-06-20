@@ -19,13 +19,13 @@ re-orienting don't require hunting through feature code.
 | Seam | File | Purpose |
 |------|------|---------|
 | **BrandConfig** | `lib/core/config/brand_config.dart` | Non-localized brand identity: name, deep-link schemes, auth callbacks, web/legal URL, store links, package id, notification channel/sound, support fallback, font, logo asset. |
-| **DomainConfig** | `lib/core/config/domain_config.dart` | Canonical marketplace vocabulary (account types, verification statuses, traveler/identity types, roles) — the persisted Supabase contract values. |
+| **DomainConfig** | `lib/core/config/domain_config.dart` | Canonical marketplace vocabulary (verification statuses, traveler/identity types, roles) — the persisted Supabase contract values. |
 | **StorageBuckets** | `lib/core/config/storage_buckets.dart` | Supabase Storage bucket names. |
 | **RegistrationRequirements** | `lib/core/config/registration_requirements.dart` | Which documents each role must provide to apply. |
 | **LocalizationConfig** | `lib/core/config/localization_config.dart` | Which languages the app ships (`supported`), the first-launch `defaultLocale`, and RTL detection. Currently: ar, en, fr, tr, es. |
 | **FontConfig** | `lib/core/config/font_config.dart` | Font family resolution: global default (`BrandConfig.fontFamily`) with optional per-language and per-theme overrides. |
 | **GeographyConfig** | `lib/core/config/geography_config.dart` | Home country for the internal/external route split: matched primarily by **ISO `country_code`** (`homeCountryCode`), with name (en/ar) as fallback; plus whether external routes must keep the home country on one side. |
-| **Theme / tokens** | `lib/core/theme/app_theme.dart`, `tripship_design_tokens.dart` | The theme registry + which themes a fork offers (`AppTheme.supportedThemes`), default theme (`ThemeNotifier.defaultThemeMode`), and per-call font (`AppTheme.getTheme(mode, fontFamily:)`). |
+| **Theme / tokens** | `lib/core/theme/app_theme.dart`, `tripship_design_tokens.dart` | The theme registry + which themes a fork supports (`AppTheme.supportedThemes`), default theme (`ThemeNotifier.defaultThemeMode`), and per-call font (`AppTheme.getTheme(mode, fontFamily:)`). |
 | **Copy** | `lib/l10n/app_en.arb`, `app_ar.arb`, `app_fr.arb`, `app_tr.arb`, `app_es.arb` | All user-facing text, including brand/domain nouns (`appTitle`, etc.). Non-template locales fall back to English for untranslated keys. |
 | **Runtime config** | `app_settings` table / `AppConfigService` | Admin-tunable values (support number, banners, force-update, popups). |
 
@@ -69,7 +69,7 @@ an accurate, reviewable summary of the fork.
 2. Edit `fork.config.json` with the new brand values.
 3. Mirror those values into `BrandConfig` (run the suite — the drift test will
    confirm they match).
-4. Set the default theme (`ThemeNotifier.defaultThemeMode`), the offered theme
+4. Set the default theme (`ThemeNotifier.defaultThemeMode`), the supported theme
    set (`AppTheme.supportedThemes`), the languages (`LocalizationConfig.supported`
    / `defaultLocale`) and font (`BrandConfig.fontFamily`, or per-language /
    per-theme overrides in `FontConfig`).

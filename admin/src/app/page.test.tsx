@@ -16,20 +16,9 @@ const { mockPush, mockToast, mockFrom, mockRpc, selectCalls } = vi.hoisted(() =>
 
   function countFor(table: string, filters: any[]) {
     if (table === 'profiles') {
-      if (hasFilter(filters, 'eq', 'account_type', 'company') && hasFilter(filters, 'eq', 'company_status', 'pending')) return 2;
-      if (hasFilter(filters, 'eq', 'account_type', 'company') && hasFilter(filters, 'neq', 'company_status', 'none')) return 4;
       if (hasFilter(filters, 'eq', 'traveler_status', 'pending')) return 3;
       if (hasFilter(filters, 'neq', 'traveler_status', 'none')) return 5;
       return 10;
-    }
-
-    if (table === 'shipments') {
-      if (hasFilter(filters, 'in', 'status')) return 9;
-      if (hasFilter(filters, 'eq', 'moderation_status', 'pending_review')) return 4;
-      if (hasFilter(filters, 'eq', 'status', 'pending')) return 2;
-      if (hasFilter(filters, 'eq', 'status', 'delivered')) return 1;
-      if (hasFilter(filters, 'eq', 'status')) return 0;
-      return 50;
     }
 
     if (table === 'bookings') {
@@ -46,7 +35,6 @@ const { mockPush, mockToast, mockFrom, mockRpc, selectCalls } = vi.hoisted(() =>
       return 50;
     }
 
-    if (table === 'offers') return 11;
     return 0;
   }
 
@@ -75,13 +63,6 @@ const { mockPush, mockToast, mockFrom, mockRpc, selectCalls } = vi.hoisted(() =>
     if (table === 'bookings') {
       return Promise.resolve({
         data: [{ id: 'booking-1', status: 'disputed', created_at: older }],
-        error: null,
-      });
-    }
-
-    if (table === 'shipments') {
-      return Promise.resolve({
-        data: [{ id: 'shipment-1', created_at: older }],
         error: null,
       });
     }
@@ -194,17 +175,11 @@ describe('Dashboard page', () => {
     expect(screen.getByText('System Overview')).toBeInTheDocument();
     }, { timeout: 3000 });
 
-    expect(screen.getByText('Companies')).toBeInTheDocument();
     expect(screen.getByText('Trips')).toBeInTheDocument();
     expect(screen.getByText('7/50')).toBeInTheDocument();
-    expect(screen.getByText('Shipments')).toBeInTheDocument();
-    expect(screen.getByText('9/50')).toBeInTheDocument();
-    expect(screen.getByText('Offers')).toBeInTheDocument();
-    expect(screen.getByText('11')).toBeInTheDocument();
     expect(screen.getByText('Trip Status')).toBeInTheDocument();
     expect(screen.getByText('available')).toBeInTheDocument();
     expect(screen.getByTestId('area-trips')).toBeInTheDocument();
-    expect(screen.getByText('pending')).toBeInTheDocument();
     expect(screen.getAllByText('Just now').length).toBeGreaterThan(0);
 
     fireEvent.click(screen.getByRole('button', { name: /traveler approvals/i }));
@@ -213,17 +188,11 @@ describe('Dashboard page', () => {
     fireEvent.click(screen.getByRole('button', { name: /disputes/i }));
     expect(mockPush).toHaveBeenCalledWith('/bookings?status=disputed');
 
-    fireEvent.click(screen.getByRole('button', { name: /shipment reviews/i }));
-    expect(mockPush).toHaveBeenCalledWith('/shipments?moderation=pending_review');
-
     const userActivity = screen.getByText(/Test User/).closest('button');
     expect(userActivity).not.toBeNull();
     fireEvent.click(userActivity!);
     expect(mockPush).toHaveBeenCalledWith('/users/user-1');
 
-    const shipmentHeadCounts = selectCalls.filter((call) => call.table === 'shipments' && call.options?.head);
-    expect(shipmentHeadCounts.length).toBeGreaterThanOrEqual(14);
-    expect(selectCalls.some((call) => call.table === 'shipments' && call.columns === 'status')).toBe(false);
     const tripHeadCounts = selectCalls.filter((call) => call.table === 'trips' && call.options?.head);
     expect(tripHeadCounts.length).toBeGreaterThanOrEqual(11);
     expect(selectCalls.some((call) => call.table === 'trips' && call.columns === 'status')).toBe(false);

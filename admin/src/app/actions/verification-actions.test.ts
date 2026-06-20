@@ -80,20 +80,4 @@ describe('advanceVerificationStep', () => {
     expect(mocks.workflowEq).toHaveBeenCalledWith('entity_type', 'driver');
     expect(mocks.profilesUpdate).toHaveBeenCalledWith({ traveler_status: 'approved' });
   });
-
-  it('company approval completes the company capability flags', async () => {
-    const result = await advanceVerificationStep(
-      'user-1',
-      'company',
-      'approved',
-      'Companies screen status update',
-    );
-
-    expect(result.success).toBe(true);
-    expect(mocks.workflowEq).toHaveBeenCalledWith('entity_type', 'company');
-    expect(mocks.profilesUpdate).toHaveBeenCalledWith({
-      account_type: 'company',
-      company_status: 'approved',
-    });
-  });
 });

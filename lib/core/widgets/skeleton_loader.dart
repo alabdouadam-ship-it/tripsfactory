@@ -55,67 +55,6 @@ class SkeletonLoader extends StatelessWidget {
   }
 }
 
-class ShipmentCardSkeleton extends StatelessWidget {
-  const ShipmentCardSkeleton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final cardBgColor = theme.cardTheme.color ?? theme.colorScheme.surface;
-
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: cardBgColor,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: theme.colorScheme.primary.withValues(alpha: 0.05),
-          width: 1,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: theme.shadowColor.withValues(alpha: 0.04),
-            blurRadius: 16,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SkeletonLoader(width: 150, height: 16),
-                    const SizedBox(height: 8),
-                    const SkeletonLoader(width: 120, height: 16),
-                  ],
-                ),
-              ),
-              const SkeletonLoader(width: 60, height: 24, borderRadius: 20),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Divider(color: Colors.grey.withValues(alpha: 0.1), height: 1),
-          const SizedBox(height: 12),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const SkeletonLoader(width: 100, height: 14),
-              const SkeletonLoader(width: 70, height: 24, borderRadius: 8),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class TripCardSkeleton extends StatelessWidget {
   const TripCardSkeleton({super.key});
 
@@ -175,50 +114,6 @@ class TripCardSkeleton extends StatelessWidget {
               ),
               const SkeletonLoader(width: 70, height: 24, borderRadius: 20),
             ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class ShipmentDetailsSkeleton extends StatelessWidget {
-  const ShipmentDetailsSkeleton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SkeletonLoader(width: double.infinity, height: 150),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SkeletonLoader(width: 180, height: 24),
-                const SizedBox(height: 16),
-                const SkeletonLoader(width: double.infinity, height: 16),
-                const SizedBox(height: 8),
-                const SkeletonLoader(width: double.infinity, height: 16),
-                const SizedBox(height: 32),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    SkeletonLoader(width: 80, height: 40),
-                    SkeletonLoader(width: 80, height: 40),
-                    SkeletonLoader(width: 80, height: 40),
-                  ],
-                ),
-                const SizedBox(height: 32),
-                const SkeletonLoader(
-                  width: double.infinity,
-                  height: 120,
-                  borderRadius: 12,
-                ),
-              ],
-            ),
           ),
         ],
       ),

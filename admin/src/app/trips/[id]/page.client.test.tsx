@@ -45,7 +45,7 @@ const {
       id: '12345678-abcd',
       trip_id: 'trip-12345678',
       status: 'accepted',
-      offer_price: 120,
+      price: 120,
       created_at: '2026-05-02T10:00:00.000Z',
       requester_profile: {
         id: 'requester-1',
@@ -162,7 +162,6 @@ describe('TripDetailPage', () => {
     const bookingSelect = selectCalls.find((call) => call.table === 'bookings')?.columns ?? '';
     expect(bookingSelect).toContain('requester_profile');
     expect(bookingSelect).toContain('driver_profile');
-    expect(bookingSelect).not.toContain('shipments');
   });
 
   it('shows a retryable bookings error instead of an empty state', async () => {

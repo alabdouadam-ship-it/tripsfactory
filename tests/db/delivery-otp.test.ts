@@ -17,9 +17,8 @@ describe('Stage 2: Delivery OTP', () => {
       .insert({
         requester_id: requester.userId,
         traveler_id: traveler.userId,
-        offer_price: 10,
+        price: 10,
         status: 'in_transit',
-        booking_type: 'shipment',
       })
       .select('id')
       .single();
@@ -59,9 +58,8 @@ describe('Stage 2: Delivery OTP', () => {
       .insert({
         requester_id: traveler.userId,
         traveler_id: traveler.userId,
-        offer_price: 10,
+        price: 10,
         status: 'in_transit',
-        booking_type: 'shipment',
       })
       .select('id')
       .single();

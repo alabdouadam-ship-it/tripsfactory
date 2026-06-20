@@ -133,9 +133,9 @@ export default function BookingsPage() {
         },
         {
             header: t('bookings.table.price', 'Reservation Price'),
-            accessorKey: 'offer_price',
+            accessorKey: 'price',
             sortable: true,
-            cell: (booking) => <span className="font-bold text-blue-600">{booking.offer_price} {t('common.currencySar', '')}</span>
+            cell: (booking) => <span className="font-bold text-blue-600">{booking.price} {t('common.currencySar', '')}</span>
         },
         {
             header: t('bookings.table.participants', 'Participants'),
@@ -480,7 +480,7 @@ export default function BookingsPage() {
                         <div className="flex items-center justify-between gap-2 pt-2 border-t border-[var(--surface-border)]">
                             <div>
                                 <p className="text-[0.625rem] font-black uppercase theme-muted opacity-60 mb-0.5">{t('bookings.table.price', 'Price')}</p>
-                                <p className="font-bold text-blue-600 text-sm">{booking.offer_price} {t('common.currencySar', 'SAR')}</p>
+                                <p className="font-bold text-blue-600 text-sm">{booking.price} {t('common.currencySar', 'SAR')}</p>
                             </div>
                             <div className="text-right">
                                 <p className="text-[0.625rem] font-black uppercase theme-muted opacity-60 mb-0.5">{t('bookings.table.createdAt', 'Created')}</p>

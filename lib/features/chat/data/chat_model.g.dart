@@ -9,7 +9,6 @@ part of 'chat_model.dart';
 _ChatMessage _$ChatMessageFromJson(Map<String, dynamic> json) => _ChatMessage(
   id: json['id'] as String,
   bookingId: json['booking_id'] as String,
-  offerId: json['offer_id'] as String?,
   senderId: json['sender_id'] as String,
   content: json['content'] as String,
   createdAt: DateTime.parse(json['created_at'] as String),
@@ -23,7 +22,6 @@ Map<String, dynamic> _$ChatMessageToJson(_ChatMessage instance) =>
     <String, dynamic>{
       'id': instance.id,
       'booking_id': instance.bookingId,
-      'offer_id': instance.offerId,
       'sender_id': instance.senderId,
       'content': instance.content,
       'created_at': instance.createdAt.toIso8601String(),

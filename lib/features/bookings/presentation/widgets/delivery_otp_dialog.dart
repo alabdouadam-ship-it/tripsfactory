@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:tripship/l10n/generated/app_localizations.dart';
 
-class ShipmentOtpDialog extends StatefulWidget {
-  const ShipmentOtpDialog({super.key});
+/// Delivery confirmation dialog used by the booking handover flow.
+///
+/// Returns one of:
+///  - a 4-digit code string entered by the user,
+///  - `'no_code'` when the user confirms delivery without a code,
+///  - `null` when cancelled.
+class DeliveryOtpDialog extends StatefulWidget {
+  const DeliveryOtpDialog({super.key});
 
   @override
-  State<ShipmentOtpDialog> createState() => _ShipmentOtpDialogState();
+  State<DeliveryOtpDialog> createState() => _DeliveryOtpDialogState();
 }
 
-class _ShipmentOtpDialogState extends State<ShipmentOtpDialog> {
+class _DeliveryOtpDialogState extends State<DeliveryOtpDialog> {
   final _codeController = TextEditingController();
   bool _showCodeInput = false;
 
@@ -63,7 +69,7 @@ class _ShipmentOtpDialogState extends State<ShipmentOtpDialog> {
             TextField(
               controller: _codeController,
               decoration: InputDecoration(
-                hintText: localizations.shipmentDeliveryCode,
+                hintText: localizations.deliveryCode,
                 border: const OutlineInputBorder(),
               ),
               keyboardType: TextInputType.number,

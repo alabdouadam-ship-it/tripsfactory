@@ -44,7 +44,7 @@ class _DocumentsScreenState extends ConsumerState<DocumentsScreen> {
               final service = ref.read(profileServiceProvider);
               final userId = profile.id;
 
-              // Client Documents (Sender / Company)
+              // Client Documents (Sender)
               if (isClientMode) {
                 // Identity Proof (Optional for all clients)
                 children.add(
@@ -61,30 +61,6 @@ class _DocumentsScreenState extends ConsumerState<DocumentsScreen> {
                     isVerified: profile.identityDocUrl != null,
                   ),
                 );
-
-                // Company CR (Mandatory for companies)
-                // Show CR Document if user is a company (approved or pending)
-                final isVerifiedCompany =
-                    profile.accountType == DomainConfig.accountCompany &&
-                    profile.companyStatus == DomainConfig.statusApproved;
-                if (isVerifiedCompany ||
-                    profile.accountType == DomainConfig.accountCompany ||
-                    profile.companyStatus != DomainConfig.statusNone ||
-                    profile.companyName != null) {
-                  children.add(
-                    _buildDocumentItem(
-                      localizations,
-                      '${localizations.crDocument} (${localizations.fieldRequired})',
-                      profile.companyCrUrl,
-                      profile.companyCrUrlPending,
-                      (url) => service.updateDocumentUrl(
-                        userId,
-                        'company_cr_url_pending',
-                        url,
-                      ),
-                    ),
-                  );
-                }
               }
               // Traveler Documents (Normal Traveler / Driver)
               else {
