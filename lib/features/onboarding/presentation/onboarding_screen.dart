@@ -1,10 +1,10 @@
-import 'package:tripship/core/config/app_routes.dart';
+import 'package:tripsfactory/core/config/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tripship/core/services/preferences_service.dart';
-import 'package:tripship/core/utils/logger.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/services/preferences_service.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class OnboardingScreen extends ConsumerStatefulWidget {

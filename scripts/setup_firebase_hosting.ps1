@@ -7,7 +7,7 @@
 #   2. Lets you pick the Firebase project (or set $env:FIREBASE_PROJECT_ID).
 #   3. Lists the project's existing Hosting sites; for each role (admin, legal)
 #      you choose an existing site OR create a new one (suggested id derived
-#      from the brand name in fork.config.json, e.g. tripship-admin / tripship-legal).
+#      from the brand name in fork.config.json, e.g. tripsfactory-admin / tripsfactory-legal).
 #   4. Applies the deploy targets in .firebaserc.
 #
 # Non-interactive override: set $env:ADMIN_SITE_ID / $env:LEGAL_SITE_ID to skip

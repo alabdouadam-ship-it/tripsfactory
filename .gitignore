@@ -66,7 +66,7 @@ node_modules/
 .kiro/
 
 # Firebase admin credentials — never commit
-assets/tripship-logistics-firebase-adminsdk.json
+assets/tripsfactory-logistics-firebase-adminsdk.json
 *firebase-adminsdk*.json
 
 # Firebase client config — per-fork; ship the *.example templates instead.

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:tripship/features/trips/presentation/providers/post_trip_provider.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/features/trips/presentation/providers/post_trip_provider.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 import 'package:intl/intl.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/features/trips/data/trip_model.dart';
-import 'package:tripship/core/utils/error_utils.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/features/trips/data/trip_model.dart';
+import 'package:tripsfactory/core/utils/error_utils.dart';
 
 class PostTripScreen extends ConsumerStatefulWidget {
   final String? transportMode;

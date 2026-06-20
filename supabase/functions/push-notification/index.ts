@@ -25,9 +25,9 @@ function envOr(name: string, fallback: string): string {
 // values, so behavior is unchanged unless a fork sets these env vars. Keep the
 // Android channel id in sync with the client's BrandConfig.notificationChannelId
 // (channels are immutable once created on a device).
-const NOTIFICATION_CHANNEL_ID = envOr('NOTIFICATION_CHANNEL_ID', 'tripship_notification_v1')
-const NOTIFICATION_SOUND_ANDROID = envOr('NOTIFICATION_SOUND_ANDROID', 'tripship_notification')
-const NOTIFICATION_SOUND_IOS = envOr('NOTIFICATION_SOUND_IOS', 'tripship_notification.wav')
+const NOTIFICATION_CHANNEL_ID = envOr('NOTIFICATION_CHANNEL_ID', 'tripsfactory_notification_v1')
+const NOTIFICATION_SOUND_ANDROID = envOr('NOTIFICATION_SOUND_ANDROID', 'tripsfactory_notification')
+const NOTIFICATION_SOUND_IOS = envOr('NOTIFICATION_SOUND_IOS', 'tripsfactory_notification.wav')
 
 Deno.serve(async (req) => {
     try {

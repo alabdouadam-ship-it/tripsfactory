@@ -1,8 +1,8 @@
-import 'package:tripship/core/utils/result.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/features/bookings/data/booking_model.dart';
-import 'package:tripship/features/bookings/domain/repositories/booking_repository.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
+import 'package:tripsfactory/core/utils/result.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/features/bookings/data/booking_model.dart';
+import 'package:tripsfactory/features/bookings/domain/repositories/booking_repository.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
 import 'dart:io';
 
 /// Minimal fake for conversion tests: returns fixed booking list and succeeds/fails as configured.
@@ -36,12 +36,12 @@ class FakeBookingRepository implements IBookingRepository {
   @override
   Future<Result<void>> acceptBooking(String bookingId) async => acceptSucceeds
       ? Result.success(null)
-      : Result.failure(TripShipException.withKey('test', 'fail', null));
+      : Result.failure(TripsFactoryException.withKey('test', 'fail', null));
 
   @override
   Future<Result<void>> rejectBooking(String bookingId) async => rejectSucceeds
       ? Result.success(null)
-      : Result.failure(TripShipException.withKey('test', 'fail', null));
+      : Result.failure(TripsFactoryException.withKey('test', 'fail', null));
 
   @override
   Future<Result<void>> cancelBooking(

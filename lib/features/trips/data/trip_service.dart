@@ -1,17 +1,17 @@
 import 'dart:convert';
-import 'package:tripship/core/utils/stream_extensions.dart';
+import 'package:tripsfactory/core/utils/stream_extensions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:tripship/features/trips/data/trip_model.dart';
-import 'package:tripship/features/trips/data/route_alert_service.dart';
-import 'package:tripship/core/models/location_model.dart';
-import 'package:tripship/core/config/geography_config.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
-import 'package:tripship/core/services/notification_service.dart';
-import 'package:tripship/core/utils/logger.dart';
-import 'package:tripship/core/providers/app_localizations_provider.dart';
-import 'package:tripship/core/services/preferences_service.dart';
+import 'package:tripsfactory/features/trips/data/trip_model.dart';
+import 'package:tripsfactory/features/trips/data/route_alert_service.dart';
+import 'package:tripsfactory/core/models/location_model.dart';
+import 'package:tripsfactory/core/config/geography_config.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
+import 'package:tripsfactory/core/services/notification_service.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
+import 'package:tripsfactory/core/providers/app_localizations_provider.dart';
+import 'package:tripsfactory/core/services/preferences_service.dart';
 
 final tripServiceProvider = Provider<TripService>((ref) {
   return TripService(Supabase.instance.client, ref);
@@ -46,7 +46,7 @@ class TripService {
         .eq('id', driverId)
         .single();
     if (profileResponse['is_suspended'] == true) {
-      throw TripShipException.withKey('account_suspended', 'Account suspended.');
+      throw TripsFactoryException.withKey('account_suspended', 'Account suspended.');
     }
 
     final subExpiry = profileResponse['subscription_expires_at'] != null
@@ -58,7 +58,7 @@ class TripService {
 
     if ((subExpiry != null && subExpiry.isBefore(DateTime.now())) ||
         (licenseExpiry != null && licenseExpiry.isBefore(DateTime.now()))) {
-      throw TripShipException.withKey(
+      throw TripsFactoryException.withKey(
         'credentials_expired',
         'Credentials expired.',
       );
@@ -202,8 +202,8 @@ class TripService {
         e,
         st,
       );
-      if (e is TripShipException) rethrow;
-      throw TripShipException.withKey(
+      if (e is TripsFactoryException) rethrow;
+      throw TripsFactoryException.withKey(
         'failed_fetch_trips',
         'Error fetching recent trips: $e',
         e,
@@ -265,14 +265,14 @@ class TripService {
         .distinctUntilDataChanged()
         .asyncMap((data) async {
           if (data.isEmpty) {
-            throw TripShipException.withKey(
+            throw TripsFactoryException.withKey(
               'trip_not_found',
               'Trip deleted or not found.',
             );
           }
           final trip = await getTripById(tripId);
           if (trip == null) {
-            throw TripShipException.withKey(
+            throw TripsFactoryException.withKey(
               'trip_not_found',
               'Trip deleted or not found.',
             );
@@ -344,7 +344,7 @@ class TripService {
           goodsReceivedByTraveler != null ||
           goodsReceivedByClient != null ||
           paidAt != null) {
-        throw TripShipException.withKey(
+        throw TripsFactoryException.withKey(
           'cannot_cancel_trip_active_bookings',
           'Cannot cancel trip: Contains active bookings that are in transit, delivered, or paid.',
         );

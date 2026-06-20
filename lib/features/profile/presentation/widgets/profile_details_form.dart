@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 
 class ProfileDetailsForm extends StatelessWidget {
   final User? user;

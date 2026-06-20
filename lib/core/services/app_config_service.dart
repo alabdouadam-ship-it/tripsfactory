@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:tripship/core/services/preferences_service.dart';
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/core/services/preferences_service.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 
 class OccasionalPopup {
   final bool active;

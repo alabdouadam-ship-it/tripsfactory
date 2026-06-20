@@ -1,20 +1,20 @@
 // ignore_for_file: deprecated_member_use
-import 'package:tripship/core/config/app_routes.dart';
-import 'package:tripship/core/config/brand_config.dart';
-import 'package:tripship/core/config/localization_config.dart';
+import 'package:tripsfactory/core/config/app_routes.dart';
+import 'package:tripsfactory/core/config/brand_config.dart';
+import 'package:tripsfactory/core/config/localization_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tripship/core/theme/app_theme.dart';
-import 'package:tripship/core/providers/locale_provider.dart';
-import 'package:tripship/core/providers/text_scale_provider.dart';
-import 'package:tripship/core/services/app_review_service.dart';
-import 'package:tripship/core/services/share_service.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
-import 'package:tripship/core/services/app_config_service.dart';
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/core/theme/app_theme.dart';
+import 'package:tripsfactory/core/providers/locale_provider.dart';
+import 'package:tripsfactory/core/providers/text_scale_provider.dart';
+import 'package:tripsfactory/core/services/app_review_service.dart';
+import 'package:tripsfactory/core/services/share_service.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/services/app_config_service.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:tripship/core/config/app_constants.dart';
+import 'package:tripsfactory/core/config/app_constants.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class SettingsScreen extends ConsumerWidget {
@@ -177,8 +177,8 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
 
-          // About TripShip Section
-          _buildSectionHeader(context, localizations.aboutTripShip),
+          // About TripsFactory Section
+          _buildSectionHeader(context, localizations.aboutTripsFactory),
           Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
@@ -243,7 +243,7 @@ class SettingsScreen extends ConsumerWidget {
                   const SizedBox(height: 16),
                   // Description
                   Text(
-                    localizations.aboutTripShipDescription,
+                    localizations.aboutTripsFactoryDescription,
                     style: Theme.of(context).textTheme.bodyMedium,
                     textAlign: TextAlign.justify,
                   ),
@@ -377,9 +377,9 @@ class SettingsScreen extends ConsumerWidget {
 
   String _getThemeName(AppThemeMode mode, AppLocalizations localizations) {
     switch (mode) {
-      case AppThemeMode.tripshipDark:
+      case AppThemeMode.tripsfactoryDark:
         return localizations.themeDark;
-      case AppThemeMode.tripshipLight:
+      case AppThemeMode.tripsfactoryLight:
         return localizations.themeLight;
       case AppThemeMode.desertGold:
         return localizations.themeDesert;

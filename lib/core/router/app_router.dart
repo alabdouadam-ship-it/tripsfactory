@@ -1,42 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tripship/core/services/app_config_service.dart';
-import 'package:tripship/core/theme/tripship_motion_tokens.dart';
-import 'package:tripship/core/widgets/force_update_screen.dart';
-import 'package:tripship/core/widgets/app_closed_screen.dart';
-import 'package:tripship/features/auth/data/auth_service.dart';
-import 'package:tripship/features/auth/presentation/login_screen.dart';
-import 'package:tripship/features/auth/presentation/forgot_password_screen.dart';
-import 'package:tripship/features/auth/presentation/reset_password_screen.dart';
-import 'package:tripship/features/auth/presentation/signup_screen.dart';
-import 'package:tripship/features/auth/presentation/otp_verification_screen.dart';
-import 'package:tripship/features/bookings/presentation/my_requests_screen.dart';
-import 'package:tripship/features/chat/presentation/chat_screen.dart';
-import 'package:tripship/features/driver_registration/presentation/driver_registration_screen.dart';
-import 'package:tripship/features/profile/presentation/driver_profile_screen.dart';
-import 'package:tripship/features/profile/presentation/profile_screen.dart';
-import 'package:tripship/features/profile/presentation/ratings_detail_screen.dart';
-import 'package:tripship/features/profile/presentation/documents_screen.dart'
-    as tripship_documents;
-import 'package:tripship/features/settings/presentation/settings_screen.dart';
-import 'package:tripship/features/safety/presentation/blocked_users_screen.dart';
-import 'package:tripship/features/support/presentation/support_screen.dart';
-import 'package:tripship/features/support/presentation/support_chat_screen.dart';
-import 'package:tripship/features/support/data/support_service.dart';
-import 'package:tripship/features/trips/data/trip_model.dart';
-import 'package:tripship/features/trips/presentation/my_trips_screen.dart';
-import 'package:tripship/features/trips/presentation/my_alerts_screen.dart';
-import 'package:tripship/features/trips/presentation/post_trip_screen.dart';
-import 'package:tripship/features/trips/presentation/trip_details_screen.dart';
-import 'package:tripship/core/router/app_redirect.dart';
-import 'package:tripship/core/services/preferences_service.dart';
-import 'package:tripship/core/widgets/suspension_screen.dart';
-import 'package:tripship/features/home/presentation/notifications_screen.dart';
-import 'package:tripship/features/onboarding/presentation/onboarding_screen.dart';
-import 'package:tripship/home_screen.dart';
-import 'package:tripship/features/splash/presentation/splash_screen.dart';
-import 'package:tripship/core/config/app_routes.dart';
+import 'package:tripsfactory/core/services/app_config_service.dart';
+import 'package:tripsfactory/core/theme/tripsfactory_motion_tokens.dart';
+import 'package:tripsfactory/core/widgets/force_update_screen.dart';
+import 'package:tripsfactory/core/widgets/app_closed_screen.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/features/auth/presentation/login_screen.dart';
+import 'package:tripsfactory/features/auth/presentation/forgot_password_screen.dart';
+import 'package:tripsfactory/features/auth/presentation/reset_password_screen.dart';
+import 'package:tripsfactory/features/auth/presentation/signup_screen.dart';
+import 'package:tripsfactory/features/auth/presentation/otp_verification_screen.dart';
+import 'package:tripsfactory/features/bookings/presentation/my_requests_screen.dart';
+import 'package:tripsfactory/features/chat/presentation/chat_screen.dart';
+import 'package:tripsfactory/features/driver_registration/presentation/driver_registration_screen.dart';
+import 'package:tripsfactory/features/profile/presentation/driver_profile_screen.dart';
+import 'package:tripsfactory/features/profile/presentation/profile_screen.dart';
+import 'package:tripsfactory/features/profile/presentation/ratings_detail_screen.dart';
+import 'package:tripsfactory/features/profile/presentation/documents_screen.dart'
+    as tripsfactory_documents;
+import 'package:tripsfactory/features/settings/presentation/settings_screen.dart';
+import 'package:tripsfactory/features/safety/presentation/blocked_users_screen.dart';
+import 'package:tripsfactory/features/support/presentation/support_screen.dart';
+import 'package:tripsfactory/features/support/presentation/support_chat_screen.dart';
+import 'package:tripsfactory/features/support/data/support_service.dart';
+import 'package:tripsfactory/features/trips/data/trip_model.dart';
+import 'package:tripsfactory/features/trips/presentation/my_trips_screen.dart';
+import 'package:tripsfactory/features/trips/presentation/my_alerts_screen.dart';
+import 'package:tripsfactory/features/trips/presentation/post_trip_screen.dart';
+import 'package:tripsfactory/features/trips/presentation/trip_details_screen.dart';
+import 'package:tripsfactory/core/router/app_redirect.dart';
+import 'package:tripsfactory/core/services/preferences_service.dart';
+import 'package:tripsfactory/core/widgets/suspension_screen.dart';
+import 'package:tripsfactory/features/home/presentation/notifications_screen.dart';
+import 'package:tripsfactory/features/onboarding/presentation/onboarding_screen.dart';
+import 'package:tripsfactory/home_screen.dart';
+import 'package:tripsfactory/features/splash/presentation/splash_screen.dart';
+import 'package:tripsfactory/core/config/app_routes.dart';
 
 /// Route paths use kebab-case (e.g. /my-alerts, /trip-details).
 /// Add new routes here and keep redirect logic in sync with auth/onboarding.
@@ -49,12 +49,12 @@ CustomTransitionPage<T> _fadeUpPage<T>({
   return CustomTransitionPage<T>(
     key: state.pageKey,
     child: child,
-    transitionDuration: TripShipMotionTokens.full, // 220ms
-    reverseTransitionDuration: TripShipMotionTokens.mid, // 180ms back
+    transitionDuration: TripsFactoryMotionTokens.full, // 220ms
+    reverseTransitionDuration: TripsFactoryMotionTokens.mid, // 180ms back
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       final fade = CurvedAnimation(
         parent: animation,
-        curve: TripShipMotionTokens.curveOut,
+        curve: TripsFactoryMotionTokens.curveOut,
       );
       // 10px upward offset — subtle, purposeful
       final slide =
@@ -64,7 +64,7 @@ CustomTransitionPage<T> _fadeUpPage<T>({
           ).animate(
             CurvedAnimation(
               parent: animation,
-              curve: TripShipMotionTokens.curveOut,
+              curve: TripsFactoryMotionTokens.curveOut,
             ),
           );
 
@@ -170,7 +170,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: AppRoutes.documents,
         pageBuilder: (context, state) => _fadeUpPage(
           state: state,
-          child: const tripship_documents.DocumentsScreen(),
+          child: const tripsfactory_documents.DocumentsScreen(),
         ),
       ),
       GoRoute(

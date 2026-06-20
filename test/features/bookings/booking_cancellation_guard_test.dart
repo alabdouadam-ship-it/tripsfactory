@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
-import 'package:tripship/features/bookings/data/lifecycle/booking_cancellation_guard.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
+import 'package:tripsfactory/features/bookings/data/lifecycle/booking_cancellation_guard.dart';
 
 void main() {
   const guard = BookingCancellationGuard();
@@ -12,7 +12,7 @@ void main() {
         isDriver: false,
       ),
       throwsA(
-        predicate<TripShipException>(
+        predicate<TripsFactoryException>(
             (e) => e.messageKey == 'cannot_cancel_active_booking'),
       ),
     );
@@ -25,7 +25,7 @@ void main() {
         isDriver: false,
       ),
       throwsA(
-        predicate<TripShipException>(
+        predicate<TripsFactoryException>(
             (e) => e.messageKey == 'cannot_cancel_active_booking'),
       ),
     );
@@ -38,7 +38,7 @@ void main() {
         isDriver: false,
       ),
       throwsA(
-        predicate<TripShipException>(
+        predicate<TripsFactoryException>(
             (e) => e.messageKey == 'cannot_cancel_active_booking'),
       ),
     );
@@ -54,7 +54,7 @@ void main() {
         isDriver: false,
       ),
       throwsA(
-        predicate<TripShipException>(
+        predicate<TripsFactoryException>(
             (e) => e.messageKey == 'cannot_cancel_goods_handed_over'),
       ),
     );
@@ -83,7 +83,7 @@ void main() {
         isDriver: true,
       ),
       throwsA(
-        predicate<TripShipException>(
+        predicate<TripsFactoryException>(
             (e) => e.messageKey == 'cannot_cancel_payment_confirmed'),
       ),
     );

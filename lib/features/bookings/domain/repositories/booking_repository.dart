@@ -1,7 +1,7 @@
 import 'dart:io';
-import 'package:tripship/core/utils/result.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/features/bookings/data/booking_model.dart';
+import 'package:tripsfactory/core/utils/result.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/features/bookings/data/booking_model.dart';
 
 abstract class IBookingRepository {
   Future<Result<List<Booking>>> getBookingsForTrip(String tripId);

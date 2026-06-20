@@ -17,7 +17,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.tripship.app"
+    namespace = "com.tripsfactory.app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -36,7 +36,7 @@ android {
         // matching google-services.json (its own Firebase project). The Kotlin
         // `namespace` above is the internal R-class package and is intentionally
         // left as-is (changing it would require moving Kotlin sources).
-        applicationId = "com.tripship.app"
+        applicationId = "com.tripsfactory.app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

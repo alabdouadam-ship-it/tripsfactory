@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/features/bookings/data/lifecycle/trip_status_sync_rules.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/features/bookings/data/lifecycle/trip_status_sync_rules.dart';
 
 void main() {
   group('tripStatusAllowsAutoMarkFull (3.19 gate)', () {

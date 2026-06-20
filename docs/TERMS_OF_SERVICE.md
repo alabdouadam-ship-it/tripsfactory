@@ -7,7 +7,7 @@
 ## بالعربية
 
 ### 1. وصف الخدمة
-منصة TripShip هي منصة ربط تضع المرسلين والسائقين/المسافرين في تواصل مع بعضهم. لا تنقل المنصة البضائع بنفسها، ولا تعمل كوسيط مالي أو قانوني بين الأطراف.
+منصة TripsFactory هي منصة ربط تضع المرسلين والسائقين/المسافرين في تواصل مع بعضهم. لا تنقل المنصة البضائع بنفسها، ولا تعمل كوسيط مالي أو قانوني بين الأطراف.
 
 ### 2. إخلاء المسؤولية — مهم جداً
 
@@ -31,14 +31,14 @@
 - نحتفظ بحق تعليق أو إغلاق الحسابات المخالفة.
 
 ### 4. القبول
-باستخدامك لمنصة TripShip، فإنك توافق على هذه الشروط وإخلاء المسؤولية.
+باستخدامك لمنصة TripsFactory، فإنك توافق على هذه الشروط وإخلاء المسؤولية.
 
 ---
 
 ## In English
 
 ### 1. Description of Service
-TripShip is a logistics platform that connects senders with drivers/travelers. The platform does not transport goods itself and does not act as a financial or legal intermediary between parties.
+TripsFactory is a logistics platform that connects senders with drivers/travelers. The platform does not transport goods itself and does not act as a financial or legal intermediary between parties.
 
 ### 2. Disclaimer — Very Important
 
@@ -62,4 +62,4 @@ Document verification is performed for internal administrative purposes only and
 - We reserve the right to suspend or close accounts that violate these terms.
 
 ### 4. Acceptance
-By using the TripShip platform, you agree to these terms and disclaimer.
+By using the TripsFactory platform, you agree to these terms and disclaimer.

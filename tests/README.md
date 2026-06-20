@@ -1,4 +1,4 @@
-# TripShip Test Suite
+# TripsFactory Test Suite
 
 Runbook for Stage 1 (Security Lockdown) and Stage 2 (Booking Lifecycle) tests.
 

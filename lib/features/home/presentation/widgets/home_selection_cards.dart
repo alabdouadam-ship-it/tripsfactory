@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 import 'home_selection_card.dart';
 
 /// The internal/external transport selection cards shown on the

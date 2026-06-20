@@ -74,8 +74,8 @@ $env:FIREBASE_SERVICE_ACCOUNT_FILE = '.\firebase-adminsdk.json'   # from Part B
 
 ## A5. Manual dashboard steps (the script can't do these)
 1. **Auth → URL Configuration** — add redirect URLs:
-   - `io.supabase.tripship://login-callback`
-   - `io.supabase.tripship://reset-callback`
+   - `io.supabase.tripsfactory://login-callback`
+   - `io.supabase.tripsfactory://reset-callback`
 2. **Auth → Providers** — enable what you use:
    - **Email/password** (on by default)
    - **Phone OTP** → also configure an SMS provider (e.g. Twilio) with its credentials
@@ -106,13 +106,13 @@ Firebase project and drop two config files into the app.
 
 ## B2. Add the Android app
 1. In the project → **Add app → Android**.
-2. **Android package name**: `com.tripship.app` (must match the app).
+2. **Android package name**: `com.tripsfactory.app` (must match the app).
 3. Download **`google-services.json`** and place it at:
    `android/app/google-services.json` (replace the existing one).
 
 ## B3. Add the iOS app
 1. **Add app → iOS**.
-2. **Bundle ID**: `com.tripship.app`.
+2. **Bundle ID**: `com.tripsfactory.app`.
 3. Download **`GoogleService-Info.plist`** and place it at:
    `ios/Runner/GoogleService-Info.plist` (replace the existing one).
 
@@ -176,7 +176,7 @@ Or use the helper script (validates + minifies the JSON, avoids shell-quoting is
 
 The app signs in with Google via **Supabase's OAuth redirect flow** (it opens a
 browser → Google → back to Supabase → back into the app via the
-`io.supabase.tripship://login-callback` deep link). You need a Web OAuth client,
+`io.supabase.tripsfactory://login-callback` deep link). You need a Web OAuth client,
 the Supabase provider enabled, and the redirect URL allow-listed. The app-side
 deep-link scheme is already configured.
 
@@ -197,8 +197,8 @@ deep-link scheme is already configured.
 
 ## C3. Allow the app's deep-link return
 - **Authentication → URL Configuration → Redirect URLs** — add:
-  - `io.supabase.tripship://login-callback`
-  - `io.supabase.tripship://reset-callback`
+  - `io.supabase.tripsfactory://login-callback`
+  - `io.supabase.tripsfactory://reset-callback`
 
 ## C4. Automate C2 + C3 (optional)
 C1 (the Google Cloud OAuth client) can't be scripted — Google has no public API
@@ -228,7 +228,7 @@ providers, etc., if you want to extend it for a fork.
   clients (those are for the native id-token flow, which this app does not use).
   `google-services.json` is for FCM, not for this login.
 - Most failures are a mismatch: the Google client's redirect URI must be the
-  Supabase `…/auth/v1/callback`, **and** `io.supabase.tripship://login-callback`
+  Supabase `…/auth/v1/callback`, **and** `io.supabase.tripsfactory://login-callback`
   must be in Supabase's Redirect URLs. If either is off you'll see
   "redirect not allowed" or the browser won't return to the app.
 
@@ -341,8 +341,8 @@ console** and the **legal documents** — and applies their deploy targets in
 It (1) ensures you're logged in (`firebase login`), (2) lets you pick the
 Firebase project, (3) **lists the project's existing Hosting sites** and, for
 each role, lets you **choose an existing site or create a new one** (suggested
-id derived from the brand name in `fork.config.json`, e.g. `tripship-admin` /
-`tripship-legal`), then (4) applies the targets.
+id derived from the brand name in `fork.config.json`, e.g. `tripsfactory-admin` /
+`tripsfactory-legal`), then (4) applies the targets.
 
 ```powershell
 ./scripts/setup_firebase_hosting.ps1                 # fully interactive

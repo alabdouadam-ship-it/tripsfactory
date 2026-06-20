@@ -1,5 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:tripship/core/config/storage_buckets.dart';
+import 'package:tripsfactory/core/config/storage_buckets.dart';
 
 /// Resolves chat-attachment references (stored as full URLs in
 /// `messages.content`) to short-lived signed URLs for the PRIVATE

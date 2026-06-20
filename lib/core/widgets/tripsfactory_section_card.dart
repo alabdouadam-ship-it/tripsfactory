@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:tripship/core/theme/tripship_design_tokens.dart';
+import 'package:tripsfactory/core/theme/tripsfactory_design_tokens.dart';
 
-class TripShipSectionCard extends StatelessWidget {
+class TripsFactorySectionCard extends StatelessWidget {
   final String title;
   final IconData icon;
   final Widget child;
   final Color? iconColor;
 
-  const TripShipSectionCard({
+  const TripsFactorySectionCard({
     super.key,
     required this.title,
     required this.icon,
@@ -24,14 +24,14 @@ class TripShipSectionCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 24),
       decoration: BoxDecoration(
         color: theme.cardTheme.color,
-        borderRadius: TripShipDesignTokens.borderRadiusMedium,
+        borderRadius: TripsFactoryDesignTokens.borderRadiusMedium,
         border: Border.all(
           color: theme.colorScheme.primary.withValues(
             alpha: isDark ? 0.08 : 0.05,
           ),
           width: 1,
         ),
-        boxShadow: TripShipDesignTokens.shadowLevel1(context),
+        boxShadow: TripsFactoryDesignTokens.shadowLevel1(context),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -54,7 +54,7 @@ class TripShipSectionCard extends StatelessWidget {
                     color: (iconColor ?? theme.colorScheme.primary).withValues(
                       alpha: 0.1,
                     ),
-                    borderRadius: TripShipDesignTokens.borderRadiusSmall,
+                    borderRadius: TripsFactoryDesignTokens.borderRadiusSmall,
                   ),
                   child: Icon(
                     icon,

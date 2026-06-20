@@ -25,7 +25,7 @@ re-orienting don't require hunting through feature code.
 | **LocalizationConfig** | `lib/core/config/localization_config.dart` | Which languages the app ships (`supported`), the first-launch `defaultLocale`, and RTL detection. Currently: ar, en, fr, tr, es. |
 | **FontConfig** | `lib/core/config/font_config.dart` | Font family resolution: global default (`BrandConfig.fontFamily`) with optional per-language and per-theme overrides. |
 | **GeographyConfig** | `lib/core/config/geography_config.dart` | Home country for the internal/external route split: matched primarily by **ISO `country_code`** (`homeCountryCode`), with name (en/ar) as fallback; plus whether external routes must keep the home country on one side. |
-| **Theme / tokens** | `lib/core/theme/app_theme.dart`, `tripship_design_tokens.dart` | The theme registry + which themes a fork supports (`AppTheme.supportedThemes`), default theme (`ThemeNotifier.defaultThemeMode`), and per-call font (`AppTheme.getTheme(mode, fontFamily:)`). |
+| **Theme / tokens** | `lib/core/theme/app_theme.dart`, `tripsfactory_design_tokens.dart` | The theme registry + which themes a fork supports (`AppTheme.supportedThemes`), default theme (`ThemeNotifier.defaultThemeMode`), and per-call font (`AppTheme.getTheme(mode, fontFamily:)`). |
 | **Copy** | `lib/l10n/app_en.arb`, `app_ar.arb`, `app_fr.arb`, `app_tr.arb`, `app_es.arb` | All user-facing text, including brand/domain nouns (`appTitle`, etc.). Non-template locales fall back to English for untranslated keys. |
 | **Runtime config** | `app_settings` table / `AppConfigService` | Admin-tunable values (support number, banners, force-update, popups). |
 

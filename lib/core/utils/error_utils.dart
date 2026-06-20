@@ -1,7 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 
 /// Returns a user-friendly error message. Avoids leaking technical details.
 /// When [context] or [localizations] is provided, uses localization for known error keys.
@@ -14,7 +14,7 @@ String getUserFriendlyMessage(
   final loc =
       localizations ?? (context != null ? AppLocalizations.of(context) : null);
 
-  if (error is TripShipException) {
+  if (error is TripsFactoryException) {
     if (loc != null && error.messageKey != null) {
       try {
         final msg = _resolveErrorKey(error.messageKey!, loc);

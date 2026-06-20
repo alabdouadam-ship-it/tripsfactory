@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/core/models/location_model.dart';
-import 'package:tripship/features/home/presentation/home_filters.dart';
-import 'package:tripship/features/home/presentation/providers/home_filter_provider.dart';
+import 'package:tripsfactory/core/models/location_model.dart';
+import 'package:tripsfactory/features/home/presentation/home_filters.dart';
+import 'package:tripsfactory/features/home/presentation/providers/home_filter_provider.dart';
 
 class HomeContextBar extends ConsumerWidget {
   final bool isClientMode;

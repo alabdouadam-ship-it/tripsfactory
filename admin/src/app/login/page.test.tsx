@@ -68,12 +68,12 @@ describe('LoginPage', () => {
     await waitFor(() => {
       expect(mocks.mockRpc).toHaveBeenCalledWith('record_admin_login_event');
     });
-    expect(window.localStorage.getItem('tripship.admin.lastEmail')).toBe('admin@test.com');
+    expect(window.localStorage.getItem('tripsfactory.admin.lastEmail')).toBe('admin@test.com');
     expect(mocks.mockPush).toHaveBeenCalledWith('/');
   });
 
   it('prefills the last successful admin email', async () => {
-    window.localStorage.setItem('tripship.admin.lastEmail', 'saved@test.com');
+    window.localStorage.setItem('tripsfactory.admin.lastEmail', 'saved@test.com');
 
     render(<LoginPage />);
 

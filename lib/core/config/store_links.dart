@@ -3,7 +3,7 @@
 //
 // القيم الفعلية موجودة الآن في [BrandConfig] (نقطة العلامة التجارية الموحّدة).
 // The actual values now live in [BrandConfig] (the single brand seam).
-import 'package:tripship/core/config/brand_config.dart';
+import 'package:tripsfactory/core/config/brand_config.dart';
 
 /// رابط التطبيق على Google Play
 const String playStoreUrl = BrandConfig.playStoreUrl;

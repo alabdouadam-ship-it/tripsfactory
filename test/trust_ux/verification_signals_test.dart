@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/core/widgets/trust_badge.dart';
-import 'package:tripship/features/trips/presentation/trip_card.dart';
+import 'package:tripsfactory/core/widgets/trust_badge.dart';
+import 'package:tripsfactory/features/trips/presentation/trip_card.dart';
 import '../test_helpers/fixtures.dart';
 import '../test_helpers/pump_app.dart';
 

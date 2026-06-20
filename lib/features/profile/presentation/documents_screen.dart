@@ -2,15 +2,15 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:tripship/core/providers/app_mode_provider.dart';
-import 'package:tripship/core/config/domain_config.dart';
+import 'package:tripsfactory/core/providers/app_mode_provider.dart';
+import 'package:tripsfactory/core/config/domain_config.dart';
 
-import 'package:tripship/features/auth/data/auth_service.dart';
-import 'package:tripship/features/profile/data/profile_service.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
-import 'package:tripship/core/utils/logger.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
-import 'package:tripship/core/utils/l10n_context.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/features/profile/data/profile_service.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
+import 'package:tripsfactory/core/utils/l10n_context.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DocumentsScreen extends ConsumerStatefulWidget {
@@ -389,7 +389,7 @@ class _DocumentsScreenState extends ConsumerState<DocumentsScreen> {
           );
         }
       } else {
-        throw TripShipException('upload_failed');
+        throw TripsFactoryException('upload_failed');
       }
     } catch (e, st) {
       StructuredLogger.error(

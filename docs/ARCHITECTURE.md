@@ -1,6 +1,6 @@
 # Architecture Overview
 
-TripShip is a logistics marketplace with three deployable surfaces sharing one
+TripsFactory is a logistics marketplace with three deployable surfaces sharing one
 Supabase backend. Everything brand/environment-specific is read from
 configuration seams or environment variables — there are no hardcoded project
 URLs or keys in the code.

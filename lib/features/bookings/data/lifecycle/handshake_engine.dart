@@ -1,4 +1,4 @@
-import 'package:tripship/core/enums/app_enums.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
 
 import 'booking_state_machine.dart';
 

@@ -42,7 +42,7 @@ export function isHomeCountryName(
     GeographyConfig.homeCountryNameAr.toLowerCase(),
     ...GeographyConfig.homeCountryAliases.map((a) => a.toLowerCase()),
   ];
-  return names.some((n) => targets.some((target) => n === target || n.includes(target)));
+  return names.some((n) => targets.some((target) => n === target));
 }
 
 /** Whether a location is in the home country (by country code or names). */

@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:tripship/features/chat/data/chat_attachment_url.dart';
+import 'package:tripsfactory/features/chat/data/chat_attachment_url.dart';
 
 /// Renders a chat image attachment by resolving its stored reference to a
 /// signed URL (private chat-attachments bucket). Uses the storage path as a

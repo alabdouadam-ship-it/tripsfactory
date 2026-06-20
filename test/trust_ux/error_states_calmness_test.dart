@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/core/widgets/suspension_screen.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
-import 'package:tripship/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/core/widgets/suspension_screen.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockAuthService extends Mock implements AuthService {}

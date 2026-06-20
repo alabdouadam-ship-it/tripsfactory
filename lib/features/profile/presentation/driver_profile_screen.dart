@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tripship/features/profile/data/profile_service.dart';
-import 'package:tripship/core/config/domain_config.dart';
-import 'package:tripship/core/utils/logger.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
-import 'package:tripship/features/ratings/data/rating_service.dart';
+import 'package:tripsfactory/features/profile/data/profile_service.dart';
+import 'package:tripsfactory/core/config/domain_config.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/features/ratings/data/rating_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:tripship/core/widgets/trust_badge.dart';
-import 'package:tripship/core/widgets/tripship_expandable_text.dart'
-    as import_tripship_expandable;
+import 'package:tripsfactory/core/widgets/trust_badge.dart';
+import 'package:tripsfactory/core/widgets/tripsfactory_expandable_text.dart'
+    as import_tripsfactory_expandable;
 
 class PublicProfileScreen extends ConsumerStatefulWidget {
   final String userId;
@@ -298,7 +298,7 @@ class _PublicProfileScreenState extends ConsumerState<PublicProfileScreen> {
                                 return Padding(
                                   padding: const EdgeInsets.only(top: 16),
                                   child:
-                                      import_tripship_expandable.TripShipExpandableText(
+                                      import_tripsfactory_expandable.TripsFactoryExpandableText(
                                         text: desc.toString().trim(),
                                         style: Theme.of(context)
                                             .textTheme

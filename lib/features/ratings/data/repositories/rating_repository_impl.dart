@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/core/utils/result.dart';
-import 'package:tripship/features/ratings/data/rating_service.dart';
-import 'package:tripship/features/ratings/domain/repositories/rating_repository.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
+import 'package:tripsfactory/core/utils/result.dart';
+import 'package:tripsfactory/features/ratings/data/rating_service.dart';
+import 'package:tripsfactory/features/ratings/domain/repositories/rating_repository.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
 
 final ratingRepositoryProvider = Provider<IRatingRepository>((ref) {
   final service = ref.watch(ratingServiceProvider);
@@ -21,11 +21,11 @@ class RatingRepository implements IRatingRepository {
     try {
       final ids = await _service.getRatedBookingIds(bookingIds);
       return Result.success(ids);
-    } on TripShipException catch (e) {
+    } on TripsFactoryException catch (e) {
       return Result.failure(e);
     } catch (e) {
       return Result.failure(
-        TripShipException.withKey('unknown_error', e.toString(), e),
+        TripsFactoryException.withKey('unknown_error', e.toString(), e),
       );
     }
   }
@@ -49,11 +49,11 @@ class RatingRepository implements IRatingRepository {
         comment: comment,
       );
       return Result.success(null);
-    } on TripShipException catch (e) {
+    } on TripsFactoryException catch (e) {
       return Result.failure(e);
     } catch (e) {
       return Result.failure(
-        TripShipException.withKey('unknown_error', e.toString(), e),
+        TripsFactoryException.withKey('unknown_error', e.toString(), e),
       );
     }
   }

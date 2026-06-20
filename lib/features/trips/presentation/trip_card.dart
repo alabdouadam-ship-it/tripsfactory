@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:intl/intl.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
-import 'package:tripship/features/trips/data/trip_model.dart';
-import 'package:tripship/features/profile/data/profile_model.dart';
-import 'package:tripship/core/models/location_model.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/core/config/domain_config.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/features/trips/data/trip_model.dart';
+import 'package:tripsfactory/features/profile/data/profile_model.dart';
+import 'package:tripsfactory/core/models/location_model.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/core/config/domain_config.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:go_router/go_router.dart';
 
-import 'package:tripship/core/widgets/animated_card.dart';
-import 'package:tripship/core/widgets/trust_badge.dart';
-import 'package:tripship/core/widgets/tripship_expandable_text.dart';
-import 'package:tripship/core/theme/tripship_design_tokens.dart';
+import 'package:tripsfactory/core/widgets/animated_card.dart';
+import 'package:tripsfactory/core/widgets/trust_badge.dart';
+import 'package:tripsfactory/core/widgets/tripsfactory_expandable_text.dart';
+import 'package:tripsfactory/core/theme/tripsfactory_design_tokens.dart';
 
 class TripCard extends StatelessWidget {
   final Trip trip;
@@ -80,9 +80,9 @@ class TripCard extends StatelessWidget {
             margin ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
           color: cardBgColor,
-          borderRadius: TripShipDesignTokens.borderRadiusMedium,
+          borderRadius: TripsFactoryDesignTokens.borderRadiusMedium,
           border: Border.all(color: borderColor, width: 1),
-          boxShadow: TripShipDesignTokens.shadowLevel1(context),
+          boxShadow: TripsFactoryDesignTokens.shadowLevel1(context),
         ),
         child: Material(
           color: Colors.transparent,
@@ -92,7 +92,7 @@ class TripCard extends StatelessWidget {
                 (onCopyTrip != null || onShareTrip != null || onDelete != null)
                 ? () => _showTripOptions(context)
                 : null,
-            borderRadius: TripShipDesignTokens.borderRadiusMedium,
+            borderRadius: TripsFactoryDesignTokens.borderRadiusMedium,
             child: Container(
               padding: const EdgeInsets.all(20),
               child: Column(
@@ -123,7 +123,7 @@ class TripCard extends StatelessWidget {
                             color: Theme.of(
                               context,
                             ).colorScheme.primary.withValues(alpha: 0.08),
-                            borderRadius: TripShipDesignTokens.borderRadiusSmall,
+                            borderRadius: TripsFactoryDesignTokens.borderRadiusSmall,
                             border: Border.all(
                               color: Theme.of(
                                 context,
@@ -307,7 +307,7 @@ class TripCard extends StatelessWidget {
                               decoration: BoxDecoration(
                                 color: Colors.grey.withValues(alpha: 0.1),
                                 borderRadius:
-                                    TripShipDesignTokens.borderRadiusSmall,
+                                    TripsFactoryDesignTokens.borderRadiusSmall,
                               ),
                               child: Row(
                                 children: [
@@ -337,7 +337,7 @@ class TripCard extends StatelessWidget {
 
                   if (trip.notes != null && trip.notes!.trim().isNotEmpty) ...[
                     const SizedBox(height: 12),
-                    TripShipExpandableText(
+                    TripsFactoryExpandableText(
                       text: trip.notes!,
                       style: TextStyle(
                         fontSize: 13,
@@ -443,7 +443,7 @@ class TripCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.15),
-        borderRadius: TripShipDesignTokens.borderRadiusSmall,
+        borderRadius: TripsFactoryDesignTokens.borderRadiusSmall,
         border: Border.all(color: color.withValues(alpha: 0.4), width: 1),
       ),
       child: Text(
@@ -562,7 +562,7 @@ class TripCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.1),
-        borderRadius: TripShipDesignTokens.borderRadiusSmall,
+        borderRadius: TripsFactoryDesignTokens.borderRadiusSmall,
         border: Border.all(color: color.withValues(alpha: 0.5), width: 0.5),
       ),
       child: Text(
@@ -589,7 +589,7 @@ class TripCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.1),
-        borderRadius: TripShipDesignTokens.borderRadiusSmall,
+        borderRadius: TripsFactoryDesignTokens.borderRadiusSmall,
         border: Border.all(color: color.withValues(alpha: 0.5), width: 0.5),
       ),
       child: Row(
@@ -620,7 +620,7 @@ class TripCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
         color: Colors.amber.withValues(alpha: 0.15),
-        borderRadius: TripShipDesignTokens.borderRadiusSmall,
+        borderRadius: TripsFactoryDesignTokens.borderRadiusSmall,
         border: Border.all(
           color: Colors.amber.withValues(alpha: 0.5),
           width: 1,

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run full TripShip test suite: Flutter unit tests + DB tests (if env is set).
+# Run full TripsFactory test suite: Flutter unit tests + DB tests (if env is set).
 set -e
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"

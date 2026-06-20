@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/core/config/registration_requirements.dart';
+import 'package:tripsfactory/core/config/registration_requirements.dart';
 
 void main() {
   group('missingTravelerDoc — mirrors prior screen validation', () {

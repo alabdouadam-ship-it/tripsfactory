@@ -1,5 +1,5 @@
-import 'package:tripship/features/bookings/data/booking_model.dart';
-import 'package:tripship/features/trips/data/trip_model.dart';
+import 'package:tripsfactory/features/bookings/data/booking_model.dart';
+import 'package:tripsfactory/features/trips/data/trip_model.dart';
 
 class TripDetailsState {
   final Trip? trip;

@@ -1,5 +1,5 @@
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/features/trips/data/trip_model.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/features/trips/data/trip_model.dart';
 
 /// Minimal trip for conversion tests (driver view with bookings).
 Trip tripFixture() {

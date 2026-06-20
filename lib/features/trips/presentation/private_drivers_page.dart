@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/features/trips/data/available_drivers_provider.dart';
-import 'package:tripship/features/trips/presentation/driver_card.dart';
-import 'package:tripship/core/widgets/skeleton_loader.dart';
-import 'package:tripship/core/widgets/empty_state_widget.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/features/trips/data/available_drivers_provider.dart';
+import 'package:tripsfactory/features/trips/presentation/driver_card.dart';
+import 'package:tripsfactory/core/widgets/skeleton_loader.dart';
+import 'package:tripsfactory/core/widgets/empty_state_widget.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 
 class PrivateTravelersPage extends ConsumerWidget {
   const PrivateTravelersPage({super.key});

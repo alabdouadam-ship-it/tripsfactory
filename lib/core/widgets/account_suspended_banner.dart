@@ -1,7 +1,7 @@
-import 'package:tripship/core/config/app_routes.dart';
+import 'package:tripsfactory/core/config/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 
 class AccountSuspendedBanner extends StatelessWidget {
   const AccountSuspendedBanner({super.key});

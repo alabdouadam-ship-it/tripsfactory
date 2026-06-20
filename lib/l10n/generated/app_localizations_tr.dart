@@ -9,7 +9,7 @@ class AppLocalizationsTr extends AppLocalizations {
   AppLocalizationsTr([String locale = 'tr']) : super(locale);
 
   @override
-  String get appTitle => 'TripShip';
+  String get appTitle => 'TripsFactory';
 
   @override
   String get welcomeBack => 'Tekrar hoÅŸ geldiniz';
@@ -1471,14 +1471,14 @@ class AppLocalizationsTr extends AppLocalizations {
   String get shareApp => 'UygulamayÄ± paylaÅŸ';
 
   @override
-  String get aboutTripShip => 'TripShip hakkÄ±nda';
+  String get aboutTripsFactory => 'TripsFactory hakkÄ±nda';
 
   @override
   String get appVersion => 'Uygulama sÃ¼rÃ¼mÃ¼';
 
   @override
-  String get aboutTripShipDescription =>
-      'TripShip, yolcularÄ± ve gÃ¶nderenleri bir araya getiren kapsamlÄ± bir lojistik platformudur. GÃ¶nderimi daha kolay, daha hÄ±zlÄ± ve daha gÃ¼venilir hale getiriyoruz.';
+  String get aboutTripsFactoryDescription =>
+      'TripsFactory, yolcularÄ± ve gÃ¶nderenleri bir araya getiren kapsamlÄ± bir lojistik platformudur. GÃ¶nderimi daha kolay, daha hÄ±zlÄ± ve daha gÃ¼venilir hale getiriyoruz.';
 
   @override
   String get notifBookingApproved => 'Rezervasyon talebi onaylandÄ±';
@@ -1928,7 +1928,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get updateMessage =>
-      'TripShip\'in yeni bir sÃ¼rÃ¼mÃ¼ mevcut. UygulamayÄ± kullanmaya devam etmek iÃ§in lÃ¼tfen gÃ¼ncelleyin.';
+      'TripsFactory\'in yeni bir sÃ¼rÃ¼mÃ¼ mevcut. UygulamayÄ± kullanmaya devam etmek iÃ§in lÃ¼tfen gÃ¼ncelleyin.';
 
   @override
   String get showMore => 'Daha fazla gÃ¶ster';
@@ -1945,15 +1945,15 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get suspensionErrorNotice =>
-      'Bunun bir hata olduÄŸunu dÃ¼ÅŸÃ¼nÃ¼yorsanÄ±z, hesap durumunuzu Ã§Ã¶zmek iÃ§in lÃ¼tfen TripShip Destek ile iletiÅŸime geÃ§in.';
+      'Bunun bir hata olduÄŸunu dÃ¼ÅŸÃ¼nÃ¼yorsanÄ±z, hesap durumunuzu Ã§Ã¶zmek iÃ§in lÃ¼tfen TripsFactory Destek ile iletiÅŸime geÃ§in.';
 
   @override
   String get secureTransactionLogged =>
-      'Bu iÅŸlem TripShip tarafÄ±ndan gÃ¼vence altÄ±na alÄ±nmÄ±ÅŸ ve kaydedilmiÅŸtir.';
+      'Bu iÅŸlem TripsFactory tarafÄ±ndan gÃ¼vence altÄ±na alÄ±nmÄ±ÅŸ ve kaydedilmiÅŸtir.';
 
   @override
   String get bookingSecuredLogged =>
-      'Rezervasyon TripShip platformu Ã¼zerinden gÃ¼vence altÄ±na alÄ±ndÄ± ve kaydedildi.';
+      'Rezervasyon TripsFactory platformu Ã¼zerinden gÃ¼vence altÄ±na alÄ±ndÄ± ve kaydedildi.';
 
   @override
   String get paymentDetailsSecure =>
@@ -1961,7 +1961,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get conversationSecuredModerated =>
-      'KonuÅŸma TripShip tarafÄ±ndan gÃ¼vence altÄ±na alÄ±nmÄ±ÅŸ ve denetlenmektedir.';
+      'KonuÅŸma TripsFactory tarafÄ±ndan gÃ¼vence altÄ±na alÄ±nmÄ±ÅŸ ve denetlenmektedir.';
 
   @override
   String get sendImage => 'Resim gÃ¶nder';

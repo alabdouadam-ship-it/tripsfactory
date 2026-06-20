@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:tripship/core/utils/logger.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
 
 final ratingServiceProvider = Provider<RatingService>((ref) {
   return RatingService(Supabase.instance.client);
@@ -15,7 +15,7 @@ class RatingService {
   String getRaterId() {
     final id = _client.auth.currentUser?.id;
     if (id == null) {
-      throw TripShipException('User not authenticated');
+      throw TripsFactoryException('User not authenticated');
     }
     return id;
   }
@@ -31,10 +31,10 @@ class RatingService {
   }) async {
     // Input validation first — before any DB reads
     if (rating < 1 || rating > 5) {
-      throw TripShipException('Rating must be between 1 and 5');
+      throw TripsFactoryException('Rating must be between 1 and 5');
     }
     if (raterId == ratedId) {
-      throw TripShipException('Cannot rate yourself');
+      throw TripsFactoryException('Cannot rate yourself');
     }
 
     // Guard: prevent duplicate ratings

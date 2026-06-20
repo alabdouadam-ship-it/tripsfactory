@@ -53,4 +53,4 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "✅ Deployment successful!"
-echo "🎉 Admin panel is now live at https://tripship-admin.web.app"
+echo "🎉 Admin panel is now live at https://tripsfactory-admin.web.app"

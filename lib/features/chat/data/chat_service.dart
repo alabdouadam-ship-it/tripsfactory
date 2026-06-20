@@ -1,12 +1,12 @@
 import 'dart:io';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:tripship/features/chat/data/chat_model.dart';
-import 'package:tripship/features/chat/data/chat_message_paging.dart';
-import 'package:tripship/core/config/storage_buckets.dart';
+import 'package:tripsfactory/features/chat/data/chat_model.dart';
+import 'package:tripsfactory/features/chat/data/chat_message_paging.dart';
+import 'package:tripsfactory/core/config/storage_buckets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
-import 'package:tripship/core/utils/logger.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
 
 /// Abstraction for tests to inject a fake without Supabase.
 abstract class IChatService {
@@ -81,7 +81,7 @@ class ChatService implements IChatService {
         })
         .handleError((error) {
           StructuredLogger.error(_logTag, 'Message stream error', error);
-          throw TripShipException.withKey(
+          throw TripsFactoryException.withKey(
             'chat_stream_error',
             error.toString(),
             error,
@@ -98,7 +98,7 @@ class ChatService implements IChatService {
     try {
       final currentUserId = _supabase.auth.currentUser?.id;
       if (currentUserId == null) {
-        throw TripShipException.withKey('auth_required', 'User must be logged in');
+        throw TripsFactoryException.withKey('auth_required', 'User must be logged in');
       }
       final response = await _supabase
           .from('messages')
@@ -112,7 +112,7 @@ class ChatService implements IChatService {
           .toList();
     } catch (e) {
       StructuredLogger.error(_logTag, 'fetchOlderMessages error', e);
-      throw TripShipException.withKey('fetch_messages_failed', e.toString(), e);
+      throw TripsFactoryException.withKey('fetch_messages_failed', e.toString(), e);
     }
   }
 
@@ -131,7 +131,7 @@ class ChatService implements IChatService {
 
       final currentUserId = _supabase.auth.currentUser?.id;
       if (currentUserId == null) {
-        throw TripShipException.withKey('auth_required', 'User must be logged in');
+        throw TripsFactoryException.withKey('auth_required', 'User must be logged in');
       }
 
       return (response as List)
@@ -139,7 +139,7 @@ class ChatService implements IChatService {
           .toList();
     } catch (e) {
       StructuredLogger.error(_logTag, 'fetchMessages error', e);
-      throw TripShipException.withKey('fetch_messages_failed', e.toString(), e);
+      throw TripsFactoryException.withKey('fetch_messages_failed', e.toString(), e);
     }
   }
 
@@ -153,7 +153,7 @@ class ChatService implements IChatService {
     try {
       final userId = _supabase.auth.currentUser?.id;
       if (userId == null) {
-        throw TripShipException.withKey('auth_required', 'User must be logged in');
+        throw TripsFactoryException.withKey('auth_required', 'User must be logged in');
       }
 
       StructuredLogger.info(
@@ -169,7 +169,7 @@ class ChatService implements IChatService {
       });
     } catch (e) {
       StructuredLogger.error(_logTag, 'sendMessage error', e);
-      throw TripShipException.withKey('send_message_failed', e.toString(), e);
+      throw TripsFactoryException.withKey('send_message_failed', e.toString(), e);
     }
   }
 
@@ -187,7 +187,7 @@ class ChatService implements IChatService {
     try {
       final userId = _supabase.auth.currentUser?.id;
       if (userId == null) {
-        throw TripShipException.withKey('auth_required', 'User must be logged in');
+        throw TripsFactoryException.withKey('auth_required', 'User must be logged in');
       }
 
       final fileExt = file.path.split('.').last;
@@ -209,7 +209,7 @@ class ChatService implements IChatService {
       return publicUrl;
     } catch (e) {
       StructuredLogger.error(_logTag, 'File upload error ($context)', e);
-      throw TripShipException.withKey('upload_failed', e.toString(), e);
+      throw TripsFactoryException.withKey('upload_failed', e.toString(), e);
     }
   }
 

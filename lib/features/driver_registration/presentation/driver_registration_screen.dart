@@ -1,19 +1,19 @@
-import 'package:tripship/core/config/app_routes.dart';
+import 'package:tripsfactory/core/config/app_routes.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:tripship/features/auth/data/auth_service.dart';
-import 'package:tripship/features/profile/data/profile_service.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/core/config/registration_requirements.dart';
-import 'package:tripship/core/utils/error_utils.dart';
-import 'package:tripship/core/utils/logger.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
-import 'package:tripship/features/profile/presentation/widgets/registration_widgets.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/features/profile/data/profile_service.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/core/config/registration_requirements.dart';
+import 'package:tripsfactory/core/utils/error_utils.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
+import 'package:tripsfactory/features/profile/presentation/widgets/registration_widgets.dart';
 
 class TravelerRegistrationScreen extends ConsumerStatefulWidget {
   final bool isUpgrade;
@@ -138,7 +138,7 @@ class _TravelerRegistrationScreenState
           );
         }
       } else {
-        throw TripShipException.withKey('upload_failed', 'Upload failed');
+        throw TripsFactoryException.withKey('upload_failed', 'Upload failed');
       }
     } catch (e) {
       StructuredLogger.error(_logTag, 'File upload failed: $type', e);

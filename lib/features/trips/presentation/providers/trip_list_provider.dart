@@ -1,11 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:tripship/features/auth/data/auth_service.dart';
-import 'package:tripship/features/home/presentation/providers/home_filter_provider.dart';
-import 'package:tripship/features/trips/data/repositories/trip_repository_impl.dart';
-import 'package:tripship/features/trips/data/trip_model.dart';
-import 'package:tripship/core/services/cache_service.dart';
-import 'package:tripship/core/enums/app_enums.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/features/home/presentation/providers/home_filter_provider.dart';
+import 'package:tripsfactory/features/trips/data/repositories/trip_repository_impl.dart';
+import 'package:tripsfactory/features/trips/data/trip_model.dart';
+import 'package:tripsfactory/core/services/cache_service.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
 
 part 'trip_list_provider.freezed.dart';
 

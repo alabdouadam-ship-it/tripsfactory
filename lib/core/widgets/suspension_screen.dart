@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tripship/features/auth/data/auth_service.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 
 class SuspensionScreen extends ConsumerWidget {
   const SuspensionScreen({super.key});

@@ -1,4 +1,4 @@
-import 'package:tripship/features/chat/data/chat_model.dart';
+import 'package:tripsfactory/features/chat/data/chat_model.dart';
 
 /// Number of messages fetched per page and kept in the live realtime window.
 ///

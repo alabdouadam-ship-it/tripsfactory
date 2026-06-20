@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:tripship/features/profile/data/profile_model.dart';
-import 'package:tripship/features/profile/data/profile_service.dart';
-import 'package:tripship/core/config/app_constants.dart';
+import 'package:tripsfactory/features/profile/data/profile_model.dart';
+import 'package:tripsfactory/features/profile/data/profile_service.dart';
+import 'package:tripsfactory/core/config/app_constants.dart';
 
 final authServiceProvider = Provider<AuthService>((ref) {
   return AuthService(Supabase.instance.client.auth);

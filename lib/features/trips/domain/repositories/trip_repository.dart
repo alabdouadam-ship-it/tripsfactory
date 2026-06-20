@@ -1,7 +1,7 @@
-import 'package:tripship/core/utils/result.dart';
-import 'package:tripship/core/models/location_model.dart';
-import 'package:tripship/features/trips/data/trip_model.dart';
-import 'package:tripship/core/enums/app_enums.dart';
+import 'package:tripsfactory/core/utils/result.dart';
+import 'package:tripsfactory/core/models/location_model.dart';
+import 'package:tripsfactory/features/trips/data/trip_model.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
 
 abstract class ITripRepository {
   Future<Result<List<Trip>>> searchTrips({

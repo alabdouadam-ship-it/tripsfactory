@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tripship/core/services/preferences_service.dart';
-import 'package:tripship/core/theme/tripship_design_tokens.dart';
-import 'package:tripship/core/config/brand_config.dart';
+import 'package:tripsfactory/core/services/preferences_service.dart';
+import 'package:tripsfactory/core/theme/tripsfactory_design_tokens.dart';
+import 'package:tripsfactory/core/config/brand_config.dart';
 
 // --- App font: configurable via BrandConfig for white-labeling ---
 const String kAppFontFamily = BrandConfig.fontFamily;
 
 enum AppThemeMode {
-  tripshipDark, // Deep, modern dark
-  tripshipLight, // Clean, crisp light
+  tripsfactoryDark, // Deep, modern dark
+  tripsfactoryLight, // Clean, crisp light
   desertGold, // Warm/Premium (the original "desert" look)
   oasisGreen, // Desert look, light green palette
   skylineBlue, // Desert look, light blue palette
@@ -142,7 +142,7 @@ class AppTheme {
       elevation: 0,
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       shape: RoundedRectangleBorder(
-        borderRadius: TripShipDesignTokens.borderRadiusMedium,
+        borderRadius: TripsFactoryDesignTokens.borderRadiusMedium,
         side: BorderSide(
           color:
               borderColor ??
@@ -170,7 +170,7 @@ class AppTheme {
               letterSpacing: 0.5,
             ),
             shape: RoundedRectangleBorder(
-              borderRadius: TripShipDesignTokens.borderRadiusSmall,
+              borderRadius: TripsFactoryDesignTokens.borderRadiusSmall,
             ),
           ).copyWith(
             elevation: WidgetStateProperty.resolveWith((states) {
@@ -193,23 +193,23 @@ class AppTheme {
       fillColor: colors.surface,
       contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
       border: OutlineInputBorder(
-        borderRadius: TripShipDesignTokens.borderRadiusMedium,
+        borderRadius: TripsFactoryDesignTokens.borderRadiusMedium,
         borderSide: BorderSide(color: borderColor, width: 1.5),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: TripShipDesignTokens.borderRadiusMedium,
+        borderRadius: TripsFactoryDesignTokens.borderRadiusMedium,
         borderSide: BorderSide(color: borderColor, width: 1.5),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: TripShipDesignTokens.borderRadiusMedium,
+        borderRadius: TripsFactoryDesignTokens.borderRadiusMedium,
         borderSide: BorderSide(color: colors.primary, width: 2),
       ),
       errorBorder: OutlineInputBorder(
-        borderRadius: TripShipDesignTokens.borderRadiusMedium,
+        borderRadius: TripsFactoryDesignTokens.borderRadiusMedium,
         borderSide: BorderSide(color: colors.error, width: 1.5),
       ),
       focusedErrorBorder: OutlineInputBorder(
-        borderRadius: TripShipDesignTokens.borderRadiusMedium,
+        borderRadius: TripsFactoryDesignTokens.borderRadiusMedium,
         borderSide: BorderSide(color: colors.error, width: 2),
       ),
       labelStyle: TextStyle(
@@ -281,7 +281,7 @@ class AppTheme {
         backgroundColor: colors.surface,
         elevation: 4,
         shape: RoundedRectangleBorder(
-          borderRadius: TripShipDesignTokens.borderRadiusLarge,
+          borderRadius: TripsFactoryDesignTokens.borderRadiusLarge,
         ),
       ),
       floatingActionButtonTheme: _buildFabTheme(colors),
@@ -302,8 +302,8 @@ class AppTheme {
   // them. Trim this list to ship fewer (must be a subset of AppThemeMode). The
   // first-launch default is `ThemeNotifier.defaultThemeMode`.
   static const List<AppThemeMode> supportedThemes = <AppThemeMode>[
-    AppThemeMode.tripshipLight,
-    AppThemeMode.tripshipDark,
+    AppThemeMode.tripsfactoryLight,
+    AppThemeMode.tripsfactoryDark,
     AppThemeMode.desertGold,
     AppThemeMode.oasisGreen,
     AppThemeMode.skylineBlue,
@@ -317,8 +317,8 @@ class AppTheme {
   /// truth used to build the ThemeData (so every variant stays consistent).
   static ({ColorScheme colors, Color scaffold}) _schemeFor(AppThemeMode mode) {
     switch (mode) {
-      // 1. TripShip Dark (Enhanced / Modern SaaS Dark Mode)
-      case AppThemeMode.tripshipDark:
+      // 1. TripsFactory Dark (Enhanced / Modern SaaS Dark Mode)
+      case AppThemeMode.tripsfactoryDark:
         return (
           colors: const ColorScheme.dark(
             primary: Color(0xFF3B82F6),
@@ -330,8 +330,8 @@ class AppTheme {
           scaffold: const Color(0xFF09090B),
         );
 
-      // 2. TripShip Light (Corporate / Crisp SaaS Light Mode)
-      case AppThemeMode.tripshipLight:
+      // 2. TripsFactory Light (Corporate / Crisp SaaS Light Mode)
+      case AppThemeMode.tripsfactoryLight:
         return (
           colors: ColorScheme.fromSeed(
             seedColor: const Color(0xFF2563EB),

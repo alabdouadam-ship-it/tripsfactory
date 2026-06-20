@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/core/utils/result.dart';
-import 'package:tripship/features/bookings/data/booking_model.dart';
-import 'package:tripship/features/bookings/domain/repositories/booking_repository.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/core/utils/result.dart';
+import 'package:tripsfactory/features/bookings/data/booking_model.dart';
+import 'package:tripsfactory/features/bookings/domain/repositories/booking_repository.dart';
 
 /// In-memory [IBookingRepository] for demo mode: no bookings, all writes are
 /// no-ops. Keeps the "My Requests" tab and booking flows free of backend calls.

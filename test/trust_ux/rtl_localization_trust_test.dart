@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/core/widgets/trust_badge.dart';
-import 'package:tripship/core/widgets/platform_secure_banner.dart';
-import 'package:tripship/features/bookings/presentation/widgets/booking_progress_stepper.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/widgets/trust_badge.dart';
+import 'package:tripsfactory/core/widgets/platform_secure_banner.dart';
+import 'package:tripsfactory/features/bookings/presentation/widgets/booking_progress_stepper.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 import '../test_helpers/booking_fixture.dart';
 import '../test_helpers/pump_app.dart';
 

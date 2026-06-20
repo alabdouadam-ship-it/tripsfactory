@@ -1,9 +1,9 @@
-import 'package:tripship/core/config/app_routes.dart';
-import 'package:tripship/core/config/domain_config.dart';
+import 'package:tripsfactory/core/config/app_routes.dart';
+import 'package:tripsfactory/core/config/domain_config.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tripship/core/widgets/tripship_dialog.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/widgets/tripsfactory_dialog.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 
 /// Centralized dialog helpers for the HomeScreen.
 /// Extracted to reduce HomeScreen line count.
@@ -132,7 +132,7 @@ class HomeDialogs {
     }
     
     // Show registration dialog for 'none' status
-    TripShipDialog.show(
+    TripsFactoryDialog.show(
       context,
       title: l10n.driverOnlyFeatureTitle,
       content: l10n.driverOnlyFeatureBody,

@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 
 class AdService {
   final SupabaseClient _client;

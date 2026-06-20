@@ -1,5 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:tripship/core/services/notification_service.dart';
+import 'package:tripsfactory/core/services/notification_service.dart';
 
 /// Demo [NotificationService] that performs no Firebase/network work and
 /// returns no notifications. Used in demo mode so the app has no push/FCM

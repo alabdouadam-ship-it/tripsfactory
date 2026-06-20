@@ -1,10 +1,10 @@
-import 'package:tripship/core/config/app_routes.dart';
+import 'package:tripsfactory/core/config/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tripship/core/services/app_config_service.dart';
-import 'package:tripship/core/utils/l10n_context.dart';
+import 'package:tripsfactory/core/services/app_config_service.dart';
+import 'package:tripsfactory/core/utils/l10n_context.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SupportFab extends ConsumerWidget {

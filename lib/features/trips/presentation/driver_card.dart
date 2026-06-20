@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 
 class TravelerCard extends StatelessWidget {
   final Map<String, dynamic> traveler;

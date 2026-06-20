@@ -1,5 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:tripship/core/models/location_model.dart';
+import 'package:tripsfactory/core/models/location_model.dart';
 
 class NotificationLocationHelper {
   /// Adds origin_name and destination_name to notification data from a trip.

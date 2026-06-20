@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/core/services/preferences_service.dart';
+import 'package:tripsfactory/core/services/preferences_service.dart';
 
 /// Text scale factors for accessibility.
 enum TextScaleOption {

@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
 
 /// Notifier that manages app mode (Client/Traveler) and resets on logout
 class AppModeNotifier extends StateNotifier<bool> {

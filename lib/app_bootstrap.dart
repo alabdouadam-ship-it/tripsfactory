@@ -3,9 +3,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:tripship/core/config/demo_config.dart';
-import 'package:tripship/core/demo/demo_mode.dart';
-import 'package:tripship/core/services/notification_service.dart';
+import 'package:tripsfactory/core/config/demo_config.dart';
+import 'package:tripsfactory/core/demo/demo_mode.dart';
+import 'package:tripsfactory/core/services/notification_service.dart';
 
 /// Initializes all app dependencies (env, Supabase, Firebase, notifications, preferences).
 Future<SharedPreferences> bootstrap() async {

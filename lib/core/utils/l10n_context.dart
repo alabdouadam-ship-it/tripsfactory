@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/core/providers/app_localizations_provider.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/providers/app_localizations_provider.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 
 /// Returns [AppLocalizations] for [context], or fallback from [ref] when
 /// context is not yet under the localizations overlay (avoids crash from [AppLocalizations.of(context)!]).

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tripship/core/theme/tripship_motion_tokens.dart';
+import 'package:tripsfactory/core/theme/tripsfactory_motion_tokens.dart';
 
 /// A card wrapper that provides a subtle press-in scale + opacity animation on tap.
 ///
@@ -28,16 +28,16 @@ class _AnimatedCardState extends State<AnimatedCard>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: TripShipMotionTokens.fast, // 120ms press-in
+      duration: TripsFactoryMotionTokens.fast, // 120ms press-in
     );
     _scaleAnimation =
         Tween<double>(
           begin: 1.0,
-          end: TripShipMotionTokens.tapScaleDown, // 0.97
+          end: TripsFactoryMotionTokens.tapScaleDown, // 0.97
         ).animate(
           CurvedAnimation(
             parent: _controller,
-            curve: TripShipMotionTokens.curveOut,
+            curve: TripsFactoryMotionTokens.curveOut,
           ),
         );
   }
@@ -58,7 +58,7 @@ class _AnimatedCardState extends State<AnimatedCard>
     if (widget.onTap != null) {
       _controller.animateBack(
         0,
-        duration: TripShipMotionTokens.mid,
+        duration: TripsFactoryMotionTokens.mid,
       ); // 180ms release
       widget.onTap!();
     }
@@ -66,7 +66,7 @@ class _AnimatedCardState extends State<AnimatedCard>
 
   void _onTapCancel() {
     if (widget.onTap != null) {
-      _controller.animateBack(0, duration: TripShipMotionTokens.mid);
+      _controller.animateBack(0, duration: TripsFactoryMotionTokens.mid);
     }
   }
 

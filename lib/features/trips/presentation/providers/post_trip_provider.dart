@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:tripship/features/auth/data/auth_service.dart';
-import 'package:tripship/core/models/location_model.dart';
-import 'package:tripship/core/config/geography_config.dart';
-import 'package:tripship/features/trips/data/location_service.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
-import 'package:tripship/core/utils/logger.dart';
-import 'package:tripship/features/trips/data/trip_model.dart';
-import 'package:tripship/features/trips/data/repositories/trip_repository_impl.dart';
-import 'package:tripship/core/enums/app_enums.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/core/models/location_model.dart';
+import 'package:tripsfactory/core/config/geography_config.dart';
+import 'package:tripsfactory/features/trips/data/location_service.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
+import 'package:tripsfactory/features/trips/data/trip_model.dart';
+import 'package:tripsfactory/features/trips/data/repositories/trip_repository_impl.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
 
 part 'post_trip_provider.freezed.dart';
 
@@ -353,7 +353,7 @@ class PostTripNotifier extends AutoDisposeNotifier<PostTripState> {
 
       final user = ref.read(authServiceProvider).currentUser;
       if (user == null) {
-        throw TripShipException.withKey('user_not_logged_in', 'User not logged in');
+        throw TripsFactoryException.withKey('user_not_logged_in', 'User not logged in');
       }
 
       final locationService = ref.read(locationServiceProvider);
@@ -376,7 +376,7 @@ class PostTripNotifier extends AutoDisposeNotifier<PostTripState> {
           );
 
       if (originId == null || destId == null) {
-        throw TripShipException.withKey(
+        throw TripsFactoryException.withKey(
           'location_not_resolved',
           'Could not resolve location IDs',
         );

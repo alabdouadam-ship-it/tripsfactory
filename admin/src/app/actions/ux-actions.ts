@@ -40,7 +40,6 @@ const USER_ORDER_FIELDS = new Set([
     'full_name',
     'created_at',
     'updated_at',
-    'account_type',
     'traveler_status',
     'is_admin',
     'is_suspended',

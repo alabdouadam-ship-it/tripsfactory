@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
-import 'package:tripship/core/models/location_model.dart';
-import 'package:tripship/core/theme/tripship_design_tokens.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/models/location_model.dart';
+import 'package:tripsfactory/core/theme/tripsfactory_design_tokens.dart';
 
 class AdvancedFiltersDialog extends StatefulWidget {
   final bool isInternal;
@@ -81,7 +81,7 @@ class AdvancedFiltersDialog extends StatefulWidget {
       isScrollControlled: true,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
-          top: Radius.circular(TripShipDesignTokens.borderRadiusLarge.topLeft.x),
+          top: Radius.circular(TripsFactoryDesignTokens.borderRadiusLarge.topLeft.x),
         ),
       ),
       builder: (context) {
@@ -186,7 +186,7 @@ class _AdvancedFiltersDialogState extends State<AdvancedFiltersDialog> {
             padding: const EdgeInsets.symmetric(horizontal: 12),
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey.shade300),
-              borderRadius: TripShipDesignTokens.borderRadiusSmall,
+              borderRadius: TripsFactoryDesignTokens.borderRadiusSmall,
             ),
             child: DropdownButtonHideUnderline(
               child: DropdownButton<String>(

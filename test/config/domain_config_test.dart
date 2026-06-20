@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/core/config/domain_config.dart';
-import 'package:tripship/core/config/app_constants.dart';
+import 'package:tripsfactory/core/config/domain_config.dart';
+import 'package:tripsfactory/core/config/app_constants.dart';
 
 void main() {
   group('DomainConfig canonical values (DB contract)', () {

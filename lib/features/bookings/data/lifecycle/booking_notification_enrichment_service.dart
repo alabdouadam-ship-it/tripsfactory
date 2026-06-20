@@ -1,5 +1,5 @@
-import 'package:tripship/core/utils/notification_location_helper.dart';
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/core/utils/notification_location_helper.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 Map<String, dynamic> applyNotificationEnrichmentShape(

@@ -1,5 +1,5 @@
-import 'package:tripship/features/bookings/data/booking_model.dart';
-import 'package:tripship/core/enums/app_enums.dart';
+import 'package:tripsfactory/features/bookings/data/booking_model.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
 
 /// Factory for test bookings in each pipeline state (requester vs traveler view is same model).
 class BookingFixture {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-/// A central repository for TripShip's SaaS-level visual hierarchy tokens.
+/// A central repository for TripsFactory's SaaS-level visual hierarchy tokens.
 /// Adheres strictly to a 3-level elevation system to maintain
 /// "regulated logistics infrastructure" aesthetics.
-class TripShipDesignTokens {
+class TripsFactoryDesignTokens {
   // --- Standardized Border Radii ---
   /// Robust, snappy interactions (Buttons, Inputs, Small Chips)
   static final BorderRadius borderRadiusSmall = BorderRadius.circular(8);

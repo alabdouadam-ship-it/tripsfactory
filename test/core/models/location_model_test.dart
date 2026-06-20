@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/core/models/location_model.dart';
+import 'package:tripsfactory/core/models/location_model.dart';
 
 void main() {
   group('Location.fromJson', () {

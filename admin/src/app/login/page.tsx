@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useT } from '@/lib/i18n';
 import { Eye, EyeOff } from 'lucide-react';
 
-const LAST_ADMIN_EMAIL_KEY = 'tripship.admin.lastEmail';
+const LAST_ADMIN_EMAIL_KEY = 'tripsfactory.admin.lastEmail';
 
 export default function LoginPage() {
     const [email, setEmail] = useState('');
@@ -85,7 +85,7 @@ export default function LoginPage() {
             <div className="w-full max-w-md space-y-8 rounded-3xl theme-card p-10 shadow-2xl border border-[var(--surface-border)]">
                 <div className="text-center">
                     <h2 className="text-4xl font-black theme-heading tracking-tight italic uppercase">
-                        {t('login.title', 'TripShip Admin')}
+                        {t('login.title', 'TripsFactory Admin')}
                     </h2>
                     <p className="mt-2 text-[0.625rem] font-black theme-muted uppercase tracking-widest opacity-60">
                         {t('login.subtitle', 'Sign in to access dashboard')}

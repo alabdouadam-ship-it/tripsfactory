@@ -21,7 +21,7 @@ CLIENT_SECRET="${2:?usage: setup_google_auth.sh <client-id> <client-secret>}"
 : "${SUPABASE_ACCESS_TOKEN:?set SUPABASE_ACCESS_TOKEN (personal access token)}"
 : "${SUPABASE_PROJECT_REF:?set SUPABASE_PROJECT_REF}"
 
-REDIRECTS=("io.supabase.tripship://login-callback" "io.supabase.tripship://reset-callback")
+REDIRECTS=("io.supabase.tripsfactory://login-callback" "io.supabase.tripsfactory://reset-callback")
 BASE="https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/config/auth"
 AUTH=(-H "Authorization: Bearer ${SUPABASE_ACCESS_TOKEN}")
 

@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:tripship/core/utils/format_utils.dart';
-import 'package:tripship/features/chat/data/chat_attachment_url.dart';
+import 'package:tripsfactory/core/utils/format_utils.dart';
+import 'package:tripsfactory/features/chat/data/chat_attachment_url.dart';
 
 class AudioMessageBubble extends StatefulWidget {
   final String url;

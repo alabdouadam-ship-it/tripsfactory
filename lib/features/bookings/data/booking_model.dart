@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:tripship/features/trips/data/trip_model.dart';
-import 'package:tripship/features/profile/data/profile_model.dart';
-import 'package:tripship/core/enums/app_enums.dart';
+import 'package:tripsfactory/features/trips/data/trip_model.dart';
+import 'package:tripsfactory/features/profile/data/profile_model.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
 
 part 'booking_model.freezed.dart';
 part 'booking_model.g.dart';

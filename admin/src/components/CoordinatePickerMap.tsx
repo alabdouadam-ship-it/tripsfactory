@@ -86,7 +86,7 @@ export default function CoordinatePickerMap({ initialLat, initialLng, onCoordina
         `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&accept-language=en`,
         {
           headers: {
-            'User-Agent': 'TripShipAdmin/1.0' // Required by Nominatim
+            'User-Agent': 'TripsFactoryAdmin/1.0' // Required by Nominatim
           }
         }
       );
@@ -131,7 +131,7 @@ export default function CoordinatePickerMap({ initialLat, initialLng, onCoordina
         `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(searchQuery)}&limit=5&addressdetails=1`,
         {
           headers: {
-            'User-Agent': 'TripShipAdmin/1.0'
+            'User-Agent': 'TripsFactoryAdmin/1.0'
           }
         }
       );

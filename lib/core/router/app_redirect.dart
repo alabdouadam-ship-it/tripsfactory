@@ -1,5 +1,5 @@
-import 'package:tripship/features/profile/data/profile_model.dart';
-import 'package:tripship/core/config/app_routes.dart';
+import 'package:tripsfactory/features/profile/data/profile_model.dart';
+import 'package:tripsfactory/core/config/app_routes.dart';
 
 /// Pure redirect logic for testing. Used by [app_router] to decide redirect path.
 /// Parameters mirror what the router reads from providers.

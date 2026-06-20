@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/core/widgets/platform_secure_banner.dart';
+import 'package:tripsfactory/core/widgets/platform_secure_banner.dart';
 import '../test_helpers/pump_app.dart';
 
 void main() {
@@ -23,7 +23,7 @@ void main() {
         Builder(builder: (context) => PlatformSecureBanner.chat(context)),
       );
       expect(
-        find.text('Conversation secured and moderated by TripShip.'),
+        find.text('Conversation secured and moderated by TripsFactory.'),
         findsOneWidget,
       );
     });

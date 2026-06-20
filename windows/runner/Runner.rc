@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.tripship.app" "\0"
-            VALUE "FileDescription", "tripship" "\0"
+            VALUE "CompanyName", "com.tripsfactory.app" "\0"
+            VALUE "FileDescription", "tripsfactory" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "tripship" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2026 com.tripship.app. All rights reserved." "\0"
-            VALUE "OriginalFilename", "tripship.exe" "\0"
-            VALUE "ProductName", "tripship" "\0"
+            VALUE "InternalName", "tripsfactory" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 com.tripsfactory.app. All rights reserved." "\0"
+            VALUE "OriginalFilename", "tripsfactory.exe" "\0"
+            VALUE "ProductName", "tripsfactory" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

@@ -1,5 +1,5 @@
 // Basic Flutter widget smoke test.
-// Full TripShipApp test requires ProviderScope, Supabase, Firebase init - run as integration test.
+// Full TripsFactoryApp test requires ProviderScope, Supabase, Firebase init - run as integration test.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -9,10 +9,10 @@ void main() {
     await tester.pumpWidget(
       const MaterialApp(
         home: Scaffold(
-          body: Text('TripShip'),
+          body: Text('TripsFactory'),
         ),
       ),
     );
-    expect(find.text('TripShip'), findsOneWidget);
+    expect(find.text('TripsFactory'), findsOneWidget);
   });
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/features/safety/data/safety_service.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/features/safety/data/safety_service.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class BlockedUsersScreen extends ConsumerStatefulWidget {

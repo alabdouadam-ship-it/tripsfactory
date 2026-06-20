@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tripship/core/theme/tripship_motion_tokens.dart';
+import 'package:tripsfactory/core/theme/tripsfactory_motion_tokens.dart';
 
 /// Animated banner that slides down from the top on show,
 /// and can be dismissed with a smooth fade+slide-up out animation.
@@ -31,7 +31,7 @@ class _TopAnnouncementBannerState extends State<TopAnnouncementBanner>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: TripShipMotionTokens.full, // 220ms entry
+      duration: TripsFactoryMotionTokens.full, // 220ms entry
     );
     _slideAnimation =
         Tween<Offset>(
@@ -40,12 +40,12 @@ class _TopAnnouncementBannerState extends State<TopAnnouncementBanner>
         ).animate(
           CurvedAnimation(
             parent: _controller,
-            curve: TripShipMotionTokens.curveOut,
+            curve: TripsFactoryMotionTokens.curveOut,
           ),
         );
 
     _opacityAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: TripShipMotionTokens.curveOut),
+      CurvedAnimation(parent: _controller, curve: TripsFactoryMotionTokens.curveOut),
     );
 
     // Auto-play entry on first build
@@ -61,8 +61,8 @@ class _TopAnnouncementBannerState extends State<TopAnnouncementBanner>
   Future<void> _dismiss() async {
     await _controller.animateBack(
       0,
-      duration: TripShipMotionTokens.mid, // 180ms exit
-      curve: TripShipMotionTokens.curveInOut,
+      duration: TripsFactoryMotionTokens.mid, // 180ms exit
+      curve: TripsFactoryMotionTokens.curveInOut,
     );
     if (mounted) widget.onDismiss();
   }

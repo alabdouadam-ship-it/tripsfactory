@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/core/config/brand_config.dart';
-import 'package:tripship/core/config/font_config.dart';
-import 'package:tripship/core/config/geography_config.dart';
-import 'package:tripship/core/config/localization_config.dart';
-import 'package:tripship/core/theme/app_theme.dart';
+import 'package:tripsfactory/core/config/brand_config.dart';
+import 'package:tripsfactory/core/config/font_config.dart';
+import 'package:tripsfactory/core/config/geography_config.dart';
+import 'package:tripsfactory/core/config/localization_config.dart';
+import 'package:tripsfactory/core/theme/app_theme.dart';
 
 /// Guards that `fork.config.json` stays the single, reviewable source of truth
 /// for a fork's configuration: its `brand`, `localization`, `theme` and `font`

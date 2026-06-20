@@ -2,16 +2,16 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:tripship/app.dart';
-import 'package:tripship/app_bootstrap.dart';
-import 'package:tripship/core/config/demo_config.dart';
-import 'package:tripship/core/demo/demo_mode.dart';
-import 'package:tripship/core/services/preferences_service.dart';
-import 'package:tripship/core/services/offline_sync_service.dart';
+import 'package:tripsfactory/app.dart';
+import 'package:tripsfactory/app_bootstrap.dart';
+import 'package:tripsfactory/core/config/demo_config.dart';
+import 'package:tripsfactory/core/demo/demo_mode.dart';
+import 'package:tripsfactory/core/services/preferences_service.dart';
+import 'package:tripsfactory/core/services/offline_sync_service.dart';
 
 import 'dart:async';
 import 'dart:ui';
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -73,7 +73,7 @@ void main() async {
             offlineSyncServiceProvider.overrideWithValue(offlineSyncService),
             if (DemoConfig.enabled) ...demoProviderOverrides(),
           ],
-          child: const TripShipApp(),
+          child: const TripsFactoryApp(),
         ),
       );
 

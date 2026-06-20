@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/core/widgets/empty_state_widget.dart';
+import 'package:tripsfactory/core/widgets/empty_state_widget.dart';
 
 /// Tests for form-like widgets used in auth and other screens.
 void main() {

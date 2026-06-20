@@ -832,7 +832,7 @@ CREATE FUNCTION public.fn_guard_bookings_update() RETURNS trigger
     AS $$
 DECLARE
   v_uid uuid := auth.uid();
-  v_otp_ok boolean := COALESCE(current_setting('tripship.delivery_verified', true), '') = 'true';
+  v_otp_ok boolean := COALESCE(current_setting('tripsfactory.delivery_verified', true), '') = 'true';
 BEGIN
   IF v_uid IS NULL OR public.is_admin() THEN
     RETURN NEW;
@@ -2523,7 +2523,7 @@ BEGIN
                 THEN 'code_locked' ELSE 'invalid_code' END;
   END IF;
 
-  PERFORM set_config('tripship.delivery_verified', 'true', true);
+  PERFORM set_config('tripsfactory.delivery_verified', 'true', true);
 
   UPDATE public.bookings
   SET status = 'completed',
@@ -5596,7 +5596,9 @@ CREATE POLICY bookings_delete_pending ON public.bookings FOR DELETE TO authentic
 -- Name: bookings bookings_insert; Type: POLICY; Schema: public; Owner: -
 --
 
-CREATE POLICY bookings_insert ON public.bookings FOR INSERT WITH CHECK (((requester_id = auth.uid()) AND (trip_id IS NOT NULL)));
+CREATE POLICY bookings_insert ON public.bookings FOR INSERT WITH CHECK (((requester_id = auth.uid()) AND (trip_id IS NOT NULL) AND (NOT public.is_user_blocked()) AND (requester_id <> ( SELECT trips.traveler_id
+   FROM public.trips
+  WHERE (trips.id = bookings.trip_id)))));
 
 
 --
@@ -5620,7 +5622,7 @@ CREATE POLICY bookings_select_admin ON public.bookings FOR SELECT TO authenticat
 -- Name: bookings bookings_update; Type: POLICY; Schema: public; Owner: -
 --
 
-CREATE POLICY bookings_update ON public.bookings FOR UPDATE USING (((requester_id = auth.uid()) OR (traveler_id = auth.uid()) OR public.has_role('support_agent'::public.admin_role))) WITH CHECK (((requester_id = auth.uid()) OR (traveler_id = auth.uid()) OR public.has_role('support_agent'::public.admin_role)));
+CREATE POLICY bookings_update ON public.bookings FOR UPDATE USING (((requester_id = auth.uid()) OR (traveler_id = auth.uid()) OR public.is_admin())) WITH CHECK (((requester_id = auth.uid()) OR (traveler_id = auth.uid()) OR public.is_admin()));
 
 
 --
@@ -5670,7 +5672,7 @@ ALTER TABLE public.messages ENABLE ROW LEVEL SECURITY;
 -- Name: messages messages_insert_not_blocked; Type: POLICY; Schema: public; Owner: -
 --
 
-CREATE POLICY messages_insert_not_blocked ON public.messages FOR INSERT WITH CHECK (((sender_id = auth.uid()) AND (NOT public.is_user_blocked())));
+CREATE POLICY messages_insert_not_blocked ON public.messages AS RESTRICTIVE FOR INSERT WITH CHECK (((sender_id = auth.uid()) AND (NOT public.is_user_blocked())));
 
 
 --
@@ -5880,7 +5882,7 @@ CREATE POLICY trips_delete_traveler ON public.trips FOR DELETE USING ((auth.uid(
 -- Name: trips trips_insert_allowed_for_approved_travelers; Type: POLICY; Schema: public; Owner: -
 --
 
-CREATE POLICY trips_insert_allowed_for_approved_travelers ON public.trips FOR INSERT TO authenticated WITH CHECK (((traveler_id = auth.uid()) AND (( SELECT profiles.traveler_status
+CREATE POLICY trips_insert_allowed_for_approved_travelers ON public.trips FOR INSERT TO authenticated WITH CHECK (((traveler_id = auth.uid()) AND (NOT public.is_user_blocked()) AND (( SELECT profiles.traveler_status
    FROM public.profiles
   WHERE (profiles.id = auth.uid())) = 'approved'::text)));
 

@@ -17,21 +17,21 @@ class BrandConfig {
   /// Internal/fallback brand name. User-facing title comes from
   /// `AppLocalizations.appTitle` (localized); use this only where no
   /// `BuildContext` is available.
-  static const String brandName = 'TripShip';
+  static const String brandName = 'TripsFactory';
 
   /// Android application id. NOTE: the authoritative value lives in the native
   /// build config (`android/app/build.gradle.kts`); this mirror is used for
   /// store links and reference only. Keep them in sync when forking.
-  static const String androidPackageId = 'com.tripship.app';
+  static const String androidPackageId = 'com.tripsfactory.app';
 
   // ── Deep links ──────────────────────────────────────────────────────────--
   /// Scheme used for Supabase auth callbacks (password reset / OAuth login).
   /// Must match the redirect URLs configured in the Supabase dashboard and the
   /// native intent filters / URL types.
-  static const String authScheme = 'io.supabase.tripship';
+  static const String authScheme = 'io.supabase.tripsfactory';
 
   /// Scheme used for in-app content deep links (`<scheme>://trip/{id}`, etc.).
-  static const String contentScheme = 'tripship';
+  static const String contentScheme = 'tripsfactory';
 
   static const String authCallbackReset = '$authScheme://reset-callback';
   static const String authCallbackLogin = '$authScheme://login-callback';
@@ -39,29 +39,29 @@ class BrandConfig {
   // ── Web / legal links ───────────────────────────────────────────────────--
   /// Base URL for shareable content links and legal pages (privacy/terms).
   /// Replace with the fork's own Firebase Hosting / domain.
-  static const String webBaseUrl = 'https://tripship-legal.web.app';
+  static const String webBaseUrl = 'https://tripsfactory-legal.web.app';
 
   // ── Store links ─────────────────────────────────────────────────────────--
   static const String playStoreUrl =
       'https://play.google.com/store/apps/details?id=$androidPackageId';
   static const String appStoreUrl =
-      'https://apps.apple.com/app/tripship/id000000000';
+      'https://apps.apple.com/app/tripsfactory/id000000000';
 
   // ── Notifications ───────────────────────────────────────────────────────--
   /// Android notification channel id. Channels are immutable once created on a
   /// device, so changing the sound requires a NEW id.
-  static const String notificationChannelId = 'tripship_notification_v1';
-  static const String notificationChannelName = 'TripShip Notifications';
+  static const String notificationChannelId = 'tripsfactory_notification_v1';
+  static const String notificationChannelName = 'TripsFactory Notifications';
 
   /// Android raw resource name (no extension) — `android/app/src/main/res/raw/`.
-  /// NOTE: the bundled sound asset files are still named `tripship_notification.*`
+  /// NOTE: the bundled sound asset files are still named `tripsfactory_notification.*`
   /// (the internal asset codename). To fully rename them, rename the files in
   /// `android/app/src/main/res/raw/` and `ios/Runner/`, update the iOS project
   /// reference, and change these two values to match.
-  static const String notificationSoundAndroid = 'tripship_notification';
+  static const String notificationSoundAndroid = 'tripsfactory_notification';
 
   /// iOS bundled sound file name (with extension).
-  static const String notificationSoundIos = 'tripship_notification.wav';
+  static const String notificationSoundIos = 'tripsfactory_notification.wav';
 
   // ── Support ─────────────────────────────────────────────────────────────--
   /// Fallback WhatsApp support number used when the admin-configured

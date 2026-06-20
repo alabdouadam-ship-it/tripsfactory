@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:tripship/features/profile/data/vehicle_model.dart';
-import 'package:tripship/core/config/domain_config.dart';
+import 'package:tripsfactory/features/profile/data/vehicle_model.dart';
+import 'package:tripsfactory/core/config/domain_config.dart';
 
 part 'profile_model.freezed.dart';
 part 'profile_model.g.dart';

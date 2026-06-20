@@ -1,4 +1,4 @@
-package com.tripship.app
+package com.tripsfactory.app
 
 import io.flutter.embedding.android.FlutterActivity
 

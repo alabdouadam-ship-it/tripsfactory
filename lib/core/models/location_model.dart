@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:tripship/core/config/geography_config.dart';
+import 'package:tripsfactory/core/config/geography_config.dart';
 
 part 'location_model.freezed.dart';
 part 'location_model.g.dart';

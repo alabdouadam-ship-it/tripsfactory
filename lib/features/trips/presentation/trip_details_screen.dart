@@ -1,21 +1,21 @@
-import 'package:tripship/core/config/app_routes.dart';
+import 'package:tripsfactory/core/config/app_routes.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/core/services/share_service.dart';
-import 'package:tripship/core/widgets/skeleton_loader.dart';
-import 'package:tripship/features/auth/data/auth_service.dart';
-import 'package:tripship/features/bookings/data/booking_model.dart';
-import 'package:tripship/features/trips/data/trip_model.dart';
-import 'package:tripship/features/trips/presentation/trip_card.dart';
-import 'package:tripship/features/trips/presentation/controllers/trip_details_controller.dart';
-import 'package:tripship/features/trips/presentation/controllers/trip_details_state.dart';
-import 'package:tripship/features/trips/presentation/widgets/trip_bookings_list.dart';
-import 'package:tripship/features/trips/presentation/widgets/trip_management_buttons.dart';
-import 'package:tripship/features/trips/presentation/widgets/trip_sender_section.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/core/services/share_service.dart';
+import 'package:tripsfactory/core/widgets/skeleton_loader.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/features/bookings/data/booking_model.dart';
+import 'package:tripsfactory/features/trips/data/trip_model.dart';
+import 'package:tripsfactory/features/trips/presentation/trip_card.dart';
+import 'package:tripsfactory/features/trips/presentation/controllers/trip_details_controller.dart';
+import 'package:tripsfactory/features/trips/presentation/controllers/trip_details_state.dart';
+import 'package:tripsfactory/features/trips/presentation/widgets/trip_bookings_list.dart';
+import 'package:tripsfactory/features/trips/presentation/widgets/trip_management_buttons.dart';
+import 'package:tripsfactory/features/trips/presentation/widgets/trip_sender_section.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 
 class TripDetailsScreen extends ConsumerStatefulWidget {
   final Trip? trip;

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:tripship/main.dart' as app;
+import 'package:tripsfactory/main.dart' as app;
 
-/// Integration tests for TripShip app.
+/// Integration tests for TripsFactory app.
 /// Requires .env with Supabase and Firebase config.
 /// Run: flutter test integration_test/app_test.dart
 /// Or on device: flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  group('TripShip App', () {
+  group('TripsFactory App', () {
     testWidgets('app launches and shows MaterialApp', (tester) async {
       app.main();
       await tester.pumpAndSettle(const Duration(seconds: 8));
@@ -22,8 +22,8 @@ void main() {
       app.main();
       await tester.pumpAndSettle(const Duration(seconds: 8));
 
-      // Either onboarding (with "TripShip" button) or home/login
-      final hasOnboarding = find.text('TripShip').evaluate().isNotEmpty;
+      // Either onboarding (with "TripsFactory" button) or home/login
+      final hasOnboarding = find.text('TripsFactory').evaluate().isNotEmpty;
       final hasScaffold = find.byType(Scaffold).evaluate().isNotEmpty;
       expect(hasOnboarding || hasScaffold, isTrue);
     });
@@ -33,8 +33,8 @@ void main() {
       await tester.pumpAndSettle(const Duration(seconds: 8));
 
       // If we see onboarding, tap through and complete
-      if (find.text('TripShip').evaluate().isNotEmpty) {
-        await tester.tap(find.text('TripShip'));
+      if (find.text('TripsFactory').evaluate().isNotEmpty) {
+        await tester.tap(find.text('TripsFactory'));
         await tester.pumpAndSettle(const Duration(seconds: 3));
         // After tap we should navigate away from onboarding
         expect(find.byType(MaterialApp), findsOneWidget);

@@ -3,7 +3,7 @@
 
 # ----------------------------------------------------------------------------
 # Distribution hygiene: exclude internal dev artifacts from `git archive`
-# (the sellable ZIP and the regenerated clean `tripship-core` repo).
+# (the sellable ZIP and the regenerated clean `tripsfactory-core` repo).
 # These stay in the working repo for the maintainer but never ship to buyers.
 # ----------------------------------------------------------------------------
 .cursor/                                    export-ignore

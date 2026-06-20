@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 
 /// A structured banner that communicates platform security and mediation
 /// on high-stakes screens like booking confirmations, payment screens,
@@ -12,7 +12,7 @@ class PlatformSecureBanner extends StatelessWidget {
 
   const PlatformSecureBanner({
     super.key,
-    this.message = 'This transaction is secured and logged by TripShip.',
+    this.message = 'This transaction is secured and logged by TripsFactory.',
     this.icon = Icons.lock_outline,
     this.color,
     this.testKey,

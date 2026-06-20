@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tripship/core/models/offline_action.dart';
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/core/models/offline_action.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 
 final offlineSyncServiceProvider = Provider<OfflineSyncService>((ref) {
   throw UnimplementedError('Initialized in main.dart');

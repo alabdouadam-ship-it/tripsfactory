@@ -22,7 +22,7 @@ type I18nContextValue = {
 
 const I18nContext = createContext<I18nContextValue | undefined>(undefined);
 
-const STORAGE_KEY = 'tripship_admin_language';
+const STORAGE_KEY = 'tripsfactory_admin_language';
 
 type Messages = Record<Language, Record<string, string>>;
 
@@ -64,7 +64,7 @@ const messages: Messages = {
     'common.never': 'Never',
 
     // Sidebar
-    'sidebar.title': 'TripShip Admin',
+    'sidebar.title': 'TripsFactory Admin',
     'sidebar.adminUser': 'Admin User',
     'sidebar.logout': 'Log out',
     'sidebar.language': 'Language',
@@ -107,7 +107,7 @@ const messages: Messages = {
     'common.currencySar': '',
 
     // Login
-    'login.title': 'TripShip Admin',
+    'login.title': 'TripsFactory Admin',
     'login.subtitle': 'Sign in to access dashboard',
     'login.email': 'Email address',
     'login.password': 'Password',
@@ -166,7 +166,7 @@ const messages: Messages = {
 
     // Dashboard
     'dashboard.title': 'System Overview',
-    'dashboard.subtitle': 'Monitoring TripShip Network',
+    'dashboard.subtitle': 'Monitoring TripsFactory Network',
     'dashboard.noData': 'No data',
     'dashboard.totalUsers': 'Total Users',
     'dashboard.drivers': 'Drivers',
@@ -1324,7 +1324,7 @@ const messages: Messages = {
     'nav.settings': 'الإعدادات',
 
     // Sidebar
-    'sidebar.title': 'لوحة إدارة TripShip',
+    'sidebar.title': 'لوحة إدارة TripsFactory',
     'sidebar.adminUser': 'مستخدم إداري',
     'sidebar.logout': 'تسجيل الخروج',
     'sidebar.language': 'اللغة',
@@ -1364,7 +1364,7 @@ const messages: Messages = {
     'common.confirm': 'تأكيد',
 
     // Login
-    'login.title': 'TripShip - لوحة التحكم',
+    'login.title': 'TripsFactory - لوحة التحكم',
     'login.subtitle': 'سجّل الدخول للوصول إلى لوحة الإدارة',
     'login.email': 'البريد الإلكتروني',
     'login.password': 'كلمة المرور',
@@ -1424,7 +1424,7 @@ const messages: Messages = {
 
     // Dashboard
     'dashboard.title': 'نظرة عامة على النظام',
-    'dashboard.subtitle': 'مراقبة شبكة TripShip',
+    'dashboard.subtitle': 'مراقبة شبكة TripsFactory',
     'dashboard.noData': 'لا توجد بيانات',
     'dashboard.totalUsers': 'إجمالي المستخدمين',
     'dashboard.drivers': 'السائقون',
@@ -1440,7 +1440,7 @@ const messages: Messages = {
     'dashboard.tripStatus': 'حالة الرحلات',
     'dashboard.adminTools': 'أدوات الإدارة',
     'dashboard.adminTools.subtitle':
-      'أدوات متقدمة لإدارة ومتابعة شبكة TripShip بكفاءة.',
+      'أدوات متقدمة لإدارة ومتابعة شبكة TripsFactory بكفاءة.',
     'dashboard.actionQueue': 'قائمة المتابعة',
     'dashboard.actionQueue.subtitle': 'افتح القوائم التي تحتاج عادة إلى متابعة الإدارة.',
     'dashboard.verifyUsers': 'توثيق المستخدمين',

@@ -5,8 +5,8 @@ import React, { createContext, useCallback, useContext, useEffect, useMemo, useS
 export type ThemeId = 'midnight' | 'dark' | 'dim' | 'light' | 'bright' | 'crimson' | 'forest' | 'ocean' | 'amber' | 'violet';
 export type FontSize = 'small' | 'normal' | 'large' | 'xl' | 'xxl';
 
-const STORAGE_KEY = 'tripship_admin_theme';
-const FONT_SIZE_KEY = 'tripship_admin_font_size';
+const STORAGE_KEY = 'tripsfactory_admin_theme';
+const FONT_SIZE_KEY = 'tripsfactory_admin_font_size';
 
 const THEMES: { id: ThemeId; label: string; labelAr?: string }[] = [
   { id: 'midnight', label: 'Midnight', labelAr: 'منتصف الليل' },

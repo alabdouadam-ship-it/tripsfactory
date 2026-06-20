@@ -1,20 +1,20 @@
-import 'package:tripship/core/config/app_routes.dart';
-import 'package:tripship/core/config/domain_config.dart';
+import 'package:tripsfactory/core/config/app_routes.dart';
+import 'package:tripsfactory/core/config/domain_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tripship/features/auth/data/auth_service.dart';
-import 'package:tripship/features/profile/data/profile_service.dart';
-import 'package:tripship/core/widgets/tripship_dialog.dart';
-import 'package:tripship/core/widgets/account_suspended_banner.dart';
-import 'package:tripship/features/profile/data/profile_model.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
-import 'package:tripship/features/profile/presentation/widgets/profile_details_form.dart';
-import 'package:tripship/core/providers/app_mode_provider.dart';
-import 'package:tripship/core/utils/logger.dart';
-import 'package:tripship/core/widgets/notification_bell_button.dart';
-import 'package:tripship/core/utils/error_utils.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/features/profile/data/profile_service.dart';
+import 'package:tripsfactory/core/widgets/tripsfactory_dialog.dart';
+import 'package:tripsfactory/core/widgets/account_suspended_banner.dart';
+import 'package:tripsfactory/features/profile/data/profile_model.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/features/profile/presentation/widgets/profile_details_form.dart';
+import 'package:tripsfactory/core/providers/app_mode_provider.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
+import 'package:tripsfactory/core/widgets/notification_bell_button.dart';
+import 'package:tripsfactory/core/utils/error_utils.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -132,7 +132,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final localizations = AppLocalizations.of(context)!;
     final confirmed = await showDialog<bool>(
       context: context,
-      builder: (context) => TripShipDialog(
+      builder: (context) => TripsFactoryDialog(
         title: localizations.logout,
         content: localizations.logoutConfirmation,
         cancelLabel: localizations.cancel,

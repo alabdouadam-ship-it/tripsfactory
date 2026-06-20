@@ -68,7 +68,7 @@ For security, the repo does **not** ship real Firebase config — only templates
 You must provide your own from your Firebase project:
 
 1. Create a Firebase project (see `docs/BACKEND_SETUP.md` Part B).
-2. Add an **Android app** (package id `com.tripship.app`, or your own) and download
+2. Add an **Android app** (package id `com.tripsfactory.app`, or your own) and download
    **`google-services.json`** → place it at **`android/app/google-services.json`**.
 3. Add an **iOS app** (same bundle id) and download **`GoogleService-Info.plist`**
    → place it at **`ios/Runner/GoogleService-Info.plist`**.

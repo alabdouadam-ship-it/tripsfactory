@@ -1,12 +1,12 @@
-import 'package:tripship/core/utils/stream_extensions.dart';
-import 'package:tripship/core/utils/notification_location_helper.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
-import 'package:tripship/core/providers/app_localizations_provider.dart';
-import 'package:tripship/core/services/notification_service.dart';
-import 'package:tripship/core/utils/logger.dart';
-import 'package:tripship/features/bookings/data/booking_model.dart';
-import 'package:tripship/features/bookings/data/booking_lifecycle_manager.dart';
+import 'package:tripsfactory/core/utils/stream_extensions.dart';
+import 'package:tripsfactory/core/utils/notification_location_helper.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
+import 'package:tripsfactory/core/providers/app_localizations_provider.dart';
+import 'package:tripsfactory/core/services/notification_service.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
+import 'package:tripsfactory/features/bookings/data/booking_model.dart';
+import 'package:tripsfactory/features/bookings/data/booking_lifecycle_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -116,7 +116,7 @@ class BookingService {
             );
         return; // Done
       } else {
-        throw TripShipException.withKey(
+        throw TripsFactoryException.withKey(
           'booking_request_exists',
           'You already have a booking request for this trip.',
         );

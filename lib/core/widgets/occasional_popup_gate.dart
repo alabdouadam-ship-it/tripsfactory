@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/core/services/app_config_service.dart';
-import 'package:tripship/core/services/preferences_service.dart';
+import 'package:tripsfactory/core/services/app_config_service.dart';
+import 'package:tripsfactory/core/services/preferences_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// Wraps a child and shows the admin-configured occasional popup once per

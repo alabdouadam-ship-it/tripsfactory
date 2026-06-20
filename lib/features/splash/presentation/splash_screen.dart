@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tripship/core/router/app_redirect.dart';
-import 'package:tripship/core/config/brand_config.dart';
-import 'package:tripship/core/services/app_config_service.dart';
-import 'package:tripship/core/services/preferences_service.dart';
-import 'package:tripship/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/core/router/app_redirect.dart';
+import 'package:tripsfactory/core/config/brand_config.dart';
+import 'package:tripsfactory/core/services/app_config_service.dart';
+import 'package:tripsfactory/core/services/preferences_service.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
 
 /// A premium animated splash screen shown while app services initialize.
 class SplashScreen extends ConsumerStatefulWidget {

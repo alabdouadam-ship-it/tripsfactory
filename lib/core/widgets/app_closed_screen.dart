@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/core/services/app_config_service.dart';
+import 'package:tripsfactory/core/services/app_config_service.dart';
 
 /// Shown when the admin console has flipped the global "app open" switch off.
 /// Polls the configuration so that it auto-recovers when the admin re-opens

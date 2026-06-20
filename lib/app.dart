@@ -2,29 +2,29 @@ import 'package:app_links/app_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/core/config/app_routes.dart';
-import 'package:tripship/core/config/brand_config.dart';
-import 'package:tripship/core/config/demo_config.dart';
-import 'package:tripship/core/config/font_config.dart';
-import 'package:tripship/core/config/localization_config.dart';
-import 'package:tripship/core/providers/locale_provider.dart';
-import 'package:tripship/core/providers/text_scale_provider.dart';
-import 'package:tripship/core/router/app_router.dart';
-import 'package:tripship/core/services/navigation_service.dart';
-import 'package:tripship/core/theme/app_theme.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
-import 'package:tripship/core/workers/sync_worker.dart';
-import 'package:tripship/core/utils/logger.dart';
-import 'package:tripship/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/core/config/app_routes.dart';
+import 'package:tripsfactory/core/config/brand_config.dart';
+import 'package:tripsfactory/core/config/demo_config.dart';
+import 'package:tripsfactory/core/config/font_config.dart';
+import 'package:tripsfactory/core/config/localization_config.dart';
+import 'package:tripsfactory/core/providers/locale_provider.dart';
+import 'package:tripsfactory/core/providers/text_scale_provider.dart';
+import 'package:tripsfactory/core/router/app_router.dart';
+import 'package:tripsfactory/core/services/navigation_service.dart';
+import 'package:tripsfactory/core/theme/app_theme.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/workers/sync_worker.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
 
-class TripShipApp extends ConsumerStatefulWidget {
-  const TripShipApp({super.key});
+class TripsFactoryApp extends ConsumerStatefulWidget {
+  const TripsFactoryApp({super.key});
 
   @override
-  ConsumerState<TripShipApp> createState() => _TripShipAppState();
+  ConsumerState<TripsFactoryApp> createState() => _TripsFactoryAppState();
 }
 
-class _TripShipAppState extends ConsumerState<TripShipApp>
+class _TripsFactoryAppState extends ConsumerState<TripsFactoryApp>
     with WidgetsBindingObserver {
   late final AppLinks _appLinks = AppLinks();
   String? _lastHandledUri;
@@ -74,7 +74,7 @@ class _TripShipAppState extends ConsumerState<TripShipApp>
       final uri = await _appLinks.getInitialLink();
       if (uri != null && mounted) _navigateFromUri(uri);
     } catch (e, stackTrace) {
-      StructuredLogger.error('TripShipApp', 'Deep link error: $e', e, stackTrace);
+      StructuredLogger.error('TripsFactoryApp', 'Deep link error: $e', e, stackTrace);
     }
   }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tripship/features/bookings/data/booking_model.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/features/bookings/data/booking_model.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 
 class BookingProgressStepper extends StatelessWidget {
   final Booking booking;

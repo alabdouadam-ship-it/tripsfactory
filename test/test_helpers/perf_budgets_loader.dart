@@ -5,7 +5,7 @@ import 'package:yaml/yaml.dart';
 Map<String, dynamic> loadPerfBudgets() {
   const paths = [
     'perf_budgets.yaml',
-    'e:/Flutter/tripship/perf_budgets.yaml',
+    'e:/Flutter/tripsfactory/perf_budgets.yaml',
     '../perf_budgets.yaml',
     'test/../perf_budgets.yaml',
   ];

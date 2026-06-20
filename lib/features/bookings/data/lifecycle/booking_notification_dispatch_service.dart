@@ -1,5 +1,5 @@
-import 'package:tripship/core/services/notification_service.dart';
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/core/services/notification_service.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'booking_notification_enrichment_service.dart';

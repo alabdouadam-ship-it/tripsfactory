@@ -1,4 +1,4 @@
--- Optional seed for TripShip test suite.
+-- Optional seed for TripsFactory test suite.
 -- Run with Supabase SQL Editor (service role) or: psql $DATABASE_URL -f tests/seed.sql
 -- Test users must exist in auth.users (create via Dashboard or Auth API). Profiles are upserted by tests/db/setup.ts.
 

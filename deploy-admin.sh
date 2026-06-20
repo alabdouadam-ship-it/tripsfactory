@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# TripShip Admin Panel Deployment Script
+# TripsFactory Admin Panel Deployment Script
 # This script builds and deploys the admin panel with proper cache busting
 
 set -e  # Exit on error
 
-echo "🚀 Starting TripShip Admin Panel Deployment"
+echo "🚀 Starting TripsFactory Admin Panel Deployment"
 echo "========================================"
 echo ""
 
@@ -60,9 +60,9 @@ echo ""
 echo "⏳ Please wait 2-3 minutes for CDN propagation"
 echo ""
 echo "Then, to see the changes:"
-echo "  1. Open your admin panel: https://tripship-admin.web.app/audit-log"
+echo "  1. Open your admin panel: https://tripsfactory-admin.web.app/audit-log"
 echo "  2. Hard refresh: Ctrl+Shift+R (Windows/Linux) or Cmd+Shift+R (Mac)"
-echo "  3. Or add ?v=2 to URL: https://tripship-admin.web.app/audit-log?v=2"
+echo "  3. Or add ?v=2 to URL: https://tripsfactory-admin.web.app/audit-log?v=2"
 echo ""
 echo "Expected changes:"
 echo "  ✓ Side-by-side diff view (OLD left, NEW right)"

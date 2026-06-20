@@ -421,7 +421,7 @@ export default function Home() {
             {t('dashboard.title', 'System Overview')}
           </h1>
           <p className="theme-muted text-sm mt-1 font-medium">
-            {t('dashboard.subtitle', 'Monitoring TripShip Network')}
+            {t('dashboard.subtitle', 'Monitoring TripsFactory Network')}
           </p>
         </div>
         <button

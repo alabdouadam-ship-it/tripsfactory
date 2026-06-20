@@ -1,4 +1,4 @@
-import 'package:tripship/core/utils/result.dart';
+import 'package:tripsfactory/core/utils/result.dart';
 
 abstract class IRatingRepository {
   Future<Result<Set<String>>> getRatedBookingIds(List<String> bookingIds);

@@ -9,7 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'TripShip';
+  String get appTitle => 'TripsFactory';
 
   @override
   String get welcomeBack => 'Welcome Back';
@@ -1454,14 +1454,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get shareApp => 'Share App';
 
   @override
-  String get aboutTripShip => 'About TripShip';
+  String get aboutTripsFactory => 'About TripsFactory';
 
   @override
   String get appVersion => 'App Version';
 
   @override
-  String get aboutTripShipDescription =>
-      'TripShip is a comprehensive logistics platform connecting travelers and senders. We make shipping easier, faster, and more reliable.';
+  String get aboutTripsFactoryDescription =>
+      'TripsFactory is a comprehensive logistics platform connecting travelers and senders. We make shipping easier, faster, and more reliable.';
 
   @override
   String get notifBookingApproved => 'Booking Request Approved';
@@ -1907,7 +1907,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get updateMessage =>
-      'A new version of TripShip is available. Please update to continue using the app.';
+      'A new version of TripsFactory is available. Please update to continue using the app.';
 
   @override
   String get showMore => 'Show more';
@@ -1924,15 +1924,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get suspensionErrorNotice =>
-      'If you believe this is an error, please contact TripShip Support to resolve your account status.';
+      'If you believe this is an error, please contact TripsFactory Support to resolve your account status.';
 
   @override
   String get secureTransactionLogged =>
-      'This transaction is secured and logged by TripShip.';
+      'This transaction is secured and logged by TripsFactory.';
 
   @override
   String get bookingSecuredLogged =>
-      'Booking secured and logged via TripShip platform.';
+      'Booking secured and logged via TripsFactory platform.';
 
   @override
   String get paymentDetailsSecure =>
@@ -1940,7 +1940,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get conversationSecuredModerated =>
-      'Conversation secured and moderated by TripShip.';
+      'Conversation secured and moderated by TripsFactory.';
 
   @override
   String get sendImage => 'Send Image';

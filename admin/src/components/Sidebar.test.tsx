@@ -51,12 +51,12 @@ describe('Sidebar', () => {
 
   it('renders title', async () => {
     render(<Sidebar />);
-    await expect(screen.findByText('TripShip Admin', {}, { timeout: 2000 })).resolves.toBeInTheDocument();
+    await expect(screen.findByText('TripsFactory Admin', {}, { timeout: 2000 })).resolves.toBeInTheDocument();
   });
 
   it('renders nav links for dashboard, users, travelers', async () => {
     render(<Sidebar />);
-    await screen.findByText('TripShip Admin', {}, { timeout: 2000 });
+    await screen.findByText('TripsFactory Admin', {}, { timeout: 2000 });
     expect(screen.getByRole('link', { name: /dashboard/i })).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: /users/i })).toHaveAttribute('href', '/users');
     expect(screen.getByRole('link', { name: /travelers/i })).toHaveAttribute('href', '/drivers');
@@ -64,7 +64,7 @@ describe('Sidebar', () => {
 
   it('places Reports immediately after Moderation', async () => {
     render(<Sidebar />);
-    await screen.findByText('TripShip Admin', {}, { timeout: 2000 });
+    await screen.findByText('TripsFactory Admin', {}, { timeout: 2000 });
     const links = screen.getAllByRole('link');
     const moderationIndex = links.findIndex(link => link.getAttribute('href') === '/moderation');
     const reportsIndex = links.findIndex(link => link.getAttribute('href') === '/reports');
@@ -75,7 +75,7 @@ describe('Sidebar', () => {
 
   it('groups Risk Overview, Moderation, and Reports under Trust & Risk', async () => {
     render(<Sidebar />);
-    await screen.findByText('TripShip Admin', {}, { timeout: 2000 });
+    await screen.findByText('TripsFactory Admin', {}, { timeout: 2000 });
 
     expect(screen.getByText('nav.section.trustRisk')).toBeInTheDocument();
 
@@ -94,7 +94,7 @@ describe('Sidebar', () => {
 
   it('groups user capability screens under Accounts', async () => {
     render(<Sidebar />);
-    await screen.findByText('TripShip Admin', {}, { timeout: 2000 });
+    await screen.findByText('TripsFactory Admin', {}, { timeout: 2000 });
 
     expect(screen.getByText('Accounts')).toBeInTheDocument();
 
@@ -114,7 +114,7 @@ describe('Sidebar', () => {
 
   it('groups logistics workflow screens under Operations in the requested order', async () => {
     render(<Sidebar />);
-    await screen.findByText('TripShip Admin', {}, { timeout: 2000 });
+    await screen.findByText('TripsFactory Admin', {}, { timeout: 2000 });
 
     expect(screen.getByText('Operations')).toBeInTheDocument();
     expect(screen.getByText('Support & Content')).toBeInTheDocument();
@@ -133,7 +133,7 @@ describe('Sidebar', () => {
 
   it('groups support, content, and platform tools separately', async () => {
     render(<Sidebar />);
-    await screen.findByText('TripShip Admin', {}, { timeout: 2000 });
+    await screen.findByText('TripsFactory Admin', {}, { timeout: 2000 });
 
     expect(screen.getByText('Support & Content')).toBeInTheDocument();
     expect(screen.getByText('Platform')).toBeInTheDocument();
@@ -175,14 +175,14 @@ describe('Sidebar', () => {
 
   it('renders Log out button', async () => {
     render(<Sidebar />);
-    await screen.findByText('TripShip Admin', {}, { timeout: 2000 });
+    await screen.findByText('TripsFactory Admin', {}, { timeout: 2000 });
     expect(screen.getByRole('button', { name: /log out/i })).toBeInTheDocument();
   });
 
   it('calls signOut and pushes to /login when Log out is clicked', async () => {
     const user = userEvent.setup();
     render(<Sidebar />);
-    await screen.findByText('TripShip Admin', {}, { timeout: 2000 });
+    await screen.findByText('TripsFactory Admin', {}, { timeout: 2000 });
     await user.click(screen.getByRole('button', { name: /log out/i }));
     expect(mockSignOut).toHaveBeenCalledTimes(1);
     expect(mockPush).toHaveBeenCalledWith('/login');

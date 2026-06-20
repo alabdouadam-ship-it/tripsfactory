@@ -1,7 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 
 final safetyServiceProvider = Provider((ref) => SafetyService());
 
@@ -80,7 +80,7 @@ class SafetyService {
     );
 
     if (hasActiveEngagement == true) {
-      throw TripShipException.withKey(
+      throw TripsFactoryException.withKey(
         'active_engagement_exists',
         'Cannot block user during an active trip or delivery.',
       );
@@ -98,7 +98,7 @@ class SafetyService {
         e,
         st,
       );
-      throw TripShipException('block_failed');
+      throw TripsFactoryException('block_failed');
     }
   }
 
@@ -118,7 +118,7 @@ class SafetyService {
         e,
         st,
       );
-      throw TripShipException('unblock_failed');
+      throw TripsFactoryException('unblock_failed');
     }
   }
 

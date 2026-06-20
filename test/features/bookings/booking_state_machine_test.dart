@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
-import 'package:tripship/features/bookings/data/lifecycle/booking_state_machine.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
+import 'package:tripsfactory/features/bookings/data/lifecycle/booking_state_machine.dart';
 
 void main() {
   const sm = BookingStateMachine();
@@ -10,7 +10,7 @@ void main() {
     expect(
       () => sm.ensureTransitionAllowed(BookingStatus.pending, BookingStatus.delivered),
       throwsA(
-          predicate<TripShipException>((e) => e.messageKey == 'illegal_transition')),
+          predicate<TripsFactoryException>((e) => e.messageKey == 'illegal_transition')),
     );
   });
 

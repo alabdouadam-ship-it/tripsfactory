@@ -2,16 +2,16 @@ import 'dart:io';
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/core/utils/result.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/features/bookings/data/booking_model.dart';
-import 'package:tripship/features/bookings/data/booking_service.dart';
-import 'package:tripship/features/bookings/data/booking_lifecycle_manager.dart';
-import 'package:tripship/features/bookings/domain/repositories/booking_repository.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
-import 'package:tripship/core/models/offline_action.dart';
-import 'package:tripship/core/services/offline_sync_service.dart';
-import 'package:tripship/core/utils/network_utils.dart';
+import 'package:tripsfactory/core/utils/result.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/features/bookings/data/booking_model.dart';
+import 'package:tripsfactory/features/bookings/data/booking_service.dart';
+import 'package:tripsfactory/features/bookings/data/booking_lifecycle_manager.dart';
+import 'package:tripsfactory/features/bookings/domain/repositories/booking_repository.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
+import 'package:tripsfactory/core/models/offline_action.dart';
+import 'package:tripsfactory/core/services/offline_sync_service.dart';
+import 'package:tripsfactory/core/utils/network_utils.dart';
 
 final bookingRepositoryProvider = Provider<IBookingRepository>((ref) {
   final service = ref.watch(bookingServiceProvider);
@@ -32,11 +32,11 @@ class BookingRepository implements IBookingRepository {
     try {
       final bookings = await _service.getBookingsForTrip(tripId);
       return Result.success(bookings);
-    } on TripShipException catch (e) {
+    } on TripsFactoryException catch (e) {
       return Result.failure(e);
     } catch (e) {
       return Result.failure(
-        TripShipException.withKey('unknown_error', e.toString(), e),
+        TripsFactoryException.withKey('unknown_error', e.toString(), e),
       );
     }
   }
@@ -46,11 +46,11 @@ class BookingRepository implements IBookingRepository {
     try {
       final booking = await _service.getUserBookingForTrip(tripId);
       return Result.success(booking);
-    } on TripShipException catch (e) {
+    } on TripsFactoryException catch (e) {
       return Result.failure(e);
     } catch (e) {
       return Result.failure(
-        TripShipException.withKey('unknown_error', e.toString(), e),
+        TripsFactoryException.withKey('unknown_error', e.toString(), e),
       );
     }
   }
@@ -63,11 +63,11 @@ class BookingRepository implements IBookingRepository {
           return Result.success(bookings);
         })
         .handleError((error) {
-          if (error is TripShipException) {
+          if (error is TripsFactoryException) {
             return Result<List<Booking>>.failure(error);
           }
           return Result<List<Booking>>.failure(
-            TripShipException.withKey('unknown_error', error.toString(), error),
+            TripsFactoryException.withKey('unknown_error', error.toString(), error),
           );
         });
   }
@@ -80,11 +80,11 @@ class BookingRepository implements IBookingRepository {
           return Result.success(booking);
         })
         .handleError((error) {
-          if (error is TripShipException) {
+          if (error is TripsFactoryException) {
             return Result<Booking?>.failure(error);
           }
           return Result<Booking?>.failure(
-            TripShipException.withKey('unknown_error', error.toString(), error),
+            TripsFactoryException.withKey('unknown_error', error.toString(), error),
           );
         });
   }
@@ -97,11 +97,11 @@ class BookingRepository implements IBookingRepository {
           return Result.success(bookings);
         })
         .handleError((error) {
-          if (error is TripShipException) {
+          if (error is TripsFactoryException) {
             return Result<List<Booking>>.failure(error);
           }
           return Result<List<Booking>>.failure(
-            TripShipException.withKey('unknown_error', error.toString(), error),
+            TripsFactoryException.withKey('unknown_error', error.toString(), error),
           );
         });
   }
@@ -132,18 +132,18 @@ class BookingRepository implements IBookingRepository {
         }
         rethrow;
       }
-    } on TripShipException catch (e) {
+    } on TripsFactoryException catch (e) {
       return Result.failure(e);
     } catch (e) {
       return Result.failure(
-        TripShipException.withKey('unknown_error', e.toString(), e),
+        TripsFactoryException.withKey('unknown_error', e.toString(), e),
       );
     }
   }
 
   bool _isNetworkError(Object error) {
     if (error is SocketException || error is TimeoutException) return true;
-    if (error is TripShipException) {
+    if (error is TripsFactoryException) {
       final debug = error.debugInfo;
       if (debug != null) return _isNetworkError(debug);
     }
@@ -306,11 +306,11 @@ class BookingRepository implements IBookingRepository {
         metadata: metadata,
       );
       return Result.success(bookingId);
-    } on TripShipException catch (e) {
+    } on TripsFactoryException catch (e) {
       return Result.failure(e);
     } catch (e) {
       return Result.failure(
-        TripShipException.withKey('unknown_error', e.toString(), e),
+        TripsFactoryException.withKey('unknown_error', e.toString(), e),
       );
     }
   }
@@ -320,11 +320,11 @@ class BookingRepository implements IBookingRepository {
     try {
       final status = await _service.getBookingStatus(bookingId);
       return Result.success(status);
-    } on TripShipException catch (e) {
+    } on TripsFactoryException catch (e) {
       return Result.failure(e);
     } catch (e) {
       return Result.failure(
-        TripShipException.withKey('unknown_error', e.toString(), e),
+        TripsFactoryException.withKey('unknown_error', e.toString(), e),
       );
     }
   }
@@ -337,11 +337,11 @@ class BookingRepository implements IBookingRepository {
     try {
       final role = await _service.getRecipientRoleForUser(bookingId, userId);
       return Result.success(role);
-    } on TripShipException catch (e) {
+    } on TripsFactoryException catch (e) {
       return Result.failure(e);
     } catch (e) {
       return Result.failure(
-        TripShipException.withKey('unknown_error', e.toString(), e),
+        TripsFactoryException.withKey('unknown_error', e.toString(), e),
       );
     }
   }

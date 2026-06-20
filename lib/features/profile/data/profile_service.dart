@@ -2,13 +2,13 @@ import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'dart:convert';
-import 'package:tripship/features/profile/data/profile_model.dart';
-import 'package:tripship/core/services/preferences_service.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/core/utils/logger.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
-import 'package:tripship/core/config/domain_config.dart';
-import 'package:tripship/core/config/storage_buckets.dart';
+import 'package:tripsfactory/features/profile/data/profile_model.dart';
+import 'package:tripsfactory/core/services/preferences_service.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
+import 'package:tripsfactory/core/config/domain_config.dart';
+import 'package:tripsfactory/core/config/storage_buckets.dart';
 import 'package:path/path.dart' as p;
 
 final profileServiceProvider = Provider<ProfileService>((ref) {
@@ -286,7 +286,7 @@ class ProfileService {
       return fullPath;
     } catch (e, st) {
       StructuredLogger.error('ProfileService', 'Document upload failed', e, st);
-      throw TripShipException('upload_failed');
+      throw TripsFactoryException('upload_failed');
     }
   }
 
@@ -434,7 +434,7 @@ class ProfileService {
       return publicUrl;
     } catch (e, st) {
       StructuredLogger.error('ProfileService', 'Avatar upload failed', e, st);
-      throw TripShipException('avatar_upload_failed');
+      throw TripsFactoryException('avatar_upload_failed');
     }
   }
 }

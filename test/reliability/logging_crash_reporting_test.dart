@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 import '../test_helpers/fake_crash_reporter.dart';
 
 /// Structured logging: required fields present; fatal path exists. Crash reporter hook when used.

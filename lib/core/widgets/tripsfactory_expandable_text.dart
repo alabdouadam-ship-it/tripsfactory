@@ -1,14 +1,14 @@
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 
-class TripShipExpandableText extends StatefulWidget {
+class TripsFactoryExpandableText extends StatefulWidget {
   final String text;
   final int trimLines;
   final TextStyle? style;
   final Color? toggleColor;
   final ValueChanged<bool>? onToggle;
 
-  const TripShipExpandableText({
+  const TripsFactoryExpandableText({
     super.key,
     required this.text,
     this.trimLines = 2,
@@ -18,10 +18,10 @@ class TripShipExpandableText extends StatefulWidget {
   });
 
   @override
-  State<TripShipExpandableText> createState() => _TripShipExpandableTextState();
+  State<TripsFactoryExpandableText> createState() => _TripsFactoryExpandableTextState();
 }
 
-class _TripShipExpandableTextState extends State<TripShipExpandableText> {
+class _TripsFactoryExpandableTextState extends State<TripsFactoryExpandableText> {
   bool _isExpanded = false;
 
   @override

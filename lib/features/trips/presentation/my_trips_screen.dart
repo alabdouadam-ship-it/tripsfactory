@@ -1,19 +1,19 @@
-import 'package:tripship/core/config/app_routes.dart';
-import 'package:tripship/core/config/domain_config.dart';
+import 'package:tripsfactory/core/config/app_routes.dart';
+import 'package:tripsfactory/core/config/domain_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tripship/features/trips/presentation/trip_card.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
-import 'package:tripship/core/utils/error_utils.dart';
-import 'package:tripship/core/widgets/empty_state_widget.dart';
-import 'package:tripship/core/widgets/tripship_error_view.dart';
-import 'package:tripship/core/widgets/tripship_dialog.dart';
-import 'package:tripship/core/services/share_service.dart';
-import 'package:tripship/features/trips/presentation/providers/my_trips_provider.dart';
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/features/trips/presentation/trip_card.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/utils/error_utils.dart';
+import 'package:tripsfactory/core/widgets/empty_state_widget.dart';
+import 'package:tripsfactory/core/widgets/tripsfactory_error_view.dart';
+import 'package:tripsfactory/core/widgets/tripsfactory_dialog.dart';
+import 'package:tripsfactory/core/services/share_service.dart';
+import 'package:tripsfactory/features/trips/presentation/providers/my_trips_provider.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 
 class MyTripsScreen extends ConsumerWidget {
   const MyTripsScreen({super.key});
@@ -141,7 +141,7 @@ class MyTripsScreen extends ConsumerWidget {
                       error,
                       stackTrace,
                     );
-                    return TripShipErrorView(
+                    return TripsFactoryErrorView(
                       title: localizations.unexpectedError,
                       message: getUserFriendlyMessage(
                         error,
@@ -174,7 +174,7 @@ class MyTripsScreen extends ConsumerWidget {
                               ? () async {
                                   final confirm = await showDialog<bool>(
                                     context: context,
-                                    builder: (context) => TripShipDialog(
+                                    builder: (context) => TripsFactoryDialog(
                                       title: localizations.cancelTrip,
                                       content: localizations.confirmCancelTrip,
                                       cancelLabel: localizations.cancel,

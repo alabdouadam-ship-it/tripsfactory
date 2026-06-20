@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:tripship/core/config/app_constants.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
-import 'package:tripship/core/providers/app_localizations_provider.dart';
-import 'package:tripship/core/services/notification_service.dart';
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/core/config/app_constants.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
+import 'package:tripsfactory/core/providers/app_localizations_provider.dart';
+import 'package:tripsfactory/core/services/notification_service.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 
 import 'booking_lifecycle_context.dart';
 
@@ -248,12 +248,12 @@ class MarkGoodsDeliveredWithCodeCommand {
       case 'ok':
         break;
       case 'code_locked':
-        throw TripShipException.withKey(
+        throw TripsFactoryException.withKey(
           'delivery_code_locked',
           'Too many wrong attempts. Ask the sender to confirm manually.',
         );
       default:
-        throw TripShipException.withKey('invalid_otp', 'Invalid delivery code');
+        throw TripsFactoryException.withKey('invalid_otp', 'Invalid delivery code');
     }
 
     if (booking['trip_id'] != null) {

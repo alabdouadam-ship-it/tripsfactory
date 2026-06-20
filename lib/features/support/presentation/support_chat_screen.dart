@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/features/support/data/support_service.dart';
-import 'package:tripship/core/utils/l10n_context.dart';
-import 'package:tripship/core/utils/error_utils.dart';
+import 'package:tripsfactory/features/support/data/support_service.dart';
+import 'package:tripsfactory/core/utils/l10n_context.dart';
+import 'package:tripsfactory/core/utils/error_utils.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:intl/intl.dart';
 

@@ -1,6 +1,6 @@
 {
-    "name": "tripship",
-    "short_name": "tripship",
+    "name": "tripsfactory",
+    "short_name": "tripsfactory",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#hex_code",

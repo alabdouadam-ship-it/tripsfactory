@@ -1,10 +1,10 @@
-import 'package:tripship/core/demo/demo_data.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
-import 'package:tripship/core/models/location_model.dart';
-import 'package:tripship/core/utils/result.dart';
-import 'package:tripship/features/trips/data/trip_model.dart';
-import 'package:tripship/features/trips/domain/repositories/trip_repository.dart';
+import 'package:tripsfactory/core/demo/demo_data.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
+import 'package:tripsfactory/core/models/location_model.dart';
+import 'package:tripsfactory/core/utils/result.dart';
+import 'package:tripsfactory/features/trips/data/trip_model.dart';
+import 'package:tripsfactory/features/trips/domain/repositories/trip_repository.dart';
 
 /// In-memory [ITripRepository] used in demo mode. Serves seeded trips/locations
 /// and treats writes as no-ops so the browse experience works with no backend.
@@ -51,7 +51,7 @@ class DemoTripRepository implements ITripRepository {
   Future<Result<Trip>> getTripById(String id) async {
     final trip = DemoData.trips.where((t) => t.id == id).toList();
     if (trip.isEmpty) {
-      return Result.failure(TripShipException('Trip not available in demo.'));
+      return Result.failure(TripsFactoryException('Trip not available in demo.'));
     }
     return Result.success(trip.first);
   }

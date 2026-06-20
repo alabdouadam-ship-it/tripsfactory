@@ -1,14 +1,14 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/core/utils/result.dart';
-import 'package:tripship/core/models/location_model.dart';
-import 'package:tripship/features/trips/data/trip_model.dart';
-import 'package:tripship/features/trips/data/trip_service.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/features/trips/domain/repositories/trip_repository.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
-import 'package:tripship/core/models/offline_action.dart';
-import 'package:tripship/core/services/offline_sync_service.dart';
-import 'package:tripship/core/utils/network_utils.dart';
+import 'package:tripsfactory/core/utils/result.dart';
+import 'package:tripsfactory/core/models/location_model.dart';
+import 'package:tripsfactory/features/trips/data/trip_model.dart';
+import 'package:tripsfactory/features/trips/data/trip_service.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/features/trips/domain/repositories/trip_repository.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
+import 'package:tripsfactory/core/models/offline_action.dart';
+import 'package:tripsfactory/core/services/offline_sync_service.dart';
+import 'package:tripsfactory/core/utils/network_utils.dart';
 
 final tripRepositoryProvider = Provider<ITripRepository>((ref) {
   final service = ref.watch(tripServiceProvider);
@@ -60,11 +60,11 @@ class TripRepository implements ITripRepository {
         currentUserId: currentUserId,
       );
       return Result.success(trips);
-    } on TripShipException catch (e) {
+    } on TripsFactoryException catch (e) {
       return Result.failure(e);
     } catch (e) {
       return Result.failure(
-        TripShipException.withKey('unknown_error', e.toString(), e),
+        TripsFactoryException.withKey('unknown_error', e.toString(), e),
       );
     }
   }
@@ -76,11 +76,11 @@ class TripRepository implements ITripRepository {
     try {
       final statuses = await _service.getBookingStatusesForTrips(tripIds);
       return Result.success(statuses);
-    } on TripShipException catch (e) {
+    } on TripsFactoryException catch (e) {
       return Result.failure(e);
     } catch (e) {
       return Result.failure(
-        TripShipException.withKey('unknown_error', e.toString(), e),
+        TripsFactoryException.withKey('unknown_error', e.toString(), e),
       );
     }
   }
@@ -91,15 +91,15 @@ class TripRepository implements ITripRepository {
       final trip = await _service.getTripById(id);
       if (trip == null) {
         return Result.failure(
-          TripShipException.withKey('trip_not_found', 'Trip not found.'),
+          TripsFactoryException.withKey('trip_not_found', 'Trip not found.'),
         );
       }
       return Result.success(trip);
-    } on TripShipException catch (e) {
+    } on TripsFactoryException catch (e) {
       return Result.failure(e);
     } catch (e) {
       return Result.failure(
-        TripShipException.withKey('unknown_error', e.toString(), e),
+        TripsFactoryException.withKey('unknown_error', e.toString(), e),
       );
     }
   }
@@ -119,11 +119,11 @@ class TripRepository implements ITripRepository {
       }
       await onlineAction();
       return Result.success(null);
-    } on TripShipException catch (e) {
+    } on TripsFactoryException catch (e) {
       return Result.failure(e);
     } catch (e) {
       return Result.failure(
-        TripShipException.withKey('unknown_error', e.toString(), e),
+        TripsFactoryException.withKey('unknown_error', e.toString(), e),
       );
     }
   }
@@ -159,11 +159,11 @@ class TripRepository implements ITripRepository {
     try {
       await _service.markTripAsFull(tripId);
       return Result.success(null);
-    } on TripShipException catch (e) {
+    } on TripsFactoryException catch (e) {
       return Result.failure(e);
     } catch (e) {
       return Result.failure(
-        TripShipException.withKey('unknown_error', e.toString(), e),
+        TripsFactoryException.withKey('unknown_error', e.toString(), e),
       );
     }
   }
@@ -176,11 +176,11 @@ class TripRepository implements ITripRepository {
           return Result.success(trips);
         })
         .handleError((error) {
-          if (error is TripShipException) {
+          if (error is TripsFactoryException) {
             return Result<List<Trip>>.failure(error);
           }
           return Result<List<Trip>>.failure(
-            TripShipException.withKey('unknown_error', error.toString(), error),
+            TripsFactoryException.withKey('unknown_error', error.toString(), error),
           );
         });
   }
@@ -190,11 +190,11 @@ class TripRepository implements ITripRepository {
     try {
       final locations = await _service.getLocations();
       return Result.success(locations);
-    } on TripShipException catch (e) {
+    } on TripsFactoryException catch (e) {
       return Result.failure(e);
     } catch (e) {
       return Result.failure(
-        TripShipException.withKey('unknown_error', e.toString(), e),
+        TripsFactoryException.withKey('unknown_error', e.toString(), e),
       );
     }
   }
@@ -207,11 +207,11 @@ class TripRepository implements ITripRepository {
           return Result.success(trip);
         })
         .handleError((error) {
-          if (error is TripShipException) {
+          if (error is TripsFactoryException) {
             return Result<Trip>.failure(error);
           }
           return Result<Trip>.failure(
-            TripShipException.withKey('unknown_error', error.toString(), error),
+            TripsFactoryException.withKey('unknown_error', error.toString(), error),
           );
         });
   }

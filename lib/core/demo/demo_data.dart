@@ -1,9 +1,9 @@
-import 'package:tripship/core/config/demo_config.dart';
-import 'package:tripship/core/config/domain_config.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/core/models/location_model.dart';
-import 'package:tripship/features/profile/data/profile_model.dart';
-import 'package:tripship/features/trips/data/trip_model.dart';
+import 'package:tripsfactory/core/config/demo_config.dart';
+import 'package:tripsfactory/core/config/domain_config.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/core/models/location_model.dart';
+import 'package:tripsfactory/features/profile/data/profile_model.dart';
+import 'package:tripsfactory/features/trips/data/trip_model.dart';
 
 /// In-memory seed data used when [DemoConfig.enabled] is true.
 ///
@@ -72,7 +72,7 @@ class DemoData {
     id: DemoConfig.demoUserId,
     fullName: 'Demo User',
     phoneNumber: '+971500000000',
-    bio: 'Exploring TripShip in demo mode.',
+    bio: 'Exploring TripsFactory in demo mode.',
     createdAt: DateTime.now().subtract(const Duration(days: 3)),
     clientRatingAvg: 4.8,
     clientRatingCount: 12,
@@ -195,7 +195,7 @@ class DemoData {
         'id': DemoConfig.demoUserId,
         'aud': 'authenticated',
         'role': 'authenticated',
-        'email': 'demo@tripship.app',
+        'email': 'demo@tripsfactory.app',
         'email_confirmed_at': createdAt,
         'phone': '',
         'confirmed_at': createdAt,

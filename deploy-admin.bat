@@ -1,10 +1,10 @@
 @echo off
-REM TripShip Admin Panel Deployment Script (Windows)
+REM TripsFactory Admin Panel Deployment Script (Windows)
 REM This script builds and deploys the admin panel with proper cache busting
 
 echo.
 echo ========================================
-echo 🚀 Starting TripShip Admin Panel Deployment
+echo 🚀 Starting TripsFactory Admin Panel Deployment
 echo ========================================
 echo.
 
@@ -65,9 +65,9 @@ echo.
 echo ⏳ Please wait 2-3 minutes for CDN propagation
 echo.
 echo Then, to see the changes:
-echo   1. Open your admin panel: https://tripship-admin.web.app/audit-log
+echo   1. Open your admin panel: https://tripsfactory-admin.web.app/audit-log
 echo   2. Hard refresh: Ctrl+Shift+R or Ctrl+F5
-echo   3. Or add ?v=2 to URL: https://tripship-admin.web.app/audit-log?v=2
+echo   3. Or add ?v=2 to URL: https://tripsfactory-admin.web.app/audit-log?v=2
 echo.
 echo Expected changes:
 echo   ✓ Side-by-side diff view (OLD left, NEW right)

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tripship/features/trips/data/trip_model.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
-import 'package:tripship/core/enums/app_enums.dart';
+import 'package:tripsfactory/features/trips/data/trip_model.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
 import '../controllers/trip_details_controller.dart';
 
 class TripManagementButtons extends StatelessWidget {

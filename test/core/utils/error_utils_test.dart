@@ -1,12 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
-import 'package:tripship/core/utils/error_utils.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
+import 'package:tripsfactory/core/utils/error_utils.dart';
 
 void main() {
   group('getUserFriendlyMessage', () {
-    test('returns userMessage for TripShipException', () {
+    test('returns userMessage for TripsFactoryException', () {
       const msg = 'Cannot cancel: payment confirmed';
-      expect(getUserFriendlyMessage(TripShipException(msg)), msg);
+      expect(getUserFriendlyMessage(TripsFactoryException(msg)), msg);
     });
 
     test('returns fallback for generic Exception', () {

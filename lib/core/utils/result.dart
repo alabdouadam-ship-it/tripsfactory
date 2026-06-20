@@ -1,21 +1,21 @@
-import 'package:tripship/core/exceptions/tripship_exception.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
 
 sealed class Result<T> {
   const Result();
 
   factory Result.success(T data) = Success<T>;
-  factory Result.failure(TripShipException error) = Failure<T>;
+  factory Result.failure(TripsFactoryException error) = Failure<T>;
 
   bool get isSuccess => this is Success<T>;
   bool get isFailure => this is Failure<T>;
 
   T? get dataOrNull => this is Success<T> ? (this as Success<T>).data : null;
-  TripShipException? get errorOrNull =>
+  TripsFactoryException? get errorOrNull =>
       this is Failure<T> ? (this as Failure<T>).error : null;
 
   R fold<R>(
     R Function(T data) onSuccess,
-    R Function(TripShipException error) onFailure,
+    R Function(TripsFactoryException error) onFailure,
   ) {
     if (this is Success<T>) {
       return onSuccess((this as Success<T>).data);
@@ -31,6 +31,6 @@ class Success<T> extends Result<T> {
 }
 
 class Failure<T> extends Result<T> {
-  final TripShipException error;
+  final TripsFactoryException error;
   const Failure(this.error);
 }

@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
-import 'package:tripship/features/bookings/data/lifecycle/booking_photo_upload_service.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
+import 'package:tripsfactory/features/bookings/data/lifecycle/booking_photo_upload_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MockSupabaseClient extends Mock implements SupabaseClient {}
@@ -58,7 +58,7 @@ void main() {
     expect(
       () => service.uploadDeliveryPhoto(File('sample.jpg'), 'b1', 'pickup'),
       throwsA(
-        predicate<TripShipException>((e) => e.messageKey == 'photo_upload_failed'),
+        predicate<TripsFactoryException>((e) => e.messageKey == 'photo_upload_failed'),
       ),
     );
   });

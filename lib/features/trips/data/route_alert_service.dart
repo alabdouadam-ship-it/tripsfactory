@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:tripship/features/trips/data/route_alert_model.dart';
-import 'package:tripship/core/utils/logger.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
+import 'package:tripsfactory/features/trips/data/route_alert_model.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
 
 final routeAlertServiceProvider = Provider<RouteAlertService>((ref) {
   return RouteAlertService(Supabase.instance.client);
@@ -85,7 +85,7 @@ class RouteAlertService {
           directError,
           directSt,
         );
-        throw TripShipException.withKey(
+        throw TripsFactoryException.withKey(
           'failed_load_route_alerts',
           'Failed to load route alerts for user.',
           directError,

@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:tripship/core/config/brand_config.dart';
-import 'package:tripship/core/theme/app_theme.dart';
+import 'package:tripsfactory/core/config/brand_config.dart';
+import 'package:tripsfactory/core/theme/app_theme.dart';
 
 /// White-label typography seam.
 ///

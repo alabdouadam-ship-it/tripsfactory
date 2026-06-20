@@ -1,20 +1,20 @@
-import 'package:tripship/core/config/app_routes.dart';
+import 'package:tripsfactory/core/config/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:tripship/features/auth/data/auth_service.dart';
-import 'package:tripship/features/trips/presentation/trip_card.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
-import 'package:tripship/core/utils/error_utils.dart';
-import 'package:tripship/core/widgets/empty_state_widget.dart';
-import 'package:tripship/core/widgets/skeleton_loader.dart';
-import 'package:tripship/core/services/share_service.dart';
-import 'package:tripship/features/trips/data/route_alert_service.dart';
-import 'package:tripship/features/trips/presentation/providers/trip_list_provider.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/features/trips/presentation/trip_card.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/utils/error_utils.dart';
+import 'package:tripsfactory/core/widgets/empty_state_widget.dart';
+import 'package:tripsfactory/core/widgets/skeleton_loader.dart';
+import 'package:tripsfactory/core/services/share_service.dart';
+import 'package:tripsfactory/features/trips/data/route_alert_service.dart';
+import 'package:tripsfactory/features/trips/presentation/providers/trip_list_provider.dart';
 
-import 'package:tripship/features/home/presentation/providers/home_filter_provider.dart';
+import 'package:tripsfactory/features/home/presentation/providers/home_filter_provider.dart';
 
 class TripListView extends ConsumerStatefulWidget {
   final bool isInternal;

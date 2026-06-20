@@ -129,7 +129,7 @@ describe('I18nProvider', () => {
       </I18nProvider>
     );
     await user.click(screen.getByText('AR'));
-    expect(setItem).toHaveBeenCalledWith('tripship_admin_language', 'ar');
+    expect(setItem).toHaveBeenCalledWith('tripsfactory_admin_language', 'ar');
   });
 });
 

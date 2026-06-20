@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 
 /// Delivery confirmation dialog used by the booking handover flow.
 ///

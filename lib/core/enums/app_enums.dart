@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 
 enum TripStatus {
   @JsonValue('available')

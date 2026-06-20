@@ -9,7 +9,7 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get appTitle => 'TripShip';
+  String get appTitle => 'TripsFactory';
 
   @override
   String get welcomeBack => 'Ø£Ù‡Ù„Ø§Ù‹ Ø¨Ùƒ Ù…Ø¬Ø¯Ø¯Ø§Ù‹';
@@ -1496,14 +1496,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get shareApp => 'Ù…Ø´Ø§Ø±ÙƒØ© Ø§Ù„ØªØ·Ø¨ÙŠÙ‚';
 
   @override
-  String get aboutTripShip => 'Ø­ÙˆÙ„ TripShip';
+  String get aboutTripsFactory => 'Ø­ÙˆÙ„ TripsFactory';
 
   @override
   String get appVersion => 'Ù†Ø³Ø®Ø© Ø§Ù„ØªØ·Ø¨ÙŠÙ‚';
 
   @override
-  String get aboutTripShipDescription =>
-      'TripShip Ù‡ÙŠ Ù…Ù†ØµØ© Ù„ÙˆØ¬Ø³ØªÙŠØ© Ø´Ø§Ù…Ù„Ø© ØªØ±Ø¨Ø· Ø§Ù„Ù…Ø³Ø§ÙØ±ÙŠÙ† ÙˆØ§Ù„Ù…Ø±Ø³Ù„ÙŠÙ†. Ù†Ø¬Ø¹Ù„ Ø§Ù„Ø´Ø­Ù† Ø£Ø³Ù‡Ù„ ÙˆØ£Ø³Ø±Ø¹ ÙˆØ£ÙƒØ«Ø± Ù…ÙˆØ«ÙˆÙ‚ÙŠØ©.';
+  String get aboutTripsFactoryDescription =>
+      'TripsFactory Ù‡ÙŠ Ù…Ù†ØµØ© Ù„ÙˆØ¬Ø³ØªÙŠØ© Ø´Ø§Ù…Ù„Ø© ØªØ±Ø¨Ø· Ø§Ù„Ù…Ø³Ø§ÙØ±ÙŠÙ† ÙˆØ§Ù„Ù…Ø±Ø³Ù„ÙŠÙ†. Ù†Ø¬Ø¹Ù„ Ø§Ù„Ø´Ø­Ù† Ø£Ø³Ù‡Ù„ ÙˆØ£Ø³Ø±Ø¹ ÙˆØ£ÙƒØ«Ø± Ù…ÙˆØ«ÙˆÙ‚ÙŠØ©.';
 
   @override
   String get notifBookingApproved => 'Ø·Ù„Ø¨ Ø§Ù„Ø­Ø¬Ø² Ù…Ù‚Ø¨ÙˆÙ„';
@@ -1961,7 +1961,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get updateMessage =>
-      'Ù†Ø³Ø®Ø© Ø¬Ø¯ÙŠØ¯Ø© Ù…Ù† TripShip Ù…ØªÙˆÙØ±Ø© Ø§Ù„Ø¢Ù†. ÙŠØ±Ø¬Ù‰ Ø§Ù„ØªØ­Ø¯ÙŠØ« Ù„Ù„Ù…ØªØ§Ø¨Ø¹Ø© ÙÙŠ Ø§Ø³ØªØ®Ø¯Ø§Ù… Ø§Ù„ØªØ·Ø¨ÙŠÙ‚.';
+      'Ù†Ø³Ø®Ø© Ø¬Ø¯ÙŠØ¯Ø© Ù…Ù† TripsFactory Ù…ØªÙˆÙØ±Ø© Ø§Ù„Ø¢Ù†. ÙŠØ±Ø¬Ù‰ Ø§Ù„ØªØ­Ø¯ÙŠØ« Ù„Ù„Ù…ØªØ§Ø¨Ø¹Ø© ÙÙŠ Ø§Ø³ØªØ®Ø¯Ø§Ù… Ø§Ù„ØªØ·Ø¨ÙŠÙ‚.';
 
   @override
   String get showMore => 'Ø¹Ø±Ø¶ Ø§Ù„Ù…Ø²ÙŠØ¯';
@@ -1978,15 +1978,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get suspensionErrorNotice =>
-      'Ø¥Ø°Ø§ ÙƒÙ†Øª ØªØ¹ØªÙ‚Ø¯ Ø£Ù† Ù‡Ø°Ø§ Ø®Ø·Ø£ØŒ ÙŠØ±Ø¬Ù‰ Ø§Ù„ØªÙˆØ§ØµÙ„ Ù…Ø¹ Ø¯Ø¹Ù… TripShip Ù„Ù…Ø¹Ø§Ù„Ø¬Ø© Ø­Ø§Ù„Ø© Ø­Ø³Ø§Ø¨Ùƒ.';
+      'Ø¥Ø°Ø§ ÙƒÙ†Øª ØªØ¹ØªÙ‚Ø¯ Ø£Ù† Ù‡Ø°Ø§ Ø®Ø·Ø£ØŒ ÙŠØ±Ø¬Ù‰ Ø§Ù„ØªÙˆØ§ØµÙ„ Ù…Ø¹ Ø¯Ø¹Ù… TripsFactory Ù„Ù…Ø¹Ø§Ù„Ø¬Ø© Ø­Ø§Ù„Ø© Ø­Ø³Ø§Ø¨Ùƒ.';
 
   @override
   String get secureTransactionLogged =>
-      'Ù‡Ø°Ù‡ Ø§Ù„Ù…Ø¹Ø§Ù…Ù„Ø© Ù…Ø¤Ù…Ù†Ø© ÙˆÙ…Ø³Ø¬Ù„Ø© Ø¨ÙˆØ§Ø³Ø·Ø© TripShip.';
+      'Ù‡Ø°Ù‡ Ø§Ù„Ù…Ø¹Ø§Ù…Ù„Ø© Ù…Ø¤Ù…Ù†Ø© ÙˆÙ…Ø³Ø¬Ù„Ø© Ø¨ÙˆØ§Ø³Ø·Ø© TripsFactory.';
 
   @override
   String get bookingSecuredLogged =>
-      'ØªÙ… ØªØ£Ù…ÙŠÙ† Ø§Ù„Ø­Ø¬Ø² ÙˆØªØ³Ø¬ÙŠÙ„Ù‡ Ø¹Ø¨Ø± Ù…Ù†ØµØ© TripShip.';
+      'ØªÙ… ØªØ£Ù…ÙŠÙ† Ø§Ù„Ø­Ø¬Ø² ÙˆØªØ³Ø¬ÙŠÙ„Ù‡ Ø¹Ø¨Ø± Ù…Ù†ØµØ© TripsFactory.';
 
   @override
   String get paymentDetailsSecure =>
@@ -1994,7 +1994,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get conversationSecuredModerated =>
-      'Ø§Ù„Ù…Ø­Ø§Ø¯Ø«Ø© Ù…Ø¤Ù…Ù†Ø© ÙˆÙ…Ø±Ø§Ù‚Ø¨Ø© Ø¨ÙˆØ§Ø³Ø·Ø© TripShip.';
+      'Ø§Ù„Ù…Ø­Ø§Ø¯Ø«Ø© Ù…Ø¤Ù…Ù†Ø© ÙˆÙ…Ø±Ø§Ù‚Ø¨Ø© Ø¨ÙˆØ§Ø³Ø·Ø© TripsFactory.';
 
   @override
   String get sendImage => 'Ø¥Ø±Ø³Ø§Ù„ ØµÙˆØ±Ø©';

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/core/providers/app_mode_provider.dart';
-import 'package:tripship/core/widgets/notification_bell_button.dart';
-import 'package:tripship/core/services/notification_service.dart';
-import 'package:tripship/features/auth/data/auth_service.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/core/providers/app_mode_provider.dart';
+import 'package:tripsfactory/core/widgets/notification_bell_button.dart';
+import 'package:tripsfactory/core/services/notification_service.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 
 /// Extracted SliverAppBar from HomeScreen.
 /// Handles gradient header, mode switch, tab bar, title, and actions.

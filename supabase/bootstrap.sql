@@ -1,5 +1,5 @@
 -- ============================================================================
--- bootstrap.sql — post-schema provisioning for a FRESH TripShip project.
+-- bootstrap.sql — post-schema provisioning for a FRESH TripsFactory project.
 --
 -- Run AFTER the schema exists (see SUPABASE_SETUP.md). Creates Storage buckets
 -- (with the exact settings from the source project) and the pg_cron jobs.

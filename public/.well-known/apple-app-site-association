@@ -3,7 +3,7 @@
         "apps": [],
         "details": [
             {
-                "appID": "TODO: YOUR_TEAM_ID.com.tripship.app",
+                "appID": "TODO: YOUR_TEAM_ID.com.tripsfactory.app",
                 "paths": [
                     "/trip/*"
                 ]

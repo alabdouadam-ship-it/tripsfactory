@@ -1,14 +1,14 @@
-import 'package:tripship/core/config/app_routes.dart';
+import 'package:tripsfactory/core/config/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tripship/features/bookings/data/booking_model.dart';
-import 'package:tripship/features/bookings/data/repositories/booking_repository_impl.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/core/widgets/notification_bell_button.dart';
-import 'package:tripship/features/trips/presentation/trip_card.dart';
-import 'package:tripship/core/services/share_service.dart';
+import 'package:tripsfactory/features/bookings/data/booking_model.dart';
+import 'package:tripsfactory/features/bookings/data/repositories/booking_repository_impl.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/core/widgets/notification_bell_button.dart';
+import 'package:tripsfactory/features/trips/presentation/trip_card.dart';
+import 'package:tripsfactory/core/services/share_service.dart';
 
 class MyRequestsScreen extends ConsumerStatefulWidget {
   const MyRequestsScreen({super.key});

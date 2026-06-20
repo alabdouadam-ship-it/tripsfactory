@@ -148,7 +148,7 @@ export function Sidebar({ isCollapsed = false, onToggleCollapse }: { isCollapsed
             <div className="flex h-16 items-center px-6 flex-shrink-0 justify-between">
                 {!isCollapsed && (
                     <h1 className="text-2xl font-bold" style={{ color: 'var(--accent)' }}>
-                        {t('sidebar.title', 'TripShip Admin')}
+                        {t('sidebar.title', 'TripsFactory Admin')}
                     </h1>
                 )}
                 {onToggleCollapse && (

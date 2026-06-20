@@ -1,12 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/core/utils/result.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
+import 'package:tripsfactory/core/utils/result.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
 
 /// Errors are surfaced as Result.failure; no silent swallow. Critical flows use Result.
 void main() {
   group('Error surfacing (Result)', () {
     test('Result.failure exposes error and does not throw', () {
-      final e = TripShipException.withKey(
+      final e = TripsFactoryException.withKey(
         'test_key',
         'Message',
         Exception('cause'),
@@ -19,7 +19,7 @@ void main() {
     });
 
     test('Result.fold on failure calls onFailure not onSuccess', () {
-      final e = TripShipException.withKey('k', 'msg', null);
+      final e = TripsFactoryException.withKey('k', 'msg', null);
       final result = Result<void>.failure(e);
       var failureCalled = false;
       result.fold((_) => fail('onSuccess should not be called'), (err) {

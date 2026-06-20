@@ -1,4 +1,4 @@
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 
 /// Captures log calls for tests. Replace [StructuredLogger] output or use as callback.
 class FakeLogger {

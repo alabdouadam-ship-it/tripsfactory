@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/features/profile/data/profile_model.dart';
-import 'package:tripship/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/features/profile/data/profile_model.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
 import '../test_helpers/perf_budgets_loader.dart';
 
 /// Tests that widgets using .select() on currentUserProfileProvider

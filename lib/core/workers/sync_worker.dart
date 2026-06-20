@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:tripship/core/utils/result.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
+import 'package:tripsfactory/core/utils/result.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/core/providers/connectivity_provider.dart';
-import 'package:tripship/core/services/offline_sync_service.dart';
-import 'package:tripship/features/trips/data/repositories/trip_repository_impl.dart';
-import 'package:tripship/features/bookings/data/repositories/booking_repository_impl.dart';
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/core/providers/connectivity_provider.dart';
+import 'package:tripsfactory/core/services/offline_sync_service.dart';
+import 'package:tripsfactory/features/trips/data/repositories/trip_repository_impl.dart';
+import 'package:tripsfactory/features/bookings/data/repositories/booking_repository_impl.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 
 /// Optional sleeper for tests (avoids real delays). Default null = use Future.delayed.
 final sleeperForSyncWorkerProvider = Provider<Future<void> Function(Duration)?>(
@@ -226,7 +226,7 @@ class SyncWorker {
           'Unknown offline action type: ${action.type}. Removing from queue.',
         );
         return Result<void>.failure(
-          TripShipException.withKey(
+          TripsFactoryException.withKey(
             'transient',
             'Unknown offline action type: ${action.type}',
           ),

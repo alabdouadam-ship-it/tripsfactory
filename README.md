@@ -1,7 +1,7 @@
-# TripShip — Logistics & Delivery Marketplace
+# TripsFactory — Logistics & Delivery Marketplace
 
 A production-grade, white-label logistics marketplace: a **Flutter** mobile app,
-a **Next.js** admin panel, and a **Supabase** backend. TripShip connects
+a **Next.js** admin panel, and a **Supabase** backend. TripsFactory connects
 travelers/drivers with senders for shared delivery across cities and borders —
 post trips, request deliveries, chat, and manage the whole
 lifecycle.
@@ -51,7 +51,7 @@ lifecycle.
 
 ```bash
 git clone <your-repo-url>
-cd tripship
+cd tripsfactory
 flutter pub get
 dart run build_runner build --delete-conflicting-outputs
 # configure .env + Firebase config (see docs/GETTING_STARTED.md), then:

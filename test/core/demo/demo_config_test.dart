@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/core/config/demo_config.dart';
+import 'package:tripsfactory/core/config/demo_config.dart';
 
 void main() {
   group('DemoConfig', () {

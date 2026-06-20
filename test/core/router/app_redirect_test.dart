@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/core/router/app_redirect.dart';
-import 'package:tripship/features/profile/data/profile_model.dart';
+import 'package:tripsfactory/core/router/app_redirect.dart';
+import 'package:tripsfactory/features/profile/data/profile_model.dart';
 
 void main() {
   group('computeRedirect', () {

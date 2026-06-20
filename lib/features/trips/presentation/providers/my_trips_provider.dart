@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/features/auth/data/auth_service.dart';
-import 'package:tripship/features/trips/data/repositories/trip_repository_impl.dart';
-import 'package:tripship/features/trips/data/trip_model.dart';
-import 'package:tripship/core/enums/app_enums.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/features/trips/data/repositories/trip_repository_impl.dart';
+import 'package:tripsfactory/features/trips/data/trip_model.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
 
 enum TripFilter { all, available, full, completed, cancelled }
 

@@ -1,5 +1,5 @@
-import 'package:tripship/core/config/brand_config.dart';
-import 'package:tripship/core/config/domain_config.dart';
+import 'package:tripsfactory/core/config/brand_config.dart';
+import 'package:tripsfactory/core/config/domain_config.dart';
 
 class AppConstants {
   static const String baseUrl = BrandConfig.webBaseUrl;

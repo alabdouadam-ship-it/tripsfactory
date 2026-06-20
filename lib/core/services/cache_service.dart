@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/core/services/preferences_service.dart';
-import 'package:tripship/features/trips/data/trip_model.dart';
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/core/services/preferences_service.dart';
+import 'package:tripsfactory/features/trips/data/trip_model.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 
 final cacheServiceProvider = Provider<CacheService>((ref) {
   final prefs = ref.watch(preferencesServiceProvider);

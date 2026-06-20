@@ -25,6 +25,6 @@ class DemoConfig {
 
   /// Placeholder Supabase values used only so the client can initialize in
   /// demo mode. No real network calls are expected to succeed.
-  static const String placeholderSupabaseUrl = 'https://demo.tripship.invalid';
+  static const String placeholderSupabaseUrl = 'https://demo.tripsfactory.invalid';
   static const String placeholderSupabaseAnonKey = 'demo-anon-key';
 }

@@ -291,7 +291,7 @@ export default function ContentPage() {
               <input value={get('first_launch_popup_image_url') ?? ''} onChange={e => patch('first_launch_popup_image_url', e.target.value)} className={inputCls} placeholder="https://..." />
             </Field>
             <Field label={t('content.popup.actionUrl', 'Action URL (optional)')}>
-              <input value={get('first_launch_popup_action_url') ?? ''} onChange={e => patch('first_launch_popup_action_url', e.target.value)} className={inputCls} placeholder="tripship://route or https://..." />
+              <input value={get('first_launch_popup_action_url') ?? ''} onChange={e => patch('first_launch_popup_action_url', e.target.value)} className={inputCls} placeholder="tripsfactory://route or https://..." />
             </Field>
             <Field label={t('content.popup.target', 'Target audience')}>
               <select
@@ -385,7 +385,7 @@ export default function ContentPage() {
               <input value={get('occasional_popup_image_url') ?? ''} onChange={e => patch('occasional_popup_image_url', e.target.value)} className={inputCls} placeholder="https://..." />
             </Field>
             <Field label={t('content.occasional.actionUrl', 'Action URL (optional)')}>
-              <input value={get('occasional_popup_action_url') ?? ''} onChange={e => patch('occasional_popup_action_url', e.target.value)} className={inputCls} placeholder="tripship://route or https://..." />
+              <input value={get('occasional_popup_action_url') ?? ''} onChange={e => patch('occasional_popup_action_url', e.target.value)} className={inputCls} placeholder="tripsfactory://route or https://..." />
             </Field>
             <Field label={t('content.occasional.target', 'Target audience')}>
               <select
@@ -471,7 +471,7 @@ export default function ContentPage() {
               value={get('force_update_message') ?? ''}
               onChange={e => patch('force_update_message', e.target.value)}
               className={inputCls + ' resize-none'}
-              placeholder={t('content.version.forceUpdatePlaceholder', 'e.g., Please update to the latest version to continue using TripShip.')}
+              placeholder={t('content.version.forceUpdatePlaceholder', 'e.g., Please update to the latest version to continue using TripsFactory.')}
             />
           </Field>
 

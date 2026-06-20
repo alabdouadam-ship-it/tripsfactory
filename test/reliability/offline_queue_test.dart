@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tripship/core/services/offline_sync_service.dart';
-import 'package:tripship/core/models/offline_action.dart';
+import 'package:tripsfactory/core/services/offline_sync_service.dart';
+import 'package:tripsfactory/core/models/offline_action.dart';
 
 /// Offline queue: persist, order by createdAt, remove only on success, partial success leaves rest queued.
 void main() {

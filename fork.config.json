@@ -1,17 +1,17 @@
 {
   "$comment": "Single descriptor for a brand/domain fork of this core. Values here MUST match the Dart seams (BrandConfig). The test test/config/fork_config_test.dart enforces that, so this file is the canonical, reviewable description of a fork. See CORE.md for the full fork procedure.",
   "brand": {
-    "name": "TripShip",
-    "androidPackageId": "com.tripship.app",
-    "authScheme": "io.supabase.tripship",
-    "contentScheme": "tripship",
-    "webBaseUrl": "https://tripship-legal.web.app",
-    "appStoreUrl": "https://apps.apple.com/app/tripship/id000000000",
+    "name": "TripsFactory",
+    "androidPackageId": "com.tripsfactory.app",
+    "authScheme": "io.supabase.tripsfactory",
+    "contentScheme": "tripsfactory",
+    "webBaseUrl": "https://tripsfactory-legal.web.app",
+    "appStoreUrl": "https://apps.apple.com/app/tripsfactory/id000000000",
     "fontFamily": "Public Sans",
-    "notificationChannelId": "tripship_notification_v1",
-    "notificationChannelName": "TripShip Notifications",
-    "notificationSoundAndroid": "tripship_notification",
-    "notificationSoundIos": "tripship_notification.wav",
+    "notificationChannelId": "tripsfactory_notification_v1",
+    "notificationChannelName": "TripsFactory Notifications",
+    "notificationSoundAndroid": "tripsfactory_notification",
+    "notificationSoundIos": "tripsfactory_notification.wav",
     "supportWhatsAppFallback": "+971933123456",
     "logoAsset": "assets/icon/icon.png"
   },
@@ -23,8 +23,8 @@
   "theme": {
     "$comment": "Themes this fork supports and the first-launch default. Must match AppTheme.supportedThemes and ThemeNotifier.defaultThemeMode (order matters).",
     "supported": [
-      "tripshipLight",
-      "tripshipDark",
+      "tripsfactoryLight",
+      "tripsfactoryDark",
       "desertGold",
       "oasisGreen",
       "skylineBlue",

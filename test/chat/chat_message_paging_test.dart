@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/features/chat/data/chat_message_paging.dart';
-import 'package:tripship/features/chat/data/chat_model.dart';
+import 'package:tripsfactory/features/chat/data/chat_message_paging.dart';
+import 'package:tripsfactory/features/chat/data/chat_model.dart';
 
 ChatMessage _msg(
   String id, {

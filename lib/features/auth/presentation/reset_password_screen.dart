@@ -1,11 +1,11 @@
-import 'package:tripship/core/config/app_routes.dart';
+import 'package:tripsfactory/core/config/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tripship/features/auth/data/auth_service.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
-import 'package:tripship/core/utils/error_utils.dart';
-import 'package:tripship/features/auth/presentation/widgets/auth_widgets.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/utils/error_utils.dart';
+import 'package:tripsfactory/features/auth/presentation/widgets/auth_widgets.dart';
 
 class ResetPasswordScreen extends ConsumerStatefulWidget {
   const ResetPasswordScreen({super.key});
@@ -97,7 +97,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 32),
-                TripShipAuthTextField(
+                TripsFactoryAuthTextField(
                   controller: _passwordController,
                   label: localizations.newPasswordLabel,
                   icon: Icons.lock_outline,
@@ -116,7 +116,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                   },
                 ),
                 const SizedBox(height: 16),
-                TripShipAuthTextField(
+                TripsFactoryAuthTextField(
                   controller: _confirmPasswordController,
                   label: localizations.confirmPasswordLabel,
                   icon: Icons.lock_outline,
@@ -130,7 +130,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                   },
                 ),
                 const SizedBox(height: 32),
-                TripShipAuthButton(
+                TripsFactoryAuthButton(
                   text: localizations.updatePasswordButton,
                   onPressed: _updatePassword,
                   isLoading: _isLoading,

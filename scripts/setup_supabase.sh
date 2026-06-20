@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-# setup_supabase.sh — bring up the TripShip backend on a FRESH Supabase project.
+# setup_supabase.sh — bring up the TripsFactory backend on a FRESH Supabase project.
 #
 # Applies SQL with `psql` (from a PostgreSQL 17 client) and uses the Supabase
 # CLI for function deploys + secrets. Manual dashboard steps (auth redirect
@@ -88,8 +88,8 @@ cat <<EOF
 
 ==> Done. REMAINING MANUAL STEPS (see docs/BACKEND_SETUP.md):
   - Auth → URL config redirect URLs:
-      io.supabase.tripship://login-callback
-      io.supabase.tripship://reset-callback
+      io.supabase.tripsfactory://login-callback
+      io.supabase.tripsfactory://reset-callback
   - Auth → Providers: enable Email, Phone OTP, Google OAuth as needed
   - Promote first admin: update public.profiles set is_admin=true where id='<UUID>';
   - Firebase: replace android/app/google-services.json and ios/Runner/GoogleService-Info.plist

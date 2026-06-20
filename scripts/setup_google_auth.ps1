@@ -17,8 +17,8 @@ param(
   [Parameter(Mandatory)] [string]$ClientId,
   [Parameter(Mandatory)] [string]$ClientSecret,
   [string[]]$RedirectUrls = @(
-    'io.supabase.tripship://login-callback',
-    'io.supabase.tripship://reset-callback'
+    'io.supabase.tripsfactory://login-callback',
+    'io.supabase.tripsfactory://reset-callback'
   )
 )
 $ErrorActionPreference = 'Stop'

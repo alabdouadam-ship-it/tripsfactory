@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/core/models/offline_action.dart';
+import 'package:tripsfactory/core/models/offline_action.dart';
 
 /// Idempotency: same key / same action id leads to single side effect; notification idempotency key in DB.
 void main() {

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
-import 'package:tripship/core/theme/app_theme.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/theme/app_theme.dart';
 
 /// Pumps a minimal app shell with localization and optional locale for conversion tests.
 Future<void> pumpConversionWidget(
@@ -44,7 +44,7 @@ Future<void> pumpTrustUxWidget(
       overrides: overrides ?? [],
       child: MaterialApp(
         locale: locale,
-        theme: AppTheme.getTheme(AppThemeMode.tripshipLight),
+        theme: AppTheme.getTheme(AppThemeMode.tripsfactoryLight),
         supportedLocales: const [Locale('en'), Locale('ar')],
         localizationsDelegates: const [
           AppLocalizations.delegate,

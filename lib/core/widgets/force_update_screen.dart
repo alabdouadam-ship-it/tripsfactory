@@ -1,6 +1,6 @@
-import 'package:tripship/core/config/store_links.dart';
+import 'package:tripsfactory/core/config/store_links.dart';
 import 'package:flutter/material.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:io';
 

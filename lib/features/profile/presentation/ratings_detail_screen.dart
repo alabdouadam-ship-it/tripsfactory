@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
-import 'package:tripship/features/profile/data/profile_service.dart';
-import 'package:tripship/core/utils/error_utils.dart';
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/features/profile/data/profile_service.dart';
+import 'package:tripsfactory/core/utils/error_utils.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class RatingsDetailScreen extends ConsumerStatefulWidget {

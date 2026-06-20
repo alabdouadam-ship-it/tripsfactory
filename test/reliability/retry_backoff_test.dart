@@ -1,16 +1,16 @@
 import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/core/workers/sync_worker.dart';
-import 'package:tripship/core/services/offline_sync_service.dart';
-import 'package:tripship/core/models/offline_action.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/features/bookings/data/repositories/booking_repository_impl.dart';
-import 'package:tripship/features/bookings/domain/repositories/booking_repository.dart';
-import 'package:tripship/core/utils/result.dart';
-import 'package:tripship/features/bookings/data/booking_model.dart';
+import 'package:tripsfactory/core/workers/sync_worker.dart';
+import 'package:tripsfactory/core/services/offline_sync_service.dart';
+import 'package:tripsfactory/core/models/offline_action.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/features/bookings/data/repositories/booking_repository_impl.dart';
+import 'package:tripsfactory/features/bookings/domain/repositories/booking_repository.dart';
+import 'package:tripsfactory/core/utils/result.dart';
+import 'package:tripsfactory/features/bookings/data/booking_model.dart';
 import '../test_helpers/fake_sleeper.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Retry: transient failures cause retries; exponential backoff 1s, 2s, 4s; stop after max (3).
@@ -131,7 +131,7 @@ class FakeBookingRepositoryThatThrows implements IBookingRepository {
     if (_attempts < throwUntilAttempt) {
       _attempts++;
       return Result.failure(
-        TripShipException.withKey('transient', 'Transient failure'),
+        TripsFactoryException.withKey('transient', 'Transient failure'),
       );
     }
     return Result.success(null);

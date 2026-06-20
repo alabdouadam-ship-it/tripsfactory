@@ -1,7 +1,7 @@
 import 'dart:async';
 
-/// Extensions on [Stream] for TripShip-specific performance patterns.
-extension TripShipStreamExtensions<T> on Stream<T> {
+/// Extensions on [Stream] for TripsFactory-specific performance patterns.
+extension TripsFactoryStreamExtensions<T> on Stream<T> {
   /// Throttles the stream so that after emitting an item, subsequent items
   /// within [duration] are dropped. The first event always passes through.
   ///

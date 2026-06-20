@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tripship/core/widgets/delivery_code_card.dart';
-import 'package:tripship/features/bookings/data/booking_model.dart';
-import 'package:tripship/features/trips/data/trip_model.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/features/ratings/presentation/rating_dialog.dart';
-import 'package:tripship/features/bookings/presentation/widgets/booking_progress_stepper.dart';
-import 'package:tripship/features/chat/data/chat_service.dart';
+import 'package:tripsfactory/core/widgets/delivery_code_card.dart';
+import 'package:tripsfactory/features/bookings/data/booking_model.dart';
+import 'package:tripsfactory/features/trips/data/trip_model.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/features/ratings/presentation/rating_dialog.dart';
+import 'package:tripsfactory/features/bookings/presentation/widgets/booking_progress_stepper.dart';
+import 'package:tripsfactory/features/chat/data/chat_service.dart';
 import '../controllers/trip_details_controller.dart';
 
 class TripSenderSection extends ConsumerWidget {

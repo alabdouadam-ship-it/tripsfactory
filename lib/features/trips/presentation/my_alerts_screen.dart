@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:tripship/core/config/geography_config.dart';
-import 'package:tripship/features/auth/data/auth_service.dart';
-import 'package:tripship/features/trips/data/route_alert_model.dart';
-import 'package:tripship/features/trips/data/route_alert_service.dart';
-import 'package:tripship/features/trips/data/location_service.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
-import 'package:tripship/core/utils/error_utils.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/core/config/geography_config.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/features/trips/data/route_alert_model.dart';
+import 'package:tripsfactory/features/trips/data/route_alert_service.dart';
+import 'package:tripsfactory/features/trips/data/location_service.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/utils/error_utils.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 
 class MyAlertsScreen extends ConsumerStatefulWidget {
   const MyAlertsScreen({super.key});
@@ -444,13 +444,13 @@ class _AddAlertDialogState extends ConsumerState<_AddAlertDialog> {
         );
 
         if (originIsHome && destIsHome) {
-          throw TripShipException(l10n.errorExternalMustBeOutside(homeCountry));
+          throw TripsFactoryException(l10n.errorExternalMustBeOutside(homeCountry));
         }
 
         if (GeographyConfig.externalRequiresHomeCountryOnOneSide &&
             !originIsHome &&
             !destIsHome) {
-          throw TripShipException(
+          throw TripsFactoryException(
             l10n.errorExternalMustInvolveHomeCountry(homeCountry),
           );
         }

@@ -1,7 +1,7 @@
 import 'dart:io';
-import 'package:tripship/features/chat/data/chat_model.dart';
-import 'package:tripship/features/chat/data/chat_message_paging.dart';
-import 'package:tripship/features/chat/data/chat_service.dart';
+import 'package:tripsfactory/features/chat/data/chat_model.dart';
+import 'package:tripsfactory/features/chat/data/chat_message_paging.dart';
+import 'package:tripsfactory/features/chat/data/chat_service.dart';
 
 /// Fake chat service for conversion tests: no network, empty streams.
 class FakeChatService implements IChatService {

@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/features/bookings/data/lifecycle/booking_notification_enrichment_service.dart';
+import 'package:tripsfactory/features/bookings/data/lifecycle/booking_notification_enrichment_service.dart';
 
 void main() {
   group('applyNotificationEnrichmentShape', () {

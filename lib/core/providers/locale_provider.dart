@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/core/config/localization_config.dart';
-import 'package:tripship/core/services/preferences_service.dart';
+import 'package:tripsfactory/core/config/localization_config.dart';
+import 'package:tripsfactory/core/services/preferences_service.dart';
 
 class LocaleNotifier extends StateNotifier<Locale> {
   final PreferencesService _prefsService;

@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 
 final supportServiceProvider = Provider<SupportService>((ref) {
   return SupportService(Supabase.instance.client);
@@ -101,8 +101,8 @@ class SupportService {
         e,
         st,
       );
-      if (e is TripShipException) rethrow;
-      throw TripShipException(
+      if (e is TripsFactoryException) rethrow;
+      throw TripsFactoryException(
         'Unable to load support tickets. Please try again.',
         e,
       );
@@ -116,7 +116,7 @@ class SupportService {
   }) async {
     final userId = _currentUserId;
     if (userId == null) {
-      throw TripShipException.withKey('not_authenticated', 'Not authenticated.');
+      throw TripsFactoryException.withKey('not_authenticated', 'Not authenticated.');
     }
 
     try {
@@ -157,8 +157,8 @@ class SupportService {
         e,
         st,
       );
-      if (e is TripShipException) rethrow;
-      throw TripShipException(
+      if (e is TripsFactoryException) rethrow;
+      throw TripsFactoryException(
         'Unable to create support ticket. Please try again.',
         e,
       );
@@ -184,8 +184,8 @@ class SupportService {
         e,
         st,
       );
-      if (e is TripShipException) rethrow;
-      throw TripShipException('Unable to load messages. Please try again.', e);
+      if (e is TripsFactoryException) rethrow;
+      throw TripsFactoryException('Unable to load messages. Please try again.', e);
     }
   }
 
@@ -196,7 +196,7 @@ class SupportService {
   }) async {
     final userId = _currentUserId;
     if (userId == null) {
-      throw TripShipException.withKey('not_authenticated', 'Not authenticated.');
+      throw TripsFactoryException.withKey('not_authenticated', 'Not authenticated.');
     }
 
     try {
@@ -231,8 +231,8 @@ class SupportService {
         e,
         st,
       );
-      if (e is TripShipException) rethrow;
-      throw TripShipException('Unable to send message. Please try again.', e);
+      if (e is TripsFactoryException) rethrow;
+      throw TripsFactoryException('Unable to send message. Please try again.', e);
     }
   }
 
@@ -252,7 +252,7 @@ class SupportService {
         'SupportService',
         'Failed to mark messages as read for ticket $ticketId',
       );
-      if (e is TripShipException) rethrow;
+      if (e is TripsFactoryException) rethrow;
       // Non-critical; don't throw to avoid disrupting UI
     }
   }
@@ -302,8 +302,8 @@ class SupportService {
         e,
         st,
       );
-      if (e is TripShipException) rethrow;
-      throw TripShipException('Unable to load unread count. Please try again.', e);
+      if (e is TripsFactoryException) rethrow;
+      throw TripsFactoryException('Unable to load unread count. Please try again.', e);
     }
   }
 }

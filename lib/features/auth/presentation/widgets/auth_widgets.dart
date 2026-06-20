@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tripship/core/config/auth_config.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/config/auth_config.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 
 class AuthHeader extends StatelessWidget {
   const AuthHeader({super.key});
@@ -67,7 +67,7 @@ class AuthHeader extends StatelessWidget {
   }
 }
 
-class TripShipAuthTextField extends StatelessWidget {
+class TripsFactoryAuthTextField extends StatelessWidget {
   final TextEditingController controller;
   final String label;
   final IconData icon;
@@ -79,7 +79,7 @@ class TripShipAuthTextField extends StatelessWidget {
   final Iterable<String>? autofillHints;
   final String? Function(String?)? validator;
 
-  const TripShipAuthTextField({
+  const TripsFactoryAuthTextField({
     super.key,
     required this.controller,
     required this.label,
@@ -158,12 +158,12 @@ class TripShipAuthTextField extends StatelessWidget {
   }
 }
 
-class TripShipAuthButton extends StatelessWidget {
+class TripsFactoryAuthButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final bool isLoading;
 
-  const TripShipAuthButton({
+  const TripsFactoryAuthButton({
     super.key,
     required this.text,
     required this.onPressed,

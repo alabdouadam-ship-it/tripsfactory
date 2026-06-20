@@ -1,4 +1,4 @@
-import 'package:tripship/core/enums/app_enums.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
 
 /// Pure rules for [TripStatusSyncService] (unit-tested; keeps DB I/O thin).
 bool tripStatusAllowsAutoMarkFull(TripStatus current) {

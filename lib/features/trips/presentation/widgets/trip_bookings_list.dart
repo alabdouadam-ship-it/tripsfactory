@@ -3,17 +3,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:tripship/features/bookings/data/booking_model.dart';
-import 'package:tripship/features/chat/data/chat_model.dart';
-import 'package:tripship/features/chat/data/chat_service.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
-import 'package:tripship/core/utils/l10n_context.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/features/ratings/presentation/rating_dialog.dart';
-import 'package:tripship/features/bookings/presentation/widgets/booking_progress_stepper.dart';
-import 'package:tripship/features/bookings/presentation/widgets/delivery_otp_dialog.dart';
+import 'package:tripsfactory/features/bookings/data/booking_model.dart';
+import 'package:tripsfactory/features/chat/data/chat_model.dart';
+import 'package:tripsfactory/features/chat/data/chat_service.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/utils/l10n_context.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/features/ratings/presentation/rating_dialog.dart';
+import 'package:tripsfactory/features/bookings/presentation/widgets/booking_progress_stepper.dart';
+import 'package:tripsfactory/features/bookings/presentation/widgets/delivery_otp_dialog.dart';
 import '../controllers/trip_details_controller.dart';
-import 'package:tripship/core/theme/tripship_motion_tokens.dart';
+import 'package:tripsfactory/core/theme/tripsfactory_motion_tokens.dart';
 
 class TripBookingsList extends ConsumerWidget {
   final String tripId;
@@ -327,9 +327,9 @@ class _BookingActionButtons extends ConsumerWidget {
     final localizations = localizationsOf(context, ref);
 
     return AnimatedSwitcher(
-      duration: TripShipMotionTokens.mid, // 180ms cross-fade on status change
-      switchInCurve: TripShipMotionTokens.curveInOut,
-      switchOutCurve: TripShipMotionTokens.curveInOut,
+      duration: TripsFactoryMotionTokens.mid, // 180ms cross-fade on status change
+      switchInCurve: TripsFactoryMotionTokens.curveInOut,
+      switchOutCurve: TripsFactoryMotionTokens.curveInOut,
       transitionBuilder: (child, animation) =>
           FadeTransition(opacity: animation, child: child),
       child: _buildActions(context, ref, controller, localizations),

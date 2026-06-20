@@ -1,5 +1,5 @@
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'trip_status_sync_rules.dart';

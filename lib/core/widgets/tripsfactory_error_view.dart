@@ -1,13 +1,13 @@
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 
-class TripShipErrorView extends StatelessWidget {
+class TripsFactoryErrorView extends StatelessWidget {
   final IconData icon;
   final String title;
   final String message;
   final VoidCallback? onRetry;
 
-  const TripShipErrorView({
+  const TripsFactoryErrorView({
     super.key,
     this.icon = Icons.error_outline,
     required this.title,

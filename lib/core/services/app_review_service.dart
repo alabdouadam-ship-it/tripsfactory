@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:tripship/core/services/preferences_service.dart';
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/core/services/preferences_service.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 
 final appReviewServiceProvider = Provider<AppReviewService>((ref) {
   return AppReviewService(ref.watch(preferencesServiceProvider));

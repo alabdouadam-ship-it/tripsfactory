@@ -7,7 +7,7 @@
 ## بالعربية
 
 ### 1. مقدمة
-نلتزم في منصة TripShip بحماية خصوصيتك. توضح هذه السياسة كيفية جمعنا واستخدامنا وحمايتنا لبياناتك الشخصية.
+نلتزم في منصة TripsFactory بحماية خصوصيتك. توضح هذه السياسة كيفية جمعنا واستخدامنا وحمايتنا لبياناتك الشخصية.
 
 ### 2. البيانات التي نجمعها
 - **بيانات الحساب:** الاسم، البريد الإلكتروني، رقم الهاتف
@@ -39,7 +39,7 @@
 ## In English
 
 ### 1. Introduction
-TripShip platform is committed to protecting your privacy. This policy explains how we collect, use, and safeguard your personal data.
+TripsFactory platform is committed to protecting your privacy. This policy explains how we collect, use, and safeguard your personal data.
 
 ### 2. Data We Collect
 - **Account data:** Name, email, phone number

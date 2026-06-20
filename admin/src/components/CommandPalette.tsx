@@ -31,7 +31,7 @@ export function CommandPalette() {
         { id: 'nav-bookings', label: t('commandPalette.cmd.bookings', 'Go to Bookings'), icon: Package, action: () => router.push('/bookings'), category: 'navigation' },
         { id: 'nav-verification', label: t('commandPalette.cmd.verification', 'Go to Verification Center'), icon: Shield, action: () => router.push('/verification'), category: 'navigation' },
         { id: 'action-search', label: t('commandPalette.cmd.search', 'Quick Search'), icon: Search, action: () => { setIsOpen(false); /* Focus global search logic */ }, category: 'actions' },
-        { id: 'help', label: t('commandPalette.cmd.help', 'Admin Documentation'), icon: HelpCircle, action: () => window.open('https://docs.tripship.app', '_blank'), category: 'support' },
+        { id: 'help', label: t('commandPalette.cmd.help', 'Admin Documentation'), icon: HelpCircle, action: () => window.open('https://docs.tripsfactory.app', '_blank'), category: 'support' },
     ];
 
     const filteredCommands = commands.filter(cmd =>

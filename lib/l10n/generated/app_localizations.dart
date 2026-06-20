@@ -107,7 +107,7 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'TripShip'**
+  /// **'TripsFactory'**
   String get appTitle;
 
   /// No description provided for @welcomeBack.
@@ -2876,11 +2876,11 @@ abstract class AppLocalizations {
   /// **'Share App'**
   String get shareApp;
 
-  /// No description provided for @aboutTripShip.
+  /// No description provided for @aboutTripsFactory.
   ///
   /// In en, this message translates to:
-  /// **'About TripShip'**
-  String get aboutTripShip;
+  /// **'About TripsFactory'**
+  String get aboutTripsFactory;
 
   /// No description provided for @appVersion.
   ///
@@ -2888,11 +2888,11 @@ abstract class AppLocalizations {
   /// **'App Version'**
   String get appVersion;
 
-  /// No description provided for @aboutTripShipDescription.
+  /// No description provided for @aboutTripsFactoryDescription.
   ///
   /// In en, this message translates to:
-  /// **'TripShip is a comprehensive logistics platform connecting travelers and senders. We make shipping easier, faster, and more reliable.'**
-  String get aboutTripShipDescription;
+  /// **'TripsFactory is a comprehensive logistics platform connecting travelers and senders. We make shipping easier, faster, and more reliable.'**
+  String get aboutTripsFactoryDescription;
 
   /// No description provided for @notifBookingApproved.
   ///
@@ -3725,7 +3725,7 @@ abstract class AppLocalizations {
   /// No description provided for @updateMessage.
   ///
   /// In en, this message translates to:
-  /// **'A new version of TripShip is available. Please update to continue using the app.'**
+  /// **'A new version of TripsFactory is available. Please update to continue using the app.'**
   String get updateMessage;
 
   /// No description provided for @showMore.
@@ -3755,19 +3755,19 @@ abstract class AppLocalizations {
   /// No description provided for @suspensionErrorNotice.
   ///
   /// In en, this message translates to:
-  /// **'If you believe this is an error, please contact TripShip Support to resolve your account status.'**
+  /// **'If you believe this is an error, please contact TripsFactory Support to resolve your account status.'**
   String get suspensionErrorNotice;
 
   /// No description provided for @secureTransactionLogged.
   ///
   /// In en, this message translates to:
-  /// **'This transaction is secured and logged by TripShip.'**
+  /// **'This transaction is secured and logged by TripsFactory.'**
   String get secureTransactionLogged;
 
   /// No description provided for @bookingSecuredLogged.
   ///
   /// In en, this message translates to:
-  /// **'Booking secured and logged via TripShip platform.'**
+  /// **'Booking secured and logged via TripsFactory platform.'**
   String get bookingSecuredLogged;
 
   /// No description provided for @paymentDetailsSecure.
@@ -3779,7 +3779,7 @@ abstract class AppLocalizations {
   /// No description provided for @conversationSecuredModerated.
   ///
   /// In en, this message translates to:
-  /// **'Conversation secured and moderated by TripShip.'**
+  /// **'Conversation secured and moderated by TripsFactory.'**
   String get conversationSecuredModerated;
 
   /// No description provided for @sendImage.

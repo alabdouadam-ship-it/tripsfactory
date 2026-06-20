@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
-import 'package:tripship/core/models/location_model.dart';
-import 'package:tripship/features/home/presentation/widgets/advanced_filters_dialog.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/models/location_model.dart';
+import 'package:tripsfactory/features/home/presentation/widgets/advanced_filters_dialog.dart';
 
 class HomeFilters extends StatefulWidget {
   final bool isInternal;

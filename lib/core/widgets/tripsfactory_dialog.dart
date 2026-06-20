@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tripship/core/theme/tripship_design_tokens.dart';
-import 'package:tripship/core/theme/tripship_motion_tokens.dart';
+import 'package:tripsfactory/core/theme/tripsfactory_design_tokens.dart';
+import 'package:tripsfactory/core/theme/tripsfactory_motion_tokens.dart';
 
-class TripShipDialog extends StatelessWidget {
+class TripsFactoryDialog extends StatelessWidget {
   final String title;
   final String content;
   final String cancelLabel;
@@ -12,7 +12,7 @@ class TripShipDialog extends StatelessWidget {
   final bool isDestructive;
   final IconData? icon;
 
-  const TripShipDialog({
+  const TripsFactoryDialog({
     super.key,
     required this.title,
     required this.content,
@@ -41,8 +41,8 @@ class TripShipDialog extends StatelessWidget {
       barrierDismissible: true,
       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
       barrierColor: Colors.black54,
-      transitionDuration: TripShipMotionTokens.mid, // 180ms
-      pageBuilder: (context, animation, secondaryAnimation) => TripShipDialog(
+      transitionDuration: TripsFactoryMotionTokens.mid, // 180ms
+      pageBuilder: (context, animation, secondaryAnimation) => TripsFactoryDialog(
         title: title,
         content: content,
         cancelLabel: cancelLabel,
@@ -55,7 +55,7 @@ class TripShipDialog extends StatelessWidget {
       transitionBuilder: (context, animation, secondaryAnimation, child) {
         final curve = CurvedAnimation(
           parent: animation,
-          curve: TripShipMotionTokens.curveInOut,
+          curve: TripsFactoryMotionTokens.curveInOut,
         );
         return ScaleTransition(
           scale: Tween<double>(begin: 0.92, end: 1.0).animate(curve),
@@ -74,7 +74,7 @@ class TripShipDialog extends StatelessWidget {
 
     return Dialog(
       shape: RoundedRectangleBorder(
-        borderRadius: TripShipDesignTokens.borderRadiusLarge,
+        borderRadius: TripsFactoryDesignTokens.borderRadiusLarge,
       ),
       elevation: 0,
       backgroundColor: Colors.transparent,
@@ -83,8 +83,8 @@ class TripShipDialog extends StatelessWidget {
         decoration: BoxDecoration(
           color: theme.dialogTheme.backgroundColor ?? theme.colorScheme.surface,
           shape: BoxShape.rectangle,
-          borderRadius: TripShipDesignTokens.borderRadiusLarge,
-          boxShadow: TripShipDesignTokens.shadowLevel2(context),
+          borderRadius: TripsFactoryDesignTokens.borderRadiusLarge,
+          boxShadow: TripsFactoryDesignTokens.shadowLevel2(context),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -128,7 +128,7 @@ class TripShipDialog extends StatelessWidget {
                     style: TextButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
-                        borderRadius: TripShipDesignTokens.borderRadiusSmall,
+                        borderRadius: TripsFactoryDesignTokens.borderRadiusSmall,
                       ),
                     ),
                     child: Text(
@@ -151,7 +151,7 @@ class TripShipDialog extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       elevation: 0,
                       shape: RoundedRectangleBorder(
-                        borderRadius: TripShipDesignTokens.borderRadiusSmall,
+                        borderRadius: TripsFactoryDesignTokens.borderRadiusSmall,
                       ),
                     ),
                     child: Text(

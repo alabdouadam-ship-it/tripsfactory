@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tripship/core/config/brand_config.dart';
-import 'package:tripship/core/config/app_constants.dart';
-import 'package:tripship/core/config/store_links.dart';
+import 'package:tripsfactory/core/config/brand_config.dart';
+import 'package:tripsfactory/core/config/app_constants.dart';
+import 'package:tripsfactory/core/config/store_links.dart';
 
 void main() {
   group('BrandConfig white-label seam', () {

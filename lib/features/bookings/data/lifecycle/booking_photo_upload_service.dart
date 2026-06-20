@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:tripship/core/exceptions/tripship_exception.dart';
-import 'package:tripship/core/config/storage_buckets.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
+import 'package:tripsfactory/core/config/storage_buckets.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class BookingPhotoUploadService {
@@ -44,7 +44,7 @@ class BookingPhotoUploadService {
       final publicUrl = getPublicUrl(fileName);
       return publicUrl;
     } catch (e) {
-      throw TripShipException.withKey(
+      throw TripsFactoryException.withKey(
         'photo_upload_failed',
         'Failed to upload $type photo. Ensure the "delivery_photos" bucket exists.',
       );

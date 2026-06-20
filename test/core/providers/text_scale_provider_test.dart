@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/core/providers/text_scale_provider.dart';
-import 'package:tripship/core/services/preferences_service.dart';
+import 'package:tripsfactory/core/providers/text_scale_provider.dart';
+import 'package:tripsfactory/core/services/preferences_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mocktail/mocktail.dart';

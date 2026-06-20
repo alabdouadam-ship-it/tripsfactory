@@ -31,13 +31,13 @@
     </queries>
 
     <application
-        android:label="TripShip"
+        android:label="TripsFactory"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="tripship_notification_v1" />
+            android:value="tripsfactory_notification_v1" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@mipmap/ic_launcher" />
@@ -69,23 +69,23 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <!-- Scheme: io.supabase.tripship://login-callback -->
-                <data android:scheme="io.supabase.tripship" android:host="login-callback" />
+                <!-- Scheme: io.supabase.tripsfactory://login-callback -->
+                <data android:scheme="io.supabase.tripsfactory" android:host="login-callback" />
             </intent-filter>
             <!-- Deep Link for Supabase Password Reset -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <!-- Scheme: io.supabase.tripship://reset-callback -->
-                <data android:scheme="io.supabase.tripship" android:host="reset-callback" />
+                <!-- Scheme: io.supabase.tripsfactory://reset-callback -->
+                <data android:scheme="io.supabase.tripsfactory" android:host="reset-callback" />
             </intent-filter>
-            <!-- Deep Link for App Schemes: tripship:// -->
+            <!-- Deep Link for App Schemes: tripsfactory:// -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="tripship" />
+                <data android:scheme="tripsfactory" />
             </intent-filter>
         </activity>
         <meta-data

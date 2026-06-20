@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tripship/features/support/data/support_service.dart';
-import 'package:tripship/core/utils/l10n_context.dart';
+import 'package:tripsfactory/features/support/data/support_service.dart';
+import 'package:tripsfactory/core/utils/l10n_context.dart';
 import 'package:intl/intl.dart';
 
 class SupportTicketItem extends StatelessWidget {

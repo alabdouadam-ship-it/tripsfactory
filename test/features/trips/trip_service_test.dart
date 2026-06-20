@@ -2,8 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:tripship/core/services/preferences_service.dart';
-import 'package:tripship/features/trips/data/trip_service.dart';
+import 'package:tripsfactory/core/services/preferences_service.dart';
+import 'package:tripsfactory/features/trips/data/trip_service.dart';
 
 class MockSupabaseClient extends Mock implements SupabaseClient {}
 

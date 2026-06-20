@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/core/enums/app_enums.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
 
 import 'lifecycle/booking_lifecycle_facade.dart';
 

@@ -1,15 +1,15 @@
 import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tripship/features/auth/data/auth_service.dart';
-import 'package:tripship/features/bookings/data/repositories/booking_repository_impl.dart';
-import 'package:tripship/features/trips/data/trip_model.dart';
-import 'package:tripship/features/trips/data/repositories/trip_repository_impl.dart';
-import 'package:tripship/features/ratings/data/repositories/rating_repository_impl.dart';
-import 'package:tripship/features/safety/data/safety_service.dart' as tripship; // Need alias since we use it directly
-import 'package:tripship/core/utils/result.dart';
-import 'package:tripship/core/exceptions/tripship_exception.dart';
-import 'package:tripship/core/enums/app_enums.dart';
-import 'package:tripship/core/utils/logger.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/features/bookings/data/repositories/booking_repository_impl.dart';
+import 'package:tripsfactory/features/trips/data/trip_model.dart';
+import 'package:tripsfactory/features/trips/data/repositories/trip_repository_impl.dart';
+import 'package:tripsfactory/features/ratings/data/repositories/rating_repository_impl.dart';
+import 'package:tripsfactory/features/safety/data/safety_service.dart' as tripsfactory; // Need alias since we use it directly
+import 'package:tripsfactory/core/utils/result.dart';
+import 'package:tripsfactory/core/exceptions/tripsfactory_exception.dart';
+import 'package:tripsfactory/core/enums/app_enums.dart';
+import 'package:tripsfactory/core/utils/logger.dart';
 
 import 'trip_details_state.dart';
 
@@ -243,7 +243,7 @@ class TripDetailsController extends FamilyNotifier<TripDetailsState, String> {
   Future<void> markTripAsFull() => performAction(() async {
     if (state.trip == null) {
       return Result.failure(
-        TripShipException.withKey(
+        TripsFactoryException.withKey(
           'no_trip',
           'No trip selected',
           'No trip in state',
@@ -256,7 +256,7 @@ class TripDetailsController extends FamilyNotifier<TripDetailsState, String> {
   Future<void> cancelTrip() => performAction(() {
     if (state.trip == null) {
       return Future.value(
-        Result.failure(TripShipException.withKey('no_trip', 'No trip selected')),
+        Result.failure(TripsFactoryException.withKey('no_trip', 'No trip selected')),
       );
     }
     return ref.read(tripRepositoryProvider).cancelTrip(state.trip!.id);
@@ -284,7 +284,7 @@ class TripDetailsController extends FamilyNotifier<TripDetailsState, String> {
 
     try {
       final isBlocked = await ref
-          .read(tripship.safetyServiceProvider) // Add import for safetyServiceProvider
+          .read(tripsfactory.safetyServiceProvider) // Add import for safetyServiceProvider
           .isUserBlocked(state.trip!.driverId);
           
       if (isBlocked) {

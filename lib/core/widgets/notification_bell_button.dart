@@ -1,13 +1,13 @@
-import 'package:tripship/core/config/app_routes.dart';
+import 'package:tripsfactory/core/config/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
-import 'package:tripship/core/providers/app_mode_provider.dart';
-import 'package:tripship/core/services/notification_service.dart';
-import 'package:tripship/features/auth/data/auth_service.dart';
-import 'package:tripship/l10n/generated/app_localizations.dart';
+import 'package:tripsfactory/core/providers/app_mode_provider.dart';
+import 'package:tripsfactory/core/services/notification_service.dart';
+import 'package:tripsfactory/features/auth/data/auth_service.dart';
+import 'package:tripsfactory/l10n/generated/app_localizations.dart';
 
 /// Bell icon button that shows a floating panel with global notifications.
 class NotificationBellButton extends ConsumerWidget {

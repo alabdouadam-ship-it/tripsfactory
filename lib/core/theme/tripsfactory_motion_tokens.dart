@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-/// Centralized motion tokens for TripShip Logistics.
+/// Centralized motion tokens for TripsFactory Logistics.
 ///
 /// All animations must be:
 /// - Duration: 120–220ms
 /// - Curve: easeOutCubic or easeInOutCubic
 /// - Subtle, purposeful, non-bouncy
-abstract final class TripShipMotionTokens {
+abstract final class TripsFactoryMotionTokens {
   // ─── Durations ────────────────────────────────────────────────
   /// 120ms — instant feedback (press-in, pulse)
   static const Duration fast = Duration(milliseconds: 120);
