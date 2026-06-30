@@ -136,10 +136,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Type check (informational)
-        # Known pre-existing type errors in *.test files; kept non-blocking.
+      - name: Type check
         run: npx tsc --noEmit
-        continue-on-error: true
 
       - name: Test
         run: npm test
