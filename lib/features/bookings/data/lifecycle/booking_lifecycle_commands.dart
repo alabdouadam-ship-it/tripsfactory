@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:tripsfactory/core/config/app_constants.dart';
@@ -47,7 +48,7 @@ class AcceptBookingCommand {
       {'type': 'booking_accepted', 'booking_id': bookingId},
     );
 
-    _ctx.ref
+    unawaited(_ctx.ref
         .read(notificationServiceProvider)
         .sendNotificationToUser(
           userId: notifyUserId,
@@ -57,10 +58,10 @@ class AcceptBookingCommand {
           recipientRole: travelerAccepted
               ? AppConstants.roleSender
               : AppConstants.roleTraveler,
-        );
+        ));
 
     if (travelerId != null) {
-      _ctx.ref
+      unawaited(_ctx.ref
           .read(notificationServiceProvider)
           .sendNotificationToUser(
             userId: travelerId,
@@ -68,11 +69,11 @@ class AcceptBookingCommand {
             body: l10n.warningCheckGoodsBody,
             data: notificationData,
             recipientRole: AppConstants.roleTraveler,
-          );
+          ));
     }
 
     if (requesterId != null) {
-      _ctx.ref
+      unawaited(_ctx.ref
           .read(notificationServiceProvider)
           .sendNotificationToUser(
             userId: requesterId,
@@ -80,7 +81,7 @@ class AcceptBookingCommand {
             body: l10n.warningCheckTravelerBody,
             data: notificationData,
             recipientRole: AppConstants.roleSender,
-          );
+          ));
     }
   }
 }

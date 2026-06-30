@@ -285,6 +285,8 @@
     "statusPending": "Uygun",
     "statusRejected": "Reddedildi",
     "statusCancelled": "Ä°ptal edildi",
+    "statusFrozen": "Donduruldu",
+    "statusDisputed": "İhtilaflı",
     "rateYourExperience": "Deneyiminizi deÄŸerlendirin",
     "howWasTheExperience": "Bu iÅŸlemdeki deneyiminiz nasÄ±ldÄ±?",
     "submitRating": "DeÄŸerlendirmeyi gÃ¶nder",

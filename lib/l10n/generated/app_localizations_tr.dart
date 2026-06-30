@@ -886,6 +886,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get statusCancelled => 'Ä°ptal edildi';
 
   @override
+  String get statusFrozen => 'Donduruldu';
+
+  @override
+  String get statusDisputed => 'İhtilaflı';
+
+  @override
   String get rateYourExperience => 'Deneyiminizi deÄŸerlendirin';
 
   @override

@@ -892,6 +892,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get statusCancelled => 'AnnulÃ©';
 
   @override
+  String get statusFrozen => 'Gelé';
+
+  @override
+  String get statusDisputed => 'En litige';
+
+  @override
   String get rateYourExperience => 'Ã‰valuez votre expÃ©rience';
 
   @override

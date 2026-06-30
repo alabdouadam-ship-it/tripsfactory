@@ -73,12 +73,11 @@ begin
 end $$;
 
 -- 4. Push webhook — point the notifications trigger at THIS project ------------
--- The baseline schema ships handle_new_notification() with the SOURCE project's
--- URL hardcoded. On a fresh project that would POST every push to the wrong
--- (old) project's edge function, so FCM delivery would silently fail while
--- in-app notification rows still get written. Recreate the function here with
--- <PROJECT_URL> (substituted by the setup script) so pushes hit this project's
--- push-notification function.
+-- The baseline schema ships handle_new_notification() with a `<PROJECT_URL>`
+-- placeholder (a raw `db reset` therefore POSTs to an invalid URL — FCM silently
+-- no-ops while in-app notification rows still get written). Recreate the function
+-- here with <PROJECT_URL> substituted by the setup script, so pushes hit THIS
+-- project's push-notification function.
 --
 -- Auth: a DEDICATED webhook secret (Vault 'push_webhook_token'), sent in the
 -- x-webhook-secret header and matched against the function's PUSH_WEBHOOK_TOKEN

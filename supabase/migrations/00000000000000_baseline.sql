@@ -1426,7 +1426,7 @@ BEGIN
   LIMIT 1;
 
   PERFORM net.http_post(
-    url := 'https://jkeimaazqmsataoeigsf.supabase.co/functions/v1/push-notification',
+    url := '<PROJECT_URL>/functions/v1/push-notification',
     headers := jsonb_build_object(
       'Content-Type', 'application/json',
       'Authorization', 'Bearer ' || COALESCE(v_key, '')

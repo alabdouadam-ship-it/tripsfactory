@@ -902,6 +902,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get statusCancelled => 'Ù…Ù„ØºÙŠ';
 
   @override
+  String get statusFrozen => 'مجمّد';
+
+  @override
+  String get statusDisputed => 'متنازع عليه';
+
+  @override
   String get rateYourExperience => 'Ù‚ÙŠÙ… ØªØ¬Ø±Ø¨ØªÙƒ';
 
   @override

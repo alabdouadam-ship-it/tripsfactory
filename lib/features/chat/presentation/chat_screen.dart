@@ -103,6 +103,8 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
       case BookingStatus.inCommunication:
       case BookingStatus.rejected:
       case BookingStatus.cancelled:
+      case BookingStatus.frozen:
+      case BookingStatus.disputed:
         return false;
     }
   }
@@ -1007,6 +1009,8 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
       case BookingStatus.rejected:
       case BookingStatus.cancelled:
       case BookingStatus.completed:
+      case BookingStatus.frozen:
+      case BookingStatus.disputed:
         return false;
     }
   }

@@ -285,6 +285,8 @@
     "statusPending": "Disponible",
     "statusRejected": "Rechazado",
     "statusCancelled": "Cancelado",
+    "statusFrozen": "Congelado",
+    "statusDisputed": "En disputa",
     "rateYourExperience": "Valora tu experiencia",
     "howWasTheExperience": "Â¿CÃ³mo fue tu experiencia con esta transacciÃ³n?",
     "submitRating": "Enviar valoraciÃ³n",

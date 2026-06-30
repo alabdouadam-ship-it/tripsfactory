@@ -53,7 +53,7 @@ describe('AuthGuard', () => {
     vi.mocked(supabase.auth.getSession).mockResolvedValue({
       data: { session: { user: { id: 'admin-1' } } },
       error: null,
-    });
+    } as any);
   });
 
   it('shows loading then content when user is admin', async () => {
@@ -62,7 +62,7 @@ describe('AuthGuard', () => {
         <div>Dashboard content</div>
       </AuthGuard>
     );
-    await screen.findByText('Dashboard content', { timeout: 2000 });
+    await screen.findByText('Dashboard content', undefined, { timeout: 2000 });
     expect(screen.queryByTestId('loading')).not.toBeInTheDocument();
     expect(screen.getByTestId('sidebar')).toBeInTheDocument();
   });
@@ -97,7 +97,7 @@ describe('AuthGuard', () => {
     vi.mocked(supabase.auth.getSession).mockResolvedValue({
       data: { session: null },
       error: { message: 'Session expired', name: 'AuthError', status: 401 },
-    });
+    } as any);
     render(
       <AuthGuard>
         <div>Protected</div>
@@ -134,17 +134,17 @@ describe('AuthGuard', () => {
   });
 
   it('keeps access when profile probe returns unknown (non-authoritative)', async () => {
-    singleMock.mockResolvedValue({ data: null }); // no profile or not admin
+    singleMock.mockResolvedValue({ data: null } as any); // no profile or not admin
     vi.mocked(supabase.auth.getSession).mockResolvedValue({
       data: { session: { user: { id: 'user-1' } } },
       error: null,
-    });
+    } as any);
     render(
       <AuthGuard>
         <div>Protected</div>
       </AuthGuard>
     );
-    await screen.findByText('Protected', { timeout: 2000 });
+    await screen.findByText('Protected', undefined, { timeout: 2000 });
   });
 
   it('shows menu button when authorized and it is clickable', async () => {
@@ -153,7 +153,7 @@ describe('AuthGuard', () => {
         <div>Dashboard</div>
       </AuthGuard>
     );
-    await screen.findByText('Dashboard', { timeout: 2000 });
+    await screen.findByText('Dashboard', undefined, { timeout: 2000 });
     const menuButton = screen.getByRole('button', { name: /toggle menu/i });
     expect(menuButton).toBeInTheDocument();
     await userEvent.click(menuButton);

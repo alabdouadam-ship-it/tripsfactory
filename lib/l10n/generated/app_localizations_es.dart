@@ -889,6 +889,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get statusCancelled => 'Cancelado';
 
   @override
+  String get statusFrozen => 'Congelado';
+
+  @override
+  String get statusDisputed => 'En disputa';
+
+  @override
   String get rateYourExperience => 'Valora tu experiencia';
 
   @override

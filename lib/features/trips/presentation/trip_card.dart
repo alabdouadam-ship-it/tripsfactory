@@ -556,6 +556,14 @@ class TripCard extends StatelessWidget {
         color = Colors.red;
         label = isArabic ? 'ملغي' : 'Cancelled';
         break;
+      case BookingStatus.frozen:
+        color = Colors.blueGrey;
+        label = isArabic ? 'مجمّد' : 'Frozen';
+        break;
+      case BookingStatus.disputed:
+        color = Colors.deepOrange;
+        label = isArabic ? 'متنازع عليه' : 'Disputed';
+        break;
     }
 
     return Container(

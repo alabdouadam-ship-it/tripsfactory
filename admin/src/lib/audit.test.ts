@@ -23,7 +23,7 @@ describe('logAdminAction', () => {
     vi.mocked(supabase.auth.getUser).mockResolvedValue({
       data: { user: { id: 'user-1' } },
       error: null,
-    });
+    } as any);
     vi.mocked(supabase.from).mockReturnValue({ insert: insertMock } as any);
   });
 
@@ -31,7 +31,7 @@ describe('logAdminAction', () => {
     vi.mocked(supabase.auth.getUser).mockResolvedValue({
       data: { user: null },
       error: null,
-    });
+    } as any);
     await logAdminAction('test_action');
     expect(insertMock).not.toHaveBeenCalled();
   });

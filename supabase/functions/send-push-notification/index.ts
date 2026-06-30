@@ -33,7 +33,6 @@ Deno.serve(async (req: Request) => {
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
     const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
-    const fcmServerKey = Deno.env.get("FCM_SERVER_KEY");
     if (!supabaseUrl || !serviceRoleKey || !anonKey) {
       return new Response(JSON.stringify({ error: "Server misconfiguration: missing Supabase env." }), {
         status: 500,
@@ -55,26 +54,18 @@ Deno.serve(async (req: Request) => {
 
     const adminClient = createClient(supabaseUrl, serviceRoleKey);
 
-    // Check admin role
-    const { data: roles } = await adminClient
-      .from("user_roles")
-      .select("role")
-      .eq("user_id", user.id);
-    const userRoles = (roles || []).map((r: { role: string }) => r.role);
-    const hasAdminAccess = userRoles.some((r: string) => ["super_admin", "admin", "moderator"].includes(r));
-
-    if (!hasAdminAccess) {
-      const { data: profile } = await adminClient
-        .from("profiles")
-        .select("is_admin")
-        .eq("id", user.id)
-        .single();
-      if (!profile?.is_admin) {
-        return new Response(JSON.stringify({ error: "Forbidden" }), {
-          status: 403,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        });
-      }
+    // Authorize: admin only. The single `profiles.is_admin` flag is the security
+    // boundary (the old role-tier `user_roles` table is vestigial).
+    const { data: profile } = await adminClient
+      .from("profiles")
+      .select("is_admin")
+      .eq("id", user.id)
+      .single();
+    if (!profile?.is_admin) {
+      return new Response(JSON.stringify({ error: "Forbidden" }), {
+        status: 403,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     const payload: PushPayload = await req.json();
@@ -134,47 +125,11 @@ Deno.serve(async (req: Request) => {
       await adminClient.from("notifications").insert(batch);
     }
 
-    // 3. Send FCM push notifications
-    let fcmSent = 0;
-    let fcmFailed = 0;
-
-    if (fcmServerKey) {
-      // Get all FCM tokens for target users (batch query in chunks of 1000)
-      const allTokens: string[] = [];
-      for (let i = 0; i < targetUserIds.length; i += 1000) {
-        const chunk = targetUserIds.slice(i, i + 1000);
-        const { data: tokens } = await adminClient
-          .from("notification_tokens")
-          .select("token")
-          .in("user_id", chunk);
-        const chunkTokens = (tokens || []).map((t: { token: string }) => t.token).filter(Boolean);
-        allTokens.push(...chunkTokens);
-      }
-
-      // Send in batches of 500 (FCM multicast limit)
-      for (let i = 0; i < allTokens.length; i += 500) {
-        const batch = allTokens.slice(i, i + 500);
-        try {
-          const fcmResponse = await fetch("https://fcm.googleapis.com/fcm/send", {
-            method: "POST",
-            headers: {
-              Authorization: `key=${fcmServerKey}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              registration_ids: batch,
-              notification: { title, body },
-              data: notifData,
-            }),
-          });
-          const fcmResult = await fcmResponse.json();
-          fcmSent += fcmResult.success || 0;
-          fcmFailed += fcmResult.failure || 0;
-        } catch (e) {
-          fcmFailed += batch.length;
-        }
-      }
-    }
+    // 3. Push delivery
+    // FCM push is dispatched asynchronously by the `notifications` INSERT trigger
+    // (handle_new_notification), which calls the FCM v1 `push-notification` function
+    // for each row inserted above. No direct FCM send here — the legacy
+    // `fcm.googleapis.com/fcm/send` endpoint was decommissioned by Google in 2024.
 
     // 4. Audit log
     await adminClient.from("admin_audit_log").insert({
@@ -187,8 +142,6 @@ Deno.serve(async (req: Request) => {
         body,
         type,
         target_count: targetUserIds.length,
-        fcm_sent: fcmSent,
-        fcm_failed: fcmFailed,
       },
     });
 
@@ -196,8 +149,7 @@ Deno.serve(async (req: Request) => {
       JSON.stringify({
         success: true,
         in_app_sent: targetUserIds.length,
-        fcm_sent: fcmSent,
-        fcm_failed: fcmFailed,
+        push_dispatch: "trigger",
       }),
       {
         status: 200,

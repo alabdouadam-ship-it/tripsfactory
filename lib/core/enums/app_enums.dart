@@ -77,7 +77,11 @@ enum BookingStatus {
   @JsonValue('delivered')
   delivered,
   @JsonValue('in_communication')
-  inCommunication;
+  inCommunication,
+  @JsonValue('frozen')
+  frozen,
+  @JsonValue('disputed')
+  disputed;
 
   String toStringValue() {
     switch (this) {
@@ -97,6 +101,10 @@ enum BookingStatus {
         return 'delivered';
       case inCommunication:
         return 'in_communication';
+      case frozen:
+        return 'frozen';
+      case disputed:
+        return 'disputed';
     }
   }
 
@@ -133,7 +141,9 @@ enum BookingStatus {
       case completed:
       case cancelled:
       case rejected:
-        return false; // Terminal states
+      case frozen:
+      case disputed:
+        return false; // Terminal / admin-managed states (no client transition)
     }
   }
 }

@@ -304,6 +304,8 @@
     "statusPending": "Available",
     "statusRejected": "Rejected",
     "statusCancelled": "Cancelled",
+    "statusFrozen": "Frozen",
+    "statusDisputed": "Disputed",
     "rateYourExperience": "Rate Your Experience",
     "howWasTheExperience": "How was your experience with this transaction?",
     "submitRating": "Submit Rating",

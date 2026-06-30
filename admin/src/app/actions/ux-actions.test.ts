@@ -3,7 +3,7 @@ import { getPaginatedBookings } from './ux-actions';
 
 const mocks = vi.hoisted(() => {
   const state = {
-    rangeResult: { data: [], count: 0, error: null as any },
+    rangeResult: { data: [] as any, count: 0 as number | null, error: null as any },
   };
   const selectCalls: Array<{ table: string; columns: string; options?: any }> = [];
 
@@ -48,7 +48,7 @@ describe('getPaginatedBookings', () => {
     mocks.selectCalls.length = 0;
     mocks.mockFrom.mockClear();
     Object.values(mocks.query).forEach((fn) => {
-      if (typeof fn === 'function' && 'mockClear' in fn) fn.mockClear();
+      if (typeof fn === 'function' && 'mockClear' in fn) (fn as any).mockClear();
     });
   });
 

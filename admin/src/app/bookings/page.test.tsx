@@ -127,7 +127,7 @@ describe('BookingsPage', () => {
         created_at: '2026-05-01T10:00:00.000Z',
       }],
     };
-    mocks.mockBulkUpdateBookingStatus.mockResolvedValueOnce({ success: false, error: 'FSM blocked' });
+    mocks.mockBulkUpdateBookingStatus.mockResolvedValueOnce({ success: false, error: 'FSM blocked' } as any);
 
     render(<BookingsPage />);
 

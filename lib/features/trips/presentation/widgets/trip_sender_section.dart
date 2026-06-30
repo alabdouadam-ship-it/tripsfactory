@@ -436,6 +436,10 @@ class TripSenderSection extends ConsumerWidget {
         return loc.statusInCommunication;
       case BookingStatus.cancelled:
         return loc.statusCancelled;
+      case BookingStatus.frozen:
+        return loc.statusFrozen;
+      case BookingStatus.disputed:
+        return loc.statusDisputed;
     }
   }
 

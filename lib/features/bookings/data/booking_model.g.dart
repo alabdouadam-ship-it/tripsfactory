@@ -123,4 +123,6 @@ const _$BookingStatusEnumMap = {
   BookingStatus.inTransit: 'in_transit',
   BookingStatus.delivered: 'delivered',
   BookingStatus.inCommunication: 'in_communication',
+  BookingStatus.frozen: 'frozen',
+  BookingStatus.disputed: 'disputed',
 };

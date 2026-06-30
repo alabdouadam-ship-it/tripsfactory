@@ -1808,6 +1808,18 @@ abstract class AppLocalizations {
   /// **'Cancelled'**
   String get statusCancelled;
 
+  /// No description provided for @statusFrozen.
+  ///
+  /// In en, this message translates to:
+  /// **'Frozen'**
+  String get statusFrozen;
+
+  /// No description provided for @statusDisputed.
+  ///
+  /// In en, this message translates to:
+  /// **'Disputed'**
+  String get statusDisputed;
+
   /// No description provided for @rateYourExperience.
   ///
   /// In en, this message translates to:
