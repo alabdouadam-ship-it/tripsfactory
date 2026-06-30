@@ -34,7 +34,17 @@ Keep that in sync with the entries below when you cut a release.
   `tests/*_TEST_STRATEGY.md` into a single `tests/TEST_STRATEGY.md`. README is now
   a task-routing map. Added a brand-neutral `AGENTS.md` for AI/dev orientation.
 
+- The admin panel now type-checks cleanly; the `tsc --noEmit` CI step is a
+  blocking gate (was non-blocking due to pre-existing test-mock type errors).
+
 ### Fixed
+- **Push (admin broadcast)**: removed a dead code path that called Google's
+  decommissioned legacy FCM endpoint (which always failed and reported misleading
+  delivery counts). Push is delivered by the notifications trigger via the FCM v1
+  `push-notification` function.
+- **Booking status**: the app now recognizes the `frozen` and `disputed` booking
+  states (admin-managed) and shows them correctly — previously they displayed as
+  "Pending". Rendered read-only; the database state machine is unchanged.
 - Onboarding "Next/Get Started" button no longer overflows on narrow screens or
   with longer translations (label is now flexible/ellipsized).
 - Demo mode is fully offline now: seeded notifications/bookings/deliveries
@@ -42,6 +52,13 @@ Keep that in sync with the entries below when you cut a release.
   is skipped; onboarding is auto-skipped so the demo lands on a populated Home.
 - Aligned the support WhatsApp fallback to the UAE number across `BrandConfig`
   and `fork.config.json`.
+
+### Security
+- Hardened booking/message Row-Level Security in the schema baseline: message
+  inserts are now restricted to booking participants (a non-blocked user can no
+  longer write into conversations they aren't part of); blocked users can no
+  longer post trips or create bookings; and a user can no longer book their own
+  trip. (Apply with `supabase db reset` / the setup script.)
 
 ## [1.0.0] — 2026-06-19
 
