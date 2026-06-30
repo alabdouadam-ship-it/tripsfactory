@@ -12,7 +12,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.tripship.app</string>
+	<string>com.tripsfactory.app</string>
 	<key>PROJECT_ID</key>
 	<string>your-firebase-project-id</string>
 	<key>STORAGE_BUCKET</key>
